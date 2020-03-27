@@ -1,4 +1,15 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Serif&display=swap');
+
+html {
+  background-color: #FFEDED;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.serif {
+  font-family: 'Noto Serif', serif;
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +46,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
