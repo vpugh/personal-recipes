@@ -48,7 +48,8 @@ const ViewRecipe = props => {
       ingredients,
       instructions,
       cookTime,
-      prepTime
+      prepTime,
+      notes
     } = currentRecipe;
     return (
       <div className={classes.recipeContainer}>
@@ -59,8 +60,8 @@ const ViewRecipe = props => {
             {TimeDisplay(course, 'Course', classes)}
             {TimeDisplay(cuisine, 'Cuisine', classes)}
             {protein && TimeDisplay(protein, 'Protein', classes)}
-            {cookTime && TimeDisplay(cookTime, 'Cook Time', classes)}
             {prepTime && TimeDisplay(prepTime, 'Prep Time', classes)}
+            {cookTime && TimeDisplay(cookTime, 'Cook Time', classes)}
             <p className={classes.recipeOrigin}>
               Recipe found at: {makeLink(recipeOrigin)}
             </p>
@@ -69,6 +70,12 @@ const ViewRecipe = props => {
               {ListGenerator(ingredients, 'Ingredients', classes, 2)}
               {ListGenerator(instructions, 'Instructions', classes)}
             </div>
+            {notes && (
+              <div>
+                <h3>Notes:</h3>
+                {notes}
+              </div>
+            )}
           </div>
         </div>
       </div>

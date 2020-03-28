@@ -12,6 +12,14 @@ const useStyles = makeStyles({
   }
 });
 
+const checkIfArray = passedVar => {
+  const isArray = Array.isArray(passedVar);
+  if (isArray) {
+    return passedVar.join(', ');
+  }
+  return passedVar;
+};
+
 const Tag = ({ text, fontSize = 10 }) => {
   const classes = useStyles();
   return (
@@ -20,7 +28,7 @@ const Tag = ({ text, fontSize = 10 }) => {
       style={{ fontSize }}
       onClick={() => alert(`Send me to ${text} tag page`)}
     >
-      {text}
+      {checkIfArray(text)}
     </div>
   );
 };

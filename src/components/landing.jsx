@@ -23,8 +23,10 @@ const Landing = () => {
     fetchRecipes(setRecipes);
   }, []);
 
+  const limit = 5;
+
   const limitRecipes = () => {
-    return recipes.slice(0, 4);
+    return recipes.slice(0, limit - 1);
   };
 
   if (recipes) {
@@ -40,6 +42,7 @@ const Landing = () => {
                     key={`${ra.title} ${index}`}
                     ra={ra}
                     index={index}
+                    limit={limit}
                   />
                 ))}
             </div>

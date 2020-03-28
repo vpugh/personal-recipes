@@ -2,13 +2,8 @@ import React from 'react';
 import Header from './components/header';
 import './App.css';
 import Main from './components/main';
-import Faker from 'faker';
 import { Server, Model, Factory } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
-
-const randomizer = arr => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
@@ -24,21 +19,16 @@ new Server({
         return i;
       },
       course() {
-        const courses = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert'];
-        return randomizer(courses);
+        return RecipeDetailsSelection(this.id, 'course');
       },
       title() {
         return RecipeDetailsSelection(this.id, 'title');
       },
       cuisine() {
-        return Faker.address.country();
+        return RecipeDetailsSelection(this.id, 'cuisine');
       },
       protein() {
-        const proteinList = ['Chicken', 'Beef', 'Pork', 'Shrimp', 'Lamb'];
-        if (this.course === 'Breakfast' || this.course === 'Snack') {
-          return '';
-        }
-        return randomizer(proteinList);
+        return RecipeDetailsSelection(this.id, 'protein');
       },
       prepTime() {
         return RecipeDetailsSelection(this.id, 'prepTime');
@@ -66,6 +56,9 @@ new Server({
       },
       instructions() {
         return RecipeDetailsSelection(this.id, 'instructions');
+      },
+      notes() {
+        return RecipeDetailsSelection(this.id, 'notes');
       }
     })
   },
