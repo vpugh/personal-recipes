@@ -1,7 +1,10 @@
 import React from 'react';
 import Landing from './landing';
 import Container from '../grid/container';
+import AddRecipe from '../components/add-recipe';
 import { makeStyles } from '@material-ui/styles';
+import { Switch, Route } from 'react-router-dom';
+import ViewRecipe from './view-recipe';
 
 const useStyles = makeStyles({
   padding: {
@@ -14,7 +17,11 @@ const Main = () => {
   return (
     <div className={classes.padding}>
       <Container>
-        <Landing />
+        <Switch>
+          <Route exact path='/' component={Landing} />
+          <Route path='/add-recipe' component={AddRecipe} />
+          <Route path='/recipe/:id' component={ViewRecipe} />
+        </Switch>
       </Container>
     </div>
   );

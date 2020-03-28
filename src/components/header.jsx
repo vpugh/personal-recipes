@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Container from '../grid/container';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   headerBackground: {
@@ -47,11 +48,10 @@ const Header = () => {
           fontSize: 18
         }}
       >
-        <div
-          onClick={() => alert('Send me home')}
-          className={`logo serif ${classes.logoLink}`}
-        >
-          Personal Recipes
+        <div className={`logo serif ${classes.logoLink}`}>
+          <Link style={{ color: 'inherit', textDecoration: 'none' }} to='/'>
+            Personal Recipes
+          </Link>
         </div>
         <div className='searchbar'>
           <button
@@ -59,7 +59,7 @@ const Header = () => {
             className={`${classes.searchButton} ${classes.hoverLink}`}
           >
             <img
-              src='./icons/Magnifying_Glass@2x.png'
+              src='/icons/Magnifying_Glass@2x.png'
               alt='Settings Icon'
               className={classes.iconSize}
             />
@@ -75,7 +75,7 @@ const Header = () => {
               className={`${classes.settingsButton} ${classes.hoverLink}`}
             >
               <img
-                src='./icons/Gear@2x.png'
+                src='/icons/Gear@2x.png'
                 alt='Settings Icon'
                 className={classes.iconSize}
               />

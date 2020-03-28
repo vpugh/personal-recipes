@@ -1,0 +1,28 @@
+{
+  "ingredients": [{
+      "crust": ['1/2 cup blanched almond flour, such as Bob\'s Red Mill', '1/2 cup sweet rice flour, such as Bob\'s Red Mill', '1/2 cup GF oat flour, such as Bob\'s Red Mill', '2 tablespoons tapioca flour', '1/4 cup organic granulated sugar', '1/4 + 1/8 teaspoon fine sea salt', '6 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat cold and in 1/2-inch dice', '1 teaspoon vanilla extract']
+    },
+    {
+      "filling": ['10 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat sliced', '1 tablespoon lemon zest, finely grated and firmly packed', '1 1/2 cups organic granulated cane sugar', '1/8 teaspoon fine sea salt', '4 large eggs', '2 large egg yolks', '1 cup strained lemon juice, from about 6 large lemons', 'optional garnishes powdered sugar, lemon wheels, and/or heavy cream and crème fraîche whipped to firm peaks']
+    }
+  ],
+}, {
+  "crust": ['1 pound ground chicken', '1/3 cup mozzarella shredded (40 grams)', '1/3 cup parmesan cheese shredded (30 grams)', '1 teaspoon Italian seasonings basil, oregano, rosemary, and thyme', '1 large egg', 'salt and ground black pepper to taste (I used 1/4 salt and dash pepper)'],
+  "sauce": ['1/3 cup avocado mayonnaise', '1/3 cup sour cream', '1/4 teaspoon dried chives', '1/4 teaspoon dried parsley', '1/4 teaspoon dried dill', '1/4 teaspoon garlic powder', '1/8 teaspoon onion powder', '1/8 teaspoon salt', 'dash pepper'],
+  "toppings": ['1 cup mozzarella cheese shredded & divided (103 grams)', '2 medium plum tomatoes diced (85 grams)', '3 slices no sugar bacon cooked and chopped']
+}, {
+  "marinade": ['Boneless Chicken - 200 Gms', 'Pound Ginger & Garlic - 1 Tsp', 'Hung Curd - 2 Tsp', 'Juice Of 1/2 Lemon ', 'Kashmiri Chili Powder - 1 Tsp', 'Garam Masala - 1/2 Tsp', 'Salt - 1/2 Tsp', 'Oil - 1 Tbsp'],
+  "paste": ['Butter - 1 Tbsp', 'Oil - 1 Tbsp', 'Onion - 2 Nos Chopped', 'Pound Ginger & Garlic - 1 Tsp', 'Tomato - 3 Nos Chopped', 'Kashmiri Red Chili - 3 Nos', 'Salt - 1 Tsp', 'Cumin Powder - 1 Tsp', 'Coriander Powder - 1/2 Tsp', 'Garam Masala - 1 Tsp', 'Water - 2 Tbsp', 'Cashew Nuts - 10 Nos ', 'Water - 1/4 Cup '],
+  "chicken": ['Butter - 2 Tbsp', 'Kashmiri Chili Powder - 1 Tsp', 'Water ', 'Fresh Cream - 1/4 Cup', 'Kasuri Methi ', 'Coriander Leaves ']
+}, {
+  "cake": ['3 cups all-purpose flour', '2 teaspoons baking powder', '1 cup unsalted butter, 2 sticks, room temperature', '2 cups granulated sugar', '1 teaspoon kosher salt', '3 large eggs, room temperature', '2 tablespoons lemon zest', '¼ cup lemon juice', '1 teaspoon vanilla extract', '1 cup whole milk', 'nonstick cooking spray, for greasing'],
+  "glaze": ['½ cup granulated sugar', '¼ cup lemon juice'],
+  "icing": ['2 cups powdered sugar, sifted', '3 tablespoons lemon juice', '1 lemon, zested']
+}, {
+  "veggies": ['2 tablespoons olive oil', '2 medium russet potatoes, cut into half-inch cubes (~2 cups cubed)', '1 tablespoon minced garlic', '1 teaspoon chili powder', '1/2 teaspoon ground cumin', '1/4 teaspoon paprika', '1/8 teaspoon salt', '1 large yellow pepper, diced', '1 large red pepper, diced', '1/2 yellow onion, minced'],
+  "eggs": ['8 large eggs', '2 tablespoons unsweetened almond milk', 'salt and pepper, to taste', '2 tablespoons olive oil'],
+  "other": ['12 oz. uncooked breakfast sausage (any kind will work and option to use pre-cooked)', '1 cup shredded cheddar cheese', '1 15-oz. can refried beans', '8 large flour tortillas']
+}, {
+  "beignets": ['1 ½ cups apple cider', '1 cup lukewarm water', '¼ cup granulated sugar', '1 package active dry yeast', '2 large eggs', '1 ½ teaspoons kosher salt', '1 tablespoon apple pie spice, divided, plus 2 teaspoons', '1 cup evaporated milk', '½ stick unsalted butter, melted', '7 cups bread flour, plus more for dusting', 'nonstick cooking spray, for greasing', '½ cup powdered sugar', '4 qt canola oil'],
+  "caramel": ['2 cups apple cider', '½ cup brown sugar', '¼ cup heavy cream', '½ stick unsalted butter, cubed', '¼ teaspoon kosher salt']
+}

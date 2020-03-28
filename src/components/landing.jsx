@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom';
+import Tag from './tags';
 
 const useStyles = makeStyles({
   container: {
@@ -22,7 +24,11 @@ const useStyles = makeStyles({
   h3Title: {
     fontWeight: 'normal',
     margin: 0,
-    fontSize: 18
+    fontSize: 18,
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
   },
   displayFlexCenter: {
     display: 'flex',
@@ -45,15 +51,6 @@ const useStyles = makeStyles({
     paddingBottom: 16,
     border: 'none'
   },
-  tags: {
-    display: 'inline-flex',
-    flexDirection: 'row',
-    padding: '2px 9px',
-    background: '#F4F4F4',
-    borderRadius: 6,
-    fontSize: 10,
-    marginRight: 5
-  },
   cardText: props => ({
     color: '#fff',
     fontWeight: 'bold',
@@ -66,52 +63,6 @@ const useStyles = makeStyles({
     height: 69
   }
 });
-
-const recentlyAdded = [
-  {
-    title: 'World Famous Butter Chicken',
-    course: 'Dinner',
-    cuisine: 'Indian',
-    protein: 'Chicken',
-    prepTime: 45,
-    cookTime: 60,
-    serves: 4,
-    serveType: 'people'
-  },
-  {
-    title: 'Pineapple Upside-Down Pancakes',
-    course: 'Breakfast',
-    cuisine: 'American',
-    protein: '',
-    prepTime: 15,
-    cookTime: 20,
-    totalTime: '',
-    serves: 22,
-    serveType: 'pancakes'
-  },
-  {
-    title: 'Fireball Shrimp',
-    course: 'Dinner',
-    cuisine: 'Malaysian',
-    protein: 'Shrimp',
-    prepTime: 15,
-    cookTime: 20,
-    totalTime: '',
-    serves: 4,
-    serveType: 'dishes'
-  },
-  {
-    title: 'Potsticker Noodles Bowls',
-    course: 'Dinner',
-    cuisine: 'Asian',
-    protein: 'Pork',
-    prepTime: '',
-    cookTime: '',
-    totalTime: 30,
-    serves: 4,
-    serveType: 'people'
-  }
-];
 
 const toHour = time => {
   return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
@@ -132,8 +83,24 @@ const displayTime = mins => {
   return `${mins} mins`;
 };
 
+const getRecipes = async () => {
+  let res = await fetch('/api/v1/recipes');
+  return await res.json();
+};
+
+const fetchRecipes = async set => {
+  const data = await getRecipes();
+  set(data.recipes);
+};
+
 const Landing = () => {
   const classes = useStyles();
+
+  const [recipes, setRecipes] = useState();
+
+  useEffect(() => {
+    fetchRecipes(setRecipes);
+  }, []);
 
   const imageCard = (text, img, direction) => {
     return (
@@ -164,15 +131,8 @@ const Landing = () => {
     );
   };
 
-  const tag = text => {
-    return (
-      <div
-        className={classes.tags}
-        onClick={() => alert(`Send me to ${text} tag page`)}
-      >
-        {text}
-      </div>
-    );
+  const limitRecipes = () => {
+    return recipes.slice(0, 4);
   };
 
   return (
@@ -181,69 +141,72 @@ const Landing = () => {
         <h4 className={classes.subTitle}>Recently Added</h4>
         <div className={classes.addedShadowBox}>
           <div style={{ padding: '30px 20px' }}>
-            {recentlyAdded.map((ra, index) => {
-              return (
-                <div
-                  key={ra.title}
-                  style={{
-                    paddingBottom:
-                      recentlyAdded.length - 1 === index ? null : 30
-                  }}
-                >
-                  <h3 className={classes.h3Title}>{ra.title}</h3>
+            {recipes &&
+              limitRecipes().map((ra, index) => {
+                return (
                   <div
-                    className={`${classes.displayFlexCenter}`}
+                    key={ra.title}
                     style={{
-                      color: '#6C6C6C',
-                      marginTop: 10
+                      paddingBottom: recipes.length - 1 === index ? null : 30
                     }}
                   >
-                    {ra.course && tag(ra.course)}
-                    {ra.cuisine && tag(ra.cuisine)}
-                    {ra.protein && tag(ra.protein)}
-                    <span
-                      className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+                    <h3 className={classes.h3Title}>
+                      <Link to={`/recipe/${ra.id}`} query={{ id: ra.id }}>
+                        {ra.title}
+                      </Link>
+                    </h3>
+                    <div
+                      className={`${classes.displayFlexCenter}`}
+                      style={{
+                        color: '#6C6C6C',
+                        marginTop: 10
+                      }}
                     >
-                      <img
-                        src='./icons/Clock@2x.png'
-                        alt='Settings Icon'
-                        style={{
-                          width: 15,
-                          height: 15,
-                          marginRight: 6,
-                          marginLeft: 6
-                        }}
-                      />
-                      {!ra.totalTime
-                        ? `${displayTime(ra.prepTime)} + ${displayTime(
-                            ra.cookTime
-                          )}`
-                        : ''}
-                      {ra.totalTime
-                        ? `${ra.totalTime} ${ra.totalTime < 60 ? 'mins' : ''}`
-                        : ` | ${displayTotalTime(ra.cookTime, ra.prepTime)}`}
-                    </span>
-                    <span
-                      className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
-                    >
-                      <img
-                        src='./icons/Utensils@2x.png'
-                        alt='Settings Icon'
-                        style={{
-                          width: 15,
-                          height: 15,
-                          marginRight: 6,
-                          marginLeft: 6
-                        }}
-                      />
-                      Serves {ra.serves} {ra.serveType}
-                    </span>
+                      {ra.course && <Tag text={ra.course} />}
+                      {ra.cuisine && <Tag text={ra.cuisine} />}
+                      {ra.protein && <Tag text={ra.protein} />}
+                      <span
+                        className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+                      >
+                        <img
+                          src='./icons/Clock@2x.png'
+                          alt='Settings Icon'
+                          style={{
+                            width: 15,
+                            height: 15,
+                            marginRight: 6,
+                            marginLeft: 6
+                          }}
+                        />
+                        {!ra.totalTime &&
+                          `${displayTotalTime(ra.cookTime, ra.prepTime)}`}
+                        {ra.totalTime &&
+                          `${ra.totalTime} ${ra.totalTime < 60 ? 'mins' : ''}`}
+                      </span>
+                      <span
+                        className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+                      >
+                        <img
+                          src='./icons/Utensils@2x.png'
+                          alt='Settings Icon'
+                          style={{
+                            width: 15,
+                            height: 15,
+                            marginRight: 6,
+                            marginLeft: 6
+                          }}
+                        />
+                        Serves {ra.serves} {ra.serveType}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
-          <button className={classes.addNewButton}>Add New Recipe</button>
+          <Link to='/add-recipe' className={classes.addNewButton}>
+            Add New Recipe
+          </Link>
+          {/* <button className={classes.addNewButton}>Add New Recipe</button> */}
         </div>
       </div>
       <div>
