@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import Tag from './tags';
+import AddRecipeWidget from './add-recipe-widget';
 
 const useStyles = makeStyles({
   container: {
@@ -64,18 +64,6 @@ const useStyles = makeStyles({
   }
 });
 
-const toHour = time => {
-  return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
-};
-
-const displayTotalTime = (cook, prep) => {
-  const total = cook + prep;
-  if (total > 60) {
-    return toHour(Math.floor(total / 60));
-  }
-  return `${Math.floor(total)} mins`;
-};
-
 const getRecipes = async () => {
   let res = await fetch('/api/v1/recipes');
   return await res.json();
@@ -128,94 +116,44 @@ const Landing = () => {
     return recipes.slice(0, 4);
   };
 
-  return (
-    <div className={classes.container}>
-      <div>
-        <h4 className={classes.subTitle}>Recently Added</h4>
-        <div className={classes.addedShadowBox}>
-          <div style={{ padding: '30px 20px' }}>
-            {recipes &&
-              limitRecipes().map((ra, index) => {
-                return (
-                  <div
-                    key={ra.title}
-                    style={{
-                      paddingBottom: recipes.length - 1 === index ? null : 30
-                    }}
-                  >
-                    <h3 className={classes.h3Title}>
-                      <Link to={`/recipe/${ra.id}`} query={{ id: ra.id }}>
-                        {ra.title}
-                      </Link>
-                    </h3>
-                    <div
-                      className={`${classes.displayFlexCenter}`}
-                      style={{
-                        color: '#6C6C6C',
-                        marginTop: 10
-                      }}
-                    >
-                      {ra.course && <Tag text={ra.course} />}
-                      {ra.cuisine && <Tag text={ra.cuisine} />}
-                      {ra.protein && <Tag text={ra.protein} />}
-                      <span
-                        className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
-                      >
-                        <img
-                          src='./icons/Clock@2x.png'
-                          alt='Settings Icon'
-                          style={{
-                            width: 15,
-                            height: 15,
-                            marginRight: 6,
-                            marginLeft: 6
-                          }}
-                        />
-                        {!ra.totalTime &&
-                          `${displayTotalTime(ra.cookTime, ra.prepTime)}`}
-                        {ra.totalTime &&
-                          `${ra.totalTime} ${ra.totalTime < 60 ? 'mins' : ''}`}
-                      </span>
-                      <span
-                        className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
-                      >
-                        <img
-                          src='./icons/Utensils@2x.png'
-                          alt='Settings Icon'
-                          style={{
-                            width: 15,
-                            height: 15,
-                            marginRight: 6,
-                            marginLeft: 6
-                          }}
-                        />
-                        Serves {ra.serves} {ra.serveType}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+  if (recipes) {
+    return (
+      <div className={classes.container}>
+        <div>
+          <h4 className={classes.subTitle}>Recently Added</h4>
+          <div className={classes.addedShadowBox}>
+            <div style={{ padding: '30px 20px' }}>
+              {recipes &&
+                limitRecipes().map((ra, index) => (
+                  <AddRecipeWidget
+                    key={`${ra.title} ${index}`}
+                    ra={ra}
+                    index={index}
+                  />
+                ))}
+            </div>
+            <Link to='/add-recipe' className={classes.addNewButton}>
+              Add New Recipe
+            </Link>
           </div>
-          <Link to='/add-recipe' className={classes.addNewButton}>
-            Add New Recipe
-          </Link>
-          {/* <button className={classes.addNewButton}>Add New Recipe</button> */}
+        </div>
+        <div>
+          <div style={{ marginTop: 61 }}>
+            {imageCard('Course', './images/course-image@2x.png', 'right')}
+            {imageCard('Cuisine', './images/cuisine-image@2x.png', 'left')}
+            {imageCard('Protein', './images/protein-image@2x.png', 'right')}
+            {imageCard(
+              'All Recipes',
+              './images/all-recipes-image@2x.png',
+              'left'
+            )}
+          </div>
         </div>
       </div>
-      <div>
-        <div style={{ marginTop: 61 }}>
-          {imageCard('Course', './images/course-image@2x.png', 'right')}
-          {imageCard('Cuisine', './images/cuisine-image@2x.png', 'left')}
-          {imageCard('Protein', './images/protein-image@2x.png', 'right')}
-          {imageCard(
-            'All Recipes',
-            './images/all-recipes-image@2x.png',
-            'left'
-          )}
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return <p>Loading Recipes</p>;
 };
 
 export default Landing;
