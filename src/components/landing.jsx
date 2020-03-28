@@ -1,68 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/styles';
+import useStyles from '../styles/landing-styles';
 import { Link } from 'react-router-dom';
 import AddRecipeWidget from './add-recipe-widget';
-
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    fontSize: 18
-  },
-  subTitle: {
-    fontSize: '16px',
-    lineHeight: '22px',
-    color: '#F65B5B',
-    fontWeight: 'normal',
-    marginTop: 0
-  },
-  addedShadowBox: {
-    background: '#FEFEFE',
-    boxShadow: '4px 8px 44px #FFCCCC'
-  },
-  h3Title: {
-    fontWeight: 'normal',
-    margin: 0,
-    fontSize: 18,
-    '& a': {
-      color: 'inherit',
-      textDecoration: 'none'
-    }
-  },
-  displayFlexCenter: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  subFontSize: {
-    fontSize: 10
-  },
-  addNewButton: {
-    background: '#FF8585',
-    boxShadow: ' 4px 8px 44px #FFCCCC',
-    width: '100%',
-    fontSize: 16,
-    fontWeight: 'bold',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    paddingTop: 16,
-    paddingBottom: 16,
-    border: 'none'
-  },
-  cardText: props => ({
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginLeft: props.direction ? 151 : 30,
-    marginRight: props.direction ? 30 : 151
-  }),
-  cardImg: {
-    width: 262,
-    height: 69
-  }
-});
+import ImageCard from './landing-image-card';
 
 const getRecipes = async () => {
   let res = await fetch('/api/v1/recipes');
@@ -82,35 +22,6 @@ const Landing = () => {
   useEffect(() => {
     fetchRecipes(setRecipes);
   }, []);
-
-  const imageCard = (text, img, direction) => {
-    return (
-      <div
-        onClick={() => alert(`Send me to the ${text} page`)}
-        style={{
-          background: '#FF8585',
-          boxShadow: '2px 4px 24px rgba(255, 132, 132, 0.58)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: 40
-        }}
-      >
-        {direction === 'right' && (
-          <>
-            <div className={classes.cardText}>{text}</div>
-            <img className={classes.cardImg} src={img} alt='' />
-          </>
-        )}
-        {direction === 'left' && (
-          <>
-            <img className={classes.cardImg} src={img} alt='' />
-            <div className={classes.cardText}>{text}</div>
-          </>
-        )}
-      </div>
-    );
-  };
 
   const limitRecipes = () => {
     return recipes.slice(0, 4);
@@ -139,12 +50,28 @@ const Landing = () => {
         </div>
         <div>
           <div style={{ marginTop: 61 }}>
-            {imageCard('Course', './images/course-image@2x.png', 'right')}
-            {imageCard('Cuisine', './images/cuisine-image@2x.png', 'left')}
-            {imageCard('Protein', './images/protein-image@2x.png', 'right')}
-            {imageCard(
+            {ImageCard(
+              'Course',
+              './images/course-image@2x.png',
+              classes,
+              'right'
+            )}
+            {ImageCard(
+              'Cuisine',
+              './images/cuisine-image@2x.png',
+              classes,
+              'left'
+            )}
+            {ImageCard(
+              'Protein',
+              './images/protein-image@2x.png',
+              classes,
+              'right'
+            )}
+            {ImageCard(
               'All Recipes',
               './images/all-recipes-image@2x.png',
+              classes,
               'left'
             )}
           </div>

@@ -122,7 +122,6 @@
       "2 teaspoons sesame oil",
       "¼ teaspoon ground ginger",
       "¼ teaspoon crushed red pepper flakes",
-      "¼ teaspoon crushed red pepper flakes",
       "¼ teaspoon pepper"
     ],
     "instructions": [
@@ -173,13 +172,13 @@
         "separate": []
       },
       {
-        "marinade": ["Boneless Chicken - 200 Gms", "Pound Ginger & Garlic - 1 Tsp", "Hung Curd - 2 Tsp", "Juice Of 1/2 Lemon ", "Kashmiri Chili Powder - 1 Tsp", "Garam Masala - 1/2 Tsp", "Salt - 1/2 Tsp", "Oil - 1 Tbsp"]
+        "marinade": ["200 Grams Boneless Chicken", "1 Tsp Pound Ginger & Garlic", "2 Tsp Hung Curd", "Juice Of 1 /2 Lemon ", "1 Tsp Kashmiri Chili Powder", "1 /2 Tsp Garam Masala", "1 /2 Tsp Salt", "1 Tbsp Oil"]
       },
       {
-        "paste": ["Butter - 1 Tbsp", "Oil - 1 Tbsp", "Onion - 2 Nos Chopped", "Pound Ginger & Garlic - 1 Tsp", "Tomato - 3 Nos Chopped", "Kashmiri Red Chili - 3 Nos", "Salt - 1 Tsp", "Cumin Powder - 1 Tsp", "Coriander Powder - 1/2 Tsp", "Garam Masala - 1 Tsp", "Water - 2 Tbsp", "Cashew Nuts - 10 Nos ", "Water - 1/4 Cup "]
+        "paste": ["1 Tbsp Butter", "1 Tbsp Oil", "2 Onions - Chopped", "1 Tsp Pound Ginger & Garlic", "3 Tomatos - Chopped", "3 Kashmiri Red Chili", "1 Tsp Salt", "1 Tsp Cumin Powder", "1 /2 Tsp Coriander Powder", "1 Tsp Garam Masala", "2 Tbsp Water", "10 Cashew Nuts", "1 /4 Cup Water"]
       },
       {
-        "chicken": ["Butter - 2 Tbsp", "Kashmiri Chili Powder - 1 Tsp", "Water ", "Fresh Cream - 1/4 Cup", "Kasuri Methi ", "Coriander Leaves "]
+        "chicken": ["2 Tbsp Butter", "1 Tsp Kashmiri Chili Powder", "Water", "1 /4 Cup Fresh Cream", "Kasuri Methi", "Coriander Leaves"]
       }
     ],
     "instructions": [
