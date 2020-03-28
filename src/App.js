@@ -4,9 +4,14 @@ import './App.css';
 import Main from './components/main';
 import Faker from 'faker';
 import { Server, Model, Factory } from 'miragejs';
+import RecipeDetails from '../src/mirage-data/recipe-details.json';
 
 const randomizer = arr => {
   return arr[Math.floor(Math.random() * arr.length)];
+};
+
+const RecipeDetailsSelection = (num, selector) => {
+  return RecipeDetails[num][selector];
 };
 
 new Server({
@@ -19,12 +24,12 @@ new Server({
         return i;
       },
       course() {
-        const courses = ['breakfast', 'lunch', 'dinner', 'snack', 'dessert'];
+        const courses = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert'];
         return randomizer(courses);
       },
       title() {
         let titles;
-        if (this.course === 'dessert') {
+        if (this.course === 'Dessert') {
           titles = [
             'Cranberry Crumble',
             'Honey Trifle',
@@ -32,10 +37,10 @@ new Server({
             'Chocolate Zucchini Bread'
           ];
         }
-        if (this.course === 'breakfast') {
+        if (this.course === 'Breakfast') {
           titles = ['Stir-Fried Cranberry Bake', 'Chocolate Zucchini Bread'];
         }
-        if (this.course === 'lunch') {
+        if (this.course === 'Lunch') {
           titles = [
             'Stewed Mushroom & Apricot Bear',
             'Braised Mustard & Rosemary Chicken',
@@ -43,7 +48,7 @@ new Server({
             'Pressure-Cooked Pepper & Mango Prawns'
           ];
         }
-        if (this.course === 'dinner') {
+        if (this.course === 'Dinner') {
           titles = [
             'Stewed Mushroom & Apricot Bear',
             'Braised Mustard & Rosemary Chicken',
@@ -51,7 +56,7 @@ new Server({
             'Pressure-Cooked Pepper & Mango Prawns'
           ];
         }
-        if (this.course === 'snack') {
+        if (this.course === 'Snack') {
           titles = [
             'Pickled Fennel & Garlic Tortilla',
             'Peanut and Cinnamon Jelly'
@@ -63,48 +68,138 @@ new Server({
         return Faker.address.country();
       },
       protein() {
-        const proteinList = ['chicken', 'beef', 'pork', 'shrimp', 'lamb'];
-        if (this.course === 'breakfast' || this.course === 'snack') {
+        const proteinList = ['Chicken', 'Beef', 'Pork', 'Shrimp', 'Lamb'];
+        if (this.course === 'Breakfast' || this.course === 'Snack') {
           return '';
         }
         return randomizer(proteinList);
       },
-      prepTime: 10,
-      cookTime: 50,
-      serves: 4,
-      serveType: 'people',
-      description:
-        "Chocolate zucchini bread that’s incredibly moist, not too sweet, and packed with chocolate chips. The grated zucchini dissolves as it bakes - leaving you with a delicious chocolate loaf that's deliciously tender.",
-      recipeOrigin: 'https://www.justsotasty.com/chocolate-zucchini-bread/',
-      equipmentNeeded: [
-        '8 1/2 by 4 1/2 inch loaf pan',
-        'Parchment Paper',
-        'Medium bowl',
-        'Large bowl '
-      ],
-      ingredients: [
-        '1 1/2 cups grated zucchini*',
-        '1 1/4 cup all-purpose flour',
-        '1/3 cup cocoa powder',
-        '1 teaspoon baking soda',
-        '1/4 teaspoon salt',
-        '1/2 cup unsalted butter, melted',
-        '3/4 cup brown sugar',
-        '2 large eggs',
-        '2 teaspoons vanilla extract',
-        '1 cup chocolate chips'
-      ],
-      instructions: [
-        'Preheat the oven to 350F degrees. Line the bottom of an 8 1/2 by 4 1/2 inch loaf pan with parchment paper, then grease and flour the sides.',
-        'Gently blot the grated zucchini with a paper towel to remove excess water.',
-        'In a medium bowl whisk together the flour, cocoa, baking soda and salt.',
-        'In a large bowl whisk together the melted butter, sugar, eggs and vanilla extract until there are no chunks of sugar.',
-        'Gently fold the flour mixture into the oil mixture.',
-        'Once almost combined, stir in the grated zucchini.',
-        'Fold in the chocolate chips.',
-        'Pour the batter into the prepared pan, and bake for 45-55 minutes until the top is firm to the touch and an inserted toothpick comes out clean (except for melted chocolate chips).',
-        'Cool fully before cutting into slices.'
-      ]
+      prepTime() {
+        const prepTimeList = [
+          RecipeDetailsSelection(0, 'prepTime'),
+          RecipeDetailsSelection(1, 'prepTime'),
+          RecipeDetailsSelection(2, 'prepTime'),
+          RecipeDetailsSelection(3, 'prepTime'),
+          RecipeDetailsSelection(4, 'prepTime'),
+          RecipeDetailsSelection(5, 'prepTime'),
+          RecipeDetailsSelection(6, 'prepTime'),
+          RecipeDetailsSelection(7, 'prepTime'),
+          RecipeDetailsSelection(8, 'prepTime')
+        ];
+        return randomizer(prepTimeList);
+      },
+      cookTime() {
+        const cookTimeList = [
+          RecipeDetailsSelection(0, 'cookTime'),
+          RecipeDetailsSelection(1, 'cookTime'),
+          RecipeDetailsSelection(2, 'cookTime'),
+          RecipeDetailsSelection(3, 'cookTime'),
+          RecipeDetailsSelection(4, 'cookTime'),
+          RecipeDetailsSelection(5, 'cookTime'),
+          RecipeDetailsSelection(6, 'cookTime'),
+          RecipeDetailsSelection(7, 'cookTime'),
+          RecipeDetailsSelection(8, 'cookTime')
+        ];
+        return randomizer(cookTimeList);
+      },
+      serves() {
+        const servesList = [
+          RecipeDetailsSelection(0, 'serves'),
+          RecipeDetailsSelection(1, 'serves'),
+          RecipeDetailsSelection(2, 'serves'),
+          RecipeDetailsSelection(3, 'serves'),
+          RecipeDetailsSelection(4, 'serves'),
+          RecipeDetailsSelection(5, 'serves'),
+          RecipeDetailsSelection(6, 'serves'),
+          RecipeDetailsSelection(7, 'serves'),
+          RecipeDetailsSelection(8, 'serves')
+        ];
+        return randomizer(servesList);
+      },
+      serveType() {
+        const serveTypeList = [
+          RecipeDetailsSelection(0, 'serveType'),
+          RecipeDetailsSelection(1, 'serveType'),
+          RecipeDetailsSelection(2, 'serveType'),
+          RecipeDetailsSelection(3, 'serveType'),
+          RecipeDetailsSelection(4, 'serveType'),
+          RecipeDetailsSelection(5, 'serveType'),
+          RecipeDetailsSelection(6, 'serveType'),
+          RecipeDetailsSelection(7, 'serveType'),
+          RecipeDetailsSelection(8, 'serveType')
+        ];
+        return randomizer(serveTypeList);
+      },
+      description() {
+        const descriptionList = [
+          RecipeDetailsSelection(0, 'description'),
+          RecipeDetailsSelection(1, 'description'),
+          RecipeDetailsSelection(2, 'description'),
+          RecipeDetailsSelection(3, 'description'),
+          RecipeDetailsSelection(4, 'description'),
+          RecipeDetailsSelection(5, 'description'),
+          RecipeDetailsSelection(6, 'description'),
+          RecipeDetailsSelection(7, 'description'),
+          RecipeDetailsSelection(8, 'description')
+        ];
+        return randomizer(descriptionList);
+      },
+      recipeOrigin() {
+        const originList = [
+          RecipeDetailsSelection(0, 'recipeOrigin'),
+          RecipeDetailsSelection(1, 'recipeOrigin'),
+          RecipeDetailsSelection(2, 'recipeOrigin'),
+          RecipeDetailsSelection(3, 'recipeOrigin'),
+          RecipeDetailsSelection(4, 'recipeOrigin'),
+          RecipeDetailsSelection(5, 'recipeOrigin'),
+          RecipeDetailsSelection(6, 'recipeOrigin'),
+          RecipeDetailsSelection(7, 'recipeOrigin'),
+          RecipeDetailsSelection(8, 'recipeOrigin')
+        ];
+        return randomizer(originList);
+      },
+      equipmentNeeded() {
+        const equipmentList = [
+          RecipeDetailsSelection(0, 'equipmentNeeded'),
+          RecipeDetailsSelection(1, 'equipmentNeeded'),
+          RecipeDetailsSelection(2, 'equipmentNeeded'),
+          RecipeDetailsSelection(3, 'equipmentNeeded'),
+          RecipeDetailsSelection(4, 'equipmentNeeded'),
+          RecipeDetailsSelection(5, 'equipmentNeeded'),
+          RecipeDetailsSelection(6, 'equipmentNeeded'),
+          RecipeDetailsSelection(7, 'equipmentNeeded'),
+          RecipeDetailsSelection(8, 'equipmentNeeded')
+        ];
+        return randomizer(equipmentList);
+      },
+      ingredients() {
+        const ingredientsList = [
+          RecipeDetailsSelection(0, 'ingredients'),
+          RecipeDetailsSelection(1, 'ingredients'),
+          RecipeDetailsSelection(2, 'ingredients'),
+          RecipeDetailsSelection(3, 'ingredients'),
+          RecipeDetailsSelection(4, 'ingredients'),
+          RecipeDetailsSelection(5, 'ingredients'),
+          RecipeDetailsSelection(6, 'ingredients'),
+          RecipeDetailsSelection(7, 'ingredients'),
+          RecipeDetailsSelection(8, 'ingredients')
+        ];
+        return randomizer(ingredientsList);
+      },
+      instructions() {
+        const instructionsList = [
+          RecipeDetailsSelection(0, 'instructions'),
+          RecipeDetailsSelection(1, 'instructions'),
+          RecipeDetailsSelection(2, 'instructions'),
+          RecipeDetailsSelection(3, 'instructions'),
+          RecipeDetailsSelection(4, 'instructions'),
+          RecipeDetailsSelection(5, 'instructions'),
+          RecipeDetailsSelection(6, 'instructions'),
+          RecipeDetailsSelection(7, 'instructions'),
+          RecipeDetailsSelection(8, 'instructions')
+        ];
+        return randomizer(instructionsList);
+      }
     })
   },
   routes() {

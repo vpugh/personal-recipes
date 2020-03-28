@@ -71,16 +71,9 @@ const toHour = time => {
 const displayTotalTime = (cook, prep) => {
   const total = cook + prep;
   if (total > 60) {
-    return toHour(total / 60);
+    return toHour(Math.floor(total / 60));
   }
-  return `${total} mins`;
-};
-
-const displayTime = mins => {
-  if (mins > 60) {
-    return toHour(mins / 60);
-  }
-  return `${mins} mins`;
+  return `${Math.floor(total)} mins`;
 };
 
 const getRecipes = async () => {
