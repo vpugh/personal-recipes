@@ -84,7 +84,8 @@ new Server({
           RecipeDetailsSelection(5, 'prepTime'),
           RecipeDetailsSelection(6, 'prepTime'),
           RecipeDetailsSelection(7, 'prepTime'),
-          RecipeDetailsSelection(8, 'prepTime')
+          RecipeDetailsSelection(8, 'prepTime'),
+          RecipeDetailsSelection(9, 'prepTime')
         ];
         return randomizer(prepTimeList);
       },
@@ -98,7 +99,8 @@ new Server({
           RecipeDetailsSelection(5, 'cookTime'),
           RecipeDetailsSelection(6, 'cookTime'),
           RecipeDetailsSelection(7, 'cookTime'),
-          RecipeDetailsSelection(8, 'cookTime')
+          RecipeDetailsSelection(8, 'cookTime'),
+          RecipeDetailsSelection(9, 'cookTime')
         ];
         return randomizer(cookTimeList);
       },
@@ -112,7 +114,8 @@ new Server({
           RecipeDetailsSelection(5, 'serves'),
           RecipeDetailsSelection(6, 'serves'),
           RecipeDetailsSelection(7, 'serves'),
-          RecipeDetailsSelection(8, 'serves')
+          RecipeDetailsSelection(8, 'serves'),
+          RecipeDetailsSelection(9, 'serves')
         ];
         return randomizer(servesList);
       },
@@ -126,7 +129,8 @@ new Server({
           RecipeDetailsSelection(5, 'serveType'),
           RecipeDetailsSelection(6, 'serveType'),
           RecipeDetailsSelection(7, 'serveType'),
-          RecipeDetailsSelection(8, 'serveType')
+          RecipeDetailsSelection(8, 'serveType'),
+          RecipeDetailsSelection(9, 'serveType')
         ];
         return randomizer(serveTypeList);
       },
@@ -140,7 +144,8 @@ new Server({
           RecipeDetailsSelection(5, 'description'),
           RecipeDetailsSelection(6, 'description'),
           RecipeDetailsSelection(7, 'description'),
-          RecipeDetailsSelection(8, 'description')
+          RecipeDetailsSelection(8, 'description'),
+          RecipeDetailsSelection(9, 'description')
         ];
         return randomizer(descriptionList);
       },
@@ -154,7 +159,8 @@ new Server({
           RecipeDetailsSelection(5, 'recipeOrigin'),
           RecipeDetailsSelection(6, 'recipeOrigin'),
           RecipeDetailsSelection(7, 'recipeOrigin'),
-          RecipeDetailsSelection(8, 'recipeOrigin')
+          RecipeDetailsSelection(8, 'recipeOrigin'),
+          RecipeDetailsSelection(9, 'recipeOrigin')
         ];
         return randomizer(originList);
       },
@@ -168,7 +174,8 @@ new Server({
           RecipeDetailsSelection(5, 'equipmentNeeded'),
           RecipeDetailsSelection(6, 'equipmentNeeded'),
           RecipeDetailsSelection(7, 'equipmentNeeded'),
-          RecipeDetailsSelection(8, 'equipmentNeeded')
+          RecipeDetailsSelection(8, 'equipmentNeeded'),
+          RecipeDetailsSelection(9, 'equipmentNeeded')
         ];
         return randomizer(equipmentList);
       },
@@ -182,7 +189,8 @@ new Server({
           RecipeDetailsSelection(5, 'ingredients'),
           RecipeDetailsSelection(6, 'ingredients'),
           RecipeDetailsSelection(7, 'ingredients'),
-          RecipeDetailsSelection(8, 'ingredients')
+          RecipeDetailsSelection(8, 'ingredients'),
+          RecipeDetailsSelection(9, 'ingredients')
         ];
         return randomizer(ingredientsList);
       },
@@ -196,7 +204,8 @@ new Server({
           RecipeDetailsSelection(5, 'instructions'),
           RecipeDetailsSelection(6, 'instructions'),
           RecipeDetailsSelection(7, 'instructions'),
-          RecipeDetailsSelection(8, 'instructions')
+          RecipeDetailsSelection(8, 'instructions'),
+          RecipeDetailsSelection(9, 'instructions')
         ];
         return randomizer(instructionsList);
       }

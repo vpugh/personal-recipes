@@ -25,8 +25,38 @@ const replaceFractions = text => {
   return newText;
 };
 
+const upperCaseFirst = str => {
+  return str[0].toUpperCase() + str.slice(1);
+};
+
 const ListGenerator = (arr, header, columns = 1) => {
   const lengthCheck = arr.length > 0;
+  if (lengthCheck && typeof arr[0].separate !== 'undefined') {
+    return (
+      <div>
+        <h3>{header}</h3>
+        {arr.map(a => {
+          if (Object.keys(a).toString() !== 'separate') {
+            return (
+              <>
+                <h4 style={{ marginBottom: '.5rem' }}>
+                  {upperCaseFirst(Object.keys(a).toString())}
+                </h4>
+                <ul style={{ margin: 0, padding: 0 }}>
+                  {Object.values(a)[0].map(list => (
+                    <li style={{ marginLeft: '1rem', paddingBottom: '.75rem' }}>
+                      {replaceFractions(list)}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            );
+          }
+          return null;
+        })}
+      </div>
+    );
+  }
   if (arr.length > 5 && columns > 1) {
     let newList = [];
     const limit = arr.length / 2;
