@@ -1,16 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ImageCard = (text, img, classes, direction) => {
+const ImageCard = (text, img, classes, direction, to = '/') => {
   return (
-    <div
-      onClick={() => alert(`Send me to the ${text} page`)}
+    <Link
+      to={to}
       style={{
         background: '#FF8585',
         boxShadow: '2px 4px 24px rgba(255, 132, 132, 0.58)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: 40
+        marginBottom: 40,
+        textDecoration: 'none'
       }}
     >
       {direction === 'right' ? (
@@ -24,7 +26,7 @@ const ImageCard = (text, img, classes, direction) => {
           <div className={classes.cardText}>{text}</div>
         </>
       )}
-    </div>
+    </Link>
   );
 };
 

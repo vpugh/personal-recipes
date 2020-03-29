@@ -46,7 +46,8 @@ export const useStyles = makeStyles({
     color: '#fff',
     paddingTop: 16,
     paddingBottom: 16,
-    border: 'none'
+    border: 'none',
+    textDecoration: 'none'
   },
   cardText: props => ({
     color: '#fff',

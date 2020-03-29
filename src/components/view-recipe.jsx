@@ -59,7 +59,7 @@ const ViewRecipe = props => {
             <p className={classes.recipeDescription}>{description}</p>
             {TimeDisplay(course, 'Course', classes)}
             {TimeDisplay(cuisine, 'Cuisine', classes)}
-            {protein && TimeDisplay(protein, 'Protein', classes)}
+            {protein && TimeDisplay(protein, 'Main Dish', classes)}
             {prepTime && TimeDisplay(prepTime, 'Prep Time', classes)}
             {cookTime && TimeDisplay(cookTime, 'Cook Time', classes)}
             <p className={classes.recipeOrigin}>

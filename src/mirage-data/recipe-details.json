@@ -6,7 +6,7 @@
     "prepTime": 10,
     "cookTime": 50,
     "totalTime": null,
-    "notes": "",
+    "notes": "*You do not need to peel the zucchini before grating. Cut off the ends, then hold the zucchini perpendicular (90-degree angle) to your grated to avoid long strands of zucchini. Wrap the bread tightly in plastic wrap and store at room temperature for up to 4 days. Bread can also be frozen (after being cooled fully). Wrap tightly and freeze for up to 2 months, then thaw in the fridge.",
     "serves": 10,
     "serveType": "slices",
     "description": "Chocolate zucchini bread that’s incredibly moist, not too sweet, and packed with chocolate chips. The grated zucchini dissolves as it bakes - leaving you with a delicious chocolate loaf that's deliciously tender.",
@@ -64,21 +64,30 @@
         "filling": ["10 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat sliced", "1 tablespoon lemon zest, finely grated and firmly packed", "1 1/2 cups organic granulated cane sugar", "1/8 teaspoon fine sea salt", "4 large eggs", "2 large egg yolks", "1 cup strained lemon juice, from about 6 large lemons", "optional garnishes powdered sugar, lemon wheels, and/or heavy cream and crème fraîche whipped to firm peaks"]
       }
     ],
-    "instructions": [
-      "Crust - Position a rack in the center of the oven and preheat to 350°F. Line an 8-inch square pan with parchment paper on all sides.",
-      "In the bowl of a food processor (or stand mixer fitted with the paddle attachment) combine the almond, sweet rice, oat, and tapioca flours with the sugar and salt. Scatter the cultured butter pieces over the top and drizzle with the vanilla extract. Process until the butter is incorporated and the dough forms large clumps, 15-30 seconds in a food processor or 3-5 minutes in a stand mixer on medium speed.",
-      "Dump the dough into the prepared baking pan and press evenly into the bottom.",
-      "Bake the crust until golden all over, 25-30 minutes. Remove the crust from the oven and, while it's still hot, press down firmly all over with the back of a spoon. This will help it hold together when cool.",
-      "Filling - Lower the oven temperature to 325°F.",
-      "Place the cultured butter and lemon zest in a heatproof bowl. Place a mesh strainer over the bowl and set aside.",
-      "In a medium, heavy-bottomed saucepan, whisk together the sugar, salt, eggs, and egg yolks to combine. Gradually whisk in the lemon juice.",
-      "Place the pot over medium-low heat and cook, stirring constantly with a heatproof silicone spatula, until the mixture thickens slightly and reaches 160-165°F on an instant-read thermometer, 5-10 minutes. As you stir, be sure to scrape the entire bottom and corners of the pan, so that the mixture heats as evenly as possible. It will start out thick and cloudy from the undissolved sugar, then will turn thin and translucent, and finally begin to thicken and turn cloudy again as the eggs cook. Lower the heat to very low as it gets closer to being done. If the mixture starts to curdle or bubble, immediately remove it from the heat and proceed to the next step.",
-      "Immediately pour the curd through the strainer and into the bowl of butter to stop the cooking. Whisk to incorporate the butter and lemon zest, making sure there are no clumps of lemon zest.",
-      "Pour the cooked curd over the baked and pressed down crust.",
-      "Bake the bars at 325°F (don't forget to lower the oven temp!) until the sides are barely puffed and the center wobbles like firm Jell-O when you give it a gentle shake, 15-20 minutes. It should not be wet or watery looking (underbaked!), nor should it be puffed in the center or cracking (ovebaked). Remove the bars from the oven and let cool to room temperature for 30-60 minutes, then chill until firm, 2-3 hours or overnight.",
-      "When the bars are cold, grasp the parchment paper and lift the bars from the pan and onto a cutting board. Gently peel away the sides of the parchment. Trim away the outer edges of the bars, then use a large chef's knife to cut the bars into 16 squares. For the cleanest cut, dip the knife in very hot water and wipe the blade clean between cuts.",
-      "Just before serving, dust the lemon bars with a bit of powdered sugar. Garnish with lemon wheels and/or whipped crème fraîche if you like.",
-      "The bars will keep well, refrigerated, for up to 3 days, though the crust is the crispiest within the first 1-2 days."
+    "instructions": [{
+        "separate": []
+      },
+      {
+        "crust": ["Position a rack in the center of the oven and preheat to 350°F. Line an 8-inch square pan with parchment paper on all sides.",
+          "In the bowl of a food processor (or stand mixer fitted with the paddle attachment) combine the almond, sweet rice, oat, and tapioca flours with the sugar and salt. Scatter the cultured butter pieces over the top and drizzle with the vanilla extract. Process until the butter is incorporated and the dough forms large clumps, 15-30 seconds in a food processor or 3-5 minutes in a stand mixer on medium speed.", "Dump the dough into the prepared baking pan and press evenly into the bottom.", "Bake the crust until golden all over, 25-30 minutes. Remove the crust from the oven and, while it's still hot, press down firmly all over with the back of a spoon. This will help it hold together when cool."
+        ]
+      },
+      {
+        "filling": ["Lower the oven temperature to 325°F.",
+          "Place the cultured butter and lemon zest in a heatproof bowl. Place a mesh strainer over the bowl and set aside.",
+          "In a medium, heavy-bottomed saucepan, whisk together the sugar, salt, eggs, and egg yolks to combine. Gradually whisk in the lemon juice.",
+          "Place the pot over medium-low heat and cook, stirring constantly with a heatproof silicone spatula, until the mixture thickens slightly and reaches 160-165°F on an instant-read thermometer, 5-10 minutes. As you stir, be sure to scrape the entire bottom and corners of the pan, so that the mixture heats as evenly as possible. It will start out thick and cloudy from the undissolved sugar, then will turn thin and translucent, and finally begin to thicken and turn cloudy again as the eggs cook. Lower the heat to very low as it gets closer to being done. If the mixture starts to curdle or bubble, immediately remove it from the heat and proceed to the next step.",
+          "Immediately pour the curd through the strainer and into the bowl of butter to stop the cooking. Whisk to incorporate the butter and lemon zest, making sure there are no clumps of lemon zest.",
+          "Pour the cooked curd over the baked and pressed down crust."
+        ]
+      },
+      {
+        "bars": ["Bake the bars at 325°F (don't forget to lower the oven temp!) until the sides are barely puffed and the center wobbles like firm Jell-O when you give it a gentle shake, 15-20 minutes. It should not be wet or watery looking (underbaked!), nor should it be puffed in the center or cracking (ovebaked). Remove the bars from the oven and let cool to room temperature for 30-60 minutes, then chill until firm, 2-3 hours or overnight.",
+          "When the bars are cold, grasp the parchment paper and lift the bars from the pan and onto a cutting board. Gently peel away the sides of the parchment. Trim away the outer edges of the bars, then use a large chef's knife to cut the bars into 16 squares. For the cleanest cut, dip the knife in very hot water and wipe the blade clean between cuts.",
+          "Just before serving, dust the lemon bars with a bit of powdered sugar. Garnish with lemon wheels and/or whipped crème fraîche if you like.",
+          "The bars will keep well, refrigerated, for up to 3 days, though the crust is the crispiest within the first 1-2 days."
+        ]
+      }
     ]
   },
   {

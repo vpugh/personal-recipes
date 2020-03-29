@@ -57,25 +57,29 @@ const Landing = () => {
               'Course',
               './images/course-image@2x.png',
               classes,
-              'right'
+              'right',
+              '/recipes/course'
             )}
             {ImageCard(
               'Cuisine',
               './images/cuisine-image@2x.png',
               classes,
-              'left'
+              'left',
+              '/recipes/cuisine'
             )}
             {ImageCard(
-              'Protein',
+              'Main Dish',
               './images/protein-image@2x.png',
               classes,
-              'right'
+              'right',
+              '/recipes/protein'
             )}
             {ImageCard(
               'All Recipes',
               './images/all-recipes-image@2x.png',
               classes,
-              'left'
+              'left',
+              '/all-recipes'
             )}
           </div>
         </div>

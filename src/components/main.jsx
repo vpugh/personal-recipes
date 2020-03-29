@@ -5,6 +5,7 @@ import AddRecipe from '../components/add-recipe';
 import { makeStyles } from '@material-ui/styles';
 import { Switch, Route } from 'react-router-dom';
 import ViewRecipe from './view-recipe';
+import ListRecipes from './list-recipes';
 
 const useStyles = makeStyles({
   padding: {
@@ -21,6 +22,7 @@ const Main = () => {
           <Route exact path='/' component={Landing} />
           <Route path='/add-recipe' component={AddRecipe} />
           <Route path='/recipe/:id' component={ViewRecipe} />
+          <Route path='/all-recipes' component={ListRecipes} />
         </Switch>
       </Container>
     </div>
