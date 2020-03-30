@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import useStyles from '../styles/add-recipes-styles';
 import TextInput from './inputs/text-inputs';
+import TextInputNested from './inputs/text-input-nested';
 import GhostButton from './inputs/ghost-button';
 import DropDown from './inputs/drop-down';
+import { uuid } from 'uuidv4';
 
 const courses = [
   'Breakfast',
@@ -59,51 +61,64 @@ const addEmptyArray = (arr, setArr) => {
 
 const AddRecipe = () => {
   const classes = useStyles();
-  const [recipeTitle, setRecipeTitle] = useState('');
+  const [title, setTitle] = useState('');
   const [cookTime, setCookTime] = useState('');
   const [prepTime, setPrepTime] = useState('');
+  const [totalTime, setTotalTime] = useState('');
   const [servings, setServings] = useState('');
+  const [serveType, setServeType] = useState('');
   const [course, setCourse] = useState('');
   const [cuisine, setCuisine] = useState('');
-  const [recipeReference, setRecipeReference] = useState('');
+  const [recipeOrigin, setRecipeOrigin] = useState('');
   const [description, setDescription] = useState('');
   const [mainDish, setMainDish] = useState('');
   const [equipmentNeededArray, setEquipmentNeededArray] = useState([]);
   const [ingredientsArray, setIngredientsArray] = useState([]);
   const [instructionsArray, setInstructionsArray] = useState([]);
 
+  const onSubmit = e => {
+    e.preventDefault();
+    const data = {
+      id: uuid(),
+      title,
+      cookTime: Number(cookTime),
+      prepTime: Number(prepTime),
+      totalTime: totalTime ? Number(totalTime) : null,
+      servings,
+      serveType: serveType || null,
+      course,
+      cuisine,
+      recipeOrigin,
+      description,
+      mainDish,
+      equipmentNeeded: equipmentNeededArray,
+      ingredients: ingredientsArray,
+      instructions: instructionsArray,
+      notes: null
+    };
+    console.log('Saved Data', data);
+    fetch('/api/v1/recipes', {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      data
+    }).then(result => console.log('POST', result));
+  };
+
   return (
-    <div className={classes.container}>
-      <h1 style={{ marginTop: 0, marginBottom: '2rem', color: '#575757' }}>
+    <form className={classes.container} onSubmit={onSubmit}>
+      <h1 style={{ marginTop: 0, marginBottom: '3rem', color: '#575757' }}>
         Add Recipe
       </h1>
       <TextInput
         labelTitle='Recipe Title'
-        placeholder='Title from the recipe or what you’ll remember it as'
+        placeholder='Recipe title or what you’ll remember it as'
         required={true}
-        value={recipeTitle}
-        setFunction={setRecipeTitle}
+        value={title}
+        setFunction={setTitle}
       />
-      <div className={classes.threeCol}>
-        <TextInput
-          labelTitle='Cook Time'
-          placeholder='Select a Time'
-          value={cookTime}
-          setFunction={setCookTime}
-        />
-        <TextInput
-          labelTitle='Prep Time'
-          placeholder='Select a Time'
-          value={prepTime}
-          setFunction={setPrepTime}
-        />
-        <TextInput
-          labelTitle='Servings'
-          placeholder='How many does it feed'
-          value={servings}
-          setFunction={setServings}
-        />
-      </div>
       <div className={classes.threeCol}>
         <DropDown
           labelTitle='Course'
@@ -127,75 +142,124 @@ const AddRecipe = () => {
           setFunction={setMainDish}
         />
       </div>
+      <div className={classes.threeCol}>
+        <TextInput
+          labelTitle='Cook Time'
+          placeholder='Select a Time'
+          value={cookTime}
+          setFunction={setCookTime}
+        />
+        <TextInput
+          labelTitle='Prep Time'
+          placeholder='Select a Time'
+          value={prepTime}
+          setFunction={setPrepTime}
+        />
+        <TextInput
+          labelTitle='Total Time'
+          placeholder='Select a Time'
+          value={totalTime}
+          setFunction={setTotalTime}
+        />
+      </div>
+      <div className={classes.twoCol}>
+        <TextInput
+          labelTitle='Servings'
+          placeholder='How many does it make or feed.'
+          value={servings}
+          setFunction={setServings}
+        />
+        <TextInput
+          labelTitle='Serving Type'
+          placeholder='Serving people or slices of cake.'
+          value={serveType}
+          setFunction={setServeType}
+        />
+      </div>
       <TextInput
         labelTitle='Recipe Reference (Where it came from)'
         placeholder='Where you got it from, even if it’s from yourself'
-        value={recipeReference}
-        setFunction={setRecipeReference}
+        value={recipeOrigin}
+        setFunction={setRecipeOrigin}
       />
       <TextInput
-        labelTitle='Description/Information'
+        labelTitle='Description'
         placeholder='Some information about the recipe, maybe some tips and what not.'
         value={description}
         setFunction={setDescription}
       />
-      <p style={{ color: '#F65B5B' }}>Equipment Needed*</p>
+      <p style={{ color: '#F65B5B' }}>Equipment Needed</p>
+      {equipmentNeededArray.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {equipmentNeededArray.map((en, index) => (
+            <TextInputNested
+              inputType='equipmentNeededArray'
+              placeholder='Add Equipment Needed'
+              value={en}
+              index={index}
+              required
+              key={index}
+              array={equipmentNeededArray}
+              setFunction={setEquipmentNeededArray}
+            />
+          ))}
+        </div>
+      )}
       <GhostButton
         text='Add Equipment'
         func={() =>
           addEmptyArray(equipmentNeededArray, setEquipmentNeededArray)
         }
       />
-      {equipmentNeededArray.length > 0 && (
-        <div style={{ marginTop: 30 }}>
-          {equipmentNeededArray.map((en, index) => (
-            <TextInput
-              labelTitle=''
-              placeholder='Add Equipment Needed'
-              value={en}
-              index={index}
-              setFunction={setEquipmentNeededArray}
-            />
-          ))}
-        </div>
-      )}
       <p style={{ color: '#F65B5B' }}>Ingredients*</p>
-      <GhostButton
-        text='Add Ingredient'
-        func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
-      />
       {ingredientsArray.length > 0 && (
-        <div style={{ marginTop: 30 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {ingredientsArray.map((en, index) => (
-            <TextInput
-              labelTitle=''
+            <TextInputNested
+              inputType='ingredientsArray'
               placeholder='Add Ingredient'
               value={en}
               index={index}
+              key={index}
+              required
+              array={ingredientsArray}
               setFunction={setIngredientsArray}
             />
           ))}
         </div>
       )}
-      <p style={{ color: '#F65B5B' }}>Instructions*</p>
       <GhostButton
-        text='Add Instruction Step'
-        func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
+        text='Add Ingredient'
+        func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
       />
+      <p style={{ color: '#F65B5B' }}>Instructions*</p>
       {instructionsArray.length > 0 && (
-        <div style={{ marginTop: 30 }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {instructionsArray.map((en, index) => (
-            <TextInput
-              labelTitle=''
+            <TextInputNested
+              inputType='instructionsArray'
               placeholder='Add Instruction Step'
               value={en}
               index={index}
+              key={index}
+              required
+              array={instructionsArray}
               setFunction={setInstructionsArray}
             />
           ))}
         </div>
       )}
-    </div>
+      <GhostButton
+        text='Add Instruction Step'
+        func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
+      />
+
+      <div style={{ marginTop: 40 }}>
+        <button type='submit' className={classes.saveButton}>
+          Save Recipe
+        </button>
+      </div>
+    </form>
   );
 };
 

@@ -2,14 +2,25 @@ import React from 'react';
 import Header from './components/header';
 import './App.css';
 import Main from './components/main';
-import { Server, Model, Factory } from 'miragejs';
+import { Server, Model, Factory, Serializer } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
 };
 
+const ApplicationSerializer = Serializer.extend();
+
 new Server({
+  serializers: {
+    application: ApplicationSerializer,
+    recipe: ApplicationSerializer.extend({
+      normalize: true,
+      normalizeIds: true,
+      embed: true,
+      root: false
+    })
+  },
   models: {
     recipe: Model
   },
@@ -27,8 +38,8 @@ new Server({
       cuisine() {
         return RecipeDetailsSelection(this.id, 'cuisine');
       },
-      protein() {
-        return RecipeDetailsSelection(this.id, 'protein');
+      mainDish() {
+        return RecipeDetailsSelection(this.id, 'mainDish');
       },
       prepTime() {
         return RecipeDetailsSelection(this.id, 'prepTime');
@@ -70,6 +81,17 @@ new Server({
     this.get('/v1/recipe/:id', (schema, request) => {
       let recipeId = request.params.id;
       return schema.recipes.findBy({ id: recipeId });
+    });
+
+    // this.post('/v1/rikishi', (schema, request) => {
+    //   let attrs = JSON.parse(request.requestBody);
+    //   return schema.rikishis.create(attrs);
+    // });
+
+    this.post('/v1/recipes', (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+      // let attrs = this.normalizedRequestAttrs('recipe');
+      return schema.recipes.create(attrs);
     });
   },
   seeds(server) {

@@ -11,7 +11,7 @@ const getRecipes = async () => {
 
 const fetchRecipes = async set => {
   const data = await getRecipes();
-  set(data.recipes);
+  set(data);
 };
 
 const Landing = () => {

@@ -12,13 +12,44 @@ export const useStyles = makeStyles(theme => ({
       marginBottom: 0
     }
   },
-  threeCol: {
-    display: 'flex',
-    justifyContent: 'space-between',
+  twoCol: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
     '& div': {
-      width: '32%',
-      display: 'inline-flex !important'
+      [theme.breakpoints.up('md')]: {
+        width: '48%',
+        display: 'inline-flex !important'
+      }
     }
+  },
+  threeCol: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    '& div': {
+      [theme.breakpoints.up('md')]: {
+        width: '32%',
+        display: 'inline-flex !important'
+      }
+    }
+  },
+  saveButton: {
+    background: '#FF8585',
+    boxShadow: ' 4px 8px 44px #FFCCCC',
+    width: '100%',
+    fontSize: 16,
+    fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+    paddingTop: 16,
+    paddingBottom: 16,
+    border: 'none',
+    textDecoration: 'none'
   }
 }));
 

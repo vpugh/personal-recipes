@@ -31,7 +31,7 @@ const ViewRecipe = props => {
 
     const fetchRecipe = async set => {
       const data = await getRecipe();
-      set(data.recipe);
+      set(data);
     };
     fetchRecipe(setCurrentRecipe);
   }, [recipeId]);
@@ -42,7 +42,7 @@ const ViewRecipe = props => {
       description,
       course,
       cuisine,
-      protein,
+      mainDish,
       recipeOrigin,
       equipmentNeeded,
       ingredients,
@@ -59,7 +59,7 @@ const ViewRecipe = props => {
             <p className={classes.recipeDescription}>{description}</p>
             {TimeDisplay(course, 'Course', classes)}
             {TimeDisplay(cuisine, 'Cuisine', classes)}
-            {protein && TimeDisplay(protein, 'Main Dish', classes)}
+            {mainDish && TimeDisplay(mainDish, 'Main Dish', classes)}
             {prepTime && TimeDisplay(prepTime, 'Prep Time', classes)}
             {cookTime && TimeDisplay(cookTime, 'Cook Time', classes)}
             <p className={classes.recipeOrigin}>

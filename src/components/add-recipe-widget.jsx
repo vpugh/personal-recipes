@@ -50,7 +50,7 @@ const AddRecipeWidget = ({ ra, index, limit }) => {
     id,
     course,
     cuisine,
-    protein,
+    mainDish,
     totalTime,
     cookTime,
     prepTime,
@@ -78,7 +78,7 @@ const AddRecipeWidget = ({ ra, index, limit }) => {
       >
         {course && <Tag text={course} />}
         {cuisine && <Tag text={cuisine} />}
-        {protein && <Tag text={protein} />}
+        {mainDish && <Tag text={mainDish} />}
         <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
           <img
             src='./icons/Clock@2x.png'

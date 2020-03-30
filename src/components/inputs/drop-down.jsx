@@ -31,7 +31,8 @@ const DropDown = ({
           border: '1px solid #E8E8E8',
           padding: '9px 14px',
           fontSize: 16,
-          height: 38
+          height: 38,
+          color: value ? '#000' : '#757575'
         }}
       >
         <option defaultValue value=''>
