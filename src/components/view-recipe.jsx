@@ -72,11 +72,7 @@ const ViewRecipe = props => {
                 header='Ingredients'
                 columns={2}
               />
-              <ListGenerator
-                arr={instructions}
-                header='Instructions'
-                columns={2}
-              />
+              <ListGenerator arr={instructions} header='Instructions' />
             </div>
             {notes && (
               <div>
