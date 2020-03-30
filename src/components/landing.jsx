@@ -52,35 +52,31 @@ const Landing = () => {
           </div>
         </div>
         <div>
-          <div style={{ marginTop: 61 }}>
-            {ImageCard(
-              'Course',
-              './images/course-image@2x.png',
-              classes,
-              'right',
-              '/recipes/course'
-            )}
-            {ImageCard(
-              'Cuisine',
-              './images/cuisine-image@2x.png',
-              classes,
-              'left',
-              '/recipes/cuisine'
-            )}
-            {ImageCard(
-              'Main Dish',
-              './images/protein-image@2x.png',
-              classes,
-              'right',
-              '/recipes/protein'
-            )}
-            {ImageCard(
-              'All Recipes',
-              './images/all-recipes-image@2x.png',
-              classes,
-              'left',
-              '/all-recipes'
-            )}
+          <div className={classes.imageCardContainer}>
+            <ImageCard
+              text='Course'
+              img='./images/course-image@2x.png'
+              direction='right'
+              to='/recipes/course'
+            />
+            <ImageCard
+              text='Cuisine'
+              img='./images/cuisine-image@2x.png'
+              direction='left'
+              to='/recipes/cuisine'
+            />
+            <ImageCard
+              text='Main Dish'
+              img='./images/protein-image@2x.png'
+              direction='right'
+              to='/recipes/protein'
+            />
+            <ImageCard
+              text='All Recipes'
+              img='./images/all-recipes-image@2x.png'
+              direction='left'
+              to='/all-recipes'
+            />
           </div>
         </div>
       </div>

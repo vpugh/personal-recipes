@@ -1,17 +1,13 @@
 import React from 'react';
+import useStyles from '../../styles/ghost-button-styles';
 
 const GhostButton = ({ text, func }) => {
+  const classes = useStyles();
   return (
     <div
       role='button'
       onClick={func}
-      style={{
-        border: '1px solid #FFCCCC',
-        boxSizing: 'border-box',
-        boxShadow: '2px 4px 22px #FFCCCC',
-        display: 'inline-block',
-        padding: '16px 38px'
-      }}
+      className={`${classes.hoverLink} ${classes.button}`}
     >
       {text}
     </div>

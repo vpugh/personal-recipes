@@ -57,18 +57,26 @@ const ViewRecipe = props => {
           <h1 className={classes.recipeTitle}>{title}</h1>
           <div>
             <p className={classes.recipeDescription}>{description}</p>
-            {TimeDisplay(course, 'Course', classes)}
-            {TimeDisplay(cuisine, 'Cuisine', classes)}
-            {mainDish && TimeDisplay(mainDish, 'Main Dish', classes)}
-            {prepTime && TimeDisplay(prepTime, 'Prep Time', classes)}
-            {cookTime && TimeDisplay(cookTime, 'Cook Time', classes)}
+            <TimeDisplay time={course} timeHeader='Course' />
+            <TimeDisplay time={cuisine} timeHeader='Cuisine' />
+            {mainDish && <TimeDisplay time={mainDish} timeHeader='Main Dish' />}
+            {prepTime && <TimeDisplay time={prepTime} timeHeader='Prep Time' />}
+            {cookTime && <TimeDisplay time={cookTime} timeHeader='Cook Time' />}
             <p className={classes.recipeOrigin}>
               Recipe found at: {makeLink(recipeOrigin)}
             </p>
             <div className={classes.listContainer}>
-              {ListGenerator(equipmentNeeded, 'Equipment Needed', classes)}
-              {ListGenerator(ingredients, 'Ingredients', classes, 2)}
-              {ListGenerator(instructions, 'Instructions', classes)}
+              <ListGenerator arr={equipmentNeeded} header='Equipment Needed' />
+              <ListGenerator
+                arr={ingredients}
+                header='Ingredients'
+                columns={2}
+              />
+              <ListGenerator
+                arr={instructions}
+                header='Instructions'
+                columns={2}
+              />
             </div>
             {notes && (
               <div>

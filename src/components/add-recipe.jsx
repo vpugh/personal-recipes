@@ -109,9 +109,7 @@ const AddRecipe = () => {
 
   return (
     <form className={classes.container} onSubmit={onSubmit}>
-      <h1 style={{ marginTop: 0, marginBottom: '3rem', color: '#575757' }}>
-        Add Recipe
-      </h1>
+      <h1 className={classes.recipePageTitle}>Add Recipe</h1>
       <TextInput
         labelTitle='Recipe Title'
         placeholder='Recipe title or what you’ll remember it as'
@@ -188,9 +186,9 @@ const AddRecipe = () => {
         value={description}
         setFunction={setDescription}
       />
-      <p style={{ color: '#F65B5B' }}>Equipment Needed</p>
+      <p className={classes.textColorPrimary}>Equipment Needed</p>
       {equipmentNeededArray.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={classes.flexContainer}>
           {equipmentNeededArray.map((en, index) => (
             <TextInputNested
               inputType='equipmentNeededArray'
@@ -211,9 +209,9 @@ const AddRecipe = () => {
           addEmptyArray(equipmentNeededArray, setEquipmentNeededArray)
         }
       />
-      <p style={{ color: '#F65B5B' }}>Ingredients*</p>
+      <p className={classes.textColorPrimary}>Ingredients*</p>
       {ingredientsArray.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={classes.flexContainer}>
           {ingredientsArray.map((en, index) => (
             <TextInputNested
               inputType='ingredientsArray'
@@ -232,9 +230,9 @@ const AddRecipe = () => {
         text='Add Ingredient'
         func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
       />
-      <p style={{ color: '#F65B5B' }}>Instructions*</p>
+      <p className={classes.textColorPrimary}>Instructions*</p>
       {instructionsArray.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={classes.flexContainer}>
           {instructionsArray.map((en, index) => (
             <TextInputNested
               inputType='instructionsArray'
@@ -254,7 +252,7 @@ const AddRecipe = () => {
         func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
       />
 
-      <div style={{ marginTop: 40 }}>
+      <div className={classes.saveButtonContainer}>
         <button type='submit' className={classes.saveButton}>
           Save Recipe
         </button>

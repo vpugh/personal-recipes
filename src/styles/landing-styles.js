@@ -1,10 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(theme => ({
   container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 20px'
+    },
     fontSize: 18
   },
   subTitle: {
@@ -49,17 +54,9 @@ export const useStyles = makeStyles({
     border: 'none',
     textDecoration: 'none'
   },
-  cardText: props => ({
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 24,
-    marginLeft: props.direction ? 151 : 30,
-    marginRight: props.direction ? 30 : 151
-  }),
-  cardImg: {
-    width: 262,
-    height: 69
+  imageCardContainer: {
+    marginTop: 61
   }
-});
+}));
 
 export default useStyles;

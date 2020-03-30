@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
+  hoverLink: {
+    '&:hover': { cursor: 'pointer', opacity: '0.5' }
+  },
   container: {
     fontSize: 18,
     background: '#FEFEFE',
@@ -11,6 +14,14 @@ export const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       marginBottom: 0
     }
+  },
+  textColorPrimary: {
+    color: '#F65B5B'
+  },
+  recipePageTitle: {
+    marginTop: 0,
+    marginBottom: '3rem',
+    color: '#575757'
   },
   twoCol: {
     [theme.breakpoints.up('md')]: {
@@ -35,6 +46,9 @@ export const useStyles = makeStyles(theme => ({
         display: 'inline-flex !important'
       }
     }
+  },
+  saveButtonContainer: {
+    marginTop: 40
   },
   saveButton: {
     background: '#FF8585',
