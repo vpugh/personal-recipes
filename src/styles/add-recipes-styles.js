@@ -4,17 +4,6 @@ export const useStyles = makeStyles(theme => ({
   hoverLink: {
     '&:hover': { cursor: 'pointer', opacity: '0.5' }
   },
-  container: {
-    fontSize: 18,
-    background: '#FEFEFE',
-    padding: '40px 50px',
-    boxShadow: '4px 8px 44px #FFCCCC',
-    maxWidth: 972,
-    margin: '0 auto 72px auto',
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: 0
-    }
-  },
   textColorPrimary: {
     color: '#F65B5B'
   },
@@ -46,6 +35,10 @@ export const useStyles = makeStyles(theme => ({
         display: 'inline-flex !important'
       }
     }
+  },
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'column'
   },
   saveButtonContainer: {
     marginTop: 40

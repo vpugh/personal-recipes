@@ -1,9 +1,8 @@
-[
-  {
+[{
     "title": "Chocolate Zucchini Bread",
     "cuisine": "American",
     "course": ["Dessert", "Breakfast"],
-    "mainDish": "",
+    "mainDish": "Other",
     "prepTime": 10,
     "cookTime": 50,
     "totalTime": null,
@@ -46,7 +45,7 @@
     "title": "Gluten-Free Lemon Bars With Almond Flour Crust ",
     "cuisine": "American",
     "course": "Dessert",
-    "mainDish": "",
+    "mainDish": "Other",
     "prepTime": 30,
     "cookTime": 60,
     "totalTime": null,
@@ -56,8 +55,7 @@
     "description": "With a buttery crust and luscious lemon curd, these tangy lemon bars taste like a fancy French tart in bar form. They happen to be gluten-free too. But if gluten isn't an issue for you, replace the sweet rice, oat, and tapioca flours with 140 grams (about 1 cup + 2 tablespoons) all-purpose wheat flour. We love this delightful recipe especially during the winter when citrus is at it's best and short days are brighter with a sweet treat.",
     "recipeOrigin": "https://www.vermontcreamery.com/recipes/gluten-free-lemon-bars-with",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {
@@ -85,8 +83,7 @@
         ]
       }
     ],
-    "instructions": [
-      {
+    "instructions": [{
         "separate": []
       },
       {
@@ -121,7 +118,7 @@
     "title": "Bacon Ranch Keto Chicken Crust Pizza",
     "cuisine": "American",
     "course": ["Dinner", "Lunch"],
-    "mainDish": "",
+    "mainDish": "Chicken",
     "prepTime": 10,
     "cookTime": 35,
     "totalTime": null,
@@ -130,8 +127,7 @@
     "description": "A tasty bacon ranch topped chicken pizza crust that’s super simple to make. It uses a near zero carb pizza crust made from ground meat.",
     "recipeOrigin": "https://lowcarbyum.com/bacon-ranch-chicken-crust-pizza/",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {
@@ -217,7 +213,7 @@
     "title": "One Pot Caprese Pasta",
     "cuisine": "Italian",
     "course": ["Dinner", "Lunch"],
-    "mainDish": "",
+    "mainDish": "Pasta/Noodles",
     "prepTime": 15,
     "cookTime": null,
     "totalTime": null,
@@ -261,8 +257,7 @@
     "description": "Butter chicken is one of the most popular chicken recipes in India. Golden fried chicken pieces are cooked in a creamy tomato base. It is best served with roti, naan or pulao. ",
     "recipeOrigin": "https://www.youtube.com/watch?v=D_fYk8mBaF4",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {
@@ -324,7 +319,7 @@
     "title": "Lemon Bundt Cake",
     "cuisine": "American",
     "course": "Dessert",
-    "mainDish": "",
+    "mainDish": "Other",
     "prepTime": 75,
     "cookTime": 75,
     "totalTime": null,
@@ -334,8 +329,7 @@
     "description": "This classic lemon bundt cake recipe is perfect for any occasion: a bridal shower, summer BBQ, or even a treat for your family on a casual night in. The lemon glaze makes this cake perfectly moist. Top it with icing and zest and enjoy this beautiful and delicious treat.",
     "recipeOrigin": "https://tasty.co/recipe/lemon-bundt-cake",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {
@@ -394,8 +388,7 @@
     "description": "Fajita Breakfast Burritos never tasted so good, especially when you don’t want to make breakfast! These make ahead breakfast burritos are an easy meal prep breakfast to make any time of year.",
     "recipeOrigin": "https://fitfoodiefinds.com/fajita-breakfast-burritos",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {
@@ -451,7 +444,7 @@
     "title": "Chocolate Pecan Pie",
     "cuisine": "American",
     "course": "Dessert",
-    "mainDish": "",
+    "mainDish": "Other",
     "prepTime": 15,
     "cookTime": 50,
     "totalTime": null,
@@ -491,7 +484,7 @@
     "title": "Apple Cider Beignet",
     "cuisine": "American",
     "course": ["Breakfast", "Snack"],
-    "mainDish": "",
+    "mainDish": "Other",
     "prepTime": 20,
     "cookTime": 45,
     "totalTime": null,
@@ -501,8 +494,7 @@
     "description": "Take beignets to the next level with the addition of apple cider and fragrant apple pie spice. The caramel dipping sauce gives this dish a double dose of apple cider for maximum fall flavor. The recipe yields enough for a crowd, so serve these as part of an autumn brunch spread for all of your family and friends.",
     "recipeOrigin": "https://tasty.co/recipe/apple-cider-beignet",
     "equipmentNeeded": [],
-    "ingredients": [
-      {
+    "ingredients": [{
         "separate": []
       },
       {

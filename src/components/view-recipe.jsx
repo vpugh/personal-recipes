@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TimeDisplay from './time-display';
 import ListGenerator from './list-generator';
 import useStyles from '../styles/view-recipe-styles';
+import CardContainer from './card-container';
 
 const makeLink = link => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -52,7 +53,7 @@ const ViewRecipe = props => {
       notes
     } = currentRecipe;
     return (
-      <div className={classes.recipeContainer}>
+      <CardContainer>
         <div>
           <h1 className={classes.recipeTitle}>{title}</h1>
           <div>
@@ -82,11 +83,15 @@ const ViewRecipe = props => {
             )}
           </div>
         </div>
-      </div>
+      </CardContainer>
     );
   }
 
-  return <p>Loading...</p>;
+  return (
+    <CardContainer maxWidth={660}>
+      <p>Loading...</p>
+    </CardContainer>
+  );
 };
 
 export default ViewRecipe;

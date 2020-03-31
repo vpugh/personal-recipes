@@ -81,7 +81,7 @@ const AddRecipeWidget = ({ ra, index, limit }) => {
         {mainDish && <Tag text={mainDish} />}
         <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
           <img
-            src='./icons/Clock@2x.png'
+            src='/icons/Clock@2x.png'
             alt='Settings Icon'
             className={classes.icons}
           />
@@ -90,7 +90,7 @@ const AddRecipeWidget = ({ ra, index, limit }) => {
         </span>
         <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
           <img
-            src='./icons/Utensils@2x.png'
+            src='/icons/Utensils@2x.png'
             alt='Settings Icon'
             className={classes.icons}
           />

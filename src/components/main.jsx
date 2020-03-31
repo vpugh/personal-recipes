@@ -6,6 +6,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Switch, Route } from 'react-router-dom';
 import ViewRecipe from './view-recipe';
 import ListRecipes from './list-recipes';
+import CourseMain from './course';
+import CuisineMain from './cuisine';
+import MainDishMain from './main-dish';
 
 const useStyles = makeStyles({
   padding: {
@@ -22,7 +25,10 @@ const Main = () => {
           <Route exact path='/' component={Landing} />
           <Route path='/add-recipe' component={AddRecipe} />
           <Route path='/recipe/:id' component={ViewRecipe} />
-          <Route path='/all-recipes' component={ListRecipes} />
+          <Route exact path='/recipes/all-recipes' component={ListRecipes} />
+          <Route exact path='/recipes/course' component={CourseMain} />
+          <Route exact path='/recipes/cuisine' component={CuisineMain} />
+          <Route exact path='/recipes/main-dish' component={MainDishMain} />
         </Switch>
       </Container>
     </div>

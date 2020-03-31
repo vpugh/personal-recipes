@@ -19,10 +19,6 @@ export const useStyles = makeStyles(theme => ({
     fontWeight: 'normal',
     marginTop: 0
   },
-  addedShadowBox: {
-    background: '#FEFEFE',
-    boxShadow: '4px 8px 44px #FFCCCC'
-  },
   h3Title: {
     fontWeight: 'normal',
     margin: 0,
@@ -52,11 +48,10 @@ export const useStyles = makeStyles(theme => ({
     paddingTop: 16,
     paddingBottom: 16,
     border: 'none',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    marginTop: 40
   },
-  imageCardContainer: {
-    marginTop: 61
-  }
+  imageCardContainer: {}
 }));
 
 export default useStyles;

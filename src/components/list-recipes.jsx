@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ListedRecipes from './listed-recipes';
 import useStyles from '../styles/list-recipes-styles';
+import CardContainer from './card-container';
 
 const getRecipes = async () => {
   let res = await fetch('/api/v1/recipes');
@@ -21,10 +22,8 @@ const ListRecipes = () => {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <h1 style={{ marginTop: 0, marginBottom: '2rem', color: '#575757' }}>
-        All Recipes
-      </h1>
+    <CardContainer>
+      <h1 className={classes.listRecipeTitle}>All Recipes</h1>
       {allRecipes &&
         allRecipes.map((ra, index) => (
           <ListedRecipes
@@ -34,7 +33,7 @@ const ListRecipes = () => {
             arrLength={allRecipes.length}
           />
         ))}
-    </div>
+    </CardContainer>
   );
 };
 

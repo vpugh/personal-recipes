@@ -6,8 +6,9 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles({
   h3Title: {
     fontWeight: 'normal',
-    margin: 0,
-    fontSize: 18,
+    margin: '0 0 .5rem 0',
+    fontSize: 22,
+    color: '#5d5d5d',
     '& a': {
       color: 'inherit',
       textDecoration: 'none'
@@ -81,7 +82,7 @@ const ListedRecipes = ({ ra, index, arrLength }) => {
         {mainDish && <Tag text={mainDish} />}
         <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
           <img
-            src='./icons/Clock@2x.png'
+            src='/icons/Clock@2x.png'
             alt='Settings Icon'
             className={classes.icons}
           />
@@ -90,7 +91,7 @@ const ListedRecipes = ({ ra, index, arrLength }) => {
         </span>
         <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
           <img
-            src='./icons/Utensils@2x.png'
+            src='/icons/Utensils@2x.png'
             alt='Settings Icon'
             className={classes.icons}
           />

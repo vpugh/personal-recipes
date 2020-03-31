@@ -23,11 +23,7 @@ const checkIfArray = passedVar => {
 const Tag = ({ text, fontSize = 10 }) => {
   const classes = useStyles();
   return (
-    <div
-      className={classes.tags}
-      style={{ fontSize }}
-      onClick={() => alert(`Send me to ${text} tag page`)}
-    >
+    <div className={classes.tags} style={{ fontSize }}>
       {checkIfArray(text)}
     </div>
   );
