@@ -4,7 +4,7 @@ import TextInput from './inputs/text-inputs';
 import TextInputNested from './inputs/text-input-nested';
 import GhostButton from './inputs/ghost-button';
 import DropDown from './inputs/drop-down';
-import { uuid } from 'uuidv4';
+// import { uuid } from 'uuidv4';
 import CardContainer from './card-container';
 
 const courses = [
@@ -79,11 +79,12 @@ const AddRecipe = () => {
   const [equipmentNeededArray, setEquipmentNeededArray] = useState([]);
   const [ingredientsArray, setIngredientsArray] = useState([]);
   const [instructionsArray, setInstructionsArray] = useState([]);
+  const [recipeSaved, setRecipeSaved] = useState(false);
 
   const onSubmit = e => {
     e.preventDefault();
     const data = {
-      id: uuid(),
+      // id: uuid(),
       title,
       cookTime: Number(cookTime),
       prepTime: Number(prepTime),
@@ -100,15 +101,10 @@ const AddRecipe = () => {
       instructions: instructionsArray,
       notes: null
     };
-    console.log('Saved Data', data);
-    fetch('/api/v1/recipes', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
+    fetch('/api/v1/recipe', {
       method: 'POST',
-      data
-    }).then(result => console.log('POST', result));
+      body: JSON.stringify(data)
+    }).then(result => result.ok && setRecipeSaved(true));
   };
 
   return (
@@ -256,9 +252,17 @@ const AddRecipe = () => {
           text='Add Instruction Step'
           func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
         />
-
+        {recipeSaved && (
+          <div style={{ padding: '40px 0 0 0', fontSize: 24 }}>
+            Recipe has been saved
+          </div>
+        )}
         <div className={classes.saveButtonContainer}>
-          <button type='submit' className={classes.saveButton}>
+          <button
+            type='submit'
+            disabled={recipeSaved}
+            className={classes.saveButton}
+          >
             Save Recipe
           </button>
         </div>

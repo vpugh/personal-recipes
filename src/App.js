@@ -15,8 +15,6 @@ new Server({
   serializers: {
     application: ApplicationSerializer,
     recipe: ApplicationSerializer.extend({
-      normalize: true,
-      normalizeIds: true,
       embed: true,
       root: false
     })
@@ -83,7 +81,7 @@ new Server({
       return schema.recipes.findBy({ id: recipeId });
     });
 
-    this.post('/v1/recipes', (schema, request) => {
+    this.post('/v1/recipe', (schema, request) => {
       let attrs = JSON.parse(request.requestBody);
       // let attrs = this.normalizedRequestAttrs('recipe');
       return schema.recipes.create(attrs);

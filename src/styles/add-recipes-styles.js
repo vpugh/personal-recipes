@@ -45,7 +45,7 @@ export const useStyles = makeStyles(theme => ({
   },
   saveButton: {
     background: '#FF8585',
-    boxShadow: ' 4px 8px 44px #FFCCCC',
+    boxShadow: '4px 8px 44px #FFCCCC',
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
@@ -56,7 +56,17 @@ export const useStyles = makeStyles(theme => ({
     paddingTop: 16,
     paddingBottom: 16,
     border: 'none',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    transition: '300ms ease-in-out',
+    '&:hover': {
+      boxShadow: '2px 4px 22px #FFCCCC',
+      cursor: 'pointer',
+      color: '#FFCCCC'
+    },
+    '&:disabled': {
+      background: '#ddd',
+      cursor: 'initial'
+    }
   }
 }));
 
