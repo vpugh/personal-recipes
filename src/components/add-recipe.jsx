@@ -6,11 +6,14 @@ import GhostButton from './inputs/ghost-button';
 import DropDown from './inputs/drop-down';
 // import { uuid } from 'uuidv4';
 import CardContainer from './card-container';
+import TextareaNested from './inputs/textarea-nested';
+import TextareaInput from './inputs/textarea';
 
 const courses = [
   'Breakfast',
   'Lunch',
   'Dinner',
+  'Appetizer',
   'Side',
   'Snack',
   'Dessert',
@@ -69,7 +72,7 @@ const AddRecipe = () => {
   const [cookTime, setCookTime] = useState('');
   const [prepTime, setPrepTime] = useState('');
   const [totalTime, setTotalTime] = useState('');
-  const [servings, setServings] = useState('');
+  const [serves, setServes] = useState('');
   const [serveType, setServeType] = useState('');
   const [course, setCourse] = useState('');
   const [cuisine, setCuisine] = useState('');
@@ -80,6 +83,8 @@ const AddRecipe = () => {
   const [ingredientsArray, setIngredientsArray] = useState([]);
   const [instructionsArray, setInstructionsArray] = useState([]);
   const [recipeSaved, setRecipeSaved] = useState(false);
+  const [showTemporaryRecipe, setShowTemporaryRecipe] = useState(false);
+  const [temporaryRecipe, setTemporaryRecipe] = useState('');
 
   const onSubmit = e => {
     e.preventDefault();
@@ -89,7 +94,7 @@ const AddRecipe = () => {
       cookTime: Number(cookTime),
       prepTime: Number(prepTime),
       totalTime: totalTime ? Number(totalTime) : null,
-      servings,
+      serves,
       serveType: serveType || null,
       course,
       cuisine,
@@ -107,10 +112,68 @@ const AddRecipe = () => {
     }).then(result => result.ok && setRecipeSaved(true));
   };
 
+  const showTempRecipes = () => {
+    setShowTemporaryRecipe(!showTemporaryRecipe);
+  };
+
+  const onChange = (e, set) => {
+    const { value } = e.target;
+    set(value);
+  };
+
   return (
     <CardContainer maxWidth={972}>
       <form onSubmit={onSubmit}>
-        <h1 className={classes.recipePageTitle}>Add Recipe</h1>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline'
+          }}
+        >
+          <h1 className={classes.recipePageTitle}>Add Recipe</h1>
+          <div
+            role='button'
+            onClick={showTempRecipes}
+            style={{ textDecoration: 'underline' }}
+          >
+            Temporary Recipe Storage
+          </div>
+        </div>
+        {showTemporaryRecipe && (
+          <div
+            style={{
+              position: 'absolute',
+              right: '10%',
+              top: '10%',
+              width: '80%',
+              padding: 20,
+              background: '#fff',
+              border: '1px solid #ddd'
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h3 style={{ marginTop: 0 }}>
+                Copy/Paste from site and then use that to enter the information
+                here.
+              </h3>
+              <div role='button' onClick={showTempRecipes}>
+                Close
+              </div>
+            </div>
+            <textarea
+              name='Text1'
+              value={temporaryRecipe}
+              style={{
+                width: '100%',
+                fontSize: 18
+              }}
+              cols='40'
+              rows='40'
+              onChange={e => onChange(e, setTemporaryRecipe)}
+            />
+          </div>
+        )}
         <TextInput
           labelTitle='Recipe Title'
           placeholder='Recipe title or what you’ll remember it as'
@@ -163,10 +226,10 @@ const AddRecipe = () => {
         </div>
         <div className={classes.twoCol}>
           <TextInput
-            labelTitle='Servings'
+            labelTitle='Serves'
             placeholder='How many does it make or feed.'
-            value={servings}
-            setFunction={setServings}
+            value={serves}
+            setFunction={setServes}
           />
           <TextInput
             labelTitle='Serving Type'
@@ -181,7 +244,7 @@ const AddRecipe = () => {
           value={recipeOrigin}
           setFunction={setRecipeOrigin}
         />
-        <TextInput
+        <TextareaInput
           labelTitle='Description'
           placeholder='Some information about the recipe, maybe some tips and what not.'
           value={description}
@@ -214,7 +277,7 @@ const AddRecipe = () => {
         {ingredientsArray.length > 0 && (
           <div className={classes.flexContainer}>
             {ingredientsArray.map((en, index) => (
-              <TextInputNested
+              <TextareaNested
                 inputType='ingredientsArray'
                 placeholder='Add Ingredient'
                 value={en}
@@ -235,7 +298,7 @@ const AddRecipe = () => {
         {instructionsArray.length > 0 && (
           <div className={classes.flexContainer}>
             {instructionsArray.map((en, index) => (
-              <TextInputNested
+              <TextareaNested
                 inputType='instructionsArray'
                 placeholder='Add Instruction Step'
                 value={en}
