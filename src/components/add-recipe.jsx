@@ -274,43 +274,37 @@ const AddRecipe = () => {
           }
         />
         <p className={classes.textColorPrimary}>Ingredients*</p>
-        {ingredientsArray.length > 0 && (
-          <div className={classes.flexContainer}>
-            {ingredientsArray.map((en, index) => (
-              <TextareaNested
-                inputType='ingredientsArray'
-                placeholder='Add Ingredient'
-                value={en}
-                index={index}
-                key={index}
-                required
-                array={ingredientsArray}
-                setFunction={setIngredientsArray}
-              />
-            ))}
-          </div>
-        )}
+        {ingredientsArray.length > 0 &&
+          ingredientsArray.map((en, index) => (
+            <TextareaNested
+              inputType='ingredientsArray'
+              placeholder='Add Ingredient'
+              value={en}
+              index={index}
+              key={index}
+              required
+              array={ingredientsArray}
+              setFunction={setIngredientsArray}
+            />
+          ))}
         <GhostButton
           text='Add Ingredient'
           func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
         />
         <p className={classes.textColorPrimary}>Instructions*</p>
-        {instructionsArray.length > 0 && (
-          <div className={classes.flexContainer}>
-            {instructionsArray.map((en, index) => (
-              <TextareaNested
-                inputType='instructionsArray'
-                placeholder='Add Instruction Step'
-                value={en}
-                index={index}
-                key={index}
-                required
-                array={instructionsArray}
-                setFunction={setInstructionsArray}
-              />
-            ))}
-          </div>
-        )}
+        {instructionsArray.length > 0 &&
+          instructionsArray.map((en, index) => (
+            <TextareaNested
+              inputType='instructionsArray'
+              placeholder='Add Instruction Step'
+              value={en}
+              index={index}
+              key={index}
+              required
+              array={instructionsArray}
+              setFunction={setInstructionsArray}
+            />
+          ))}
         <GhostButton
           text='Add Instruction Step'
           func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
