@@ -5,7 +5,7 @@ import AddRecipe from '../components/add-recipe';
 import { makeStyles } from '@material-ui/styles';
 import { Switch, Route } from 'react-router-dom';
 import ViewRecipe from './view-recipe';
-import ListRecipes from './list-recipes';
+import ListRecipes from './all-recipes';
 import CourseMain from './course';
 import CuisineMain from './cuisine';
 import MainDishMain from './main-dish';

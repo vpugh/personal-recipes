@@ -7,6 +7,7 @@ import DropDown from './inputs/drop-down';
 import CardContainer from './card-container';
 import TextareaNested from './inputs/textarea-nested';
 import TextareaInput from './inputs/textarea';
+import { upperCaseFirst } from '../util/helper-functions';
 
 const courses = [
   'Breakfast',
@@ -61,9 +62,17 @@ const mains = [
   'Other'
 ];
 
-const addEmptyArray = (arr, setArr) => {
-  setArr(arr.concat(''));
+const addEmptyArray = (arr, setArr, listName) => {
+  if (listName) {
+    setArr([{ separate: [] }, { [listName]: arr.concat('') }]);
+  } else {
+    setArr(arr.concat(''));
+  }
 };
+
+const removeSeparate = arr => {
+  return arr.filter(x => (Object.keys(x).toString() !== 'separate'));
+}
 
 const RecipeForm = props => {
   const { recipe, headerContent, id } = props;
@@ -93,6 +102,8 @@ const RecipeForm = props => {
   const [ingredientsArray, setIngredientsArray] = useState(
     (recipe && recipe.ingredients) || []
   );
+
+  const [ingredientsListedArray, setIngredientsListedArray] = useState([]);
   const [instructionsArray, setInstructionsArray] = useState(
     (recipe && recipe.instructions) || []
   );
@@ -249,9 +260,34 @@ const RecipeForm = props => {
               setFunction={setIngredientsArray}
             />
           ))}
+        {ingredientsListedArray.length > 0 &&
+          removeSeparate(ingredientsListedArray).map((ila, index) => {
+            const title = Object.keys(ila).toString();
+            const capitalizedTitle = upperCaseFirst(title);
+            const nestedArray = ila[title];
+            if (title !== 'separate') {
+              return (
+                <React.Fragment key={title}>
+              <p>{capitalizedTitle}</p>
+              
+              </React.Fragment>
+              );
+            }
+            return null;
+          })}
         <GhostButton
           text='Add Ingredient'
           func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
+        />
+        <GhostButton
+          text='Add Listed Ingredient'
+          func={() =>
+            addEmptyArray(
+              ingredientsListedArray,
+              setIngredientsListedArray,
+              'crust'
+            )
+          }
         />
         <p className={classes.textColorPrimary}>Instructions*</p>
         {instructionsArray.length > 0 &&
