@@ -45,6 +45,9 @@ new Server({
       cookTime() {
         return RecipeDetailsSelection(this.id, 'cookTime');
       },
+      totalTime() {
+        return RecipeDetailsSelection(this.id, 'totalTime');
+      },
       serves() {
         return RecipeDetailsSelection(this.id, 'serves');
       },
@@ -83,8 +86,13 @@ new Server({
 
     this.post('/v1/recipe', (schema, request) => {
       let attrs = JSON.parse(request.requestBody);
-      // let attrs = this.normalizedRequestAttrs('recipe');
       return schema.recipes.create(attrs);
+    });
+
+    this.patch('/v1/recipe/:id', (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+      const id = request.params.id;
+      return schema.db.recipes.update(id, attrs);
     });
   },
   seeds(server) {

@@ -3,6 +3,7 @@ import TimeDisplay from './time-display';
 import ListGenerator from './list-generator';
 import useStyles from '../styles/view-recipe-styles';
 import CardContainer from './card-container';
+import { Link } from 'react-router-dom';
 
 const makeLink = link => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -50,12 +51,24 @@ const ViewRecipe = props => {
       instructions,
       cookTime,
       prepTime,
+      totalTime,
       notes
     } = currentRecipe;
     return (
       <CardContainer>
         <div>
-          <h1 className={classes.recipeTitle}>{title}</h1>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'baseline'
+            }}
+          >
+            <h1 className={classes.recipeTitle}>{title}</h1>
+            <Link to={`/recipe/edit/${recipeId}`} query={recipeId}>
+              Edit
+            </Link>
+          </div>
           <div>
             <p className={classes.recipeDescription}>{description}</p>
             <TimeDisplay time={course} timeHeader='Course' />
@@ -63,6 +76,9 @@ const ViewRecipe = props => {
             {mainDish && <TimeDisplay time={mainDish} timeHeader='Main Dish' />}
             {prepTime && <TimeDisplay time={prepTime} timeHeader='Prep Time' />}
             {cookTime && <TimeDisplay time={cookTime} timeHeader='Cook Time' />}
+            {totalTime && (
+              <TimeDisplay time={totalTime} timeHeader='Total Time' />
+            )}
             <p className={classes.recipeOrigin}>
               Recipe found at: {makeLink(recipeOrigin)}
             </p>
