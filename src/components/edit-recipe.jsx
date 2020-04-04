@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useStyles from '../styles/add-recipes-styles';
 import RecipeForm from './recipe-form';
+import { Link } from 'react-router-dom';
 
 const EditRecipe = props => {
   const classes = useStyles();
@@ -21,9 +22,18 @@ const EditRecipe = props => {
   }, [recipeId]);
 
   const header = (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'baseline'
+      }}
+    >
       <h1 className={classes.recipePageTitle}>Edit Recipe</h1>
-    </>
+      <Link style={{ color: 'inherit ' }} to={`/recipe/${recipeId}`}>
+        Return to Recipe
+      </Link>
+    </div>
   );
 
   if (currentRecipe) {

@@ -65,23 +65,29 @@ const ViewRecipe = props => {
             }}
           >
             <h1 className={classes.recipeTitle}>{title}</h1>
-            <Link to={`/recipe/edit/${recipeId}`} query={recipeId}>
+            <Link
+              style={{ color: 'inherit ' }}
+              to={`/recipe/edit/${recipeId}`}
+              query={recipeId}
+            >
               Edit
             </Link>
           </div>
           <div>
             <p className={classes.recipeDescription}>{description}</p>
-            <TimeDisplay time={course} timeHeader='Course' />
-            <TimeDisplay time={cuisine} timeHeader='Cuisine' />
+            {course && <TimeDisplay time={course} timeHeader='Course' />}
+            {cuisine && <TimeDisplay time={cuisine} timeHeader='Cuisine' />}
             {mainDish && <TimeDisplay time={mainDish} timeHeader='Main Dish' />}
             {prepTime && <TimeDisplay time={prepTime} timeHeader='Prep Time' />}
             {cookTime && <TimeDisplay time={cookTime} timeHeader='Cook Time' />}
             {totalTime && (
               <TimeDisplay time={totalTime} timeHeader='Total Time' />
             )}
-            <p className={classes.recipeOrigin}>
-              Recipe found at: {makeLink(recipeOrigin)}
-            </p>
+            {recipeOrigin && (
+              <p className={classes.recipeOrigin}>
+                Recipe found at: {makeLink(recipeOrigin)}
+              </p>
+            )}
             <div className={classes.listContainer}>
               <ListGenerator arr={equipmentNeeded} header='Equipment Needed' />
               <ListGenerator
