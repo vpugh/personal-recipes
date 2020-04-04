@@ -269,7 +269,9 @@ const RecipeForm = props => {
               return (
                 <React.Fragment key={title}>
               <p>{capitalizedTitle}</p>
-              
+              {nestedArray.length > 0 && nestedArray.map((il, idx) => (
+                <TextInputNested inputType={title} placeholder={`Add ${capitalizedTitle} Ingredients`} value={il} index={idx} key={idx} array={ingredientsListedArray} setFunction={setIngredientsListedArray} />
+              ))}
               </React.Fragment>
               );
             }
