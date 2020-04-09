@@ -151,6 +151,7 @@ const RecipeForm = props => {
             value={course}
             optionArr={courses}
             setFunction={setCourse}
+            multiple={course.length > 1 ? true : false}
           />
           <DropDown
             labelTitle='Cuisine'

@@ -55,63 +55,39 @@
     "description": "With a buttery crust and luscious lemon curd, these tangy lemon bars taste like a fancy French tart in bar form. They happen to be gluten-free too. But if gluten isn't an issue for you, replace the sweet rice, oat, and tapioca flours with 140 grams (about 1 cup + 2 tablespoons) all-purpose wheat flour. We love this delightful recipe especially during the winter when citrus is at it's best and short days are brighter with a sweet treat.",
     "recipeOrigin": "https://www.vermontcreamery.com/recipes/gluten-free-lemon-bars-with",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "crust": [
-          "1/2 cup blanched almond flour, such as Bob's Red Mill",
-          "1/2 cup sweet rice flour, such as Bob's Red Mill",
-          "1/2 cup GF oat flour, such as Bob's Red Mill",
-          "2 tablespoons tapioca flour",
-          "1/4 cup organic granulated sugar",
-          "1/4 + 1/8 teaspoon fine sea salt",
-          "6 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat cold and in 1/2-inch dice",
-          "1 teaspoon vanilla extract"
-        ]
-      },
-      {
-        "filling": [
-          "10 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat sliced",
-          "1 tablespoon lemon zest, finely grated and firmly packed",
-          "1 1/2 cups organic granulated cane sugar",
-          "1/8 teaspoon fine sea salt",
-          "4 large eggs",
-          "2 large egg yolks",
-          "1 cup strained lemon juice, from about 6 large lemons",
-          "optional garnishes powdered sugar, lemon wheels, and/or heavy cream and crème fraîche whipped to firm peaks"
-        ]
-      }
+    "ingredients": [
+      "1/2 cup blanched almond flour, such as Bob's Red Mill",
+      "1/2 cup sweet rice flour, such as Bob's Red Mill",
+      "1/2 cup GF oat flour, such as Bob's Red Mill",
+      "2 tablespoons tapioca flour",
+      "1/4 cup organic granulated sugar",
+      "1/4 + 1/8 teaspoon fine sea salt",
+      "6 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat cold and in 1/2-inch dice",
+      "1 teaspoon vanilla extract",
+      "10 tablespoons Vermont Creamery Unsalted Cultured Butter - 82% Butterfat sliced",
+      "1 tablespoon lemon zest, finely grated and firmly packed",
+      "1 1/2 cups organic granulated cane sugar",
+      "1/8 teaspoon fine sea salt",
+      "4 large eggs",
+      "2 large egg yolks",
+      "1 cup strained lemon juice, from about 6 large lemons",
+      "optional garnishes powdered sugar, lemon wheels, and/or heavy cream and crème fraîche whipped to firm peaks"
     ],
-    "instructions": [{
-        "separate": []
-      },
-      {
-        "crust": [
-          "Position a rack in the center of the oven and preheat to 350°F. Line an 8-inch square pan with parchment paper on all sides.",
-          "In the bowl of a food processor (or stand mixer fitted with the paddle attachment) combine the almond, sweet rice, oat, and tapioca flours with the sugar and salt. Scatter the cultured butter pieces over the top and drizzle with the vanilla extract. Process until the butter is incorporated and the dough forms large clumps, 15-30 seconds in a food processor or 3-5 minutes in a stand mixer on medium speed.",
-          "Dump the dough into the prepared baking pan and press evenly into the bottom.",
-          "Bake the crust until golden all over, 25-30 minutes. Remove the crust from the oven and, while it's still hot, press down firmly all over with the back of a spoon. This will help it hold together when cool."
-        ]
-      },
-      {
-        "filling": [
-          "Lower the oven temperature to 325°F.",
-          "Place the cultured butter and lemon zest in a heatproof bowl. Place a mesh strainer over the bowl and set aside.",
-          "In a medium, heavy-bottomed saucepan, whisk together the sugar, salt, eggs, and egg yolks to combine. Gradually whisk in the lemon juice.",
-          "Place the pot over medium-low heat and cook, stirring constantly with a heatproof silicone spatula, until the mixture thickens slightly and reaches 160-165°F on an instant-read thermometer, 5-10 minutes. As you stir, be sure to scrape the entire bottom and corners of the pan, so that the mixture heats as evenly as possible. It will start out thick and cloudy from the undissolved sugar, then will turn thin and translucent, and finally begin to thicken and turn cloudy again as the eggs cook. Lower the heat to very low as it gets closer to being done. If the mixture starts to curdle or bubble, immediately remove it from the heat and proceed to the next step.",
-          "Immediately pour the curd through the strainer and into the bowl of butter to stop the cooking. Whisk to incorporate the butter and lemon zest, making sure there are no clumps of lemon zest.",
-          "Pour the cooked curd over the baked and pressed down crust."
-        ]
-      },
-      {
-        "bars": [
-          "Bake the bars at 325°F (don't forget to lower the oven temp!) until the sides are barely puffed and the center wobbles like firm Jell-O when you give it a gentle shake, 15-20 minutes. It should not be wet or watery looking (underbaked!), nor should it be puffed in the center or cracking (ovebaked). Remove the bars from the oven and let cool to room temperature for 30-60 minutes, then chill until firm, 2-3 hours or overnight.",
-          "When the bars are cold, grasp the parchment paper and lift the bars from the pan and onto a cutting board. Gently peel away the sides of the parchment. Trim away the outer edges of the bars, then use a large chef's knife to cut the bars into 16 squares. For the cleanest cut, dip the knife in very hot water and wipe the blade clean between cuts.",
-          "Just before serving, dust the lemon bars with a bit of powdered sugar. Garnish with lemon wheels and/or whipped crème fraîche if you like.",
-          "The bars will keep well, refrigerated, for up to 3 days, though the crust is the crispiest within the first 1-2 days."
-        ]
-      }
+    "instructions": [
+      "Position a rack in the center of the oven and preheat to 350°F. Line an 8-inch square pan with parchment paper on all sides.",
+      "In the bowl of a food processor (or stand mixer fitted with the paddle attachment) combine the almond, sweet rice, oat, and tapioca flours with the sugar and salt. Scatter the cultured butter pieces over the top and drizzle with the vanilla extract. Process until the butter is incorporated and the dough forms large clumps, 15-30 seconds in a food processor or 3-5 minutes in a stand mixer on medium speed.",
+      "Dump the dough into the prepared baking pan and press evenly into the bottom.",
+      "Bake the crust until golden all over, 25-30 minutes. Remove the crust from the oven and, while it's still hot, press down firmly all over with the back of a spoon. This will help it hold together when cool.",
+      "Lower the oven temperature to 325°F.",
+      "Place the cultured butter and lemon zest in a heatproof bowl. Place a mesh strainer over the bowl and set aside.",
+      "In a medium, heavy-bottomed saucepan, whisk together the sugar, salt, eggs, and egg yolks to combine. Gradually whisk in the lemon juice.",
+      "Place the pot over medium-low heat and cook, stirring constantly with a heatproof silicone spatula, until the mixture thickens slightly and reaches 160-165°F on an instant-read thermometer, 5-10 minutes. As you stir, be sure to scrape the entire bottom and corners of the pan, so that the mixture heats as evenly as possible. It will start out thick and cloudy from the undissolved sugar, then will turn thin and translucent, and finally begin to thicken and turn cloudy again as the eggs cook. Lower the heat to very low as it gets closer to being done. If the mixture starts to curdle or bubble, immediately remove it from the heat and proceed to the next step.",
+      "Immediately pour the curd through the strainer and into the bowl of butter to stop the cooking. Whisk to incorporate the butter and lemon zest, making sure there are no clumps of lemon zest.",
+      "Pour the cooked curd over the baked and pressed down crust.",
+      "Bake the bars at 325°F (don't forget to lower the oven temp!) until the sides are barely puffed and the center wobbles like firm Jell-O when you give it a gentle shake, 15-20 minutes. It should not be wet or watery looking (underbaked!), nor should it be puffed in the center or cracking (ovebaked). Remove the bars from the oven and let cool to room temperature for 30-60 minutes, then chill until firm, 2-3 hours or overnight.",
+      "When the bars are cold, grasp the parchment paper and lift the bars from the pan and onto a cutting board. Gently peel away the sides of the parchment. Trim away the outer edges of the bars, then use a large chef's knife to cut the bars into 16 squares. For the cleanest cut, dip the knife in very hot water and wipe the blade clean between cuts.",
+      "Just before serving, dust the lemon bars with a bit of powdered sugar. Garnish with lemon wheels and/or whipped crème fraîche if you like.",
+      "The bars will keep well, refrigerated, for up to 3 days, though the crust is the crispiest within the first 1-2 days."
     ]
   },
   {
@@ -127,39 +103,25 @@
     "description": "A tasty bacon ranch topped chicken pizza crust that’s super simple to make. It uses a near zero carb pizza crust made from ground meat.",
     "recipeOrigin": "https://lowcarbyum.com/bacon-ranch-chicken-crust-pizza/",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "crust": [
-          "1 pound ground chicken",
-          "1/3 cup mozzarella shredded (40 grams)",
-          "1/3 cup parmesan cheese shredded (30 grams)",
-          "1 teaspoon Italian seasonings basil, oregano, rosemary, and thyme",
-          "1 large egg",
-          "salt and ground black pepper to taste (I used 1/4 salt and dash pepper)"
-        ]
-      },
-      {
-        "sauce": [
-          "1/3 cup avocado mayonnaise",
-          "1/3 cup sour cream",
-          "1/4 teaspoon dried chives",
-          "1/4 teaspoon dried parsley",
-          "1/4 teaspoon dried dill",
-          "1/4 teaspoon garlic powder",
-          "1/8 teaspoon onion powder",
-          "1/8 teaspoon salt",
-          "dash pepper"
-        ]
-      },
-      {
-        "toppings": [
-          "1 cup mozzarella cheese shredded & divided (103 grams)",
-          "2 medium plum tomatoes diced (85 grams)",
-          "3 slices no sugar bacon cooked and chopped"
-        ]
-      }
+    "ingredients": [
+      "1 pound ground chicken",
+      "1/3 cup mozzarella shredded (40 grams)",
+      "1/3 cup parmesan cheese shredded (30 grams)",
+      "1 teaspoon Italian seasonings basil, oregano, rosemary, and thyme",
+      "1 large egg",
+      "salt and ground black pepper to taste (I used 1/4 salt and dash pepper)",
+      "1/3 cup avocado mayonnaise",
+      "1/3 cup sour cream",
+      "1/4 teaspoon dried chives",
+      "1/4 teaspoon dried parsley",
+      "1/4 teaspoon dried dill",
+      "1/4 teaspoon garlic powder",
+      "1/8 teaspoon onion powder",
+      "1/8 teaspoon salt",
+      "dash pepper",
+      "1 cup mozzarella cheese shredded & divided (103 grams)",
+      "2 medium plum tomatoes diced (85 grams)",
+      "3 slices no sugar bacon cooked and chopped"
     ],
     "instructions": [
       "Preheat oven to 400°F. Line pizza pan with parchment paper.",
@@ -257,48 +219,34 @@
     "description": "Butter chicken is one of the most popular chicken recipes in India. Golden fried chicken pieces are cooked in a creamy tomato base. It is best served with roti, naan or pulao. ",
     "recipeOrigin": "https://www.youtube.com/watch?v=D_fYk8mBaF4",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "marinade": [
-          "200 Grams Boneless Chicken",
-          "1 Tsp Pound Ginger & Garlic",
-          "2 Tsp Hung Curd",
-          "Juice Of 1 /2 Lemon ",
-          "1 Tsp Kashmiri Chili Powder",
-          "1 /2 Tsp Garam Masala",
-          "1 /2 Tsp Salt",
-          "1 Tbsp Oil"
-        ]
-      },
-      {
-        "paste": [
-          "1 Tbsp Butter",
-          "1 Tbsp Oil",
-          "2 Onions - Chopped",
-          "1 Tsp Pound Ginger & Garlic",
-          "3 Tomatos - Chopped",
-          "3 Kashmiri Red Chili",
-          "1 Tsp Salt",
-          "1 Tsp Cumin Powder",
-          "1 /2 Tsp Coriander Powder",
-          "1 Tsp Garam Masala",
-          "2 Tbsp Water",
-          "10 Cashew Nuts",
-          "1 /4 Cup Water"
-        ]
-      },
-      {
-        "chicken": [
-          "2 Tbsp Butter",
-          "1 Tsp Kashmiri Chili Powder",
-          "Water",
-          "1 /4 Cup Fresh Cream",
-          "Kasuri Methi",
-          "Coriander Leaves"
-        ]
-      }
+    "ingredients": [
+      "200 Grams Boneless Chicken",
+      "1 Tsp Pound Ginger & Garlic",
+      "2 Tsp Hung Curd",
+      "Juice Of 1 /2 Lemon ",
+      "1 Tsp Kashmiri Chili Powder",
+      "1 /2 Tsp Garam Masala",
+      "1 /2 Tsp Salt",
+      "1 Tbsp Oil",
+      "1 Tbsp Butter",
+      "1 Tbsp Oil",
+      "2 Onions - Chopped",
+      "1 Tsp Pound Ginger & Garlic",
+      "3 Tomatos - Chopped",
+      "3 Kashmiri Red Chili",
+      "1 Tsp Salt",
+      "1 Tsp Cumin Powder",
+      "1 /2 Tsp Coriander Powder",
+      "1 Tsp Garam Masala",
+      "2 Tbsp Water",
+      "10 Cashew Nuts",
+      "1 /4 Cup Water",
+      "2 Tbsp Butter",
+      "1 Tsp Kashmiri Chili Powder",
+      "Water",
+      "1 /4 Cup Fresh Cream",
+      "Kasuri Methi",
+      "Coriander Leaves"
     ],
     "instructions": [
       "Take the boneless chicken pieces in a bowl, add lemon juice, hung curd, ginger garlic paste, red chili powder, garam masala, salt",
@@ -329,34 +277,22 @@
     "description": "This classic lemon bundt cake recipe is perfect for any occasion: a bridal shower, summer BBQ, or even a treat for your family on a casual night in. The lemon glaze makes this cake perfectly moist. Top it with icing and zest and enjoy this beautiful and delicious treat.",
     "recipeOrigin": "https://tasty.co/recipe/lemon-bundt-cake",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "cake": [
-          "3 cups all-purpose flour",
-          "2 teaspoons baking powder",
-          "1 cup unsalted butter, 2 sticks, room temperature",
-          "2 cups granulated sugar",
-          "1 teaspoon kosher salt",
-          "3 large eggs, room temperature",
-          "2 tablespoons lemon zest",
-          "¼ cup lemon juice",
-          "1 teaspoon vanilla extract",
-          "1 cup whole milk",
-          "nonstick cooking spray, for greasing"
-        ]
-      },
-      {
-        "glaze": ["½ cup granulated sugar", "¼ cup lemon juice"]
-      },
-      {
-        "icing": [
-          "2 cups powdered sugar, sifted",
-          "3 tablespoons lemon juice",
-          "1 lemon, zested"
-        ]
-      }
+    "ingredients": [
+      "3 cups all-purpose flour",
+      "2 teaspoons baking powder",
+      "1 cup unsalted butter, 2 sticks, room temperature",
+      "2 cups granulated sugar",
+      "1 teaspoon kosher salt",
+      "3 large eggs, room temperature",
+      "2 tablespoons lemon zest",
+      "¼ cup lemon juice",
+      "1 teaspoon vanilla extract",
+      "1 cup whole milk",
+      "nonstick cooking spray, for greasing",
+      "½ cup granulated sugar", "¼ cup lemon juice",
+      "2 cups powdered sugar, sifted",
+      "3 tablespoons lemon juice",
+      "1 lemon, zested"
     ],
     "instructions": [
       "Preheat the oven to 350˚F (180˚C).",
@@ -373,8 +309,7 @@
       "Transfer the cake to a serving platter, slice, and serve.",
       "Enjoy!"
     ]
-  },
-  {
+  }, {
     "title": "Fajita Breakfast Burritos",
     "cuisine": "Tex-Mex",
     "course": "Breakfast",
@@ -388,39 +323,25 @@
     "description": "Fajita Breakfast Burritos never tasted so good, especially when you don’t want to make breakfast! These make ahead breakfast burritos are an easy meal prep breakfast to make any time of year.",
     "recipeOrigin": "https://fitfoodiefinds.com/fajita-breakfast-burritos",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "veggies": [
-          "2 tablespoons olive oil",
-          "2 medium russet potatoes, cut into half-inch cubes (~2 cups cubed)",
-          "1 tablespoon minced garlic",
-          "1 teaspoon chili powder",
-          "1/2 teaspoon ground cumin",
-          "1/4 teaspoon paprika",
-          "1/8 teaspoon salt",
-          "1 large yellow pepper, diced",
-          "1 large red pepper, diced",
-          "1/2 yellow onion, minced"
-        ]
-      },
-      {
-        "eggs": [
-          "8 large eggs",
-          "2 tablespoons unsweetened almond milk",
-          "salt and pepper, to taste",
-          "2 tablespoons olive oil"
-        ]
-      },
-      {
-        "other": [
-          "12 oz. uncooked breakfast sausage (any kind will work and option to use pre-cooked)",
-          "1 cup shredded cheddar cheese",
-          "1 15-oz. can refried beans",
-          "8 large flour tortillas"
-        ]
-      }
+    "ingredients": [
+      "2 tablespoons olive oil",
+      "2 medium russet potatoes, cut into half-inch cubes (~2 cups cubed)",
+      "1 tablespoon minced garlic",
+      "1 teaspoon chili powder",
+      "1/2 teaspoon ground cumin",
+      "1/4 teaspoon paprika",
+      "1/8 teaspoon salt",
+      "1 large yellow pepper, diced",
+      "1 large red pepper, diced",
+      "1/2 yellow onion, minced",
+      "8 large eggs",
+      "2 tablespoons unsweetened almond milk",
+      "salt and pepper, to taste",
+      "2 tablespoons olive oil",
+      "12 oz. uncooked breakfast sausage (any kind will work and option to use pre-cooked)",
+      "1 cup shredded cheddar cheese",
+      "1 15-oz. can refried beans",
+      "8 large flour tortillas"
     ],
     "instructions": [
       "Heat a large skillet over medium/high heat. Add olive oil.",
@@ -439,8 +360,7 @@
       "To give them a crunch, heat 1/2 tablespoon of olive oil in a large skillet. When olive oil is fragrant, fry burritos for 30 seconds to 1 minute on each side or until golden brown.",
       "Serve with your favorite salsa and plain Greek yogurt."
     ]
-  },
-  {
+  }, {
     "title": "Chocolate Pecan Pie",
     "cuisine": "American",
     "course": "Dessert",
@@ -479,8 +399,7 @@
       "Bake for 50-55 minutes or until centre is just set to the touch but still a little jiggly underneath. If your pie is browning too fast, loosely tent with foil.",
       "The pie will be puffed up as soon as it comes out of the oven, but it will deflate and flatten as it cools. Let cool on a wire rack for about 4 hours and serve warm, or refrigerate to chill overnight."
     ]
-  },
-  {
+  }, {
     "title": "Apple Cider Beignet",
     "cuisine": "American",
     "course": ["Breakfast", "Snack"],
@@ -494,35 +413,25 @@
     "description": "Take beignets to the next level with the addition of apple cider and fragrant apple pie spice. The caramel dipping sauce gives this dish a double dose of apple cider for maximum fall flavor. The recipe yields enough for a crowd, so serve these as part of an autumn brunch spread for all of your family and friends.",
     "recipeOrigin": "https://tasty.co/recipe/apple-cider-beignet",
     "equipmentNeeded": [],
-    "ingredients": [{
-        "separate": []
-      },
-      {
-        "beignets": [
-          "1 ½ cups apple cider",
-          "1 cup lukewarm water",
-          "¼ cup granulated sugar",
-          "1 package active dry yeast",
-          "2 large eggs",
-          "1 ½ teaspoons kosher salt",
-          "1 tablespoon apple pie spice, divided, plus 2 teaspoons",
-          "1 cup evaporated milk",
-          "½ stick unsalted butter, melted",
-          "7 cups bread flour, plus more for dusting",
-          "nonstick cooking spray, for greasing",
-          "½ cup powdered sugar",
-          "4 qt canola oil"
-        ]
-      },
-      {
-        "caramel": [
-          "2 cups apple cider",
-          "½ cup brown sugar",
-          "¼ cup heavy cream",
-          "½ stick unsalted butter, cubed",
-          "¼ teaspoon kosher salt"
-        ]
-      }
+    "ingredients": [
+      "1 ½ cups apple cider",
+      "1 cup lukewarm water",
+      "¼ cup granulated sugar",
+      "1 package active dry yeast",
+      "2 large eggs",
+      "1 ½ teaspoons kosher salt",
+      "1 tablespoon apple pie spice, divided, plus 2 teaspoons",
+      "1 cup evaporated milk",
+      "½ stick unsalted butter, melted",
+      "7 cups bread flour, plus more for dusting",
+      "nonstick cooking spray, for greasing",
+      "½ cup powdered sugar",
+      "4 qt canola oil",
+      "2 cups apple cider",
+      "½ cup brown sugar",
+      "¼ cup heavy cream",
+      "½ stick unsalted butter, cubed",
+      "¼ teaspoon kosher salt"
     ],
     "instructions": [
       "Make the beignets: In a large skillet over medium-high heat, bring the apple cider to a boil, then cook until reduced by half, about 10 minutes. Remove the pan from heat and let cool.",

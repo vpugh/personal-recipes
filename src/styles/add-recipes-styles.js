@@ -17,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'space-between'
     },
-    '& div': {
+    '& > div': {
       [theme.breakpoints.up('md')]: {
         width: '48%',
         display: 'inline-flex !important'
@@ -29,7 +29,7 @@ export const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'space-between'
     },
-    '& div': {
+    '& > div': {
       [theme.breakpoints.up('md')]: {
         width: '32%',
         display: 'inline-flex !important'
