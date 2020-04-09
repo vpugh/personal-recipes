@@ -7,7 +7,6 @@ import DropDown from './inputs/drop-down';
 import CardContainer from './card-container';
 import TextareaNested from './inputs/textarea-nested';
 import TextareaInput from './inputs/textarea';
-import NestedArray from './NestedArrays';
 
 const courses = [
   'Breakfast',
@@ -62,27 +61,8 @@ const mains = [
   'Other'
 ];
 
-const addEmptyArray = (arr, setArr, listName) => {
-  if (listName) {
-    setArr([{ separate: [] }, { [listName]: arr.concat('') }]);
-  } else {
-    setArr(arr.concat(''));
-  }
-};
-
-const addNestedList = (e, arr, setArr, listName, index) => {
-  e.preventDefault();
-  if (arr.length > 0 || index) {
-    console.log('Add Input');
-    // setArr([{ [listName]: { [index]: arr.concat('') } }]);
-  } else {
-    console.log('Initialize List');
-    setArr([{ separate: [] }, { [listName]: arr.concat('') }]);
-  }
-};
-
-const removeSeparate = arr => {
-  return arr.filter(x => Object.keys(x).toString() !== 'separate');
+const addEmptyArray = (arr, setArr) => {
+  setArr(arr.concat(''));
 };
 
 const RecipeForm = props => {
@@ -114,7 +94,6 @@ const RecipeForm = props => {
     (recipe && recipe.ingredients) || []
   );
 
-  const [ingredientsListedArray, setIngredientsListedArray] = useState([]);
   const [instructionsArray, setInstructionsArray] = useState(
     (recipe && recipe.instructions) || []
   );
@@ -271,34 +250,9 @@ const RecipeForm = props => {
               setFunction={setIngredientsArray}
             />
           ))}
-        {ingredientsListedArray.length > 0 && (
-          <NestedArray listArray={removeSeparate(ingredientsListedArray)} />
-        )}
         <GhostButton
           text='Add Ingredient'
           func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
-        />
-        <button
-          onClick={e =>
-            addNestedList(
-              e,
-              ingredientsListedArray,
-              setIngredientsListedArray,
-              'crust'
-            )
-          }
-        >
-          Make Nested List
-        </button>
-        <GhostButton
-          text='Add Listed Ingredient'
-          func={() =>
-            addEmptyArray(
-              ingredientsListedArray,
-              setIngredientsListedArray,
-              'crust'
-            )
-          }
         />
         <p className={classes.textColorPrimary}>Instructions*</p>
         {instructionsArray.length > 0 &&

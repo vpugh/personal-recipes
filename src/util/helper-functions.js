@@ -46,3 +46,7 @@ export const replaceFractions = text => {
 export const upperCaseFirst = str => {
   return str[0].toUpperCase() + str.slice(1);
 };
+
+export const removeSeparate = arr => {
+  return arr.filter(x => Object.keys(x).toString() !== 'separate');
+};
