@@ -7,7 +7,7 @@ import DropDown from './inputs/drop-down';
 import CardContainer from './card-container';
 import TextareaNested from './inputs/textarea-nested';
 import TextareaInput from './inputs/textarea';
-import { upperCaseFirst } from '../util/helper-functions';
+import NestedArray from './NestedArrays';
 
 const courses = [
   'Breakfast',
@@ -70,9 +70,20 @@ const addEmptyArray = (arr, setArr, listName) => {
   }
 };
 
+const addNestedList = (e, arr, setArr, listName, index) => {
+  e.preventDefault();
+  if (arr.length > 0 || index) {
+    console.log('Add Input');
+    // setArr([{ [listName]: { [index]: arr.concat('') } }]);
+  } else {
+    console.log('Initialize List');
+    setArr([{ separate: [] }, { [listName]: arr.concat('') }]);
+  }
+};
+
 const removeSeparate = arr => {
-  return arr.filter(x => (Object.keys(x).toString() !== 'separate'));
-}
+  return arr.filter(x => Object.keys(x).toString() !== 'separate');
+};
 
 const RecipeForm = props => {
   const { recipe, headerContent, id } = props;
@@ -260,27 +271,25 @@ const RecipeForm = props => {
               setFunction={setIngredientsArray}
             />
           ))}
-        {ingredientsListedArray.length > 0 &&
-          removeSeparate(ingredientsListedArray).map((ila, index) => {
-            const title = Object.keys(ila).toString();
-            const capitalizedTitle = upperCaseFirst(title);
-            const nestedArray = ila[title];
-            if (title !== 'separate') {
-              return (
-                <React.Fragment key={title}>
-              <p>{capitalizedTitle}</p>
-              {nestedArray.length > 0 && nestedArray.map((il, idx) => (
-                <TextInputNested inputType={title} placeholder={`Add ${capitalizedTitle} Ingredients`} value={il} index={idx} key={idx} array={ingredientsListedArray} setFunction={setIngredientsListedArray} />
-              ))}
-              </React.Fragment>
-              );
-            }
-            return null;
-          })}
+        {ingredientsListedArray.length > 0 && (
+          <NestedArray listArray={removeSeparate(ingredientsListedArray)} />
+        )}
         <GhostButton
           text='Add Ingredient'
           func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
         />
+        <button
+          onClick={e =>
+            addNestedList(
+              e,
+              ingredientsListedArray,
+              setIngredientsListedArray,
+              'crust'
+            )
+          }
+        >
+          Make Nested List
+        </button>
         <GhostButton
           text='Add Listed Ingredient'
           func={() =>
