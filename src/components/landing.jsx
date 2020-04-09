@@ -10,7 +10,7 @@ const getRecipes = async () => {
   return await res.json();
 };
 
-const fetchRecipes = async set => {
+const fetchRecipes = async (set) => {
   const data = await getRecipes();
   set(data);
 };
@@ -27,7 +27,16 @@ const Landing = () => {
   const limit = 5;
 
   const limitRecipes = () => {
-    return recipes.slice(0, limit - 1);
+    const sortedRecipes = recipes.sort((a, b) => {
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      return 0;
+    });
+    return sortedRecipes.slice(0, limit - 1);
   };
 
   if (recipes) {

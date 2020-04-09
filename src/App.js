@@ -16,11 +16,11 @@ new Server({
     application: ApplicationSerializer,
     recipe: ApplicationSerializer.extend({
       embed: true,
-      root: false
-    })
+      root: false,
+    }),
   },
   models: {
-    recipe: Model
+    recipe: Model,
   },
   factories: {
     recipe: Factory.extend({
@@ -71,8 +71,14 @@ new Server({
       },
       notes() {
         return RecipeDetailsSelection(this.id, 'notes');
-      }
-    })
+      },
+      updateAt() {
+        return RecipeDetailsSelection(this.id, 'updatedAt');
+      },
+      createdAt() {
+        return RecipeDetailsSelection(this.id, 'createdAt');
+      },
+    }),
   },
   routes() {
     this.namespace = '/api';
@@ -97,7 +103,7 @@ new Server({
   },
   seeds(server) {
     server.createList('recipe', 10);
-  }
+  },
 });
 
 function App() {

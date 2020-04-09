@@ -16,7 +16,7 @@ const courses = [
   'Side',
   'Snack',
   'Dessert',
-  'Brunch'
+  'Brunch',
 ];
 
 const cuisines = [
@@ -42,7 +42,7 @@ const cuisines = [
   'Spanish',
   'Vietnamese',
   'Turkish',
-  'Caribbean'
+  'Caribbean',
 ];
 
 const mains = [
@@ -58,14 +58,14 @@ const mains = [
   'Fish',
   'Seafood',
   'Vegetables',
-  'Other'
+  'Other',
 ];
 
 const addEmptyArray = (arr, setArr) => {
   setArr(arr.concat(''));
 };
 
-const RecipeForm = props => {
+const RecipeForm = (props) => {
   const { recipe, headerContent, id } = props;
   const classes = useStyles();
   const [title, setTitle] = useState((recipe && recipe.title) || '');
@@ -99,7 +99,7 @@ const RecipeForm = props => {
   );
   const [recipeSaved, setRecipeSaved] = useState(false);
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     const data = {
       title,
@@ -116,20 +116,20 @@ const RecipeForm = props => {
       equipmentNeeded: equipmentNeededArray,
       ingredients: ingredientsArray,
       instructions: instructionsArray,
-      notes: null
+      notes: null,
+      updatedAt: new Date().toISOString(),
     };
     if (id) {
-      console.log('Patch');
       fetch(`/api/v1/recipe/${id}`, {
         method: 'PATCH',
-        body: JSON.stringify(data)
-      }).then(result => result.ok && setRecipeSaved(true));
+        body: JSON.stringify(data),
+      }).then((result) => result.ok && setRecipeSaved(true));
     } else {
-      console.log('Post');
+      data.createdAt = new Date().toISOString();
       fetch('/api/v1/recipe', {
         method: 'POST',
-        body: JSON.stringify(data)
-      }).then(result => result.ok && setRecipeSaved(true));
+        body: JSON.stringify(data),
+      }).then((result) => result.ok && setRecipeSaved(true));
     }
   };
 
