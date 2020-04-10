@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useStyles from '../styles/add-recipes-styles';
+import useStyles from '../styles/recipe-form-styles';
 import TextInput from './inputs/text-inputs';
 import TextInputNested from './inputs/text-input-nested';
 import GhostButton from './inputs/ghost-button';

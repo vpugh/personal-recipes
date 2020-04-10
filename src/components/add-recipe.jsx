@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import useStyles from '../styles/add-recipes-styles';
 import RecipeForm from './recipe-form';
 
 const AddRecipe = () => {
-  const classes = useStyles();
   const [showTemporaryRecipe, setShowTemporaryRecipe] = useState(false);
   const [temporaryRecipe, setTemporaryRecipe] = useState('');
 
@@ -22,10 +20,10 @@ const AddRecipe = () => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'baseline'
+          alignItems: 'baseline',
         }}
       >
-        <h1 className={classes.recipePageTitle}>Add Recipe</h1>
+        <h1 className='cardTitle'>Add Recipe</h1>
         <div
           role='button'
           onClick={showTempRecipes}
@@ -43,7 +41,7 @@ const AddRecipe = () => {
             width: '80%',
             padding: 20,
             background: '#fff',
-            border: '1px solid #ddd'
+            border: '1px solid #ddd',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -60,11 +58,11 @@ const AddRecipe = () => {
             value={temporaryRecipe}
             style={{
               width: '100%',
-              fontSize: 18
+              fontSize: 18,
             }}
             cols='40'
             rows='40'
-            onChange={e => onChange(e, setTemporaryRecipe)}
+            onChange={(e) => onChange(e, setTemporaryRecipe)}
           />
         </div>
       )}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import ListedRecipes from './listed-recipes';
-import useStyles from '../styles/list-recipes-styles';
 import CardContainer from './card-container';
 
 const getRecipes = async () => {
@@ -8,13 +7,12 @@ const getRecipes = async () => {
   return await res.json();
 };
 
-const fetchRecipes = async set => {
+const fetchRecipes = async (set) => {
   const data = await getRecipes();
   set(data);
 };
 
 const ListRecipes = () => {
-  const classes = useStyles();
   const [allRecipes, setAllRecipes] = useState();
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const ListRecipes = () => {
 
   return (
     <CardContainer>
-      <h1 className={classes.listRecipeTitle}>All Recipes</h1>
+      <h1 className='cardTitle'>All Recipes</h1>
       {allRecipes &&
         allRecipes.map((ra, index) => (
           <ListedRecipes

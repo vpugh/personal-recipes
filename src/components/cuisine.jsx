@@ -1,10 +1,10 @@
 import React from 'react';
 import CardContainer from './card-container';
 
-const CuisineMain = props => {
+const CuisineMain = (props) => {
   return (
     <CardContainer>
-      <h1>Cuisine Page</h1>
+      <h1 className='cardTitle'>Cuisine Page</h1>
     </CardContainer>
   );
 };

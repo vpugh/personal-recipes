@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import useStyles from '../styles/add-recipes-styles';
 import RecipeForm from './recipe-form';
 import { Link } from 'react-router-dom';
 
-const EditRecipe = props => {
-  const classes = useStyles();
-
+const EditRecipe = (props) => {
   const [currentRecipe, setCurrentRecipe] = useState();
   const recipeId = props.match.params.id;
   useEffect(() => {
@@ -14,7 +11,7 @@ const EditRecipe = props => {
       return await res.json();
     };
 
-    const fetchRecipe = async set => {
+    const fetchRecipe = async (set) => {
       const data = await getRecipe();
       set(data);
     };
@@ -26,10 +23,10 @@ const EditRecipe = props => {
       style={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'baseline'
+        alignItems: 'baseline',
       }}
     >
-      <h1 className={classes.recipePageTitle}>Edit Recipe</h1>
+      <h1 className='cardTitle'>Edit Recipe</h1>
       <Link style={{ color: 'inherit ' }} to={`/recipe/${recipeId}`}>
         Return to Recipe
       </Link>

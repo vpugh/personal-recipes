@@ -42,7 +42,7 @@ const Landing = () => {
   if (recipes) {
     return (
       <div className={classes.container}>
-        <div>
+        <div className={classes.widgetContainer}>
           <h4 className={classes.subTitle}>Recently Added</h4>
           <CardContainer maxWidth={650} padding='20px'>
             {recipes &&
