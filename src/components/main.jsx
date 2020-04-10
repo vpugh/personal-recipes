@@ -10,11 +10,14 @@ import CourseMain from './course';
 import CuisineMain from './cuisine';
 import MainDishMain from './main-dish';
 import EditRecipe from './edit-recipe';
+import RegisterNewUser from './register-new-user';
+import SignIn from './signin';
+import AuthorizedCheck from './authorized-check';
 
 const useStyles = makeStyles({
   padding: {
-    margin: '54px auto 0 auto'
-  }
+    margin: '54px auto 0 auto',
+  },
 });
 
 const Main = () => {
@@ -24,6 +27,9 @@ const Main = () => {
       <Container>
         <Switch>
           <Route exact path='/' component={Landing} />
+          <Route exact path='/register' component={RegisterNewUser} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/secret' component={AuthorizedCheck} />
           <Route path='/add-recipe' component={AddRecipe} />
           <Route exact path='/recipe/:id' component={ViewRecipe} />
           <Route exact path='/recipe/edit/:id' component={EditRecipe} />
