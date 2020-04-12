@@ -1,8 +1,18 @@
-import { Server, Model, Factory, Serializer } from 'miragejs';
+import { Server, Model, Factory, Serializer, Response } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
+import bcrypt from 'bcryptjs';
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
+};
+
+const hashPassword = (textPassword) => {
+  const salt = bcrypt.genSaltSync(10);
+  return bcrypt.hashSync(textPassword, salt);
+};
+
+const isCorrectPassword = (hash, plainText) => {
+  return bcrypt.compare(plainText, hash);
 };
 
 const ApplicationSerializer = Serializer.extend();
@@ -18,6 +28,7 @@ export const makeServer = () => {
     },
     models: {
       recipe: Model,
+      user: Model,
     },
     factories: {
       recipe: Factory.extend({
@@ -82,6 +93,8 @@ export const makeServer = () => {
 
       this.get('/v1/auth', () => {});
 
+      // Recipe Endpoints
+
       this.get('/v1/recipes');
 
       this.get('/v1/recipe/:id', (schema, request) => {
@@ -99,9 +112,52 @@ export const makeServer = () => {
         const id = request.params.id;
         return schema.db.recipes.update(id, attrs);
       });
+
+      // User endpoints
+      this.get('/v1/users');
+
+      this.get('/v1/user/:id', (schema, request) => {
+        let userId = request.params.id;
+        return schema.users.findBy({ id: userId });
+      });
+
+      this.post('/v1/authentication', async (schema, request) => {
+        const { email, password } = request.requestBody;
+        const user = schema.users.findBy({ email });
+        if (!user) {
+          return new Response(
+            500,
+            {},
+            { error: 'Incorrect email or password' }
+          );
+        }
+        const doesMatch = await isCorrectPassword(
+          user.attrs.password,
+          password,
+          user.attrs.email
+        );
+        if (!doesMatch) {
+          return new Response(
+            500,
+            {},
+            { error: 'Incorrect email or password' }
+          );
+        }
+        return user;
+      });
     },
     seeds(server) {
       server.createList('recipe', 10);
+      server.schema.users.create({
+        username: 'Daniel Salazar',
+        email: 'test@mytest.com',
+        password: hashPassword(process.env.REACT_APP_PASS1),
+      });
+      server.schema.users.create({
+        username: "Jonny Ja'qobi",
+        email: 'rac@quad.com',
+        password: hashPassword(process.env.REACT_APP_PASS2),
+      });
     },
   });
   return server;

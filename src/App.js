@@ -4,17 +4,20 @@ import './App.css';
 import Main from './components/main';
 import { makeServer } from './mirage-server';
 import { RecipesProvider } from './context/recipes-context';
+import { UserProvider } from './context/user-context';
 
 makeServer();
 
 function App() {
   return (
-    <RecipesProvider>
-      <div className='App'>
-        <Header />
-        <Main />
-      </div>
-    </RecipesProvider>
+    <UserProvider>
+      <RecipesProvider>
+        <div className='App'>
+          <Header />
+          <Main />
+        </div>
+      </RecipesProvider>
+    </UserProvider>
   );
 }
 

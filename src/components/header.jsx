@@ -1,43 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import React, { useContext } from 'react';
+import { useStyles } from '../styles/header-styles';
 import Container from '../grid/container';
 import { Link } from 'react-router-dom';
-
-const useStyles = makeStyles({
-  headerBackground: {
-    // background: '#fff',
-    padding: '23px 40px'
-  },
-  hoverLink: {
-    '&:hover': { cursor: 'pointer', opacity: '0.5' }
-  },
-  logoLink: {
-    fontSize: 28,
-    transition: '300ms ease-in-out',
-    '&:hover': { cursor: 'pointer', opacity: '0.5' }
-  },
-  searchButton: {
-    marginRight: 30,
-    border: 'none',
-    padding: 0,
-    background: 'transparent',
-    transition: '300ms ease-in-out'
-  },
-  settingsButton: {
-    marginLeft: 10,
-    border: 'none',
-    padding: 0,
-    background: 'transparent',
-    transition: '300ms ease-in-out'
-  },
-  iconSize: {
-    width: 24,
-    height: 24
-  }
-});
+import { UserContext } from '../context/user-context';
 
 const Header = () => {
   const classes = useStyles();
+  const [user] = useContext(UserContext);
+
   return (
     <header className={classes.headerBackground}>
       <Container
@@ -45,7 +15,7 @@ const Header = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          fontSize: 18
+          fontSize: 18,
         }}
       >
         <div className={`logo serif ${classes.logoLink}`}>
@@ -67,9 +37,22 @@ const Header = () => {
         </div>
         <div className='profile'>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: 0, padding: 0 }}>
-              Welcome, <strong>Rose</strong>
-            </p>
+            {user && (
+              <p style={{ margin: 0, padding: 0 }}>
+                Welcome, <strong>{user.username}</strong>
+              </p>
+            )}
+            {!user && (
+              <>
+                <Link style={{ marginRight: 10, color: 'inherit' }} to='/login'>
+                  Login
+                </Link>
+                <br />
+                <Link style={{ color: 'inherit' }} to='/signup'>
+                  Signup
+                </Link>
+              </>
+            )}
             <button
               onClick={() => alert('Drop down settings, logout')}
               className={`${classes.settingsButton} ${classes.hoverLink}`}

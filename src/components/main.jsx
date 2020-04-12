@@ -10,6 +10,7 @@ import CourseMain from './course';
 import CuisineMain from './cuisine';
 import MainDishMain from './main-dish';
 import EditRecipe from './recipe-manipulation/edit-recipe';
+import Login from './login';
 
 const useStyles = makeStyles({
   padding: {
@@ -25,6 +26,7 @@ const Main = () => {
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route path='/add-recipe' component={AddRecipe} />
+          <Route path='/login' component={Login} />
           <Route exact path='/recipe/:id' component={ViewRecipe} />
           <Route exact path='/recipe/edit/:id' component={EditRecipe} />
           <Route exact path='/recipes/all-recipes' component={ListRecipes} />
