@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import TimeDisplay from './time-display';
 import ListGenerator from './list-generator';
-import useStyles from '../styles/view-recipe-styles';
-import CardContainer from './card-container';
+import useStyles from '../../styles/view-recipe-styles';
+import CardContainer from '../shared/card-container';
 import { Link } from 'react-router-dom';
 
-const makeLink = link => {
+const makeLink = (link) => {
   if (link.startsWith('http') || link.startsWith('www')) {
     return (
       <a
@@ -21,7 +21,7 @@ const makeLink = link => {
   return link;
 };
 
-const ViewRecipe = props => {
+const ViewRecipe = (props) => {
   const classes = useStyles();
   const [currentRecipe, setCurrentRecipe] = useState();
   const recipeId = props.match.params.id;
@@ -31,7 +31,7 @@ const ViewRecipe = props => {
       return await res.json();
     };
 
-    const fetchRecipe = async set => {
+    const fetchRecipe = async (set) => {
       const data = await getRecipe();
       set(data);
     };
@@ -52,7 +52,7 @@ const ViewRecipe = props => {
       cookTime,
       prepTime,
       totalTime,
-      notes
+      notes,
     } = currentRecipe;
     return (
       <CardContainer>
@@ -61,7 +61,7 @@ const ViewRecipe = props => {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
-              alignItems: 'baseline'
+              alignItems: 'baseline',
             }}
           >
             <h1 className={classes.recipeTitle}>{title}</h1>

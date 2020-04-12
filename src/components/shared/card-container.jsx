@@ -1,5 +1,5 @@
 import React from 'react';
-import useStyles from '../styles/card-container-styles';
+import useStyles from '../../styles/card-container-styles';
 
 const CardContainer = (props) => {
   const classes = useStyles(props);

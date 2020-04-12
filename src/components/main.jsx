@@ -1,20 +1,20 @@
 import React from 'react';
-import Landing from './landing';
+import Landing from './homepage/landing';
 import Container from '../grid/container';
-import AddRecipe from '../components/add-recipe';
+import AddRecipe from './recipe-manipulation/add-recipe';
 import { makeStyles } from '@material-ui/styles';
 import { Switch, Route } from 'react-router-dom';
-import ViewRecipe from './view-recipe';
+import ViewRecipe from './view-recipe/view-recipe';
 import ListRecipes from './all-recipes';
 import CourseMain from './course';
 import CuisineMain from './cuisine';
 import MainDishMain from './main-dish';
-import EditRecipe from './edit-recipe';
+import EditRecipe from './recipe-manipulation/edit-recipe';
 
 const useStyles = makeStyles({
   padding: {
-    margin: '54px auto 0 auto'
-  }
+    margin: '54px auto 0 auto',
+  },
 });
 
 const Main = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { replaceFractions, upperCaseFirst } from '../util/helper-functions';
-import useStyles from '../styles/list-generator-styles';
+import { replaceFractions, upperCaseFirst } from '../../util/helper-functions';
+import useStyles from '../../styles/list-generator-styles';
 
 const ListGenerator = ({ arr, header, columns = 1 }) => {
   const classes = useStyles();
@@ -9,7 +9,7 @@ const ListGenerator = ({ arr, header, columns = 1 }) => {
     return (
       <div>
         <h3>{header}</h3>
-        {arr.map(a => {
+        {arr.map((a) => {
           if (Object.keys(a).toString() !== 'separate') {
             return (
               <React.Fragment key={Object.keys(a).toString()}>
@@ -17,7 +17,7 @@ const ListGenerator = ({ arr, header, columns = 1 }) => {
                   {upperCaseFirst(Object.keys(a).toString())}
                 </h4>
                 <ul className={classes.listUl}>
-                  {Object.values(a)[0].map(list => (
+                  {Object.values(a)[0].map((list) => (
                     <li key={list} className={classes.listLi}>
                       {replaceFractions(list)}
                     </li>
@@ -43,9 +43,9 @@ const ListGenerator = ({ arr, header, columns = 1 }) => {
         <div>
           <h3>{header}:</h3>
           <div className={classes.listFlex}>
-            {newList.map(listArr => (
+            {newList.map((listArr) => (
               <ul key={listArr} className={classes.listUlTwoCol}>
-                {listArr.map(a => (
+                {listArr.map((a) => (
                   <li className={classes.listLi} key={a}>
                     {replaceFractions(a)}
                   </li>
@@ -62,7 +62,7 @@ const ListGenerator = ({ arr, header, columns = 1 }) => {
       <div>
         <h3>{header}:</h3>
         <ul className={classes.listUl}>
-          {arr.map(a => (
+          {arr.map((a) => (
             <li className={classes.listLi} key={a}>
               {replaceFractions(a)}
             </li>

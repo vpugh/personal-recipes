@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from './tags';
+import Tag from './shared/tags';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 
@@ -11,25 +11,25 @@ const useStyles = makeStyles({
     color: '#5d5d5d',
     '& a': {
       color: 'inherit',
-      textDecoration: 'none'
-    }
+      textDecoration: 'none',
+    },
   },
   displayFlexCenter: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   subFontSize: {
-    fontSize: 10
+    fontSize: 10,
   },
   icons: {
     width: 15,
     height: 15,
     marginRight: 6,
-    marginLeft: 6
-  }
+    marginLeft: 6,
+  },
 });
 
-const toHour = time => {
+const toHour = (time) => {
   return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
 };
 
@@ -56,13 +56,13 @@ const ListedRecipes = ({ ra, index, arrLength }) => {
     cookTime,
     prepTime,
     serves,
-    serveType
+    serveType,
   } = ra;
   return (
     <div
       key={title}
       style={{
-        paddingBottom: isLastItem ? null : 30
+        paddingBottom: isLastItem ? null : 30,
       }}
     >
       <h3 className={classes.h3Title}>
@@ -74,7 +74,7 @@ const ListedRecipes = ({ ra, index, arrLength }) => {
         className={`${classes.displayFlexCenter}`}
         style={{
           color: '#6C6C6C',
-          marginTop: 10
+          marginTop: 10,
         }}
       >
         {course && <Tag text={course} />}

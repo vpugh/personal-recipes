@@ -1,7 +1,7 @@
 import React from 'react';
-import useStyles from '../styles/time-display-styles';
+import useStyles from '../../styles/time-display-styles';
 
-const checkIfArray = passedVar => {
+const checkIfArray = (passedVar) => {
   const isArray = Array.isArray(passedVar);
   if (isArray) {
     return passedVar.join(', ');

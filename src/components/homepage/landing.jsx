@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useStyles from '../styles/landing-styles';
+import useStyles from '../../styles/landing-styles';
 import { Link } from 'react-router-dom';
 import AddRecipeWidget from './add-recipe-widget';
 import ImageCard from './landing-image-card';
-import CardContainer from './card-container';
+import CardContainer from '../shared/card-container';
 
 const getRecipes = async () => {
   let res = await fetch('/api/v1/recipes');

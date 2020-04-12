@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import useStyles from '../styles/recipe-form-styles';
-import TextInput from './inputs/text-inputs';
-import TextInputNested from './inputs/text-input-nested';
-import GhostButton from './inputs/ghost-button';
-import DropDown from './inputs/drop-down';
-import CardContainer from './card-container';
-import TextareaNested from './inputs/textarea-nested';
-import TextareaInput from './inputs/textarea';
+import useStyles from '../../styles/recipe-form-styles';
+import TextInput from '../inputs/text-inputs';
+import TextInputNested from '../inputs/text-input-nested';
+import GhostButton from '../inputs/ghost-button';
+import DropDown from '../inputs/drop-down';
+import CardContainer from '../shared/card-container';
+import TextareaNested from '../inputs/textarea-nested';
+import TextareaInput from '../inputs/textarea';
 
 const courses = [
   'Breakfast',

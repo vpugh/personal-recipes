@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ListedRecipes from './listed-recipes';
-import CardContainer from './card-container';
+import CardContainer from './shared/card-container';
 
 const getRecipes = async () => {
   let res = await fetch('/api/v1/recipes');

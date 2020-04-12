@@ -1,5 +1,5 @@
 import React from 'react';
-import CardContainer from './card-container';
+import CardContainer from './shared/card-container';
 
 const MainDishMain = (props) => {
   return (
