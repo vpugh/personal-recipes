@@ -1,22 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import RecipeForm from './recipe-form';
 import { Link } from 'react-router-dom';
+import { RecipesContext } from '../../context/recipes-context';
 
 const EditRecipe = (props) => {
-  const [currentRecipe, setCurrentRecipe] = useState();
+  const [recipes] = useContext(RecipesContext);
   const recipeId = props.match.params.id;
-  useEffect(() => {
-    const getRecipe = async () => {
-      let res = await fetch(`/api/v1/recipe/${recipeId}`);
-      return await res.json();
-    };
-
-    const fetchRecipe = async (set) => {
-      const data = await getRecipe();
-      set(data);
-    };
-    fetchRecipe(setCurrentRecipe);
-  }, [recipeId]);
+  const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
 
   const header = (
     <div

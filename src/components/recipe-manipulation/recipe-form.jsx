@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import useStyles from '../../styles/recipe-form-styles';
 import TextInput from '../inputs/text-inputs';
 import TextInputNested from '../inputs/text-input-nested';
@@ -7,6 +7,7 @@ import DropDown from '../inputs/drop-down';
 import CardContainer from '../shared/card-container';
 import TextareaNested from '../inputs/textarea-nested';
 import TextareaInput from '../inputs/textarea';
+import { RecipesContext } from '../../context/recipes-context';
 
 const courses = [
   'Breakfast',
@@ -68,6 +69,7 @@ const addEmptyArray = (arr, setArr) => {
 const RecipeForm = (props) => {
   const { recipe, headerContent, id } = props;
   const classes = useStyles();
+  const [, setRecipes] = useContext(RecipesContext);
   const [title, setTitle] = useState((recipe && recipe.title) || '');
   const [cookTime, setCookTime] = useState((recipe && recipe.cookTime) || '');
   const [prepTime, setPrepTime] = useState((recipe && recipe.prepTime) || '');
@@ -123,14 +125,28 @@ const RecipeForm = (props) => {
       fetch(`/api/v1/recipe/${id}`, {
         method: 'PATCH',
         body: JSON.stringify(data),
-      }).then((result) => result.ok && setRecipeSaved(true));
+      }).then((result) => {
+        fetch('/api/v1/recipes')
+          .then((res) => res.json())
+          .then((data) => setRecipes(data));
+        result.ok && setRecipeSaved(true);
+      });
     } else {
       data.createdAt = new Date().toISOString();
       fetch('/api/v1/recipe', {
         method: 'POST',
         body: JSON.stringify(data),
-      }).then((result) => result.ok && setRecipeSaved(true));
+      }).then((result) => {
+        fetch('/api/v1/recipes')
+          .then((res) => res.json())
+          .then((data) => setRecipes(data));
+        result.ok && setRecipeSaved(true);
+      });
     }
+  };
+
+  const hasMultiple = (value) => {
+    return Array.isArray(value) ? true : false;
   };
 
   return (
@@ -151,7 +167,7 @@ const RecipeForm = (props) => {
             value={course}
             optionArr={courses}
             setFunction={setCourse}
-            multiple={course.length > 1 ? true : false}
+            multiple={hasMultiple(course)}
           />
           <DropDown
             labelTitle='Cuisine'
@@ -159,6 +175,7 @@ const RecipeForm = (props) => {
             value={cuisine}
             optionArr={cuisines}
             setFunction={setCuisine}
+            multiple={hasMultiple(cuisine)}
           />
           <DropDown
             labelTitle='Main Dish'
@@ -166,6 +183,7 @@ const RecipeForm = (props) => {
             value={mainDish}
             optionArr={mains}
             setFunction={setMainDish}
+            multiple={hasMultiple(mainDish)}
           />
         </div>
         <div className={classes.threeCol}>

@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import ListedRecipes from './listed-recipes';
 import CardContainer from './shared/card-container';
-
-const getRecipes = async () => {
-  let res = await fetch('/api/v1/recipes');
-  return await res.json();
-};
-
-const fetchRecipes = async (set) => {
-  const data = await getRecipes();
-  set(data);
-};
+import { RecipesContext } from '../context/recipes-context';
 
 const ListRecipes = () => {
-  const [allRecipes, setAllRecipes] = useState();
-
-  useEffect(() => {
-    fetchRecipes(setAllRecipes);
-  }, []);
+  const [allRecipes] = useContext(RecipesContext);
 
   return (
     <CardContainer>

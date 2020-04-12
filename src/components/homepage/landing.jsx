@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import useStyles from '../../styles/landing-styles';
 import { Link } from 'react-router-dom';
 import AddRecipeWidget from './add-recipe-widget';
 import ImageCard from './landing-image-card';
 import CardContainer from '../shared/card-container';
-
-const getRecipes = async () => {
-  let res = await fetch('/api/v1/recipes');
-  return await res.json();
-};
-
-const fetchRecipes = async (set) => {
-  const data = await getRecipes();
-  set(data);
-};
+import { RecipesContext } from '../../context/recipes-context';
 
 const Landing = () => {
   const classes = useStyles();
-
-  const [recipes, setRecipes] = useState();
-
-  useEffect(() => {
-    fetchRecipes(setRecipes);
-  }, []);
+  const [recipes] = useContext(RecipesContext);
 
   const limit = 5;
 
   const limitRecipes = () => {
-    const sortedRecipes = recipes.sort((a, b) => {
+    const sortedRecipes = recipes.concat().sort((a, b) => {
       if (a.createdAt > b.createdAt) {
         return -1;
       }

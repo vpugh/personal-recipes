@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import TimeDisplay from './time-display';
 import ListGenerator from './list-generator';
 import useStyles from '../../styles/view-recipe-styles';
 import CardContainer from '../shared/card-container';
 import { Link } from 'react-router-dom';
+import { RecipesContext } from '../../context/recipes-context';
 
 const makeLink = (link) => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -23,20 +24,9 @@ const makeLink = (link) => {
 
 const ViewRecipe = (props) => {
   const classes = useStyles();
-  const [currentRecipe, setCurrentRecipe] = useState();
+  const [recipes] = useContext(RecipesContext);
   const recipeId = props.match.params.id;
-  useEffect(() => {
-    const getRecipe = async () => {
-      let res = await fetch(`/api/v1/recipe/${recipeId}`);
-      return await res.json();
-    };
-
-    const fetchRecipe = async (set) => {
-      const data = await getRecipe();
-      set(data);
-    };
-    fetchRecipe(setCurrentRecipe);
-  }, [recipeId]);
+  const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
 
   if (currentRecipe) {
     const {
