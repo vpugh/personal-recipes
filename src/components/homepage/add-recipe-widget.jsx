@@ -40,7 +40,7 @@ const displayTotalTime = (cook, prep) => {
   return `${Math.floor(total)} mins`;
 };
 
-const AddRecipeWidget = ({ ra, index, limit }) => {
+const AddRecipeWidget = ({ recipe, index, limit }) => {
   const classes = useStyles();
 
   const isLastItem = limit - 2 === index;
@@ -56,7 +56,7 @@ const AddRecipeWidget = ({ ra, index, limit }) => {
     prepTime,
     serves,
     serveType,
-  } = ra;
+  } = recipe;
   return (
     <div
       key={title}

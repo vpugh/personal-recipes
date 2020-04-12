@@ -10,10 +10,10 @@ const ListRecipes = () => {
     <CardContainer>
       <h1 className='cardTitle'>All Recipes</h1>
       {allRecipes &&
-        allRecipes.map((ra, index) => (
+        allRecipes.map((recipe, index) => (
           <ListedRecipes
-            key={`${ra.title} ${index}`}
-            ra={ra}
+            key={`${recipe.title} ${index}`}
+            recipe={recipe}
             index={index}
             arrLength={allRecipes.length}
           />

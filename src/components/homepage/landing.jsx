@@ -35,7 +35,7 @@ const Landing = () => {
               limitRecipes().map((ra, index) => (
                 <AddRecipeWidget
                   key={`${ra.title} ${index}`}
-                  ra={ra}
+                  recipe={ra}
                   index={index}
                   limit={limit}
                 />

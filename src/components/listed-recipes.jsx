@@ -41,7 +41,7 @@ const displayTotalTime = (cook, prep) => {
   return `${Math.floor(total)} mins`;
 };
 
-const ListedRecipes = ({ ra, index, arrLength }) => {
+const ListedRecipes = ({ recipe, index, arrLength }) => {
   const classes = useStyles();
 
   const isLastItem = arrLength - 1 === index;
@@ -57,7 +57,7 @@ const ListedRecipes = ({ ra, index, arrLength }) => {
     prepTime,
     serves,
     serveType,
-  } = ra;
+  } = recipe;
   return (
     <div
       key={title}
