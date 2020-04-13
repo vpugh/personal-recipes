@@ -1,6 +1,24 @@
 import React, { useState, useContext } from 'react';
+import CardContainer from './shared/card-container';
 import TextInput from '../components/inputs/text-inputs';
 import { UserContext } from '../context/user-context';
+
+const buttonStyle = {
+  background: '#FF8585',
+  boxShadow: ' 4px 8px 44px #FFCCCC',
+  width: '100%',
+  fontSize: 16,
+  fontWeight: 'bold',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#fff',
+  paddingTop: 16,
+  paddingBottom: 16,
+  border: 'none',
+  textDecoration: 'none',
+  marginTop: 40,
+};
 
 const Login = (props) => {
   const [user, setUser] = useContext(UserContext);
@@ -20,7 +38,6 @@ const Login = (props) => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log('Res', res);
         if (res.error) {
           setSigninResponse(res.error);
         } else {
@@ -31,8 +48,8 @@ const Login = (props) => {
   };
 
   return (
-    <>
-      <h2>Login</h2>
+    <CardContainer>
+      <h1 className='cardTitle'>Login</h1>
       {user && <p>You are already logged in {user.username}</p>}
       {!user && (
         <form onSubmit={handleOnSubmit}>
@@ -50,11 +67,13 @@ const Login = (props) => {
             value={password}
             setFunction={setPassword}
           />
-          <button type='submit'>Sign In</button>
+          <button type='submit' style={buttonStyle}>
+            Sign In
+          </button>
         </form>
       )}
       {signinResponse && <p>{signinResponse}</p>}
-    </>
+    </CardContainer>
   );
 };
 

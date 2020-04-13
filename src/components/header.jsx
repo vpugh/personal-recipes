@@ -38,9 +38,21 @@ const Header = () => {
         <div className='profile'>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             {user && (
-              <p style={{ margin: 0, padding: 0 }}>
-                Welcome, <strong>{user.username}</strong>
-              </p>
+              <>
+                <p style={{ margin: 0, padding: 0 }}>
+                  Welcome, <strong>{user.username}</strong>
+                </p>
+                <button
+                  onClick={() => alert('Drop down settings, logout')}
+                  className={`${classes.settingsButton} ${classes.hoverLink}`}
+                >
+                  <img
+                    src='/icons/Gear@2x.png'
+                    alt='Settings Icon'
+                    className={classes.iconSize}
+                  />
+                </button>
+              </>
             )}
             {!user && (
               <>
@@ -53,16 +65,6 @@ const Header = () => {
                 </Link>
               </>
             )}
-            <button
-              onClick={() => alert('Drop down settings, logout')}
-              className={`${classes.settingsButton} ${classes.hoverLink}`}
-            >
-              <img
-                src='/icons/Gear@2x.png'
-                alt='Settings Icon'
-                className={classes.iconSize}
-              />
-            </button>
           </div>
         </div>
       </Container>

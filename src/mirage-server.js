@@ -133,6 +133,13 @@ export const makeServer = () => {
         return schema.users.findBy({ id: userId });
       });
 
+      this.post('/v1/user', async (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        const hash = await hashPassword(attrs.password);
+        attrs.password = hash;
+        return schema.users.create(attrs);
+      });
+
       this.post('/v1/authentication', async (schema, request) => {
         const { email, password } = request.requestBody;
         const user = schema.users.findBy({ email });

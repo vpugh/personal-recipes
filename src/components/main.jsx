@@ -11,6 +11,8 @@ import CuisineMain from './cuisine';
 import MainDishMain from './main-dish';
 import EditRecipe from './recipe-manipulation/edit-recipe';
 import Login from './login';
+import Signup from './signup';
+import UserProfile from './user-profile';
 
 const useStyles = makeStyles({
   padding: {
@@ -26,7 +28,9 @@ const Main = () => {
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route path='/add-recipe' component={AddRecipe} />
-          <Route path='/login' component={Login} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <Route exact path='/user/profile' component={UserProfile} />
           <Route exact path='/recipe/:id' component={ViewRecipe} />
           <Route exact path='/recipe/edit/:id' component={EditRecipe} />
           <Route exact path='/recipes/all-recipes' component={ListRecipes} />
