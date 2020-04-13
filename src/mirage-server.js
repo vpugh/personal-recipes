@@ -98,6 +98,9 @@ export const makeServer = () => {
         createdAt() {
           return RecipeDetailsSelection(this.id, 'createdAt');
         },
+        userId() {
+          return RecipeDetailsSelection(this.id, 'userId');
+        },
       }),
     },
     routes() {
@@ -108,6 +111,11 @@ export const makeServer = () => {
       // Recipe Endpoints
 
       this.get('/v1/recipes');
+
+      this.get('/v1/recipes/:userId', (schema, request) => {
+        const userId = request.params.userId;
+        return schema.recipes.where({ userId: userId });
+      });
 
       this.get('/v1/recipe/:id', (schema, request) => {
         let recipeId = request.params.id;
@@ -166,7 +174,6 @@ export const makeServer = () => {
       });
     },
     seeds(server) {
-      server.createList('recipe', 10);
       server.schema.users.create({
         username: 'Daniel Salazar',
         email: 'test@mytest.com',
@@ -177,6 +184,7 @@ export const makeServer = () => {
         email: 'rac@quad.com',
         password: hashPassword(process.env.REACT_APP_PASS2),
       });
+      server.createList('recipe', 10);
     },
   });
   return server;

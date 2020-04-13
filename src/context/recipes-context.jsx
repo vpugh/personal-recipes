@@ -1,24 +1,29 @@
 import React, { useEffect, useState, createContext } from 'react';
+import { UserContext } from './user-context';
+import { useContext } from 'react';
 
 const RecipesContext = createContext(() => [{}, () => []]);
 
-const getRecipes = async () => {
-  let res = await fetch('/api/v1/recipes');
+const getRecipes = async (user) => {
+  let res = await fetch(`/api/v1/recipes/${user.id}`);
   return await res.json();
 };
 
-const fetchRecipes = async (set) => {
-  const data = await getRecipes();
+const fetchRecipes = async (set, user) => {
+  const data = await getRecipes(user);
   set(data);
 };
 
 const RecipesProvider = (props) => {
   const { children } = props;
+  const [user] = useContext(UserContext);
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetchRecipes(setRecipes);
-  }, []);
+    if (user) {
+      fetchRecipes(setRecipes, user);
+    }
+  }, [user]);
 
   return (
     <RecipesContext.Provider value={[recipes, setRecipes]}>
