@@ -5,6 +5,7 @@ import AddRecipeWidget from './add-recipe-widget';
 import ImageCard from './landing-image-card';
 import CardContainer from '../shared/card-container';
 import { RecipesContext } from '../../context/recipes-context';
+import Shimmer from '../shared/shimmer';
 
 const Landing = () => {
   const classes = useStyles();
@@ -31,7 +32,7 @@ const Landing = () => {
         <div className={classes.widgetContainer}>
           <h4 className={classes.subTitle}>Recently Added</h4>
           <CardContainer maxWidth={650} padding='20px'>
-            {recipes &&
+            {recipes.length > 0 &&
               limitRecipes().map((ra, index) => (
                 <AddRecipeWidget
                   key={`${ra.title} ${index}`}
@@ -40,6 +41,7 @@ const Landing = () => {
                   limit={limit}
                 />
               ))}
+            {recipes.length === 0 && <Shimmer />}
             <Link to='/add-recipe' className={classes.addNewButton}>
               Add New Recipe
             </Link>

@@ -1,4 +1,12 @@
-import { Server, Model, Factory, Serializer, Response } from 'miragejs';
+import {
+  Server,
+  Model,
+  Factory,
+  Serializer,
+  Response,
+  belongsTo,
+  hasMany,
+} from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
 import bcrypt from 'bcryptjs';
 
@@ -27,8 +35,12 @@ export const makeServer = () => {
       }),
     },
     models: {
-      recipe: Model,
-      user: Model,
+      recipe: Model.extend({
+        user: belongsTo(),
+      }),
+      user: Model.extend({
+        recipe: hasMany(),
+      }),
     },
     factories: {
       recipe: Factory.extend({
