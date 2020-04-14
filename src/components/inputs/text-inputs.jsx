@@ -10,7 +10,8 @@ const TextInput = ({
   placeholder,
   required = false,
   value = '',
-  setFunction
+  setFunction,
+  type = 'text',
 }) => {
   const id = labelTitle.toLowerCase();
   return (
@@ -25,12 +26,12 @@ const TextInput = ({
           background: '#F7F7F7',
           border: '1px solid #E8E8E8',
           padding: '9px 14px',
-          fontSize: 16
+          fontSize: 16,
         }}
         id={id}
         name={id}
-        onChange={e => onChange(e, setFunction)}
-        type='text'
+        onChange={(e) => onChange(e, setFunction)}
+        type={type}
         value={value}
         placeholder={placeholder}
         required={required}

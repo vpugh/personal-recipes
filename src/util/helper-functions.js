@@ -1,4 +1,4 @@
-export const replaceFractions = text => {
+export const replaceFractions = (text) => {
   let newText = text;
   if (newText.includes('1/2')) {
     const half = newText.replace(/1\/2/g, `\u00BD`);
@@ -43,10 +43,28 @@ export const replaceFractions = text => {
   return newText;
 };
 
-export const upperCaseFirst = str => {
+export const upperCaseFirst = (str) => {
   return str[0].toUpperCase() + str.slice(1);
 };
 
-export const removeSeparate = arr => {
-  return arr.filter(x => Object.keys(x).toString() !== 'separate');
+export const removeSeparate = (arr) => {
+  return arr.filter((x) => Object.keys(x).toString() !== 'separate');
+};
+
+export const limitSortReverseArray = (
+  arr,
+  limit,
+  type,
+  sortType = 'forward'
+) => {
+  const sortedArray = arr.concat().sort((a, b) => {
+    if (a[type] > b[type]) {
+      return sortType === 'forward' ? 1 : -1;
+    }
+    if (a[type] < b[type]) {
+      return sortType === 'forward' ? -1 : 1;
+    }
+    return 0;
+  });
+  return sortedArray.slice(0, limit - 1);
 };

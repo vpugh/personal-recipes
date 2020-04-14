@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from './inputs/text-inputs';
 import { UserContext } from '../context/user-context';
+import { Link } from 'react-router-dom';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -74,8 +75,14 @@ const Signup = (props) => {
           setFunction={setPassword}
         />
         <button type='submit' style={buttonStyle}>
-          Register
+          Signup
         </button>
+        <p style={{ paddingTop: 10 }}>
+          Already have an account?{' '}
+          <Link style={{ display: 'inline-block' }} to='/login'>
+            Login
+          </Link>
+        </p>
       </form>
       {userSaved && <p>Welcome to the Personal Recipe App!</p>}
     </CardContainer>

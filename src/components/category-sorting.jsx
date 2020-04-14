@@ -5,8 +5,10 @@ const createCourseOptions = (arr, name) => {
   const courseOptions = [];
   for (let i in arr) {
     var item = arr[i];
-    const selectedOptions = item[name];
-    courseOptions.push(selectedOptions);
+    if (item[name] !== '') {
+      const selectedOptions = item[name];
+      courseOptions.push(selectedOptions);
+    }
   }
   return [...new Set(courseOptions.flat())];
 };

@@ -1,6 +1,5 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, createContext, useContext } from 'react';
 import { UserContext } from './user-context';
-import { useContext } from 'react';
 
 const RecipesContext = createContext(() => [{}, () => []]);
 

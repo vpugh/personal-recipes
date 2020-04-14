@@ -1,0 +1,25 @@
+[{
+    "name": "All Recipes",
+    "image": "/images/all-recipes-image@2x.png",
+    "direction": "left",
+    "to": "recipes/all-recipes"
+  },
+  {
+    "name": "Main Dish",
+    "image": "/images/protein-image@2x.png",
+    "direction": "right",
+    "to": "/recipes/main-dish"
+  },
+  {
+    "name": "Cuisine",
+    "image": "/images/cuisine-image@2x.png",
+    "direction": "left",
+    "to": "/recipes/cuisine"
+  },
+  {
+    "name": "Course",
+    "image": "/images/course-image@2x.png",
+    "direction": "right",
+    "to": "/recipes/course"
+  }
+]

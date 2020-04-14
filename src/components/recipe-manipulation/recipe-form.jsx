@@ -8,6 +8,7 @@ import CardContainer from '../shared/card-container';
 import TextareaNested from '../inputs/textarea-nested';
 import TextareaInput from '../inputs/textarea';
 import { RecipesContext } from '../../context/recipes-context';
+import { UserContext } from '../../context/user-context';
 
 const courses = [
   'Breakfast',
@@ -68,6 +69,7 @@ const addEmptyArray = (arr, setArr) => {
 
 const RecipeForm = (props) => {
   const { recipe, headerContent, id } = props;
+  const [user] = useContext(UserContext);
   const classes = useStyles();
   const [, setRecipes] = useContext(RecipesContext);
   const [title, setTitle] = useState((recipe && recipe.title) || '');
@@ -109,6 +111,7 @@ const RecipeForm = (props) => {
       prepTime: prepTime ? Number(prepTime) : null,
       totalTime: totalTime ? Number(totalTime) : null,
       serves,
+      userId: user.id,
       serveType: serveType || null,
       course,
       cuisine,
@@ -126,7 +129,7 @@ const RecipeForm = (props) => {
         method: 'PATCH',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch('/api/v1/recipes')
+        fetch(`/api/v1/recipes/${user.id}`)
           .then((res) => res.json())
           .then((data) => setRecipes(data));
         result.ok && setRecipeSaved(true);
@@ -137,7 +140,7 @@ const RecipeForm = (props) => {
         method: 'POST',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch('/api/v1/recipes')
+        fetch(`/api/v1/recipes/${user.id}`)
           .then((res) => res.json())
           .then((data) => setRecipes(data));
         result.ok && setRecipeSaved(true);

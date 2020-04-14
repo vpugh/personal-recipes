@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from '../components/inputs/text-inputs';
 import { UserContext } from '../context/user-context';
+import { Link } from 'react-router-dom';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -66,10 +67,17 @@ const Login = (props) => {
             required={true}
             value={password}
             setFunction={setPassword}
+            type='password'
           />
           <button type='submit' style={buttonStyle}>
-            Sign In
+            Login to your account
           </button>
+          <p style={{ paddingTop: 10 }}>
+            Don't have an account?{' '}
+            <Link style={{ display: 'inline-block' }} to='/signup'>
+              Signup
+            </Link>
+          </p>
         </form>
       )}
       {signinResponse && <p>{signinResponse}</p>}
