@@ -11,16 +11,16 @@ makeServer();
 
 function App() {
   return (
-    <AuthProvider>
-      <UserProvider>
+    <UserProvider>
+      <AuthProvider>
         <RecipesProvider>
           <div className='App'>
             <Header />
             <Main />
           </div>
         </RecipesProvider>
-      </UserProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </UserProvider>
   );
 }
 

@@ -148,6 +148,11 @@ export const makeServer = () => {
         return schema.users.create(attrs);
       });
 
+      this.post('/v1/user/authenticate', async (schema, request) => {
+        const { email } = request.requestBody;
+        return schema.users.findBy({ email });
+      });
+
       this.post('/v1/authentication', async (schema, request) => {
         const { email, password } = request.requestBody;
         const user = schema.users.findBy({ email });
