@@ -23,13 +23,13 @@ const EditRecipe = (props) => {
     </div>
   );
 
-  if (currentRecipe) {
+  if (recipes && currentRecipe) {
     return (
       <RecipeForm headerContent={header} recipe={currentRecipe} id={recipeId} />
     );
   }
 
-  return <p>Loading...</p>;
+  return <p>Loading... Second</p>;
 };
 
 export default EditRecipe;

@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useStyles } from '../styles/header-styles';
 import Container from '../grid/container';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/user-context';
+import { AuthContext } from '../context/auth-context';
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles();
   const [user] = useContext(UserContext);
+  const [, setAuthData] = useContext(AuthContext);
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+
+  const logout = () => {
+    setAuthData(null);
+  };
 
   return (
     <header className={classes.headerBackground}>
@@ -43,7 +50,10 @@ const Header = () => {
                   Welcome, <strong>{user.username}</strong>
                 </p>
                 <button
-                  onClick={() => alert('Drop down settings, logout')}
+                  // onClick={() => alert('Drop down settings, logout')}
+                  onClick={() => {
+                    setShowSettingsMenu(!showSettingsMenu);
+                  }}
                   className={`${classes.settingsButton} ${classes.hoverLink}`}
                 >
                   <img
@@ -52,6 +62,41 @@ const Header = () => {
                     className={classes.iconSize}
                   />
                 </button>
+                {showSettingsMenu && (
+                  <ul
+                    style={{
+                      position: 'absolute',
+                      top: 40,
+                      right: 30,
+                      background: 'white',
+                      padding: '30px 40px',
+                      borderRadius: 4,
+                    }}
+                  >
+                    <Link
+                      to='/user/profile'
+                      style={{ color: 'inherit' }}
+                      onClick={() => setShowSettingsMenu(!showSettingsMenu)}
+                    >
+                      Profile
+                    </Link>
+                    <button
+                      type='button'
+                      style={{
+                        textDecoration: 'underline',
+                        display: 'block',
+                        border: 'none',
+                        fontSize: 18,
+                        textAlign: 'left',
+                        padding: 0,
+                        marginTop: 8,
+                      }}
+                      onClick={logout}
+                    >
+                      Log Out
+                    </button>
+                  </ul>
+                )}
               </>
             )}
             {!user && (

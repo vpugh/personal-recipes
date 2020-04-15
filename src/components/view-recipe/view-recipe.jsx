@@ -101,7 +101,7 @@ const ViewRecipe = (props) => {
 
   return (
     <CardContainer maxWidth={660}>
-      <p>Loading...</p>
+      <p>Loading... Final</p>
     </CardContainer>
   );
 };

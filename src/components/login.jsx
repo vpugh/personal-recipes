@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from '../components/inputs/text-inputs';
 import { UserContext } from '../context/user-context';
+import { AuthContext } from '../context/auth-context';
 import { Link } from 'react-router-dom';
 
 const buttonStyle = {
@@ -23,6 +24,7 @@ const buttonStyle = {
 
 const Login = (props) => {
   const [user, setUser] = useContext(UserContext);
+  const [, setAuthData] = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signinResponse, setSigninResponse] = useState('');
@@ -43,6 +45,7 @@ const Login = (props) => {
           setSigninResponse(res.error);
         } else {
           setUser(res.user);
+          setAuthData(res.user.email);
           props.history.push('/');
         }
       });

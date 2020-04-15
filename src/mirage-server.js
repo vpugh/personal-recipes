@@ -141,6 +141,16 @@ export const makeServer = () => {
         return schema.users.findBy({ id: userId });
       });
 
+      this.get('/v1/:email/user', (schema, request) => {
+        const email = request.params.email;
+        return schema.users.findBy({ email });
+      });
+
+      this.post('/v1/user/authenticate', (schema, request) => {
+        const email = request.requestBody;
+        return schema.users.findBy({ email });
+      });
+
       this.post('/v1/user', async (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         const hash = await hashPassword(attrs.password);
@@ -184,6 +194,7 @@ export const makeServer = () => {
         email: 'rac@quad.com',
         password: hashPassword(process.env.REACT_APP_PASS2),
       });
+      debugger;
       server.createList('recipe', 10);
     },
   });

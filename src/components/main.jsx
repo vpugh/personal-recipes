@@ -13,6 +13,7 @@ import EditRecipe from './recipe-manipulation/edit-recipe';
 import Login from './login';
 import Signup from './signup';
 import UserProfile from './user-profile';
+import PrivateRoute from './private-route';
 
 const useStyles = makeStyles({
   padding: {
@@ -27,16 +28,16 @@ const Main = () => {
       <Container>
         <Switch>
           <Route exact path='/' component={Landing} />
-          <Route path='/add-recipe' component={AddRecipe} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup} />
-          <Route exact path='/user/profile' component={UserProfile} />
-          <Route exact path='/recipe/:id' component={ViewRecipe} />
-          <Route exact path='/recipe/edit/:id' component={EditRecipe} />
-          <Route exact path='/recipes/all-recipes' component={ListRecipes} />
-          <Route exact path='/recipes/course' component={CourseMain} />
-          <Route exact path='/recipes/cuisine' component={CuisineMain} />
-          <Route exact path='/recipes/main-dish' component={MainDishMain} />
+          <PrivateRoute path='/add-recipe' component={AddRecipe} />
+          <PrivateRoute path='/user/profile' component={UserProfile} />
+          <PrivateRoute path='/recipe/:id' component={ViewRecipe} />
+          <PrivateRoute path='/recipe/edit/:id' component={EditRecipe} />
+          <PrivateRoute path='/recipes/all-recipes' component={ListRecipes} />
+          <PrivateRoute path='/recipes/course' component={CourseMain} />
+          <PrivateRoute path='/recipes/cuisine' component={CuisineMain} />
+          <PrivateRoute path='/recipes/main-dish' component={MainDishMain} />
         </Switch>
       </Container>
     </div>
