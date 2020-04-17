@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import useStyles from '../../styles/recipe-form-styles';
 import TextInput from '../inputs/text-inputs';
 import TextInputNested from '../inputs/text-input-nested';
@@ -10,58 +10,23 @@ import TextareaInput from '../inputs/textarea';
 import { RecipesContext } from '../../context/recipes-context';
 import { UserContext } from '../../context/user-context';
 
-const courses = [
-  'Breakfast',
-  'Lunch',
-  'Dinner',
-  'Appetizer',
-  'Side',
-  'Snack',
-  'Dessert',
-  'Brunch',
-];
+const fetchCourse = async (set) => {
+  let c = await fetch('/api/v1/courses');
+  const courses = await c.json();
+  set(courses);
+};
 
-const cuisines = [
-  'American',
-  'Indian',
-  'Italian',
-  'Chinese',
-  'Japanese',
-  'Thai',
-  'Greek',
-  'German',
-  'Austrian',
-  'Hungarian',
-  'Korean',
-  'Malaysian',
-  'French',
-  'Mexican',
-  'Cajun',
-  'Soul',
-  'Lebanese',
-  'Moroccan',
-  'Mediterranean',
-  'Spanish',
-  'Vietnamese',
-  'Turkish',
-  'Caribbean',
-];
+const fetchCuisine = async (set) => {
+  const c = await fetch('/api/v1/cuisines');
+  const cuisines = await c.json();
+  set(cuisines);
+};
 
-const mains = [
-  'Chicken',
-  'Beef',
-  'Ground Beef',
-  'Pork',
-  'Turkey',
-  'Lamb',
-  'Shrimp/Prawns',
-  'Pasta/Noodles',
-  'Salmon',
-  'Fish',
-  'Seafood',
-  'Vegetables',
-  'Other',
-];
+const fetchMains = async (set) => {
+  const m = await fetch('/api/v1/mains');
+  const mains = await m.json();
+  set(mains);
+};
 
 const addEmptyArray = (arr, setArr) => {
   setArr(arr.concat(''));
@@ -72,6 +37,9 @@ const RecipeForm = (props) => {
   const [user] = useContext(UserContext);
   const classes = useStyles();
   const [, setRecipes] = useContext(RecipesContext);
+  const [optCourse, setOptCourse] = useState([]);
+  const [cuisines, setCuisines] = useState([]);
+  const [optMains, setOptMains] = useState([]);
   const [title, setTitle] = useState((recipe && recipe.title) || '');
   const [cookTime, setCookTime] = useState((recipe && recipe.cookTime) || '');
   const [prepTime, setPrepTime] = useState((recipe && recipe.prepTime) || '');
@@ -152,6 +120,12 @@ const RecipeForm = (props) => {
     return Array.isArray(value) ? true : false;
   };
 
+  useEffect(() => {
+    fetchCourse(setOptCourse);
+    fetchCuisine(setCuisines);
+    fetchMains(setOptMains);
+  }, []);
+
   return (
     <CardContainer maxWidth={972}>
       <form onSubmit={onSubmit}>
@@ -168,7 +142,7 @@ const RecipeForm = (props) => {
             labelTitle='Course'
             placeholder='Select a course'
             value={course}
-            optionArr={courses}
+            optionArr={optCourse}
             setFunction={setCourse}
             multiple={hasMultiple(course)}
           />
@@ -184,7 +158,7 @@ const RecipeForm = (props) => {
             labelTitle='Main Dish'
             placeholder='What is the main ingredient'
             value={mainDish}
-            optionArr={mains}
+            optionArr={optMains}
             setFunction={setMainDish}
             multiple={hasMultiple(mainDish)}
           />

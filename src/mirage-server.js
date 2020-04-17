@@ -8,7 +8,10 @@ import {
   hasMany,
 } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
+import Options from '../src/mirage-data/options.json';
 import bcrypt from 'bcryptjs';
+
+const { courses, cuisines, mains } = Options;
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
@@ -132,6 +135,14 @@ export const makeServer = () => {
         const id = request.params.id;
         return schema.db.recipes.update(id, attrs);
       });
+
+      // Options
+
+      this.get('/v1/courses', () => courses);
+
+      this.get('/v1/cuisines', () => cuisines);
+
+      this.get('/v1/mains', () => mains);
 
       // User endpoints
       this.get('/v1/users');
