@@ -58,6 +58,8 @@ const ListedRecipes = ({ recipe, index, arrLength }) => {
     serves,
     serveType,
   } = recipe;
+
+  const wording = serveType !== '' ? 'Makes' : 'Serves';
   return (
     <div
       key={title}
@@ -95,7 +97,7 @@ const ListedRecipes = ({ recipe, index, arrLength }) => {
             alt='Settings Icon'
             className={classes.icons}
           />
-          Serves {serves} {serveType}
+          {serves && `${wording} ${serves} ${serveType}`}
         </span>
       </div>
     </div>

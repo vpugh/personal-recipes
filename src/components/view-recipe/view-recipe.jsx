@@ -22,10 +22,12 @@ const makeLink = (link) => {
   return link;
 };
 
-const display = (header, text, classes, serveType) => {
+const display = (text, classes, serveType) => {
+  const wording = serveType !== '' ? 'Makes' : 'Serves';
+  console.log(serveType);
   return (
     <div className={classes.headerDisplay}>
-      <p className={classes.headerHeader}>{header}:</p>
+      <p className={classes.headerHeader}>{wording}:</p>
       <p className={classes.headerText}>
         {text} {serveType}
       </p>
@@ -86,7 +88,7 @@ const ViewRecipe = (props) => {
             {totalTime && (
               <TimeDisplay time={totalTime} timeHeader='Total Time' />
             )}
-            {serves && display('Serves', serves, classes, serveType)}
+            {serves && display(serves, classes, serveType)}
             {recipeOrigin && (
               <p className={classes.recipeOrigin}>
                 Recipe found at: {makeLink(recipeOrigin)}
