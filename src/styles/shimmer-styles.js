@@ -16,16 +16,6 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
 
-  avatar: {
-    marginTop: 7,
-    background: 'rgba(0, 0, 0, 0.05)',
-    borderRadius: '100%',
-    width: 32,
-    height: 32,
-    marginRight: 10,
-    marginBottom: 10,
-  },
-
   line: {
     display: 'inline-block',
     height: 10,

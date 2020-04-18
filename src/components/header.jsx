@@ -51,7 +51,13 @@ const Header = () => {
           </button>
         </div>
         <div className='profile'>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              position: 'relative',
+            }}
+          >
             {user && (
               <>
                 <p style={{ margin: 0, padding: 0 }}>
@@ -72,11 +78,12 @@ const Header = () => {
                   <ul
                     style={{
                       position: 'absolute',
-                      top: 40,
-                      right: 30,
+                      top: 20,
+                      right: 0,
                       background: 'white',
-                      padding: '30px 40px',
+                      padding: '20px',
                       borderRadius: 4,
+                      boxShadow: '2px 2px 20px rgba(0, 0, 0, .2)',
                     }}
                   >
                     <Link

@@ -43,8 +43,11 @@ export const replaceFractions = (text) => {
   return newText;
 };
 
-export const upperCaseFirst = (str) => {
-  return str[0].toUpperCase() + str.slice(1);
+export const upperCaseFirst = (string) => {
+  if (Array.isArray(string)) {
+    return string[0].charAt(0).toUpperCase() + string[0].slice(1);
+  }
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 export const removeSeparate = (arr) => {

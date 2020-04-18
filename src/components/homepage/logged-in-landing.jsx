@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import useStyles from '../../styles/landing-styles';
 import { Link } from 'react-router-dom';
 import AddRecipeWidget from './add-recipe-widget';
@@ -6,7 +6,6 @@ import ImageCard from './landing-image-card';
 import Shimmer from '../shared/shimmer';
 import CardContainer from '../shared/card-container';
 import { RecipesContext } from '../../context/recipes-context';
-import { useContext } from 'react';
 import { limitSortReverseArray } from '../../util/helper-functions';
 
 const LoggedInLanding = () => {
@@ -19,7 +18,8 @@ const LoggedInLanding = () => {
       <div className={classes.widgetContainer}>
         <h4 className={classes.subTitle}>Recently Added</h4>
         <CardContainer maxWidth={650} padding='20px'>
-          {recipes.length > 0 &&
+          {recipes &&
+            recipes.length > 0 &&
             limitSortReverseArray(
               recipes,
               limit,
@@ -33,7 +33,24 @@ const LoggedInLanding = () => {
                 limit={limit}
               />
             ))}
-          {recipes.length === 0 && <Shimmer />}
+          {recipes && recipes.length === 0 && <Shimmer />}
+          {recipes === null && (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <h2>No Recent Recipes</h2>
+                <p style={{ marginTop: 0, height: 76 * 3, opacity: '.7' }}>
+                  No worries, how about adding a recipe?
+                </p>
+                <div style={{ width: 400 }} />
+              </div>
+            </>
+          )}
           <Link to='/add-recipe' className={classes.addNewButton}>
             Add New Recipe
           </Link>

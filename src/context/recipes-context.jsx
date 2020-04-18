@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import { UserContext } from './user-context';
 
-const RecipesContext = createContext(() => [{}, () => []]);
+const RecipesContext = createContext(() => null);
 
 const getRecipes = async (user) => {
   let res = await fetch(`/api/v1/recipes/${user.id}`);
