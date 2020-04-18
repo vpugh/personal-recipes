@@ -79,23 +79,31 @@ const AddRecipeWidget = ({ recipe, index, limit }) => {
         {course && <Tag text={course} />}
         {cuisine && <Tag text={cuisine} />}
         {mainDish && <Tag text={mainDish} />}
-        <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
-          <img
-            src='/icons/Clock@2x.png'
-            alt='Settings Icon'
-            className={classes.icons}
-          />
-          {!totalTime && `${displayTotalTime(cookTime, prepTime)}`}
-          {totalTime && `${totalTime} ${totalTime < 60 ? 'mins' : ''}`}
-        </span>
-        <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
-          <img
-            src='/icons/Utensils@2x.png'
-            alt='Settings Icon'
-            className={classes.icons}
-          />
-          Serves {serves} {serveType}
-        </span>
+        {(totalTime || cookTime || prepTime) && (
+          <span
+            className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+          >
+            <img
+              src='/icons/Clock@2x.png'
+              alt='Settings Icon'
+              className={classes.icons}
+            />
+            {!totalTime && `${displayTotalTime(cookTime, prepTime)}`}
+            {totalTime && `${totalTime} ${totalTime < 60 ? 'mins' : ''}`}
+          </span>
+        )}
+        {(serves || serveType) && (
+          <span
+            className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+          >
+            <img
+              src='/icons/Utensils@2x.png'
+              alt='Settings Icon'
+              className={classes.icons}
+            />
+            {serves} {serveType}
+          </span>
+        )}
       </div>
     </div>
   );

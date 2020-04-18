@@ -22,6 +22,17 @@ const makeLink = (link) => {
   return link;
 };
 
+const display = (header, text, classes, serveType) => {
+  return (
+    <div className={classes.headerDisplay}>
+      <p className={classes.headerHeader}>{header}:</p>
+      <p className={classes.headerText}>
+        {text} {serveType}
+      </p>
+    </div>
+  );
+};
+
 const ViewRecipe = (props) => {
   const classes = useStyles();
   const [recipes] = useContext(RecipesContext);
@@ -43,6 +54,8 @@ const ViewRecipe = (props) => {
       prepTime,
       totalTime,
       notes,
+      serves,
+      serveType,
     } = currentRecipe;
     return (
       <CardContainer>
@@ -73,6 +86,7 @@ const ViewRecipe = (props) => {
             {totalTime && (
               <TimeDisplay time={totalTime} timeHeader='Total Time' />
             )}
+            {serves && display('Serves', serves, classes, serveType)}
             {recipeOrigin && (
               <p className={classes.recipeOrigin}>
                 Recipe found at: {makeLink(recipeOrigin)}
