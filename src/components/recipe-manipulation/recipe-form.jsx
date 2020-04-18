@@ -165,16 +165,16 @@ const RecipeForm = (props) => {
         </div>
         <div className={classes.threeCol}>
           <TextInput
-            labelTitle='Cook Time'
-            placeholder='Select a Time'
-            value={cookTime}
-            setFunction={setCookTime}
-          />
-          <TextInput
             labelTitle='Prep Time'
             placeholder='Select a Time'
             value={prepTime}
             setFunction={setPrepTime}
+          />
+          <TextInput
+            labelTitle='Cook Time'
+            placeholder='Select a Time'
+            value={cookTime}
+            setFunction={setCookTime}
           />
           <TextInput
             labelTitle='Total Time'

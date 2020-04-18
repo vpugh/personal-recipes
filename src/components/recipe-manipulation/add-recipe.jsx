@@ -35,13 +35,15 @@ const AddRecipe = () => {
       {showTemporaryRecipe && (
         <div
           style={{
-            position: 'absolute',
+            position: 'sticky',
             right: '10%',
             top: '10%',
-            width: '80%',
+            width: '100%',
             padding: 20,
             background: '#fff',
             border: '1px solid #ddd',
+            zIndex: 2,
+            marginBottom: 40,
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -60,8 +62,7 @@ const AddRecipe = () => {
               width: '100%',
               fontSize: 18,
             }}
-            cols='40'
-            rows='40'
+            rows='20'
             onChange={(e) => onChange(e, setTemporaryRecipe)}
           />
         </div>
