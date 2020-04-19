@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from '../components/inputs/text-inputs';
-import { UserContext } from '../context/user-context';
-import { AuthContext } from '../context/auth-context';
+import { AuthContext } from '../reducer/authReducer';
 import { Link } from 'react-router-dom';
 
 const buttonStyle = {
@@ -23,8 +22,7 @@ const buttonStyle = {
 };
 
 const Login = (props) => {
-  const [user, setUser] = useContext(UserContext);
-  const [, setAuthData] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signinResponse, setSigninResponse] = useState('');
@@ -35,27 +33,39 @@ const Login = (props) => {
       email,
       password,
     };
+    dispatch({ type: 'LOGIN_REQUEST' });
     fetch('/api/v1/authentication', {
       method: 'POST',
       body: userData,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then((res) => {
         if (res.error) {
+          dispatch({ type: 'LOGIN_FAILURE', errors: res.error });
           setSigninResponse(res.error);
         } else {
-          setUser(res.user);
-          setAuthData(res.user.email);
+          dispatch({ type: 'LOGIN_SUCCESS', messages: res.error });
+          window.localStorage.setItem(
+            'authData',
+            JSON.stringify(res.user.email)
+          );
+          dispatch({ type: 'LOAD_USER_DATA_REQUEST' });
+          dispatch({ type: 'LOAD_USER_DATA', user: res.user });
+          dispatch({ type: 'LOAD_USER_DATA_SUCCESS' });
           props.history.push('/');
         }
       });
   };
 
+  console.log('Check AuthReducer', state);
+
   return (
     <CardContainer>
       <h1 className='cardTitle'>Login</h1>
-      {user && <p>You are already logged in {user.username}</p>}
-      {!user && (
+      {state.user && <p>You are already logged in {state.user.username}</p>}
+      {!state.user && (
         <form onSubmit={handleOnSubmit}>
           <TextInput
             labelTitle='Email'

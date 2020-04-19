@@ -1,9 +1,9 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useEffect } from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 const initialState = {
-  logginIn: true,
+  loggingIn: true,
   loggedIn: false,
   loggingOut: false,
   loadingUser: false,
@@ -26,6 +26,7 @@ const reducer = (state = initialState, action) => {
         user: action.user,
         loadingUser: false,
       };
+    case 'LOAD_USER_DATA_SUCCESS':
     case 'LOAD_USER_DATA_FAILURE':
       return {
         ...state,
@@ -43,7 +44,7 @@ const reducer = (state = initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...state,
-        logginIn: false,
+        loggingIn: false,
         loggedIn: true,
         errors: action.messages || [],
       };
@@ -53,11 +54,53 @@ const reducer = (state = initialState, action) => {
         errors: action.errors,
         loggingIn: false,
       };
+    // User Loggin Out
+    case 'LOGOUT_REQUEST':
+      return {
+        ...state,
+        loggingOut: true,
+      };
+    case 'LOGOUT_SUCCESS':
+      return {
+        ...state,
+        loggingOut: false,
+        loggedIn: false,
+        user: null,
+      };
+    case 'LOGOUT_FAILURE':
+      return {
+        ...state,
+        errors: action.errors,
+        loggingOut: false,
+      };
+    default:
+      return {
+        ...state,
+      };
   }
 };
 
 const AuthReducer = ({ children }) => {
   const contextValue = useReducer(reducer, initialState);
+  const authData = JSON.parse(window.localStorage.getItem('authData'));
+  useEffect(() => {
+    console.log('Check AuthData', authData, window.localStorage);
+    if (authData) {
+      console.log('Check Token');
+      fetch('/api/v1/user/authenticate', {
+        method: 'POST',
+        body: { email: authData },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.user);
+          // reducer({ type: 'LOGIN_SUCCESS', messages: res.error });
+          // reducer({ type: 'LOAD_USER_DATA_REQUEST' });
+          // reducer({ type: 'LOAD_USER_DATA', user: res.user });
+          // reducer({ type: 'LOAD_USER_DATA_SUCCESS' });
+        });
+    }
+  }, [authData]);
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );

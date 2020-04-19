@@ -2,14 +2,12 @@ import React, { useContext, useState } from 'react';
 import { useStyles } from '../styles/header-styles';
 import Container from '../grid/container';
 import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../context/user-context';
-import { AuthContext } from '../context/auth-context';
+import { AuthContext } from '../reducer/authReducer';
 
 const Header = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useContext(UserContext);
-  const [, setAuthData] = useContext(AuthContext);
+  const [state, dispatch] = useContext(AuthContext);
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
   const toggleSettings = () => {
@@ -17,8 +15,8 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    setAuthData(null);
-    setUser(null);
+    dispatch({ type: 'LOGOUT_REQUEST' });
+    dispatch({ type: 'LOGOUT_SUCCESS' });
     toggleSettings();
     history.push('/login');
   };
@@ -52,11 +50,13 @@ const Header = () => {
         </div>
         <div className='profile'>
           <div className={classes.profileDDContainer}>
-            {user && (
+            {state.user && (
               <>
-                {user.avatar && (
+                {state.user.avatar && (
                   <span
-                    style={{ backgroundImage: `url(/avatar/${user.avatar})` }}
+                    style={{
+                      backgroundImage: `url(/avatar/${state.user.avatar})`,
+                    }}
                     className={classes.userHeaderAvatar}
                   />
                 )}
@@ -66,7 +66,7 @@ const Header = () => {
                     className={classes.userNameLink}
                     onClick={toggleSettings}
                   >
-                    {user.username}
+                    {state.user.username}
                   </span>
                 </p>
                 {showSettingsMenu && (
@@ -89,7 +89,7 @@ const Header = () => {
                 )}
               </>
             )}
-            {!user && (
+            {!state.user && (
               <>
                 <Link style={{ marginRight: 10, color: 'inherit' }} to='/login'>
                   Login
