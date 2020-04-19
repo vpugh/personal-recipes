@@ -80,11 +80,11 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+const authData = JSON.parse(window.localStorage.getItem('authData'));
+
 const AuthReducer = ({ children }) => {
   const contextValue = useReducer(reducer, initialState);
-  const authData = JSON.parse(window.localStorage.getItem('authData'));
   useEffect(() => {
-    console.log('Check AuthData', authData, window.localStorage);
     if (authData) {
       console.log('Check Token');
       fetch('/api/v1/user/authenticate', {
@@ -100,7 +100,7 @@ const AuthReducer = ({ children }) => {
           // reducer({ type: 'LOAD_USER_DATA_SUCCESS' });
         });
     }
-  }, [authData]);
+  }, []);
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
