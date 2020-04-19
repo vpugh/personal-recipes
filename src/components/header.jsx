@@ -51,41 +51,26 @@ const Header = () => {
           </button>
         </div>
         <div className='profile'>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              position: 'relative',
-            }}
-          >
+          <div className={classes.profileDDContainer}>
             {user && (
               <>
-                <p style={{ margin: 0, padding: 0 }}>
-                  Welcome, <strong>{user.username}</strong>
-                </p>
-                <button
-                  // onClick={() => alert('Drop down settings, logout')}
-                  onClick={toggleSettings}
-                  className={`${classes.settingsButton} ${classes.hoverLink}`}
-                >
-                  <img
-                    src='/icons/Gear@2x.png'
-                    alt='Settings Icon'
-                    className={classes.iconSize}
+                {user.avatar && (
+                  <span
+                    style={{ backgroundImage: `url(/avatar/${user.avatar})` }}
+                    className={classes.userHeaderAvatar}
                   />
-                </button>
-                {showSettingsMenu && (
-                  <ul
-                    style={{
-                      position: 'absolute',
-                      top: 20,
-                      right: 0,
-                      background: 'white',
-                      padding: '20px',
-                      borderRadius: 4,
-                      boxShadow: '2px 2px 20px rgba(0, 0, 0, .2)',
-                    }}
+                )}
+                <p className={classes.userName}>
+                  Welcome,{' '}
+                  <span
+                    className={classes.userNameLink}
+                    onClick={toggleSettings}
                   >
+                    {user.username}
+                  </span>
+                </p>
+                {showSettingsMenu && (
+                  <ul className={classes.settingMenu}>
                     <Link
                       to='/user/profile'
                       style={{ color: 'inherit' }}
@@ -95,15 +80,7 @@ const Header = () => {
                     </Link>
                     <button
                       type='button'
-                      style={{
-                        textDecoration: 'underline',
-                        display: 'block',
-                        border: 'none',
-                        fontSize: 18,
-                        textAlign: 'left',
-                        padding: 0,
-                        marginTop: 8,
-                      }}
+                      className={classes.settingsLink}
                       onClick={handleLogout}
                     >
                       Log Out
