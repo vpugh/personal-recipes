@@ -105,7 +105,7 @@ const reducer = (state = initialState, action) => {
 const authData = JSON.parse(window.localStorage.getItem('authData'));
 
 const getRecipes = (context, user) => {
-  fetch(`/api/v1/recipes/${user.id}`)
+  fetch('/api/v1/recipes', { method: 'POST', body: { userId: user.id } })
     .then((res) => res.json())
     .then((res) => {
       context({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipes: res });

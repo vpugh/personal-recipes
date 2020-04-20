@@ -56,7 +56,10 @@ const Login = (props) => {
           dispatch({ type: 'LOAD_USER_DATA_REQUEST' });
           dispatch({ type: 'LOAD_USER_DATA_SUCCESS', user: res.user });
           dispatch({ type: 'LOAD_RECIPE_DATA_REQUEST' });
-          fetch(`/api/v1/recipes/${res.user.id}`)
+          fetch('/api/v1/recipes', {
+            method: 'POST',
+            body: { userId: res.user.id },
+          })
             .then((res) => res.json())
             .then((res) => {
               dispatch({ type: 'LOAD_RECIPE_DATA_REQUEST' });

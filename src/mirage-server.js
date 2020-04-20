@@ -128,25 +128,15 @@ export const makeServer = () => {
     routes() {
       this.namespace = '/api';
 
-      this.get('/v1/auth', () => {});
-
       // Recipe Endpoints
-
-      this.get('/v1/recipes');
-
-      this.get('/v1/recipes/:userId', (schema, request) => {
-        const userId = request.params.userId;
+      this.post('/v1/recipes', (schema, request) => {
+        const userId = request.requestBody.userId;
         const allRecipes = schema.recipes.where({ userId: userId });
         if (allRecipes.length === 0) {
           return null;
         } else {
           return allRecipes;
         }
-      });
-
-      this.get('/v1/recipe/:id', (schema, request) => {
-        let recipeId = request.params.id;
-        return schema.recipes.findBy({ id: recipeId });
       });
 
       this.post('/v1/recipe', (schema, request) => {
@@ -174,13 +164,6 @@ export const makeServer = () => {
       });
 
       // User endpoints
-      this.get('/v1/users');
-
-      this.get('/v1/user/:id', (schema, request) => {
-        let userId = request.params.id;
-        return schema.users.findBy({ id: userId });
-      });
-
       this.post('/v1/user', async (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         const hash = await hashPassword(attrs.password);

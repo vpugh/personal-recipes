@@ -95,7 +95,7 @@ const RecipeForm = (props) => {
         method: 'PATCH',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch(`/api/v1/recipes/${state.user.id}`)
+        fetch('/api/v1/recipes', { method: 'POST', userId: state.user.id })
           .then((res) => res.json())
           .then((data) =>
             dispatch({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipe: data })
@@ -108,7 +108,7 @@ const RecipeForm = (props) => {
         method: 'POST',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch(`/api/v1/recipes/${state.user.id}`)
+        fetch('/api/v1/recipes', { method: 'POST', userId: state.user.id })
           .then((res) => res.json())
           .then((data) =>
             dispatch({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipe: data })
