@@ -7,8 +7,7 @@ import DropDown from '../inputs/drop-down';
 import CardContainer from '../shared/card-container';
 import TextareaNested from '../inputs/textarea-nested';
 import TextareaInput from '../inputs/textarea';
-import { RecipesContext } from '../../context/recipes-context';
-import { UserContext } from '../../context/user-context';
+import { AuthContext } from '../../reducer/authReducer';
 
 const fetchCourse = async (set) => {
   let c = await fetch('/api/v1/courses');
@@ -34,9 +33,8 @@ const addEmptyArray = (arr, setArr) => {
 
 const RecipeForm = (props) => {
   const { recipe, headerContent, id } = props;
-  const [user] = useContext(UserContext);
+  const [state, dispatch] = useContext(AuthContext);
   const classes = useStyles();
-  const [, setRecipes] = useContext(RecipesContext);
   const [optCourse, setOptCourse] = useState([]);
   const [cuisines, setCuisines] = useState([]);
   const [optMains, setOptMains] = useState([]);
@@ -79,7 +77,7 @@ const RecipeForm = (props) => {
       prepTime: prepTime ? Number(prepTime) : null,
       totalTime: totalTime ? Number(totalTime) : null,
       serves,
-      userId: user.id,
+      userId: state.user.id,
       serveType: serveType || null,
       course,
       cuisine,
@@ -97,9 +95,11 @@ const RecipeForm = (props) => {
         method: 'PATCH',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch(`/api/v1/recipes/${user.id}`)
+        fetch(`/api/v1/recipes/${state.user.id}`)
           .then((res) => res.json())
-          .then((data) => setRecipes(data));
+          .then((data) =>
+            dispatch({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipe: data })
+          );
         result.ok && setRecipeSaved(true);
       });
     } else {
@@ -108,9 +108,11 @@ const RecipeForm = (props) => {
         method: 'POST',
         body: JSON.stringify(data),
       }).then((result) => {
-        fetch(`/api/v1/recipes/${user.id}`)
+        fetch(`/api/v1/recipes/${state.user.id}`)
           .then((res) => res.json())
-          .then((data) => setRecipes(data));
+          .then((data) =>
+            dispatch({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipe: data })
+          );
         result.ok && setRecipeSaved(true);
       });
     }

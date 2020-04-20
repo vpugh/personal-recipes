@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import CardContainer from './shared/card-container';
-import { RecipesContext } from '../context/recipes-context';
+import { AuthContext } from '../reducer/authReducer';
 import CategorySorting from './category-sorting';
 
 const CuisineMain = () => {
-  const [recipes] = useContext(RecipesContext);
+  const [state] = useContext(AuthContext);
 
   return (
     <CardContainer>
       <h1 className='cardTitle'>Cuisine</h1>
-      <CategorySorting categoryArray={recipes} categoryName='cuisine' />
+      <CategorySorting categoryArray={state.recipes} categoryName='cuisine' />
     </CardContainer>
   );
 };

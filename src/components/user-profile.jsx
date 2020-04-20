@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import CardContainer from './shared/card-container';
-import { UserContext } from '../context/user-context';
+import { AuthContext } from '../reducer/authReducer';
 import { upperCaseFirst } from '../util/helper-functions';
 
 const getSettings = async (set, id) => {
@@ -10,8 +10,10 @@ const getSettings = async (set, id) => {
 };
 
 const UserProfile = () => {
-  const [user] = useContext(UserContext);
+  const [state] = useContext(AuthContext);
   const [settings, setSettings] = useState();
+
+  const { user } = state;
 
   useEffect(() => {
     if (user && user.id) {
@@ -57,7 +59,6 @@ const UserProfile = () => {
             <div
               style={{
                 background: `url(/avatar/${avatar})`,
-                // width: 125,
                 height: 145,
                 backgroundSize: 'cover',
                 marginBottom: 16,

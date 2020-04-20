@@ -4,7 +4,7 @@ import ListGenerator from './list-generator';
 import useStyles from '../../styles/view-recipe-styles';
 import CardContainer from '../shared/card-container';
 import { Link } from 'react-router-dom';
-import { RecipesContext } from '../../context/recipes-context';
+import { AuthContext } from '../../reducer/authReducer';
 
 const makeLink = (link) => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -24,7 +24,6 @@ const makeLink = (link) => {
 
 const display = (text, classes, serveType) => {
   const wording = serveType !== '' ? 'Makes' : 'Serves';
-  console.log(serveType);
   return (
     <div className={classes.headerDisplay}>
       <p className={classes.headerHeader}>{wording}:</p>
@@ -37,9 +36,9 @@ const display = (text, classes, serveType) => {
 
 const ViewRecipe = (props) => {
   const classes = useStyles();
-  const [recipes] = useContext(RecipesContext);
+  const [state] = useContext(AuthContext);
   const recipeId = props.match.params.id;
-  const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
+  const currentRecipe = state.recipes.filter((x) => (x = x.id === recipeId))[0];
 
   if (currentRecipe) {
     const {

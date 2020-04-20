@@ -1,21 +1,24 @@
 import React, { useContext } from 'react';
 import ListedRecipes from './listed-recipes';
 import CardContainer from './shared/card-container';
-import { RecipesContext } from '../context/recipes-context';
+import { AuthContext } from '../reducer/authReducer';
 
 const ListRecipes = () => {
-  const [allRecipes] = useContext(RecipesContext);
+  const [state] = useContext(AuthContext);
+
+  const { user, recipes } = state;
 
   return (
     <CardContainer>
       <h1 className='cardTitle'>All Recipes</h1>
-      {allRecipes &&
-        allRecipes.map((recipe, index) => (
+      {user &&
+        recipes &&
+        recipes.map((recipe, index) => (
           <ListedRecipes
             key={`${recipe.title} ${index}`}
             recipe={recipe}
             index={index}
-            arrLength={allRecipes.length}
+            arrLength={recipes.length}
           />
         ))}
     </CardContainer>

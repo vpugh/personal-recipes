@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../../context/user-context';
+import { AuthContext } from '../../reducer/authReducer';
 import LoggedInLanding from './logged-in-landing';
 import LoggedOutLanding from './logged-out-landing';
 
 const Landing = () => {
-  const [user] = useContext(UserContext);
+  const [state] = useContext(AuthContext);
 
-  if (user) {
+  if (state.user) {
     return <LoggedInLanding />;
   }
   return <LoggedOutLanding />;

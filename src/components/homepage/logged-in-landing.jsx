@@ -5,13 +5,15 @@ import AddRecipeWidget from './add-recipe-widget';
 import ImageCard from './landing-image-card';
 import Shimmer from '../shared/shimmer';
 import CardContainer from '../shared/card-container';
-import { RecipesContext } from '../../context/recipes-context';
+import { AuthContext } from '../../reducer/authReducer';
 import { limitSortReverseArray } from '../../util/helper-functions';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
-  const [recipes] = useContext(RecipesContext);
+  const [state] = useContext(AuthContext);
   const limit = 5;
+
+  const { recipes, loadingRecipes } = state;
 
   return (
     <div className={classes.container}>
@@ -33,8 +35,8 @@ const LoggedInLanding = () => {
                 limit={limit}
               />
             ))}
-          {recipes && recipes.length === 0 && <Shimmer />}
-          {recipes === null && (
+          {loadingRecipes && <Shimmer />}
+          {!loadingRecipes && recipes === null && (
             <>
               <div
                 style={{

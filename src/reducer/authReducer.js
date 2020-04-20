@@ -8,7 +8,7 @@ const initialState = {
   loggingOut: false,
   loadingUser: false,
   user: null,
-  loadingRecipe: false,
+  loadingRecipes: false,
   recipes: null,
   errors: [],
 };
@@ -38,20 +38,20 @@ const reducer = (state = initialState, action) => {
     case 'LOAD_RECIPE_DATA_REQUEST':
       return {
         ...state,
-        loadingRecipe: true,
+        loadingRecipes: true,
       };
     case 'LOAD_RECIPE_DATA_SUCCESS':
       return {
         ...state,
-        RECIPE: action.recipe,
+        recipes: action.recipes,
         errors: action.messages || [],
-        loadingRecipe: false,
+        loadingRecipes: false,
       };
     case 'LOAD_RECIPE_DATA_FAILURE':
       return {
         ...state,
         errors: action.errors,
-        loadingRecipe: false,
+        loadingRecipes: false,
       };
     // User Loggin In
     case 'LOGIN_REQUEST':
@@ -87,6 +87,7 @@ const reducer = (state = initialState, action) => {
         loggingOut: false,
         loggedIn: false,
         user: null,
+        recipes: null,
       };
     case 'LOGOUT_FAILURE':
       return {
@@ -103,6 +104,14 @@ const reducer = (state = initialState, action) => {
 
 const authData = JSON.parse(window.localStorage.getItem('authData'));
 
+const getRecipes = (context, user) => {
+  fetch(`/api/v1/recipes/${user.id}`)
+    .then((res) => res.json())
+    .then((res) => {
+      context({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipes: res });
+    });
+};
+
 const getData = (context) => {
   fetch('/api/v1/user/authenticate', {
     method: 'POST',
@@ -113,6 +122,8 @@ const getData = (context) => {
       context({ type: 'LOGIN_SUCCESS', messages: res.error });
       context({ type: 'LOAD_USER_DATA_REQUEST' });
       context({ type: 'LOAD_USER_DATA_SUCCESS', user: res.user });
+      context({ type: 'LOAD_RECIPE_DATA_REQUEST' });
+      getRecipes(context, res.user);
     });
 };
 

@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../context/auth-context';
+import { AuthContext } from '../reducer/authReducer';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const [auth] = useContext(AuthContext);
+  const [state] = useContext(AuthContext);
 
-  const { loading } = auth;
-
-  if (loading) {
+  if (state.loggingIn) {
     return (
       <Route
         {...rest}
@@ -22,7 +20,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(routeProps) =>
-        auth.data ? <Component {...routeProps} /> : <Redirect to='/login' />
+        state.loggedIn ? (
+          <Component {...routeProps} />
+        ) : (
+          <Redirect to='/login' />
+        )
       }
     />
   );

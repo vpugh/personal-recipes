@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import RecipeForm from './recipe-form';
 import { Link } from 'react-router-dom';
-import { RecipesContext } from '../../context/recipes-context';
+import { AuthContext } from '../../reducer/authReducer';
 
 const EditRecipe = (props) => {
-  const [recipes] = useContext(RecipesContext);
+  const [state] = useContext(AuthContext);
   const recipeId = props.match.params.id;
-  const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
+  const currentRecipe = state.recipes.filter((x) => (x = x.id === recipeId))[0];
 
   const header = (
     <div

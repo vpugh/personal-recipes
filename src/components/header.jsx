@@ -10,12 +10,15 @@ const Header = () => {
   const [state, dispatch] = useContext(AuthContext);
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
+  const { user } = state;
+
   const toggleSettings = () => {
     setShowSettingsMenu(!showSettingsMenu);
   };
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT_REQUEST' });
+    window.localStorage.setItem('authData', null);
     dispatch({ type: 'LOGOUT_SUCCESS' });
     toggleSettings();
     history.push('/login');
@@ -50,22 +53,22 @@ const Header = () => {
         </div>
         <div className='profile'>
           <div className={classes.profileDDContainer}>
-            {state.user && (
+            {user && (
               <>
                 <span
                   style={{
-                    backgroundImage: state.user.avatar
-                      ? `url(/avatar/${state.user.avatar})`
+                    backgroundImage: user.avatar
+                      ? `url(/avatar/${user.avatar})`
                       : null,
-                    justifyContent: !state.user.avatar ? 'center' : null,
-                    display: !state.user.avatar ? 'flex' : null,
-                    alignItems: !state.user.avatar ? 'center' : null,
-                    fontWeight: !state.user.avatar ? 'bold' : null,
-                    color: !state.user.avatar ? '#6b0606' : null,
+                    justifyContent: !user.avatar ? 'center' : null,
+                    display: !user.avatar ? 'flex' : null,
+                    alignItems: !user.avatar ? 'center' : null,
+                    fontWeight: !user.avatar ? 'bold' : null,
+                    color: !user.avatar ? '#6b0606' : null,
                   }}
                   className={classes.userHeaderAvatar}
                 >
-                  {!state.user.avatar && state.user.username.slice(0, 1)}
+                  {!user.avatar && user.username.slice(0, 1)}
                 </span>
                 <p className={classes.userName}>
                   Welcome,{' '}
@@ -73,7 +76,7 @@ const Header = () => {
                     className={classes.userNameLink}
                     onClick={toggleSettings}
                   >
-                    {state.user.username}
+                    {user.username}
                   </span>
                 </p>
                 {showSettingsMenu && (
@@ -96,7 +99,7 @@ const Header = () => {
                 )}
               </>
             )}
-            {!state.user && (
+            {!user && (
               <>
                 <Link style={{ marginRight: 10, color: 'inherit' }} to='/login'>
                   Login

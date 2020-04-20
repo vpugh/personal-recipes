@@ -27,6 +27,8 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [signinResponse, setSigninResponse] = useState('');
 
+  const { user } = state;
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const userData = {
@@ -53,8 +55,15 @@ const Login = (props) => {
           );
           dispatch({ type: 'LOAD_USER_DATA_REQUEST' });
           dispatch({ type: 'LOAD_USER_DATA_SUCCESS', user: res.user });
-          props.history.push('/');
+          dispatch({ type: 'LOAD_RECIPE_DATA_REQUEST' });
+          fetch(`/api/v1/recipes/${res.user.id}`)
+            .then((res) => res.json())
+            .then((res) => {
+              dispatch({ type: 'LOAD_RECIPE_DATA_REQUEST' });
+              dispatch({ type: 'LOAD_RECIPE_DATA_SUCCESS', recipes: res });
+            });
         }
+        props.history.push('/');
       });
   };
 
@@ -63,8 +72,8 @@ const Login = (props) => {
   return (
     <CardContainer>
       <h1 className='cardTitle'>Login</h1>
-      {state.user && <p>You are already logged in {state.user.username}</p>}
-      {!state.user && (
+      {user && <p>You are already logged in as {user.username}</p>}
+      {!user && (
         <form onSubmit={handleOnSubmit}>
           <TextInput
             labelTitle='Email'
