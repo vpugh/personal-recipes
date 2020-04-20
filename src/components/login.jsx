@@ -52,8 +52,7 @@ const Login = (props) => {
             JSON.stringify(res.user.email)
           );
           dispatch({ type: 'LOAD_USER_DATA_REQUEST' });
-          dispatch({ type: 'LOAD_USER_DATA', user: res.user });
-          dispatch({ type: 'LOAD_USER_DATA_SUCCESS' });
+          dispatch({ type: 'LOAD_USER_DATA_SUCCESS', user: res.user });
           props.history.push('/');
         }
       });

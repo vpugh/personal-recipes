@@ -8,6 +8,7 @@ const initialState = {
   loggingOut: false,
   loadingUser: false,
   user: null,
+  loadingRecipe: false,
   recipes: null,
   errors: [],
 };
@@ -20,17 +21,37 @@ const reducer = (state = initialState, action) => {
         ...state,
         loadingUser: true,
       };
-    case 'LOAD_USER_DATA':
+    case 'LOAD_USER_DATA_SUCCESS':
       return {
         ...state,
         user: action.user,
+        errors: action.messages || [],
         loadingUser: false,
       };
-    case 'LOAD_USER_DATA_SUCCESS':
     case 'LOAD_USER_DATA_FAILURE':
       return {
         ...state,
+        errors: action.errors,
         loadingUser: false,
+      };
+    // Load Recipe Data
+    case 'LOAD_RECIPE_DATA_REQUEST':
+      return {
+        ...state,
+        loadingRecipe: true,
+      };
+    case 'LOAD_RECIPE_DATA_SUCCESS':
+      return {
+        ...state,
+        RECIPE: action.recipe,
+        errors: action.messages || [],
+        loadingRecipe: false,
+      };
+    case 'LOAD_RECIPE_DATA_FAILURE':
+      return {
+        ...state,
+        errors: action.errors,
+        loadingRecipe: false,
       };
     // User Loggin In
     case 'LOGIN_REQUEST':
@@ -82,23 +103,24 @@ const reducer = (state = initialState, action) => {
 
 const authData = JSON.parse(window.localStorage.getItem('authData'));
 
+const getData = (context) => {
+  fetch('/api/v1/user/authenticate', {
+    method: 'POST',
+    body: { email: authData },
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      context({ type: 'LOGIN_SUCCESS', messages: res.error });
+      context({ type: 'LOAD_USER_DATA_REQUEST' });
+      context({ type: 'LOAD_USER_DATA_SUCCESS', user: res.user });
+    });
+};
+
 const AuthReducer = ({ children }) => {
   const contextValue = useReducer(reducer, initialState);
   useEffect(() => {
     if (authData) {
-      console.log('Check Token');
-      fetch('/api/v1/user/authenticate', {
-        method: 'POST',
-        body: { email: authData },
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res.user);
-          // reducer({ type: 'LOGIN_SUCCESS', messages: res.error });
-          // reducer({ type: 'LOAD_USER_DATA_REQUEST' });
-          // reducer({ type: 'LOAD_USER_DATA', user: res.user });
-          // reducer({ type: 'LOAD_USER_DATA_SUCCESS' });
-        });
+      getData(contextValue[1]);
     }
   }, []);
   return (

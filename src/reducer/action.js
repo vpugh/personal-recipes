@@ -1,0 +1,15 @@
+export const Login = ['LOGIN_REQUEST', 'LOGIN_SUCCESS', 'LOGIN_FAILURE'];
+
+export const Logout = ['LOGOUT_REQUEST', 'LOGOUT_SUCCESS', 'LOGOUT_FAILURE'];
+
+export const UserData = [
+  'LOAD_USER_DATA_REQUEST',
+  'LOAD_USER_DATA_SUCCESS',
+  'LOAD_USER_DATA_FAILURE',
+];
+
+export const RecipeData = [
+  'LOAD_RECIPE_DATA_REQUEST',
+  'LOAD_RECIPE_DATA_SUCCESS',
+  'LOAD_RECIPE_DATA_FAILURE',
+];
