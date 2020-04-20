@@ -52,14 +52,21 @@ const Header = () => {
           <div className={classes.profileDDContainer}>
             {state.user && (
               <>
-                {state.user.avatar && (
-                  <span
-                    style={{
-                      backgroundImage: `url(/avatar/${state.user.avatar})`,
-                    }}
-                    className={classes.userHeaderAvatar}
-                  />
-                )}
+                <span
+                  style={{
+                    backgroundImage: state.user.avatar
+                      ? `url(/avatar/${state.user.avatar})`
+                      : null,
+                    justifyContent: !state.user.avatar ? 'center' : null,
+                    display: !state.user.avatar ? 'flex' : null,
+                    alignItems: !state.user.avatar ? 'center' : null,
+                    fontWeight: !state.user.avatar ? 'bold' : null,
+                    color: !state.user.avatar ? '#6b0606' : null,
+                  }}
+                  className={classes.userHeaderAvatar}
+                >
+                  {!state.user.avatar && state.user.username.slice(0, 1)}
+                </span>
                 <p className={classes.userName}>
                   Welcome,{' '}
                   <span
