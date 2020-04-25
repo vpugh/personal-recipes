@@ -9,22 +9,27 @@ import TextareaNested from '../inputs/textarea-nested';
 import TextareaInput from '../inputs/textarea';
 import { RecipesContext } from '../../context/recipes-context';
 import { UserContext } from '../../context/user-context';
+import {
+  getCourses,
+  getCuisines,
+  getMainDishes,
+  updateRecipe,
+  getUserRecipes,
+  saveRecipe,
+} from '../../util/api';
 
 const fetchCourse = async (set) => {
-  let c = await fetch('/api/v1/courses');
-  const courses = await c.json();
+  const courses = await getCourses();
   set(courses);
 };
 
 const fetchCuisine = async (set) => {
-  const c = await fetch('/api/v1/cuisines');
-  const cuisines = await c.json();
+  const cuisines = await getCuisines();
   set(cuisines);
 };
 
 const fetchMains = async (set) => {
-  const m = await fetch('/api/v1/mains');
-  const mains = await m.json();
+  const mains = await getMainDishes();
   set(mains);
 };
 
@@ -93,24 +98,14 @@ const RecipeForm = (props) => {
       updatedAt: new Date().toISOString(),
     };
     if (id) {
-      fetch(`/api/v1/recipe/${id}`, {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-      }).then((result) => {
-        fetch(`/api/v1/recipes/${user.id}`)
-          .then((res) => res.json())
-          .then((data) => setRecipes(data));
+      updateRecipe(id, data).then((result) => {
+        getUserRecipes(user.id).then((data) => setRecipes(data));
         result.ok && setRecipeSaved(true);
       });
     } else {
       data.createdAt = new Date().toISOString();
-      fetch('/api/v1/recipe', {
-        method: 'POST',
-        body: JSON.stringify(data),
-      }).then((result) => {
-        fetch(`/api/v1/recipes/${user.id}`)
-          .then((res) => res.json())
-          .then((data) => setRecipes(data));
+      saveRecipe(data).then((result) => {
+        getUserRecipes(user.id).then((data) => setRecipes(data));
         result.ok && setRecipeSaved(true);
       });
     }

@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import CardContainer from './shared/card-container';
 import { UserContext } from '../context/user-context';
 import { upperCaseFirst } from '../util/helper-functions';
+import { fetchSettings } from '../util/api';
 
 const getSettings = async (set, id) => {
-  const s = await fetch('/api/v1/settings', { method: 'POST', body: { id } });
-  const setting = await s.json();
+  const setting = await fetchSettings(id);
   set(setting.setting.options);
 };
 

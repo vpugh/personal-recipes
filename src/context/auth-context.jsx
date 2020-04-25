@@ -1,5 +1,6 @@
 import React, { useState, createContext, useEffect, useContext } from 'react';
 import { UserContext } from './user-context';
+import { authenticateUser } from '../util/api';
 
 const AuthContext = createContext();
 
@@ -15,12 +16,7 @@ const AuthProvider = (props) => {
   useEffect(() => {
     const authData = JSON.parse(window.localStorage.getItem('authData'));
     if (authData) {
-      fetch('/api/v1/user/authenticate', {
-        method: 'POST',
-        body: { email: authData },
-      })
-        .then((res) => res.json())
-        .then((res) => setUser(res.user));
+      authenticateUser(authData).then((res) => setUser(res.user));
     }
     setAuth({
       loading: false,
