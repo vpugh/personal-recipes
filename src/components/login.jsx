@@ -4,6 +4,7 @@ import TextInput from '../components/inputs/text-inputs';
 import { UserContext } from '../context/user-context';
 import { AuthContext } from '../context/auth-context';
 import { Link } from 'react-router-dom';
+import { getAuthentication } from '../util/api';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -29,26 +30,20 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [signinResponse, setSigninResponse] = useState('');
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       email,
       password,
     };
-    fetch('/api/v1/authentication', {
-      method: 'POST',
-      body: userData,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.error) {
-          setSigninResponse(res.error);
-        } else {
-          setUser(res.user);
-          setAuthData(res.user.email);
-          props.history.push('/');
-        }
-      });
+    const auth = await getAuthentication(userData);
+    if (auth.error) {
+      setSigninResponse(auth.error);
+    } else {
+      setUser(auth.user);
+      setAuthData(auth.user.email);
+      props.history.push('/');
+    }
   };
 
   return (

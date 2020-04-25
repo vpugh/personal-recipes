@@ -1,11 +1,11 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import { UserContext } from './user-context';
+import { getUserRecipes } from '../util/api';
 
 const RecipesContext = createContext(() => null);
 
 const getRecipes = async (user) => {
-  let res = await fetch(`/api/v1/recipes/${user.id}`);
-  return await res.json();
+  return await getUserRecipes(user.id);
 };
 
 const fetchRecipes = async (set, user) => {

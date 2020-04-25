@@ -3,6 +3,7 @@ import CardContainer from './shared/card-container';
 import TextInput from './inputs/text-inputs';
 import { UserContext } from '../context/user-context';
 import { Link } from 'react-router-dom';
+import { signupUser } from '../util/api';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -35,10 +36,7 @@ const Signup = (props) => {
       email,
       password,
     };
-    fetch('/api/v1/user', {
-      method: 'POST',
-      body: JSON.stringify(userData),
-    })
+    signupUser(userData)
       .then((res) => {
         res.ok && setUserSaved(true);
         return res.json();

@@ -24,7 +24,6 @@ const makeLink = (link) => {
 
 const display = (text, classes, serveType) => {
   const wording = serveType !== '' ? 'Makes' : 'Serves';
-  console.log(serveType);
   return (
     <div className={classes.headerDisplay}>
       <p className={classes.headerHeader}>{wording}:</p>
