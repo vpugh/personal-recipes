@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import CardContainer from './shared/card-container';
-import { RecipesContext } from '../context/recipes-context';
 import CategorySorting from './category-sorting';
+import { useAuth } from '../context/new-auth-context';
 
 const CourseMain = () => {
-  const [recipes] = useContext(RecipesContext);
+  const { recipes } = useAuth();
 
   return (
     <CardContainer>

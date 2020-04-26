@@ -1,27 +1,26 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useStyles } from '../styles/header-styles';
 import Container from '../grid/container';
 import { Link, useHistory } from 'react-router-dom';
-import { UserContext } from '../context/user-context';
-import { AuthContext } from '../context/auth-context';
+import { useAuth } from '../context/new-auth-context';
 
 const Header = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useContext(UserContext);
-  const [, setAuthData] = useContext(AuthContext);
+  const { isAuthenticated, user, loading, handleLogout } = useAuth();
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
   const toggleSettings = () => {
     setShowSettingsMenu(!showSettingsMenu);
   };
 
-  const handleLogout = () => {
-    setAuthData(null);
-    setUser(null);
+  const logOut = () => {
     toggleSettings();
+    handleLogout();
     history.push('/login');
   };
+
+  console.log('useAuth', isAuthenticated, user);
 
   return (
     <header className={classes.headerBackground}>
@@ -52,14 +51,23 @@ const Header = () => {
         </div>
         <div className='profile'>
           <div className={classes.profileDDContainer}>
-            {user && (
+            {isAuthenticated && !loading && (
               <>
-                {user.avatar && (
-                  <span
-                    style={{ backgroundImage: `url(/avatar/${user.avatar})` }}
-                    className={classes.userHeaderAvatar}
-                  />
-                )}
+                <span
+                  style={{
+                    backgroundImage: user.avatar
+                      ? `url(/avatar/${user.avatar})`
+                      : null,
+                    justifyContent: !user.avatar ? 'center' : null,
+                    display: !user.avatar ? 'flex' : null,
+                    alignItems: !user.avatar ? 'center' : null,
+                    fontWeight: !user.avatar ? 'bold' : null,
+                    color: !user.avatar ? '#6b0606' : null,
+                  }}
+                  className={classes.userHeaderAvatar}
+                >
+                  {!user.avatar && user.username.slice(0, 1)}
+                </span>
                 <p className={classes.userName}>
                   Welcome,{' '}
                   <span
@@ -81,7 +89,7 @@ const Header = () => {
                     <button
                       type='button'
                       className={classes.settingsLink}
-                      onClick={handleLogout}
+                      onClick={logOut}
                     >
                       Log Out
                     </button>
@@ -89,7 +97,7 @@ const Header = () => {
                 )}
               </>
             )}
-            {!user && (
+            {!isAuthenticated && !loading && (
               <>
                 <Link style={{ marginRight: 10, color: 'inherit' }} to='/login'>
                   Login

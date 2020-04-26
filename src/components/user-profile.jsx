@@ -1,8 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardContainer from './shared/card-container';
-import { UserContext } from '../context/user-context';
 import { upperCaseFirst } from '../util/helper-functions';
 import { fetchSettings } from '../util/api';
+import { useAuth } from '../context/new-auth-context';
 
 const getSettings = async (set, id) => {
   const setting = await fetchSettings(id);
@@ -10,7 +10,7 @@ const getSettings = async (set, id) => {
 };
 
 const UserProfile = () => {
-  const [user] = useContext(UserContext);
+  const { isAuthenticated, user, loading, handleLogout } = useAuth();
   const [settings, setSettings] = useState();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const UserProfile = () => {
     }
   }, [user]);
 
-  if (user) {
+  if (isAuthenticated) {
     const { username, email, name, avatar } = user;
     return (
       <CardContainer>
@@ -54,15 +54,16 @@ const UserProfile = () => {
               })}
           </div>
           <div>
-            <div
-              style={{
-                background: `url(/avatar/${avatar})`,
-                // width: 125,
-                height: 145,
-                backgroundSize: 'cover',
-                marginBottom: 16,
-              }}
-            />
+            {user.avatar && (
+              <div
+                style={{
+                  background: `url(/avatar/${avatar})`,
+                  height: 145,
+                  backgroundSize: 'cover',
+                  marginBottom: 16,
+                }}
+              />
+            )}
             <p
               style={{
                 marginBottom: 0,
@@ -86,7 +87,7 @@ const UserProfile = () => {
   return (
     <CardContainer>
       <h2 style={{ margin: 0 }}>
-        You need to be logged in to perfrom this action.
+        You need to be logged in to perform this action.
       </h2>
     </CardContainer>
   );

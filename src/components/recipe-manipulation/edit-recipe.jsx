@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import RecipeForm from './recipe-form';
 import { Link } from 'react-router-dom';
-import { RecipesContext } from '../../context/recipes-context';
+import { useAuth } from '../../context/new-auth-context';
 
 const EditRecipe = (props) => {
-  const [recipes] = useContext(RecipesContext);
+  const { recipes } = useAuth();
   const recipeId = props.match.params.id;
   const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
 

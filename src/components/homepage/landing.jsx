@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../context/user-context';
+import React from 'react';
 import LoggedInLanding from './logged-in-landing';
 import LoggedOutLanding from './logged-out-landing';
+import { useAuth } from '../../context/new-auth-context';
 
 const Landing = () => {
-  const [user] = useContext(UserContext);
+  const { isAuthenticated } = useAuth();
 
-  if (user) {
+  if (isAuthenticated) {
     return <LoggedInLanding />;
   }
   return <LoggedOutLanding />;

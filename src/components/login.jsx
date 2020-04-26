@@ -1,10 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from '../components/inputs/text-inputs';
-import { UserContext } from '../context/user-context';
-import { AuthContext } from '../context/auth-context';
 import { Link } from 'react-router-dom';
-import { getAuthentication } from '../util/api';
+import { useAuth } from '../context/new-auth-context';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -24,8 +22,7 @@ const buttonStyle = {
 };
 
 const Login = (props) => {
-  const [user, setUser] = useContext(UserContext);
-  const [, setAuthData] = useContext(AuthContext);
+  const { isAuthenticated, user, loading, handleLogin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signinResponse, setSigninResponse] = useState('');
@@ -36,12 +33,11 @@ const Login = (props) => {
       email,
       password,
     };
-    const auth = await getAuthentication(userData);
-    if (auth.error) {
-      setSigninResponse(auth.error);
+    const res = await handleLogin(userData);
+    if (res.error) {
+      setSigninResponse(res.error);
     } else {
-      setUser(auth.user);
-      setAuthData(auth.user.email);
+      console.log('Success', res);
       props.history.push('/');
     }
   };
@@ -49,8 +45,10 @@ const Login = (props) => {
   return (
     <CardContainer>
       <h1 className='cardTitle'>Login</h1>
-      {user && <p>You are already logged in {user.username}</p>}
-      {!user && (
+      {isAuthenticated && !loading && (
+        <p>You are already logged in {user.username}</p>
+      )}
+      {!isAuthenticated && (
         <form onSubmit={handleOnSubmit}>
           <TextInput
             labelTitle='Email'
