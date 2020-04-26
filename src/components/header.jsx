@@ -7,7 +7,7 @@ import { useAuth } from '../context/new-auth-context';
 const Header = () => {
   const classes = useStyles();
   const history = useHistory();
-  const { isAuthenticated, user, loading, handleLogout, recipes } = useAuth();
+  const { isAuthenticated, user, loading, handleLogout } = useAuth();
   const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
   const toggleSettings = () => {
@@ -19,8 +19,6 @@ const Header = () => {
     handleLogout();
     history.push('/login');
   };
-
-  console.log('useAuth', isAuthenticated, user, recipes);
 
   return (
     <header className={classes.headerBackground}>

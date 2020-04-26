@@ -6,7 +6,6 @@ import { useAuth } from '../context/new-auth-context';
 
 const getSettings = async (set, id) => {
   const setting = await fetchSettings(id);
-  console.log(setting);
   if (setting) {
     set(setting.setting.options);
   } else {
