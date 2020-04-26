@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import CardContainer from './shared/card-container';
 import TextInput from './inputs/text-inputs';
-import { UserContext } from '../context/user-context';
 import { Link } from 'react-router-dom';
 import { signupUser } from '../util/api';
+import { useAuth } from '../context/new-auth-context';
 
 const buttonStyle = {
   background: '#FF8585',
@@ -23,7 +23,7 @@ const buttonStyle = {
 };
 
 const Signup = (props) => {
-  const [, setUser] = useContext(UserContext);
+  const { setCurrentUser } = useAuth();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +42,7 @@ const Signup = (props) => {
         return res.json();
       })
       .then((res) => {
-        setUser(res.user);
+        setCurrentUser(res.user);
         props.history.push('/user/profile');
       });
   };
@@ -69,6 +69,7 @@ const Signup = (props) => {
           labelTitle='Password'
           placeholder='To get into your account'
           required={true}
+          type='password'
           value={password}
           setFunction={setPassword}
         />

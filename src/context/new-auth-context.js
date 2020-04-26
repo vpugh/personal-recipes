@@ -22,22 +22,32 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUser(null);
+    setRecipes(null);
     window.localStorage.setItem('authData', null);
-    // toggleSettings();
+  };
+
+  const updateRecipes = (data) => {
+    setRecipes(data);
+  };
+
+  const setCurrentUser = (data) => {
+    setUser(data);
+    setIsAuthenticated(data.email);
+    setRecipes([]);
   };
 
   const handleLogin = async (userData) => {
     const auth = await getAuthentication(userData);
-    console.log('Auth', auth, auth.error);
     if (auth.error) {
       setErrors(auth.error);
       return auth;
     } else {
       setUser(auth.user);
+      const recipes = await getUserRecipes(auth.user.id);
+      setRecipes(recipes);
       window.localStorage.setItem('authData', JSON.stringify(auth.user.email));
       setIsAuthenticated(auth.user.email);
       return auth;
-      // props.history.push('/');
     }
   };
 
@@ -68,6 +78,8 @@ export const AuthProvider = ({ children }) => {
         errors,
         handleLogout,
         handleLogin,
+        updateRecipes,
+        setCurrentUser,
       }}
     >
       {children}

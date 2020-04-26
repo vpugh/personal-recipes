@@ -37,7 +37,6 @@ const Login = (props) => {
     if (res.error) {
       setSigninResponse(res.error);
     } else {
-      console.log('Success', res);
       props.history.push('/');
     }
   };

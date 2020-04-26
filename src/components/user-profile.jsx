@@ -6,11 +6,16 @@ import { useAuth } from '../context/new-auth-context';
 
 const getSettings = async (set, id) => {
   const setting = await fetchSettings(id);
-  set(setting.setting.options);
+  console.log(setting);
+  if (setting) {
+    set(setting.setting.options);
+  } else {
+    set([]);
+  }
 };
 
 const UserProfile = () => {
-  const { isAuthenticated, user, loading, handleLogout } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [settings, setSettings] = useState();
 
   useEffect(() => {

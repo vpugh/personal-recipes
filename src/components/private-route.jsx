@@ -10,7 +10,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={() => {
-          return <p>Loading... Test</p>;
+          return <p>Loading...</p>;
         }}
       />
     );
