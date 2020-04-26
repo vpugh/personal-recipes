@@ -32,11 +32,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   userHeaderAvatar: {
     display: 'inline-block',
-    height: 45,
-    width: 45,
+    height: 35,
+    width: 35,
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
+    background: '#ffc3c3',
   },
   userName: { margin: 0, padding: 0 },
   userNameLink: {

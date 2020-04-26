@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useStyles from '../../styles/recipe-form-styles';
 import TextInput from '../inputs/text-inputs';
 import TextInputNested from '../inputs/text-input-nested';
@@ -7,8 +7,6 @@ import DropDown from '../inputs/drop-down';
 import CardContainer from '../shared/card-container';
 import TextareaNested from '../inputs/textarea-nested';
 import TextareaInput from '../inputs/textarea';
-import { RecipesContext } from '../../context/recipes-context';
-import { UserContext } from '../../context/user-context';
 import {
   getCourses,
   getCuisines,
@@ -17,6 +15,7 @@ import {
   getUserRecipes,
   saveRecipe,
 } from '../../util/api';
+import { useAuth } from '../../context/new-auth-context';
 
 const fetchCourse = async (set) => {
   const courses = await getCourses();
@@ -39,9 +38,8 @@ const addEmptyArray = (arr, setArr) => {
 
 const RecipeForm = (props) => {
   const { recipe, headerContent, id } = props;
-  const [user] = useContext(UserContext);
+  const { user, updateRecipes } = useAuth();
   const classes = useStyles();
-  const [, setRecipes] = useContext(RecipesContext);
   const [optCourse, setOptCourse] = useState([]);
   const [cuisines, setCuisines] = useState([]);
   const [optMains, setOptMains] = useState([]);
@@ -99,13 +97,13 @@ const RecipeForm = (props) => {
     };
     if (id) {
       updateRecipe(id, data).then((result) => {
-        getUserRecipes(user.id).then((data) => setRecipes(data));
+        getUserRecipes(user.id).then((data) => updateRecipes(data));
         result.ok && setRecipeSaved(true);
       });
     } else {
       data.createdAt = new Date().toISOString();
       saveRecipe(data).then((result) => {
-        getUserRecipes(user.id).then((data) => setRecipes(data));
+        getUserRecipes(user.id).then((data) => updateRecipes(data));
         result.ok && setRecipeSaved(true);
       });
     }

@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import TimeDisplay from './time-display';
 import ListGenerator from './list-generator';
 import useStyles from '../../styles/view-recipe-styles';
 import CardContainer from '../shared/card-container';
 import { Link } from 'react-router-dom';
-import { RecipesContext } from '../../context/recipes-context';
+import { useAuth } from '../../context/new-auth-context';
 
 const makeLink = (link) => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -36,7 +36,7 @@ const display = (text, classes, serveType) => {
 
 const ViewRecipe = (props) => {
   const classes = useStyles();
-  const [recipes] = useContext(RecipesContext);
+  const { recipes } = useAuth();
   const recipeId = props.match.params.id;
   const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
 

@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import useStyles from '../../styles/landing-styles';
 import { Link } from 'react-router-dom';
 import AddRecipeWidget from './add-recipe-widget';
 import ImageCard from './landing-image-card';
 import Shimmer from '../shared/shimmer';
 import CardContainer from '../shared/card-container';
-import { RecipesContext } from '../../context/recipes-context';
 import { limitSortReverseArray } from '../../util/helper-functions';
+import { useAuth } from '../../context/new-auth-context';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
-  const [recipes] = useContext(RecipesContext);
+  const { recipes } = useAuth();
   const limit = 5;
 
   return (
@@ -33,8 +33,8 @@ const LoggedInLanding = () => {
                 limit={limit}
               />
             ))}
-          {recipes && recipes.length === 0 && <Shimmer />}
-          {recipes === null && (
+          {recipes === null && <Shimmer />}
+          {recipes && recipes.length === 0 && (
             <>
               <div
                 style={{
