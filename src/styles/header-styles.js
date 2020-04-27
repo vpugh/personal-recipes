@@ -2,7 +2,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   headerBackground: {
-    padding: '23px 40px',
+    padding: '23px 30px',
+    [theme.breakpoints.up('md')]: {
+      padding: '23px 60px',
+    },
   },
   hoverLink: {
     '&:hover': { cursor: 'pointer', opacity: '0.5' },

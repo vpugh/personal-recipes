@@ -7,7 +7,12 @@
     "Side",
     "Snack",
     "Dessert",
-    "Brunch"
+    "Brunch",
+    "Salad",
+    "Soup",
+    "Stew",
+    "Marinade",
+    "Sauce"
   ],
   "cuisines": [
     "American",

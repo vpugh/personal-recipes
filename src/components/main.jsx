@@ -2,24 +2,17 @@ import React from 'react';
 import Landing from './homepage/landing';
 import Container from '../grid/container';
 import AddRecipe from './recipe-manipulation/add-recipe';
-import { makeStyles } from '@material-ui/styles';
+import useStyles from '../styles/main-styles';
 import { Switch, Route } from 'react-router-dom';
 import ViewRecipe from './view-recipe/view-recipe';
 import ListRecipes from './all-recipes';
-import CourseMain from './course';
-import CuisineMain from './cuisine';
-import MainDishMain from './main-dish';
 import EditRecipe from './recipe-manipulation/edit-recipe';
 import Login from './login';
 import Signup from './signup';
 import UserProfile from './user-profile';
 import PrivateRoute from './private-route';
-
-const useStyles = makeStyles({
-  padding: {
-    margin: '54px auto 0 auto',
-  },
-});
+import GenericCategoryPage from './generic-category-page';
+import GenericRecipePage from './generic-recipe-page';
 
 const Main = () => {
   const classes = useStyles();
@@ -39,12 +32,14 @@ const Main = () => {
             path='/recipes/all-recipes'
             component={ListRecipes}
           />
-          <PrivateRoute exact path='/recipes/course' component={CourseMain} />
-          <PrivateRoute exact path='/recipes/cuisine' component={CuisineMain} />
           <PrivateRoute
             exact
-            path='/recipes/main-dish'
-            component={MainDishMain}
+            path='/recipes/:category/:type'
+            component={GenericCategoryPage}
+          />
+          <PrivateRoute
+            path='/recipes/:category'
+            component={GenericRecipePage}
           />
         </Switch>
       </Container>

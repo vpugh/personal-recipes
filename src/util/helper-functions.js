@@ -60,14 +60,30 @@ export const limitSortReverseArray = (
   type,
   sortType = 'forward'
 ) => {
-  const sortedArray = arr.concat().sort((a, b) => {
-    if (a[type] > b[type]) {
-      return sortType === 'forward' ? 1 : -1;
+  if (arr) {
+    const sortedArray = arr.concat().sort((a, b) => {
+      if (a[type] > b[type]) {
+        return sortType === 'forward' ? 1 : -1;
+      }
+      if (a[type] < b[type]) {
+        return sortType === 'forward' ? -1 : 1;
+      }
+      return 0;
+    });
+    return sortedArray.slice(0, limit - 1);
+  }
+  return [];
+};
+
+export const limitSortType = (arr, limit, recipeType) => {
+  const courseOptions = [];
+  for (let i in arr) {
+    var item = arr[i];
+    if (item[recipeType] !== '') {
+      const selectedOptions = item[recipeType];
+      courseOptions.push(selectedOptions);
     }
-    if (a[type] < b[type]) {
-      return sortType === 'forward' ? -1 : 1;
-    }
-    return 0;
-  });
-  return sortedArray.slice(0, limit - 1);
+  }
+  return [...new Set(courseOptions.flat())];
+  // return sortedArray.slice(0, limit - 1);
 };

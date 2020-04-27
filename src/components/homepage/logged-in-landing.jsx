@@ -1,12 +1,11 @@
 import React from 'react';
 import useStyles from '../../styles/landing-styles';
-import { Link } from 'react-router-dom';
-import AddRecipeWidget from './add-recipe-widget';
-import ImageCard from './landing-image-card';
-import Shimmer from '../shared/shimmer';
-import CardContainer from '../shared/card-container';
-import { limitSortReverseArray } from '../../util/helper-functions';
+import {
+  limitSortReverseArray,
+  limitSortType,
+} from '../../util/helper-functions';
 import { useAuth } from '../../context/new-auth-context';
+import HorizontalCardContainer from './horizontal-card-container';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
@@ -15,75 +14,48 @@ const LoggedInLanding = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.widgetContainer}>
-        <h4 className={classes.subTitle}>Recently Added</h4>
-        <CardContainer maxWidth={650} padding='20px'>
-          {recipes &&
-            recipes.length > 0 &&
-            limitSortReverseArray(
-              recipes,
-              limit,
-              'createdAt',
-              'reverse'
-            ).map((ra, index) => (
-              <AddRecipeWidget
-                key={`${ra.title} ${index}`}
-                recipe={ra}
-                index={index}
-                limit={limit}
-              />
-            ))}
-          {recipes === null && <Shimmer />}
-          {recipes && recipes.length === 0 && (
-            <>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <h2>No Recent Recipes</h2>
-                <p style={{ marginTop: 0, height: 76 * 3, opacity: '.7' }}>
-                  No worries, how about adding a recipe?
-                </p>
-                <div style={{ width: 400 }} />
-              </div>
-            </>
-          )}
-          <Link to='/add-recipe' className={classes.addNewButton}>
-            Add New Recipe
-          </Link>
-        </CardContainer>
+      <div
+        style={{
+          color: 'rgb(87, 87, 87)',
+          borderRadius: 6,
+          fontSize: 18,
+          boxShadow: 'rgb(255, 204, 204) 4px 8px 44px',
+          background: 'rgb(254, 254, 254)',
+          padding: 20,
+          margin: '40px 0',
+        }}
+      >
+        Add New Recipe
+        <button>Add Recipe</button>
       </div>
-      <div>
-        <div className={classes.imageCardContainer}>
-          <ImageCard
-            text='All Recipes'
-            img='/images/all-recipes-image@2x.png'
-            direction='left'
-            to='/recipes/all-recipes'
-          />
-          <ImageCard
-            text='Main Dish'
-            img='/images/protein-image@2x.png'
-            direction='right'
-            to='/recipes/main-dish'
-          />
-          <ImageCard
-            text='Cuisine'
-            img='/images/cuisine-image@2x.png'
-            direction='left'
-            to='/recipes/cuisine'
-          />
-          <ImageCard
-            text='Course'
-            img='/images/course-image@2x.png'
-            direction='right'
-            to='/recipes/course'
-          />
-        </div>
-      </div>
+      <HorizontalCardContainer
+        containerName='Recently Added'
+        containerLink='/recipes/all-recipes'
+        containerView='Recipes'
+        arr={limitSortReverseArray(recipes, limit, 'createdAt', 'reverse')}
+        cardType='recent'
+      />
+
+      <HorizontalCardContainer
+        containerName='Courses'
+        containerLink='/recipes/course'
+        containerView='Courses'
+        arr={limitSortType(recipes, limit, 'course')}
+      />
+
+      <HorizontalCardContainer
+        containerName='Cuisines'
+        containerLink='/recipes/cuisine'
+        containerView='Cuisines'
+        arr={limitSortType(recipes, limit, 'cuisine')}
+      />
+
+      <HorizontalCardContainer
+        containerName='Main Dishes'
+        containerLink='/recipes/main-dish'
+        containerView='Main Dishes'
+        arr={limitSortType(recipes, limit, 'mainDish')}
+      />
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 
-const Container = ({ children, widthMax, style }) => {
-  const maxWidth = widthMax || 1152;
+const Container = ({ children, style }) => {
   return (
-    <div className='container' style={{ maxWidth, margin: '0 auto', ...style }}>
+    <div className='container' style={{ margin: '0 auto', ...style }}>
       {children}
     </div>
   );

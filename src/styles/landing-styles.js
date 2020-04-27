@@ -4,8 +4,10 @@ export const useStyles = makeStyles((theme) => ({
   container: {
     [theme.breakpoints.up('md')]: {
       display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      margin: '0 auto',
+      width: '80%',
     },
     [theme.breakpoints.down('sm')]: {
       margin: '0 20px',
