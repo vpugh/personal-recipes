@@ -32,7 +32,11 @@ const LoggedInLanding = () => {
         containerName='Recently Added'
         containerLink='/recipes/all-recipes'
         containerView='Recipes'
-        arr={limitSortReverseArray(recipes, limit, 'createdAt', 'reverse')}
+        arr={
+          recipes
+            ? limitSortReverseArray(recipes, limit, 'createdAt', 'reverse')
+            : null
+        }
         cardType='recent'
       />
 
@@ -40,21 +44,21 @@ const LoggedInLanding = () => {
         containerName='Courses'
         containerLink='/recipes/course'
         containerView='Courses'
-        arr={limitSortType(recipes, limit, 'course')}
+        arr={recipes ? limitSortType(recipes, limit, 'course') : null}
       />
 
       <HorizontalCardContainer
         containerName='Cuisines'
         containerLink='/recipes/cuisine'
         containerView='Cuisines'
-        arr={limitSortType(recipes, limit, 'cuisine')}
+        arr={recipes ? limitSortType(recipes, limit, 'cuisine') : null}
       />
 
       <HorizontalCardContainer
         containerName='Main Dishes'
         containerLink='/recipes/main-dish'
         containerView='Main Dishes'
-        arr={limitSortType(recipes, limit, 'mainDish')}
+        arr={recipes ? limitSortType(recipes, limit, 'mainDish') : null}
       />
     </div>
   );

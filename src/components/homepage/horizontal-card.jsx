@@ -33,30 +33,28 @@ const HorizontalCard = (props) => {
 
   const wording = serveType !== '' ? 'Makes' : 'Serves';
   return (
-    <div key={id} className={classes.horizontalCard}>
+    <Link
+      to={`/recipe/${id}`}
+      query={id}
+      key={id}
+      className={classes.horizontalCard}
+    >
       <h3
         className='card-title'
         style={{ marginTop: 0, marginBottom: '.5rem' }}
       >
-        <Link to={`/recipe/${id}`} query={id}>
-          {title}
-        </Link>
+        {title}
       </h3>
-      {course && <Tag text={course} />}
+      {/* {course && <Tag text={course} />}
       {cuisine && <Tag text={cuisine} />}
-      {mainDish && <Tag text={mainDish} />}
+      {mainDish && <Tag text={mainDish} />} */}
       {(totalTime || cookTime || prepTime) && (
         <div className={classes.displayFlexCenter}>
           <p style={{ marginBottom: 0 }}>
             {prepTime && (
               <span>
-                <strong>Prep:</strong> {prepTime} mins
+                <strong>Prep/Cook:</strong> {prepTime}/{cookTime} mins
                 <br />
-              </span>
-            )}
-            {cookTime && (
-              <span>
-                <strong>Cook:</strong> {cookTime} mins <br />
               </span>
             )}
             <strong>Total:</strong>{' '}
@@ -70,7 +68,7 @@ const HorizontalCard = (props) => {
           {serves && `${wording} ${serves} ${serveType}`}
         </p>
       )}
-    </div>
+    </Link>
   );
 };
 

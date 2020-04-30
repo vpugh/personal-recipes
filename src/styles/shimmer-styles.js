@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   floatLeft: {
     display: 'flex',
     flexDirection: 'column',
+    marginRight: 20,
     paddingTop: 2,
     paddingBottom: 15,
     '&:after': {
@@ -21,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
     height: 10,
     marginTop: 7,
     marginBottom: 7,
-    width: 400,
+    width: '100%',
     backgroundColor: '#f6f7f9',
   },
 
@@ -30,7 +31,7 @@ export const useStyles = makeStyles((theme) => ({
     height: 21,
     marginTop: 7,
     marginBottom: 7,
-    width: 400,
+    width: '100%',
     backgroundColor: '#f6f7f9',
   },
 

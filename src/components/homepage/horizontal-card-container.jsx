@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import HorizontalCardType from './horizontal-card-type';
 import HorizontalCard from './horizontal-card';
 import { Link } from 'react-router-dom';
+import Shimmer from '../shared/shimmer';
 
 const useStyles = makeStyles((theme) => ({
   subTitle: {
     fontSize: '16px',
     lineHeight: '22px',
-    color: '#F65B5B',
-    fontWeight: 'normal',
+    color: theme.palette.primary.tertiary,
     marginTop: 0,
   },
   contentContainer: {
@@ -29,7 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   grid: {
     display: 'grid',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
+      gridTemplateColumns: '1fr 1fr',
+      gridAutoRows: 'auto',
+      gridGap: 20,
+    },
+    [theme.breakpoints.up('lg')]: {
       gridTemplateColumns: '1fr 1fr 1fr 1fr',
       gridAutoRows: 'auto',
       gridGap: 20,
@@ -66,15 +71,27 @@ const HorizontalCardContainer = (props) => {
       </div>
       {cardType === 'category' ? (
         <div className={classes.grid}>
-          {arr.map((type) => (
-            <HorizontalCardType type={type} link={containerLink} key={type} />
-          ))}
+          {arr
+            ? arr.map((type) => (
+                <HorizontalCardType
+                  type={type}
+                  link={containerLink}
+                  key={type}
+                />
+              ))
+            : Array(...Array(4)).map((r, index) => (
+                <Shimmer type='category' key={`${r} ${index}`} />
+              ))}
         </div>
       ) : (
-        <div className={classes.cardContainer}>
-          {arr.map((recipe) => (
-            <HorizontalCard recipe={recipe} key={recipe.id} />
-          ))}
+        <div className={classes.grid}>
+          {arr
+            ? arr.map((recipe) => (
+                <HorizontalCard recipe={recipe} key={recipe.id} />
+              ))
+            : Array(...Array(4)).map((r, index) => (
+                <Shimmer type='recipe' key={`${r} ${index}`} />
+              ))}
         </div>
       )}
     </div>
