@@ -34,11 +34,6 @@ const useStyles = makeStyles((theme) => ({
       gridAutoRows: 'auto',
       gridGap: 20,
     },
-    [theme.breakpoints.up('lg')]: {
-      gridTemplateColumns: '1fr 1fr 1fr 1fr',
-      gridAutoRows: 'auto',
-      gridGap: 20,
-    },
   },
 }));
 
@@ -76,6 +71,7 @@ const HorizontalCardContainer = (props) => {
                 <HorizontalCardType
                   type={type}
                   link={containerLink}
+                  name={containerName}
                   key={type}
                 />
               ))

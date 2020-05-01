@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '../shared/tags';
+import { displayTotalTime } from '../../util/helper-functions';
 import { Link } from 'react-router-dom';
 import useStyles from '../../styles/horizontal-card-styles';
 
@@ -9,9 +9,6 @@ const HorizontalCard = (props) => {
   const {
     id,
     title,
-    course,
-    cuisine,
-    mainDish,
     totalTime,
     cookTime,
     prepTime,
@@ -19,19 +16,6 @@ const HorizontalCard = (props) => {
     serveType,
   } = recipe;
 
-  const displayTotalTime = (cook, prep) => {
-    const total = cook + prep;
-    if (total > 60) {
-      return toHour(Math.floor(total / 60));
-    }
-    return `${Math.floor(total)} mins`;
-  };
-
-  const toHour = (time) => {
-    return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
-  };
-
-  const wording = serveType !== '' ? 'Makes' : 'Serves';
   return (
     <Link
       to={`/recipe/${id}`}
@@ -45,28 +29,21 @@ const HorizontalCard = (props) => {
       >
         {title}
       </h3>
-      {/* {course && <Tag text={course} />}
-      {cuisine && <Tag text={cuisine} />}
-      {mainDish && <Tag text={mainDish} />} */}
       {(totalTime || cookTime || prepTime) && (
-        <div className={classes.displayFlexCenter}>
-          <p style={{ marginBottom: 0 }}>
-            {prepTime && (
-              <span>
-                <strong>Prep/Cook:</strong> {prepTime}/{cookTime} mins
-                <br />
-              </span>
-            )}
-            <strong>Total:</strong>{' '}
+        <div className={classes.displayFlexCenter} style={{ marginTop: 24 }}>
+          <img
+            src='/icons/Clock@2x.png'
+            alt='Settings Icon'
+            className={classes.icons}
+          />
+          <p style={{ margin: 0 }}>
             {!totalTime && `${displayTotalTime(cookTime, prepTime)}`}
             {totalTime && `${totalTime} ${totalTime < 60 ? 'mins' : ''}`}
           </p>
+          <p style={{ margin: '0 0 0 24px' }}>
+            {serves} {serveType || 'portions'}
+          </p>
         </div>
-      )}
-      {(serves || serveType) && (
-        <p className={classes.displayFlexCenter}>
-          {serves && `${wording} ${serves} ${serveType}`}
-        </p>
       )}
     </Link>
   );

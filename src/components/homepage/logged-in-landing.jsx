@@ -6,28 +6,18 @@ import {
 } from '../../util/helper-functions';
 import { useAuth } from '../../context/new-auth-context';
 import HorizontalCardContainer from './horizontal-card-container';
+import { Link } from 'react-router-dom';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
   const { recipes } = useAuth();
-  const limit = 5;
+  const limit = 7;
 
   return (
     <div className={classes.container}>
-      <div
-        style={{
-          color: 'rgb(87, 87, 87)',
-          borderRadius: 6,
-          fontSize: 18,
-          boxShadow: 'rgb(255, 204, 204) 4px 8px 44px',
-          background: 'rgb(254, 254, 254)',
-          padding: 20,
-          margin: '40px 0',
-        }}
-      >
-        Add New Recipe
-        <button>Add Recipe</button>
-      </div>
+      <Link to='/add-recipe' className={classes.addNewButton}>
+        Add Recipe
+      </Link>
       <HorizontalCardContainer
         containerName='Recently Added'
         containerLink='/recipes/all-recipes'

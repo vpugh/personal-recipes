@@ -28,6 +28,7 @@ const Header = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           fontSize: 18,
+          maxWidth: '80%',
         }}
       >
         <div className={`logo serif ${classes.logoLink}`}>

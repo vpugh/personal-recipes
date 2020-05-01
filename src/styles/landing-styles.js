@@ -7,7 +7,8 @@ export const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       flexDirection: 'column',
       margin: '0 auto',
-      width: '80%',
+      width: '70%',
+      maxWidth: 960,
     },
     [theme.breakpoints.down('sm')]: {
       margin: '0 20px',
@@ -37,8 +38,17 @@ export const useStyles = makeStyles((theme) => ({
   subFontSize: {
     fontSize: 10,
   },
+  // style={{
+  //   color: 'rgb(87, 87, 87)',
+  //   borderRadius: 6,
+  //   fontSize: 18,
+  //   boxShadow: 'rgb(255, 204, 204) 4px 8px 44px',
+  //   background: 'rgb(254, 254, 254)',
+  //   padding: 20,
+  //   margin: '40px 0',
+  // }}
   addNewButton: {
-    background: '#FF8585',
+    background: theme.palette.primary.secondary,
     boxShadow: ' 4px 8px 44px #FFCCCC',
     width: '100%',
     fontSize: 16,
@@ -51,7 +61,7 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: 16,
     border: 'none',
     textDecoration: 'none',
-    marginTop: 40,
+    margin: '40px 0 60px 0',
   },
   imageCardContainer: {},
   widgetContainer: {

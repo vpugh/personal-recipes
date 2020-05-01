@@ -17,7 +17,6 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: '2px 4px 8px #FFCCCC',
     background: 'rgb(254, 254, 254)',
     padding: 20,
-    borderBottom: '8px solid #FF8585',
     transition: '300ms ease-in-out',
     '&:hover': {
       boxShadow: '4px 6px 10px #FFADAD',
@@ -30,6 +29,12 @@ export const useStyles = makeStyles((theme) => ({
     },
     fontWeight: 'normal',
     textDecoration: 'none',
+  },
+  icons: {
+    width: 20,
+    height: 20,
+    marginRight: 6,
+    marginLeft: 6,
   },
 }));
 

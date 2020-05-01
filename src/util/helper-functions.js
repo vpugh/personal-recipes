@@ -87,3 +87,15 @@ export const limitSortType = (arr, limit, recipeType) => {
   return [...new Set(courseOptions.flat())];
   // return sortedArray.slice(0, limit - 1);
 };
+
+export const displayTotalTime = (cook, prep) => {
+  const total = cook + prep;
+  if (total > 60) {
+    return toHour(Math.floor(total / 60));
+  }
+  return `${Math.floor(total)} mins`;
+};
+
+const toHour = (time) => {
+  return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
+};
