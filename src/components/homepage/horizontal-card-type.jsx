@@ -12,6 +12,8 @@ const HorizontalCardType = (props) => {
     let cat;
     if (name === 'Main Dishes') {
       cat = 'mainDish';
+    } else if (name === 'Tags') {
+      cat = 'tags';
     } else {
       cat = name.slice(0, -1).toLowerCase();
     }

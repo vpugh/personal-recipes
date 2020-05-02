@@ -7,6 +7,7 @@ import {
 import { useAuth } from '../../context/new-auth-context';
 import HorizontalCardContainer from './horizontal-card-container';
 import { Link } from 'react-router-dom';
+import HorizontalCardEmpty from './horizontal-card-empty';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
@@ -18,6 +19,7 @@ const LoggedInLanding = () => {
       <Link to='/add-recipe' className={classes.addNewButton}>
         Add Recipe
       </Link>
+      {recipes && recipes.length === 0 && <HorizontalCardEmpty />}
       <HorizontalCardContainer
         containerName='Recently Added'
         containerLink='/recipes/all-recipes'
@@ -49,6 +51,13 @@ const LoggedInLanding = () => {
         containerLink='/recipes/main-dish'
         containerView='Main Dishes'
         arr={recipes ? limitSortType(recipes, limit, 'mainDish') : null}
+      />
+
+      <HorizontalCardContainer
+        containerName='Tags'
+        containerLink='/recipes/tags'
+        containerView='Tags'
+        arr={recipes ? limitSortType(recipes, limit, 'tags') : null}
       />
     </div>
   );

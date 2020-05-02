@@ -6,12 +6,13 @@ import ListedRecipes from './listed-recipes';
 
 const GenericCategoryPage = (props) => {
   const { recipes } = useAuth();
-  console.log(props);
   const { type, category } = props.match.params;
   const categoryList = (arr, option, name) =>
     arr.filter((x) => {
       if (name === 'main-dish') {
         return x.mainDish.includes(upperCaseFirst(option)) === true;
+      } else if (name === 'tags') {
+        return x.tags.includes(option) === true;
       } else {
         return x[name].includes(upperCaseFirst(option)) === true;
       }

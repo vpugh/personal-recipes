@@ -47,6 +47,10 @@ const HorizontalCardContainer = (props) => {
     cardType = 'category',
   } = props;
 
+  if (arr && arr.length === 0) {
+    return null;
+  }
+
   return (
     <div style={{ marginBottom: 50 }}>
       <div className={classes.contentContainer}>
@@ -66,18 +70,20 @@ const HorizontalCardContainer = (props) => {
       </div>
       {cardType === 'category' ? (
         <div className={classes.grid}>
-          {arr
-            ? arr.map((type) => (
-                <HorizontalCardType
-                  type={type}
-                  link={containerLink}
-                  name={containerName}
-                  key={type}
-                />
-              ))
-            : Array(...Array(4)).map((r, index) => (
-                <Shimmer type='category' key={`${r} ${index}`} />
-              ))}
+          {arr &&
+            arr.map((type) => (
+              <HorizontalCardType
+                type={type}
+                link={containerLink}
+                name={containerName}
+                key={type}
+              />
+            ))}
+
+          {!arr &&
+            Array(...Array(4)).map((r, index) => (
+              <Shimmer type='category' key={`${r} ${index}`} />
+            ))}
         </div>
       ) : (
         <div className={classes.grid}>

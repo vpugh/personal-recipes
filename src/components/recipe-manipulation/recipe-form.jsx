@@ -72,6 +72,11 @@ const RecipeForm = (props) => {
   const [instructionsArray, setInstructionsArray] = useState(
     (recipe && recipe.instructions) || []
   );
+
+  const [tagsArray, setTagsArray] = useState((recipe && recipe.tags) || []);
+
+  const [notesArray, setNotesArray] = useState((recipe && recipe.notes) || []);
+
   const [recipeSaved, setRecipeSaved] = useState(false);
 
   const onSubmit = (e) => {
@@ -92,7 +97,8 @@ const RecipeForm = (props) => {
       equipmentNeeded: equipmentNeededArray,
       ingredients: ingredientsArray,
       instructions: instructionsArray,
-      notes: null,
+      notes: notesArray,
+      tags: tagsArray,
       updatedAt: new Date().toISOString(),
     };
     if (id) {
@@ -244,22 +250,64 @@ const RecipeForm = (props) => {
           func={() => addEmptyArray(ingredientsArray, setIngredientsArray)}
         />
         <p className={classes.textColorPrimary}>Instructions*</p>
-        {instructionsArray.length > 0 &&
-          instructionsArray.map((en, index) => (
-            <TextareaNested
-              inputType='instructionsArray'
-              placeholder='Add Instruction Step'
-              value={en}
-              index={index}
-              key={index}
-              required
-              array={instructionsArray}
-              setFunction={setInstructionsArray}
-            />
-          ))}
+        {instructionsArray.length > 0 && (
+          <div className={classes.flexContainer}>
+            {instructionsArray.map((en, index) => (
+              <TextareaNested
+                inputType='instructionsArray'
+                placeholder='Add Instruction Step'
+                value={en}
+                index={index}
+                key={index}
+                required
+                array={instructionsArray}
+                setFunction={setInstructionsArray}
+              />
+            ))}
+          </div>
+        )}
         <GhostButton
           text='Add Instruction Step'
           func={() => addEmptyArray(instructionsArray, setInstructionsArray)}
+        />
+        <p className={classes.textColorPrimary}>Notes</p>
+        {notesArray.length > 0 && (
+          <div className={classes.flexContainer}>
+            {notesArray.map((note, index) => (
+              <TextareaNested
+                inputType='notesArray'
+                placeholder='Add Note'
+                value={note}
+                index={index}
+                key={index}
+                required
+                array={notesArray}
+                setFunction={setNotesArray}
+              />
+            ))}
+          </div>
+        )}
+        <GhostButton
+          text='Add Note'
+          func={() => addEmptyArray(notesArray, setNotesArray)}
+        />
+        <p className={classes.textColorPrimary}>Tags</p>
+        {tagsArray.length > 0 &&
+          tagsArray.map((tag, index) => (
+            <TextInputNested
+              inputType='tagsArray'
+              placeholder='Add Tag'
+              value={tag}
+              index={index}
+              key={index}
+              required
+              array={tagsArray}
+              setFunction={setTagsArray}
+            />
+          ))}
+        <GhostButton
+          text='Add Tag'
+          func={() => addEmptyArray(tagsArray, setTagsArray)}
         />
         {recipeSaved && (
           <div style={{ padding: '40px 0 0 0', fontSize: 24 }}>
