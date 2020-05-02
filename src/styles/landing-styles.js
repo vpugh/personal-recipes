@@ -38,18 +38,9 @@ export const useStyles = makeStyles((theme) => ({
   subFontSize: {
     fontSize: 10,
   },
-  // style={{
-  //   color: 'rgb(87, 87, 87)',
-  //   borderRadius: 6,
-  //   fontSize: 18,
-  //   boxShadow: 'rgb(255, 204, 204) 4px 8px 44px',
-  //   background: 'rgb(254, 254, 254)',
-  //   padding: 20,
-  //   margin: '40px 0',
-  // }}
   addNewButton: {
     background: theme.palette.primary.secondary,
-    boxShadow: ' 4px 8px 44px #FFCCCC',
+    boxShadow: ' 4px 8px 16px #FFCCCC',
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
@@ -62,6 +53,10 @@ export const useStyles = makeStyles((theme) => ({
     border: 'none',
     textDecoration: 'none',
     margin: '40px 0 60px 0',
+    transition: '300ms ease-in-out',
+    '&:hover': {
+      boxShadow: '4px 6px 10px #FFADAD',
+    },
   },
   imageCardContainer: {},
   widgetContainer: {

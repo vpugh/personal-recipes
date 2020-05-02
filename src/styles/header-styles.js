@@ -40,7 +40,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
-    background: '#ffc3c3',
+    background: '#ffcccf',
   },
   userName: { margin: 0, padding: 0 },
   userNameLink: {

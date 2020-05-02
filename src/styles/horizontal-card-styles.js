@@ -13,7 +13,6 @@ export const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey.one,
     fontSize: 18,
     borderRadius: 6,
-    // boxShadow: `2 4 8 theme.palette.background.white`,
     boxShadow: '2px 4px 8px #FFCCCC',
     background: 'rgb(254, 254, 254)',
     padding: 20,

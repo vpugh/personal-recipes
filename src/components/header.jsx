@@ -32,7 +32,7 @@ const Header = () => {
         }}
       >
         <div className={`logo serif ${classes.logoLink}`}>
-          <Link style={{ color: 'inherit', textDecoration: 'none' }} to='/'>
+          <Link style={{ color: '#dd4048', textDecoration: 'none' }} to='/'>
             Personal Recipes
           </Link>
         </div>
