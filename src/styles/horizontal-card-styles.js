@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     borderRadius: 6,
     boxShadow: '2px 4px 8px #FFCCCC',
-    background: 'rgb(254, 254, 254)',
+    background: '#fefefe',
     padding: 20,
     transition: '300ms ease-in-out',
     '&:hover': {

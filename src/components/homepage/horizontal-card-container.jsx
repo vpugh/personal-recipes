@@ -1,9 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import HorizontalCardType from './horizontal-card-type';
-import HorizontalCard from './horizontal-card';
 import { Link } from 'react-router-dom';
-import Shimmer from '../shared/shimmer';
+import CategoryCard from './category-card';
+import RecipeCard from './recipe-card';
 
 const useStyles = makeStyles((theme) => ({
   subTitle: {
@@ -27,18 +26,19 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'row',
     },
   },
-  grid: {
+  grid: (props) => ({
     display: 'grid',
     [theme.breakpoints.up('sm')]: {
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns:
+        props.cardType === 'category' ? '1fr 1fr 1fr' : '1fr 1fr',
       gridAutoRows: 'auto',
       gridGap: 20,
     },
-  },
+  }),
 }));
 
 const HorizontalCardContainer = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const {
     containerName,
     containerLink,
@@ -69,32 +69,21 @@ const HorizontalCardContainer = (props) => {
         </div>
       </div>
       {cardType === 'category' ? (
-        <div className={classes.grid}>
-          {arr &&
-            arr.map((type) => (
-              <HorizontalCardType
-                type={type}
-                link={containerLink}
-                name={containerName}
-                key={type}
-              />
-            ))}
-
-          {!arr &&
-            Array(...Array(4)).map((r, index) => (
-              <Shimmer type='category' key={`${r} ${index}`} />
-            ))}
-        </div>
+        <CategoryCard
+          cardType={cardType}
+          containerName={containerName}
+          containerLink={containerLink}
+          containerView={containerView}
+          arr={arr}
+        />
       ) : (
-        <div className={classes.grid}>
-          {arr
-            ? arr.map((recipe) => (
-                <HorizontalCard recipe={recipe} key={recipe.id} />
-              ))
-            : Array(...Array(4)).map((r, index) => (
-                <Shimmer type='recipe' key={`${r} ${index}`} />
-              ))}
-        </div>
+        <RecipeCard
+          cardType={cardType}
+          containerName={containerName}
+          containerLink={containerLink}
+          containerView={containerView}
+          arr={arr}
+        />
       )}
     </div>
   );
