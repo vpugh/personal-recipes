@@ -36,18 +36,6 @@ const Header = () => {
             Personal Recipes
           </Link>
         </div>
-        <div className='searchbar'>
-          <button
-            onClick={() => alert('Search function coming')}
-            className={`${classes.searchButton} ${classes.hoverLink}`}
-          >
-            <img
-              src='/icons/Magnifying_Glass@2x.png'
-              alt='Settings Icon'
-              className={classes.iconSize}
-            />
-          </button>
-        </div>
         <div className='profile'>
           <div className={classes.profileDDContainer}>
             {isAuthenticated && !loading && (

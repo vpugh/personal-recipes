@@ -13,7 +13,7 @@ const TextInput = ({
   setFunction,
   type = 'text',
 }) => {
-  const id = labelTitle.toLowerCase();
+  const id = labelTitle ? labelTitle.toLowerCase() : null;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 20 }}>
       <label htmlFor={id} style={{ color: '#F65B5B' }}>

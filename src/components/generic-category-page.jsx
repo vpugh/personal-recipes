@@ -1,7 +1,10 @@
 import React from 'react';
 import CardContainer from './shared/card-container';
 import { useAuth } from '../context/new-auth-context';
-import { upperCaseFirst } from '../util/helper-functions';
+import {
+  upperCaseFirst,
+  getNameListConversion,
+} from '../util/helper-functions';
 import ListedRecipes from './listed-recipes';
 
 const GenericCategoryPage = (props) => {
@@ -30,7 +33,7 @@ const GenericCategoryPage = (props) => {
           marginBottom: 22,
         }}
       >
-        Home > {upperCaseFirst(category)} >{' '}
+        Home > {getNameListConversion('main-dish', 'label')} >{' '}
         <strong>{upperCaseFirst(type)}</strong>
       </div>
       <h1 className='cardTitle'>

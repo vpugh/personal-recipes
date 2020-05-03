@@ -107,6 +107,9 @@ export const makeServer = () => {
         createdAt() {
           return RecipeDetailsSelection(this.id, 'createdAt');
         },
+        favorite() {
+          return RecipeDetailsSelection(this.id, 'favorite');
+        },
         userId() {
           return RecipeDetailsSelection(this.id, 'userId');
         },

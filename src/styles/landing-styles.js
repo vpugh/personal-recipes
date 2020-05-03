@@ -40,7 +40,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   addNewButton: {
     background: theme.palette.primary.secondary,
-    boxShadow: ' 4px 8px 16px #FFCCCC',
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
@@ -52,10 +51,27 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: 16,
     border: 'none',
     textDecoration: 'none',
-    margin: '40px 0 60px 0',
+
     transition: '300ms ease-in-out',
     '&:hover': {
       boxShadow: '4px 6px 10px #FFADAD',
+    },
+  },
+  introBox: {
+    boxShadow: ' 4px 8px 16px #FFCCCC',
+    margin: '40px 0 60px 0',
+    '& > .text-container': {
+      padding: 20,
+      '& > p': {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 26,
+        color: '#575757',
+      },
+      '& > div': {
+        width: '60%',
+        margin: '0 auto',
+      },
     },
   },
   imageCardContainer: {},

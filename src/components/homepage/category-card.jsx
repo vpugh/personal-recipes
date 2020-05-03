@@ -38,15 +38,15 @@ const useStyles = makeStyles((theme) => ({
 
 const CategoryCard = (props) => {
   const classes = useStyles(props);
-  const { containerName, containerLink, arr } = props;
+  const { cardTitle, viewAllLink, arr } = props;
   return (
     <div className={classes.grid}>
       {arr &&
         arr.map((type) => (
           <HorizontalCardType
             type={type}
-            link={containerLink}
-            name={containerName}
+            link={viewAllLink}
+            name={cardTitle}
             key={type}
           />
         ))}

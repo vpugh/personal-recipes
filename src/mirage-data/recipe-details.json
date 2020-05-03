@@ -2,6 +2,7 @@
   {
     "title": "Chocolate Zucchini Bread",
     "cuisine": "American",
+    "favorite": false,
     "course": ["Dessert", "Breakfast"],
     "mainDish": "Other",
     "prepTime": 10,
@@ -51,6 +52,7 @@
   {
     "title": "Gluten-Free Lemon Bars With Almond Flour Crust ",
     "cuisine": "American",
+    "favorite": false,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 30,
@@ -60,7 +62,7 @@
     "createdAt": "2019-05-30T03:42:21.426398+00:00",
     "updatedAt": "2019-05-30T03:42:21.426398+00:00",
     "notes": [],
-    "tags": ["gluten-free", "low-carb"],
+    "tags": ["Gluten Free", "Low Carb"],
     "serves": 3,
     "serveType": "",
     "description": "With a buttery crust and luscious lemon curd, these tangy lemon bars taste like a fancy French tart in bar form. They happen to be gluten-free too. But if gluten isn't an issue for you, replace the sweet rice, oat, and tapioca flours with 140 grams (about 1 cup + 2 tablespoons) all-purpose wheat flour. We love this delightful recipe especially during the winter when citrus is at it's best and short days are brighter with a sweet treat.",
@@ -104,6 +106,7 @@
   {
     "title": "Bacon Ranch Keto Chicken Crust Pizza",
     "cuisine": "American",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Chicken",
     "prepTime": 10,
@@ -150,11 +153,12 @@
     "notes": [
       "A silicone baking mat can be used instead of the parchment paper to roll-out the crust and flip easily after the initial baking. To make things easier, a prepared Ranch dressing can be used instead of making it from scratch."
     ],
-    "tags": ["keto", "low-carb"]
+    "tags": ["Keto", "Low Carb"]
   },
   {
     "title": "20 Minute Garlic Beef And Broccoli Lo Mein",
     "cuisine": "Chinese",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Beef",
     "prepTime": 5,
@@ -192,11 +196,12 @@
     "notes": [
       "Alyssa Also Recommends: Want to make this even easier? Here are a few products that I LOVE: Finedine Mixing Bowls, Calphalon Cookware Set, Staub Cast Iron Skillet"
     ],
-    "tags": ["low-fat"]
+    "tags": ["Low Fat"]
   },
   {
     "title": "One Pot Caprese Pasta",
     "cuisine": "Italian",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Pasta/Noodles",
     "prepTime": 15,
@@ -235,6 +240,7 @@
   {
     "title": "Butter Chicken | Chicken Butter Masala",
     "cuisine": "Indian",
+    "favorite": false,
     "course": "Dinner",
     "mainDish": "Chicken",
     "userId": "1",
@@ -295,6 +301,7 @@
   {
     "title": "Lemon Bundt Cake",
     "cuisine": "American",
+    "favorite": false,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 75,
@@ -347,6 +354,7 @@
   {
     "title": "Fajita Breakfast Burritos",
     "cuisine": "Tex-Mex",
+    "favorite": false,
     "course": "Breakfast",
     "mainDish": "Sausage",
     "prepTime": 30,
@@ -403,6 +411,7 @@
   {
     "title": "Chocolate Pecan Pie",
     "cuisine": "American",
+    "favorite": true,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 15,
@@ -412,7 +421,7 @@
     "createdAt": "2020-01-09T03:42:21.426398+00:00",
     "updatedAt": "2020-01-09T03:42:21.426398+00:00",
     "notes": [],
-    "tags": ["holiday", "special occasion"],
+    "tags": ["Holiday", "Special Occasion"],
     "serves": 12,
     "serveType": "",
     "description": "Fudge Chocolate Pecan Pie is the best, decadent dessert to hit your holiday table!",
@@ -447,6 +456,7 @@
   {
     "title": "Apple Cider Beignet",
     "cuisine": "American",
+    "favorite": true,
     "course": ["Breakfast", "Snack"],
     "mainDish": "Other",
     "prepTime": 20,
@@ -506,6 +516,7 @@
     "course": "Side",
     "createdAt": "2020-04-18T02:56:15.715Z",
     "cuisine": "American",
+    "favorite": false,
     "description": "Random keto bread recipe someone shared on twitter",
     "equipmentNeeded": [],
     "ingredients": [
@@ -526,7 +537,7 @@
     ],
     "mainDish": "",
     "notes": [],
-    "tags": ["keto", "low-carb"],
+    "tags": ["Keto", "Low Carb"],
     "prepTime": 10,
     "recipeOrigin": "https://ketoconnect.net/wprm_print/16189",
     "serveType": "Slices",

@@ -40,9 +40,9 @@ const useStyles = makeStyles((theme) => ({
 const HorizontalCardContainer = (props) => {
   const classes = useStyles(props);
   const {
-    containerName,
-    containerLink,
-    containerView,
+    cardTitle,
+    viewAllLink,
+    viewAllText,
     arr,
     cardType = 'category',
   } = props;
@@ -55,33 +55,33 @@ const HorizontalCardContainer = (props) => {
     <div style={{ marginBottom: 50 }}>
       <div className={classes.contentContainer}>
         <h4 className={classes.subTitle} style={{ fontSize: 22 }}>
-          {containerName}
+          {cardTitle}
         </h4>
         <div>
           <Link
             className={classes.subTitle}
             style={{ color: '#000', textDecoration: 'underline' }}
-            to={`${containerLink}`}
-            query={containerLink}
+            to={`${viewAllLink}`}
+            query={viewAllLink}
           >
-            View All {containerView}
+            View All {viewAllText}
           </Link>
         </div>
       </div>
       {cardType === 'category' ? (
         <CategoryCard
           cardType={cardType}
-          containerName={containerName}
-          containerLink={containerLink}
-          containerView={containerView}
+          cardTitle={cardTitle}
+          viewAllLink={viewAllLink}
+          viewAllText={viewAllText}
           arr={arr}
         />
       ) : (
         <RecipeCard
           cardType={cardType}
-          containerName={containerName}
-          containerLink={containerLink}
-          containerView={containerView}
+          cardTitle={cardTitle}
+          viewAllLink={viewAllLink}
+          viewAllText={viewAllText}
           arr={arr}
         />
       )}
