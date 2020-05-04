@@ -23,7 +23,7 @@ const LoggedInLanding = () => {
         <div className='text-container'>
           <p>What are you looking to cook today?</p>
           <Autocomplete
-            options={recipes}
+            options={recipes || []}
             getOptionLabel={(option) => option.title}
             renderInput={(params) => (
               <TextField
@@ -36,7 +36,7 @@ const LoggedInLanding = () => {
           />
         </div>
         <Link to='/add-recipe' className={classes.addNewButton}>
-          Add Recipe
+          Add New Recipe
         </Link>
       </div>
       {recipes && recipes.length === 0 && <HorizontalCardEmpty />}

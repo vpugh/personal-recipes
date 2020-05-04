@@ -22,15 +22,7 @@ const Header = () => {
 
   return (
     <header className={classes.headerBackground}>
-      <Container
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          fontSize: 18,
-          maxWidth: '80%',
-        }}
-      >
+      <Container className={classes.container}>
         <div className={`logo serif ${classes.logoLink}`}>
           <Link style={{ color: '#dd4048', textDecoration: 'none' }} to='/'>
             Personal Recipes

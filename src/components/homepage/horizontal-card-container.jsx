@@ -6,7 +6,7 @@ import RecipeCard from './recipe-card';
 
 const useStyles = makeStyles((theme) => ({
   subTitle: {
-    fontSize: '16px',
+    fontSize: 16,
     lineHeight: '22px',
     color: theme.palette.primary.tertiary,
     marginTop: 0,
@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
       gridGap: 20,
     },
   }),
+  marginBottom: {
+    [theme.breakpoints.up('md')]: {
+      marginBottom: 50,
+    },
+    marginBottom: 20,
+  },
 }));
 
 const HorizontalCardContainer = (props) => {
@@ -52,7 +58,7 @@ const HorizontalCardContainer = (props) => {
   }
 
   return (
-    <div style={{ marginBottom: 50 }}>
+    <div className={classes.marginBottom}>
       <div className={classes.contentContainer}>
         <h4 className={classes.subTitle} style={{ fontSize: 22 }}>
           {cardTitle}

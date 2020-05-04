@@ -107,7 +107,6 @@ export const removeUrlDashes = (text) => {
     const n = text.split('-');
     const first = n[0];
     const second = n[1];
-    console.log('Split', n, first, second);
     return `${first}${[upperCaseFirst(second)]}`;
   } else {
     return text;

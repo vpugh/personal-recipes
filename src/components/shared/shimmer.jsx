@@ -1,13 +1,15 @@
 import React from 'react';
 import { useStyles } from '../../styles/shimmer-styles';
+import { useStyles as cardStyles } from '../../styles/horizontal-card-styles';
 
 const Shimmer = (props) => {
   const { type } = props;
   const classes = useStyles();
+  const classe = cardStyles();
 
   return (
     <div
-      className={`${classes.floatLeft}`}
+      className={`${classes.floatLeft} ${classe.horizontalCard}`}
       style={{
         color: 'rgb(87, 87, 87)',
         fontSize: 18,

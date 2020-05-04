@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
       marginRight: 0,
     },
     [theme.breakpoints.down('sm')]: {
-      marginBottom: 20,
+      marginBottom: 10,
     },
     fontWeight: 'normal',
     textDecoration: 'none',

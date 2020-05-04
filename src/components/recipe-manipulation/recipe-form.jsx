@@ -126,7 +126,7 @@ const RecipeForm = (props) => {
   }, []);
 
   return (
-    <CardContainer maxWidth={972}>
+    <CardContainer>
       <form onSubmit={onSubmit}>
         {headerContent}
         <TextInput

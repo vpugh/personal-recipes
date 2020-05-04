@@ -10,9 +10,6 @@ export const useStyles = makeStyles((theme) => ({
       width: '70%',
       maxWidth: 960,
     },
-    [theme.breakpoints.down('sm')]: {
-      margin: '0 20px',
-    },
     fontSize: 18,
   },
   subTitle: {
@@ -59,7 +56,10 @@ export const useStyles = makeStyles((theme) => ({
   },
   introBox: {
     boxShadow: ' 4px 8px 16px #FFCCCC',
-    margin: '40px 0 60px 0',
+    margin: '0 0 40px 0',
+    [theme.breakpoints.up('md')]: {
+      margin: '40px 0 60px 0',
+    },
     '& > .text-container': {
       padding: 20,
       '& > p': {
@@ -69,16 +69,11 @@ export const useStyles = makeStyles((theme) => ({
         color: '#575757',
       },
       '& > div': {
-        width: '60%',
-        margin: '0 auto',
+        [theme.breakpoints.up('md')]: {
+          width: '60%',
+          margin: '0 auto',
+        },
       },
-    },
-  },
-  imageCardContainer: {},
-  widgetContainer: {
-    [theme.breakpoints.down('sm')]: {
-      margin: '0px auto 72px',
-      maxWidth: 650,
     },
   },
 }));
