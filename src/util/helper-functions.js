@@ -1,3 +1,5 @@
+import NameList from '../data/name-list.json';
+
 export const replaceFractions = (text) => {
   let newText = text;
   if (newText.includes('1/2')) {
@@ -60,14 +62,57 @@ export const limitSortReverseArray = (
   type,
   sortType = 'forward'
 ) => {
-  const sortedArray = arr.concat().sort((a, b) => {
-    if (a[type] > b[type]) {
-      return sortType === 'forward' ? 1 : -1;
+  if (arr) {
+    const sortedArray = arr.concat().sort((a, b) => {
+      if (a[type] > b[type]) {
+        return sortType === 'forward' ? 1 : -1;
+      }
+      if (a[type] < b[type]) {
+        return sortType === 'forward' ? -1 : 1;
+      }
+      return 0;
+    });
+    return sortedArray.slice(0, limit - 1);
+  }
+  return [];
+};
+
+export const limitSortType = (arr, limit, recipeType) => {
+  const courseOptions = [];
+  for (let i in arr) {
+    var item = arr[i];
+    if (item[recipeType] !== '') {
+      const selectedOptions = item[recipeType];
+      courseOptions.push(selectedOptions);
     }
-    if (a[type] < b[type]) {
-      return sortType === 'forward' ? -1 : 1;
-    }
-    return 0;
-  });
-  return sortedArray.slice(0, limit - 1);
+  }
+  return [...new Set(courseOptions.flat())];
+  // return sortedArray.slice(0, limit - 1);
+};
+
+export const displayTotalTime = (cook, prep) => {
+  const total = cook + prep;
+  if (total > 60) {
+    return toHour(Math.floor(total / 60));
+  }
+  return `${Math.floor(total)} mins`;
+};
+
+const toHour = (time) => {
+  return `${time} ${time > 1 ? 'hrs' : 'hr'}`;
+};
+
+export const removeUrlDashes = (text) => {
+  if (text.includes('-')) {
+    const n = text.split('-');
+    const first = n[0];
+    const second = n[1];
+    return `${first}${[upperCaseFirst(second)]}`;
+  } else {
+    return text;
+  }
+};
+
+export const getNameListConversion = (name, type) => {
+  return NameList[removeUrlDashes(name)][type];
 };

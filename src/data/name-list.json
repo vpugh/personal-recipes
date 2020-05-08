@@ -1,0 +1,26 @@
+{
+  "mainDish": {
+    "label": "Main Dish",
+    "labelPlural": "Main Dishes",
+    "link": "main-dish"
+  },
+  "course": {
+    "label": "Course",
+    "labelPlural": "Courses",
+    "link": "course"
+  },
+  "cuisine": {
+    "label": "Cuisine",
+    "labelPlural": "Cuisines",
+    "link": "cuisine"
+  },
+  "tags": {
+    "label": "Tags",
+    "labelPlural": "Tags",
+    "link": "tags"
+  },
+  "recently-added": {
+    "label": "Recently Added",
+    "link": "recently-added"
+  }
+}

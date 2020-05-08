@@ -2,7 +2,25 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   headerBackground: {
-    padding: '23px 40px',
+    padding: '23px 30px',
+    [theme.breakpoints.up('md')]: {
+      padding: '23px 60px',
+    },
+  },
+  container: {
+    display: 'flex',
+    fontSize: 18,
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'space-between',
+      maxWidth: '80%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      '& .profile': {
+        marginTop: 20,
+      },
+    },
   },
   hoverLink: {
     '&:hover': { cursor: 'pointer', opacity: '0.5' },
@@ -37,7 +55,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
-    background: '#ffc3c3',
+    background: '#ffcccf',
   },
   userName: { margin: 0, padding: 0 },
   userNameLink: {

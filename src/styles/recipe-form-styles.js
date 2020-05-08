@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   textColorPrimary: {
     color: '#F65B5B',
+    marginTop: '2rem',
   },
   recipePageTitle: {
     marginTop: 0,

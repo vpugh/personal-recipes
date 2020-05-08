@@ -98,11 +98,17 @@ export const makeServer = () => {
         notes() {
           return RecipeDetailsSelection(this.id, 'notes');
         },
+        tags() {
+          return RecipeDetailsSelection(this.id, 'tags');
+        },
         updateAt() {
           return RecipeDetailsSelection(this.id, 'updatedAt');
         },
         createdAt() {
           return RecipeDetailsSelection(this.id, 'createdAt');
+        },
+        favorite() {
+          return RecipeDetailsSelection(this.id, 'favorite');
         },
         userId() {
           return RecipeDetailsSelection(this.id, 'userId');

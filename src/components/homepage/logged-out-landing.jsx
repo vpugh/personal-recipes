@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   impactSentence: {
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: 'bold',
     textAlign: 'center',
     padding: '0 40px',

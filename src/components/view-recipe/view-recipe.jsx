@@ -5,6 +5,7 @@ import useStyles from '../../styles/view-recipe-styles';
 import CardContainer from '../shared/card-container';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/new-auth-context';
+import Tag from '../shared/tags';
 
 const makeLink = (link) => {
   if (link.startsWith('http') || link.startsWith('www')) {
@@ -55,6 +56,7 @@ const ViewRecipe = (props) => {
       prepTime,
       totalTime,
       notes,
+      tags,
       serves,
       serveType,
     } = currentRecipe;
@@ -102,12 +104,8 @@ const ViewRecipe = (props) => {
               />
               <ListGenerator arr={instructions} header='Instructions' />
             </div>
-            {notes && (
-              <div>
-                <h3>Notes:</h3>
-                {notes}
-              </div>
-            )}
+            <ListGenerator arr={notes} header='Notes' />
+            <Tag text={tags} />
           </div>
         </div>
       </CardContainer>
@@ -115,7 +113,7 @@ const ViewRecipe = (props) => {
   }
 
   return (
-    <CardContainer maxWidth={660}>
+    <CardContainer>
       <p>Loading...</p>
     </CardContainer>
   );

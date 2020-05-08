@@ -4,11 +4,11 @@ export const useStyles = makeStyles((theme) => ({
   container: {
     [theme.breakpoints.up('md')]: {
       display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    [theme.breakpoints.down('sm')]: {
-      margin: '0 20px',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      margin: '0 auto',
+      width: '70%',
+      maxWidth: 960,
     },
     fontSize: 18,
   },
@@ -36,8 +36,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: 10,
   },
   addNewButton: {
-    background: '#FF8585',
-    boxShadow: ' 4px 8px 44px #FFCCCC',
+    background: theme.palette.primary.secondary,
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
@@ -49,13 +48,32 @@ export const useStyles = makeStyles((theme) => ({
     paddingBottom: 16,
     border: 'none',
     textDecoration: 'none',
-    marginTop: 40,
+
+    transition: '300ms ease-in-out',
+    '&:hover': {
+      boxShadow: '4px 6px 10px #FFADAD',
+    },
   },
-  imageCardContainer: {},
-  widgetContainer: {
-    [theme.breakpoints.down('sm')]: {
-      margin: '0px auto 72px',
-      maxWidth: 650,
+  introBox: {
+    boxShadow: ' 4px 8px 16px #FFCCCC',
+    margin: '0 0 40px 0',
+    [theme.breakpoints.up('md')]: {
+      margin: '40px 0 60px 0',
+    },
+    '& > .text-container': {
+      padding: 20,
+      '& > p': {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 26,
+        color: '#575757',
+      },
+      '& > div': {
+        [theme.breakpoints.up('md')]: {
+          width: '60%',
+          margin: '0 auto',
+        },
+      },
     },
   },
 }));

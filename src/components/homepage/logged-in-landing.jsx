@@ -1,89 +1,84 @@
 import React from 'react';
 import useStyles from '../../styles/landing-styles';
-import { Link } from 'react-router-dom';
-import AddRecipeWidget from './add-recipe-widget';
-import ImageCard from './landing-image-card';
-import Shimmer from '../shared/shimmer';
-import CardContainer from '../shared/card-container';
-import { limitSortReverseArray } from '../../util/helper-functions';
+import {
+  limitSortReverseArray,
+  limitSortType,
+} from '../../util/helper-functions';
 import { useAuth } from '../../context/new-auth-context';
+import HorizontalCardContainer from './horizontal-card-container';
+import { Link } from 'react-router-dom';
+import HorizontalCardEmpty from './horizontal-card-empty';
+import { getNameListConversion } from '../../util/helper-functions';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const LoggedInLanding = () => {
   const classes = useStyles();
   const { recipes } = useAuth();
-  const limit = 5;
+  const limit = 7;
 
   return (
     <div className={classes.container}>
-      <div className={classes.widgetContainer}>
-        <h4 className={classes.subTitle}>Recently Added</h4>
-        <CardContainer maxWidth={650} padding='20px'>
-          {recipes &&
-            recipes.length > 0 &&
-            limitSortReverseArray(
-              recipes,
-              limit,
-              'createdAt',
-              'reverse'
-            ).map((ra, index) => (
-              <AddRecipeWidget
-                key={`${ra.title} ${index}`}
-                recipe={ra}
-                index={index}
-                limit={limit}
+      <div className={classes.introBox} style={{ background: '#fff' }}>
+        <div className='text-container'>
+          <p>What are you looking to cook today?</p>
+          <Autocomplete
+            options={recipes || []}
+            getOptionLabel={(option) => option.title}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label='Search for a recipe'
+                variant='filled'
+                style={{ marginBottom: 30 }}
               />
-            ))}
-          {recipes === null && <Shimmer />}
-          {recipes && recipes.length === 0 && (
-            <>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                }}
-              >
-                <h2>No Recent Recipes</h2>
-                <p style={{ marginTop: 0, height: 76 * 3, opacity: '.7' }}>
-                  No worries, how about adding a recipe?
-                </p>
-                <div style={{ width: 400 }} />
-              </div>
-            </>
-          )}
-          <Link to='/add-recipe' className={classes.addNewButton}>
-            Add New Recipe
-          </Link>
-        </CardContainer>
-      </div>
-      <div>
-        <div className={classes.imageCardContainer}>
-          <ImageCard
-            text='All Recipes'
-            img='/images/all-recipes-image@2x.png'
-            direction='left'
-            to='/recipes/all-recipes'
-          />
-          <ImageCard
-            text='Main Dish'
-            img='/images/protein-image@2x.png'
-            direction='right'
-            to='/recipes/main-dish'
-          />
-          <ImageCard
-            text='Cuisine'
-            img='/images/cuisine-image@2x.png'
-            direction='left'
-            to='/recipes/cuisine'
-          />
-          <ImageCard
-            text='Course'
-            img='/images/course-image@2x.png'
-            direction='right'
-            to='/recipes/course'
+            )}
           />
         </div>
+        <Link to='/add-recipe' className={classes.addNewButton}>
+          Add New Recipe
+        </Link>
       </div>
+      {recipes && recipes.length === 0 && <HorizontalCardEmpty />}
+      <HorizontalCardContainer
+        cardTitle='Recently Added'
+        viewAllLink='/recipes/all-recipes'
+        viewAllText='Recipes'
+        arr={
+          recipes
+            ? limitSortReverseArray(recipes, limit, 'createdAt', 'reverse')
+            : null
+        }
+        cardType='recent'
+      />
+
+      <HorizontalCardContainer
+        cardTitle='Courses'
+        viewAllLink={`/recipes/${getNameListConversion('course', 'link')}`}
+        viewAllText='Courses'
+        arr={recipes ? limitSortType(recipes, limit, 'course') : null}
+      />
+
+      <HorizontalCardContainer
+        cardTitle='Cuisines'
+        viewAllLink={`/recipes/${getNameListConversion('cuisine', 'link')}`}
+        viewAllText='Cuisines'
+        arr={recipes ? limitSortType(recipes, limit, 'cuisine') : null}
+      />
+
+      <HorizontalCardContainer
+        cardTitle={getNameListConversion('mainDish', 'labelPlural')}
+        viewAllLink={`/recipes/${getNameListConversion('mainDish', 'link')}`}
+        viewAllText={getNameListConversion('mainDish', 'labelPlural')}
+        arr={recipes ? limitSortType(recipes, limit, 'mainDish') : null}
+      />
+
+      <HorizontalCardContainer
+        cardTitle='Tags'
+        viewAllLink='/recipes/tags'
+        viewAllText='Tags'
+        arr={recipes ? limitSortType(recipes, limit, 'tags') : null}
+      />
     </div>
   );
 };

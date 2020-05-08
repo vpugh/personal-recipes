@@ -1,6 +1,8 @@
-[{
+[
+  {
     "title": "Chocolate Zucchini Bread",
     "cuisine": "American",
+    "favorite": false,
     "course": ["Dessert", "Breakfast"],
     "mainDish": "Other",
     "prepTime": 10,
@@ -9,7 +11,10 @@
     "userId": "1",
     "createdAt": "2019-05-01T03:42:21.426398+00:00",
     "updatedAt": "2019-05-01T03:42:21.426398+00:00",
-    "notes": "*You do not need to peel the zucchini before grating. Cut off the ends, then hold the zucchini perpendicular (90-degree angle) to your grated to avoid long strands of zucchini. Wrap the bread tightly in plastic wrap and store at room temperature for up to 4 days. Bread can also be frozen (after being cooled fully). Wrap tightly and freeze for up to 2 months, then thaw in the fridge.",
+    "notes": [
+      "*You do not need to peel the zucchini before grating. Cut off the ends, then hold the zucchini perpendicular (90-degree angle) to your grated to avoid long strands of zucchini. Wrap the bread tightly in plastic wrap and store at room temperature for up to 4 days. Bread can also be frozen (after being cooled fully). Wrap tightly and freeze for up to 2 months, then thaw in the fridge."
+    ],
+    "tags": [],
     "serves": 10,
     "serveType": "slices",
     "description": "Chocolate zucchini bread that’s incredibly moist, not too sweet, and packed with chocolate chips. The grated zucchini dissolves as it bakes - leaving you with a delicious chocolate loaf that's deliciously tender.",
@@ -47,6 +52,7 @@
   {
     "title": "Gluten-Free Lemon Bars With Almond Flour Crust ",
     "cuisine": "American",
+    "favorite": false,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 30,
@@ -55,7 +61,8 @@
     "totalTime": null,
     "createdAt": "2019-05-30T03:42:21.426398+00:00",
     "updatedAt": "2019-05-30T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": ["Gluten Free", "Low Carb"],
     "serves": 3,
     "serveType": "",
     "description": "With a buttery crust and luscious lemon curd, these tangy lemon bars taste like a fancy French tart in bar form. They happen to be gluten-free too. But if gluten isn't an issue for you, replace the sweet rice, oat, and tapioca flours with 140 grams (about 1 cup + 2 tablespoons) all-purpose wheat flour. We love this delightful recipe especially during the winter when citrus is at it's best and short days are brighter with a sweet treat.",
@@ -99,6 +106,7 @@
   {
     "title": "Bacon Ranch Keto Chicken Crust Pizza",
     "cuisine": "American",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Chicken",
     "prepTime": 10,
@@ -142,11 +150,15 @@
       "Spread about 1/2 cup of the sauce on top of the pizza crust, then sprinkle 1/2 cup of cheese over it. Sprinkle on bacon and diced tomatoes. Sprinkle the remaining 1/2 mozzarella cheese on top.",
       "Return pizza to 400°F oven and bake for about 10 minutes. Cut into 8 slices and serve with remaining ranch sauce."
     ],
-    "notes": "A silicone baking mat can be used instead of the parchment paper to roll-out the crust and flip easily after the initial baking. To make things easier, a prepared Ranch dressing can be used instead of making it from scratch."
+    "notes": [
+      "A silicone baking mat can be used instead of the parchment paper to roll-out the crust and flip easily after the initial baking. To make things easier, a prepared Ranch dressing can be used instead of making it from scratch."
+    ],
+    "tags": ["Keto", "Low Carb"]
   },
   {
     "title": "20 Minute Garlic Beef And Broccoli Lo Mein",
     "cuisine": "Chinese",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Beef",
     "prepTime": 5,
@@ -181,11 +193,15 @@
       "In a small bowl whisk together the brown sugar soy sauce, hoisin sauce, sesame oil, ginger, red pepper and pepper.",
       "Add the spaghetti to the skillet and pour the sauce on top and toss until incorporated."
     ],
-    "notes": "Alyssa Also Recommends: Want to make this even easier? Here are a few products that I LOVE: Finedine Mixing Bowls, Calphalon Cookware Set, Staub Cast Iron Skillet"
+    "notes": [
+      "Alyssa Also Recommends: Want to make this even easier? Here are a few products that I LOVE: Finedine Mixing Bowls, Calphalon Cookware Set, Staub Cast Iron Skillet"
+    ],
+    "tags": ["Low Fat"]
   },
   {
     "title": "One Pot Caprese Pasta",
     "cuisine": "Italian",
+    "favorite": false,
     "course": ["Dinner", "Lunch"],
     "mainDish": "Pasta/Noodles",
     "prepTime": 15,
@@ -194,7 +210,8 @@
     "userId": "2",
     "createdAt": "2019-08-28T03:42:21.426398+00:00",
     "updatedAt": "2019-08-28T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": [],
     "serves": 4,
     "serveType": "",
     "description": "How does dinner in fifteen minutes sound? How about if it’s a delicious pasta with layers of flavor that’s made entirely in one pot? Even better! Our One Pot Caprese Pasta is all of those things and more. With tender linguine, fresh mozzarella, basil, and a touch of balsamic, it’s like a comforting carby version of a great caprese salad. But it has a few other tricks up its sleeve (and it couldn’t be easier to make).",
@@ -223,6 +240,7 @@
   {
     "title": "Butter Chicken | Chicken Butter Masala",
     "cuisine": "Indian",
+    "favorite": false,
     "course": "Dinner",
     "mainDish": "Chicken",
     "userId": "1",
@@ -231,7 +249,8 @@
     "totalTime": null,
     "createdAt": "2019-10-01T03:42:21.426398+00:00",
     "updatedAt": "2019-10-01T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": [],
     "serves": null,
     "serveType": "",
     "description": "Butter chicken is one of the most popular chicken recipes in India. Golden fried chicken pieces are cooked in a creamy tomato base. It is best served with roti, naan or pulao. ",
@@ -282,6 +301,7 @@
   {
     "title": "Lemon Bundt Cake",
     "cuisine": "American",
+    "favorite": false,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 75,
@@ -290,7 +310,8 @@
     "userId": "1",
     "createdAt": "2019-10-25T03:42:21.426398+00:00",
     "updatedAt": "2019-10-25T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": [],
     "serves": 8,
     "serveType": "",
     "description": "This classic lemon bundt cake recipe is perfect for any occasion: a bridal shower, summer BBQ, or even a treat for your family on a casual night in. The lemon glaze makes this cake perfectly moist. Top it with icing and zest and enjoy this beautiful and delicious treat.",
@@ -308,7 +329,8 @@
       "1 teaspoon vanilla extract",
       "1 cup whole milk",
       "nonstick cooking spray, for greasing",
-      "½ cup granulated sugar", "¼ cup lemon juice",
+      "½ cup granulated sugar",
+      "¼ cup lemon juice",
       "2 cups powdered sugar, sifted",
       "3 tablespoons lemon juice",
       "1 lemon, zested"
@@ -328,9 +350,11 @@
       "Transfer the cake to a serving platter, slice, and serve.",
       "Enjoy!"
     ]
-  }, {
+  },
+  {
     "title": "Fajita Breakfast Burritos",
     "cuisine": "Tex-Mex",
+    "favorite": false,
     "course": "Breakfast",
     "mainDish": "Sausage",
     "prepTime": 30,
@@ -339,7 +363,8 @@
     "totalTime": null,
     "createdAt": "2019-11-19T03:42:21.426398+00:00",
     "updatedAt": "2019-11-19T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": [],
     "serves": 8,
     "serveType": "burritos",
     "description": "Fajita Breakfast Burritos never tasted so good, especially when you don’t want to make breakfast! These make ahead breakfast burritos are an easy meal prep breakfast to make any time of year.",
@@ -382,9 +407,11 @@
       "To give them a crunch, heat 1/2 tablespoon of olive oil in a large skillet. When olive oil is fragrant, fry burritos for 30 seconds to 1 minute on each side or until golden brown.",
       "Serve with your favorite salsa and plain Greek yogurt."
     ]
-  }, {
+  },
+  {
     "title": "Chocolate Pecan Pie",
     "cuisine": "American",
+    "favorite": true,
     "course": "Dessert",
     "mainDish": "Other",
     "prepTime": 15,
@@ -393,7 +420,8 @@
     "totalTime": null,
     "createdAt": "2020-01-09T03:42:21.426398+00:00",
     "updatedAt": "2020-01-09T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": ["Holiday", "Special Occasion"],
     "serves": 12,
     "serveType": "",
     "description": "Fudge Chocolate Pecan Pie is the best, decadent dessert to hit your holiday table!",
@@ -424,9 +452,11 @@
       "Bake for 50-55 minutes or until centre is just set to the touch but still a little jiggly underneath. If your pie is browning too fast, loosely tent with foil.",
       "The pie will be puffed up as soon as it comes out of the oven, but it will deflate and flatten as it cools. Let cool on a wire rack for about 4 hours and serve warm, or refrigerate to chill overnight."
     ]
-  }, {
+  },
+  {
     "title": "Apple Cider Beignet",
     "cuisine": "American",
+    "favorite": true,
     "course": ["Breakfast", "Snack"],
     "mainDish": "Other",
     "prepTime": 20,
@@ -435,7 +465,8 @@
     "userId": "1",
     "createdAt": "2020-02-12T03:42:21.426398+00:00",
     "updatedAt": "2020-02-12T03:42:21.426398+00:00",
-    "notes": "",
+    "notes": [],
+    "tags": [],
     "serves": 36,
     "serveType": "beignets",
     "description": "Take beignets to the next level with the addition of apple cider and fragrant apple pie spice. The caramel dipping sauce gives this dish a double dose of apple cider for maximum fall flavor. The recipe yields enough for a crowd, so serve these as part of an autumn brunch spread for all of your family and friends.",
@@ -485,12 +516,28 @@
     "course": "Side",
     "createdAt": "2020-04-18T02:56:15.715Z",
     "cuisine": "American",
+    "favorite": false,
     "description": "Random keto bread recipe someone shared on twitter",
     "equipmentNeeded": [],
-    "ingredients": ["1 1/2 Cup Almond Flour", "6 Large eggs Separated", "1/4 cup Butter melted", "3 tsp Baking powder", "1/4 tsp Cream of Tartar *optional", "1 pinch Pink Himalayan Salt", "6 drops Liquid Stevia optional"],
-    "instructions": ["Preheat oven to 375.", "Separate the egg whites from the yolks. Add Cream of Tartar to the whites and beat until soft peaks are achieved.", "In a food processor combine the egg yolks, 1/3 of the beaten egg whites, melted butter, almond flour, baking powder and salt (Adding ~6 drops of liquid stevia to the batter can help reduce the mild egg taste). Mix until combined. This will be a lumpy thick dough until the whites are added.", "Add the remaining 2/3 of the egg whites and gently process until fully incorporated. Be careful not to overmix as this is what gives the bread it's volume!", "Pour mixture into a buttered 8x4 loaf pan. Bake for 30 minutes. Check with a toothpick to ensure the bread is cooked through. Enjoy! 1 loaf makes 20 slices."],
+    "ingredients": [
+      "1 1/2 Cup Almond Flour",
+      "6 Large eggs Separated",
+      "1/4 cup Butter melted",
+      "3 tsp Baking powder",
+      "1/4 tsp Cream of Tartar *optional",
+      "1 pinch Pink Himalayan Salt",
+      "6 drops Liquid Stevia optional"
+    ],
+    "instructions": [
+      "Preheat oven to 375.",
+      "Separate the egg whites from the yolks. Add Cream of Tartar to the whites and beat until soft peaks are achieved.",
+      "In a food processor combine the egg yolks, 1/3 of the beaten egg whites, melted butter, almond flour, baking powder and salt (Adding ~6 drops of liquid stevia to the batter can help reduce the mild egg taste). Mix until combined. This will be a lumpy thick dough until the whites are added.",
+      "Add the remaining 2/3 of the egg whites and gently process until fully incorporated. Be careful not to overmix as this is what gives the bread it's volume!",
+      "Pour mixture into a buttered 8x4 loaf pan. Bake for 30 minutes. Check with a toothpick to ensure the bread is cooked through. Enjoy! 1 loaf makes 20 slices."
+    ],
     "mainDish": "",
-    "notes": null,
+    "notes": [],
+    "tags": ["Keto", "Low Carb"],
     "prepTime": 10,
     "recipeOrigin": "https://ketoconnect.net/wprm_print/16189",
     "serveType": "Slices",

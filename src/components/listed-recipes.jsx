@@ -91,12 +91,10 @@ const ListedRecipes = ({ recipe, index, arrLength }) => {
           {!totalTime && `${displayTotalTime(cookTime, prepTime)}`}
           {totalTime && `${totalTime} ${totalTime < 60 ? 'mins' : ''}`}
         </span>
-        <span className={`${classes.displayFlexCenter} ${classes.subFontSize}`}>
-          <img
-            src='/icons/Utensils@2x.png'
-            alt='Settings Icon'
-            className={classes.icons}
-          />
+        <span
+          style={{ marginLeft: 12 }}
+          className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+        >
           {serves && `${wording} ${serves} ${serveType}`}
         </span>
       </div>
