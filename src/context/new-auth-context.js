@@ -54,12 +54,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       const isAuthenticated = await checkAuthentication();
-
       setIsAuthenticated(isAuthenticated);
 
+      async function getUser() {
+        return await authenticateUser(isAuthenticated);
+      }
+
+      async function getRecipes(user) {
+        return await getUserRecipes(user.user.id);
+      }
+
       if (isAuthenticated) {
-        const user = await authenticateUser(isAuthenticated);
-        const recipes = await getUserRecipes(user.user.id);
+        const user = await getUser();
+        const recipes = await getRecipes(user);
         setUser(user.user);
         setRecipes(recipes);
       }

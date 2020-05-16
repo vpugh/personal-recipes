@@ -6,10 +6,7 @@ import { useAuth } from '../../context/new-auth-context';
 const Landing = () => {
   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated) {
-    return <LoggedInLanding />;
-  }
-  return <LoggedOutLanding />;
+  return isAuthenticated ? <LoggedInLanding /> : <LoggedOutLanding />;
 };
 
 export default Landing;

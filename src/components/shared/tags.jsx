@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   tags: {
@@ -8,11 +8,11 @@ const useStyles = makeStyles({
     padding: '2px 9px',
     background: '#F4F4F4',
     borderRadius: 6,
-    marginRight: 5
-  }
+    marginRight: 5,
+  },
 });
 
-const checkIfArray = passedVar => {
+const checkIfArray = (passedVar) => {
   const isArray = Array.isArray(passedVar);
   if (isArray) {
     return passedVar.join(', ');
