@@ -1,10 +1,7 @@
 import React from 'react';
 import CardContainer from './shared/card-container';
 import { useAuth } from '../context/new-auth-context';
-import {
-  upperCaseFirst,
-  getNameListConversion,
-} from '../util/helper-functions';
+import { getNameListConversion, capitalize } from '../util/helper-functions';
 import ListedRecipes from './listed-recipes';
 
 const GenericCategoryPage = (props) => {
@@ -13,11 +10,9 @@ const GenericCategoryPage = (props) => {
   const categoryList = (arr, option, name) =>
     arr.filter((x) => {
       if (name === 'main-dish') {
-        return x.mainDish.includes(upperCaseFirst(option)) === true;
-      } else if (name === 'tags') {
-        return x.tags.includes(option) === true;
+        return x.mainDish.includes(capitalize(option)) === true;
       } else {
-        return x[name].includes(upperCaseFirst(option)) === true;
+        return x[name].includes(capitalize(option)) === true;
       }
     });
 
@@ -34,10 +29,10 @@ const GenericCategoryPage = (props) => {
         }}
       >
         Home > {getNameListConversion('main-dish', 'label')} >{' '}
-        <strong>{upperCaseFirst(type)}</strong>
+        <strong>{capitalize(type)}</strong>
       </div>
       <h1 className='cardTitle'>
-        {upperCaseFirst(type)} <br />
+        {capitalize(type)} <br />
       </h1>
       {categoryList(recipes, type, category).map((recipe, index) => (
         <ListedRecipes

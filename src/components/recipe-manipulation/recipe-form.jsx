@@ -15,6 +15,7 @@ import {
   getUserRecipes,
   saveRecipe,
 } from '../../util/api';
+import { capitalize } from '../../util/helper-functions';
 import { useAuth } from '../../context/new-auth-context';
 
 const fetchCourse = async (set) => {
@@ -81,6 +82,7 @@ const RecipeForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const newTags = tagsArray.map((x) => capitalize(x));
     const data = {
       title,
       cookTime: cookTime ? Number(cookTime) : null,
@@ -98,7 +100,7 @@ const RecipeForm = (props) => {
       ingredients: ingredientsArray,
       instructions: instructionsArray,
       notes: notesArray,
-      tags: tagsArray,
+      tags: newTags,
       updatedAt: new Date().toISOString(),
     };
     if (id) {

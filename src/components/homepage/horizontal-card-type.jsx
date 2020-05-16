@@ -21,13 +21,11 @@ const HorizontalCardType = (props) => {
       if (cat && recipe[cat]) {
         if (Array.isArray(recipe[cat])) {
           acc.push(recipe[cat].flat());
-        }
-        if (!Array.isArray(recipe[cat])) {
+        } else {
           acc.push(recipe[cat]);
         }
-        return acc;
       }
-      return null;
+      return acc;
     }, []);
 
     return `(${totals.filter((x) => x.includes(category) === true).length})`;
