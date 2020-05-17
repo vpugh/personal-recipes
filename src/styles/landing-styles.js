@@ -76,11 +76,12 @@ export const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  '@global': {
-    background: 'yellow',
+  root: {
     '& .MuiFormLabel-root.Mui-focused': {
-      background: 'purple',
-      color: '#000 !important',
+      color: '#000',
+    },
+    '& .MuiFormControl-fullWidth': {
+      background: theme.palette.background.main,
     },
   },
 }));
