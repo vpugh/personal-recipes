@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   cardContainer: (props) => ({
     maxWidth: 850,
     background: theme.palette.background.white,
-    boxShadow: '4px 8px 44px #FFCCCC',
+    boxShadow: `4px 8px 44px ${theme.palette.background.default}`,
     padding: 30,
     [theme.breakpoints.up('md')]: {
       padding: props.padding || '40px 50px',
@@ -17,7 +17,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     '& .cardTitle': {
       marginTop: 0,
-      marginBottom: '3rem',
+      [theme.breakpoints.up('md')]: {
+        marginBottom: '3rem',
+      },
     },
   }),
 }));

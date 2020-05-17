@@ -7,7 +7,7 @@ import { useAuth } from '../context/new-auth-context';
 const getSettings = async (set, id) => {
   const setting = await fetchSettings(id);
   if (setting) {
-    set(setting.setting.options);
+    set(setting.setting);
   } else {
     set([]);
   }
@@ -31,30 +31,45 @@ const UserProfile = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             {settings &&
-              settings.map((setting) => {
-                const settingName = Object.keys(setting);
-                const settingValues = Object.values(setting)[0];
-                return (
-                  <React.Fragment key={settingName}>
+              Object.entries(settings).map((setting) => {
+                console.log(setting);
+                const settingName = setting[0];
+                const settingValues = setting[1];
+                return settingName !== 'id' ? (
+                  <React.Fragment key={setting}>
                     <h3 style={{ marginBottom: 0 }}>
                       {upperCaseFirst(settingName)}
                     </h3>
-                    {settingValues.length > 0 && (
+                    {settingValues.length > 0 ? (
                       <ul style={{ margin: '.5rem 0 0 0', padding: 0 }}>
-                        {settingValues.map((set) => (
-                          <li style={{ marginLeft: '1rem' }} key={set}>
-                            {set}
-                          </li>
-                        ))}
+                        {settingName === 'themes'
+                          ? settingValues.map((themeData) => {
+                              return (
+                                <React.Fragment key={themeData.selected}>
+                                  {themeData.selected && (
+                                    <p>Selected Theme: {themeData.selected}</p>
+                                  )}
+                                  {themeData.options && (
+                                    <ul>
+                                      {themeData.options.map((option) => (
+                                        <li>{option}</li>
+                                      ))}
+                                    </ul>
+                                  )}
+                                </React.Fragment>
+                              );
+                            })
+                          : settingValues.map((set) => (
+                              <li style={{ marginLeft: '1rem' }} key={set}>
+                                {set}
+                              </li>
+                            ))}
                       </ul>
-                    )}
-                    {settingValues.length === 0 && (
-                      <p style={{ marginTop: '.5rem' }}>
-                        No extra {settingName}
-                      </p>
+                    ) : (
+                      <p style={{ marginTop: '.5rem' }}>No extra {setting}</p>
                     )}
                   </React.Fragment>
-                );
+                ) : null;
               })}
           </div>
           <div>

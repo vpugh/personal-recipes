@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Landing from './homepage/landing';
 import Container from '../grid/container';
 import AddRecipe from './recipe-manipulation/add-recipe';
@@ -13,9 +13,16 @@ import UserProfile from './user-profile';
 import PrivateRoute from './private-route';
 import GenericCategoryPage from './generic-category-page';
 import GenericRecipePage from './generic-recipe-page';
+import { useAuth } from '../context/new-auth-context';
 
-const Main = () => {
+const Main = (props) => {
   const classes = useStyles();
+  const { selectedTheme } = useAuth();
+
+  useEffect(() => {
+    document.body.style.background = props.bgColor(selectedTheme);
+  }, [props, props.bgColor, selectedTheme]);
+
   return (
     <div className={classes.padding}>
       <Container>

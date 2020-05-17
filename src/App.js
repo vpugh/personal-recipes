@@ -6,8 +6,18 @@ import { makeServer } from './mirage-server';
 import { AuthProvider } from './context/new-auth-context';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
+// ackground-color: #FFEDED;
+//   background-color: #E2FAFF;
 
 makeServer();
+
+const themeColor = (color) => {
+  if (color) {
+    return theme.palette[color].background.main;
+  } else {
+    return '#white';
+  }
+};
 
 function App() {
   return (
@@ -15,7 +25,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <div className='App'>
           <Header />
-          <Main />
+          <Main bgColor={themeColor} />
         </div>
       </ThemeProvider>
     </AuthProvider>

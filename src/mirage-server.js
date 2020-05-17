@@ -121,12 +121,19 @@ export const makeServer = () => {
         userId() {
           return this.id + 1;
         },
-        options() {
+        addedCourses() {
+          return [];
+        },
+        addedCuisines() {
+          return [];
+        },
+        addedMains() {
+          return [];
+        },
+        themes() {
           return [
-            { courses: [] },
-            { cuisines: [] },
-            { mains: [] },
-            { specialties: ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'] },
+            { selected: 'pink' },
+            { options: ['pink', 'green', 'purple', 'blue'] },
           ];
         },
       }),

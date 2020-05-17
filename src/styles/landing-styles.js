@@ -51,11 +51,11 @@ export const useStyles = makeStyles((theme) => ({
 
     transition: '300ms ease-in-out',
     '&:hover': {
-      boxShadow: '4px 6px 10px #FFADAD',
+      boxShadow: `4px 6px 10px ${theme.palette.primary.main}`,
     },
   },
   introBox: {
-    boxShadow: ' 4px 8px 16px #FFCCCC',
+    boxShadow: `4px 8px 16px ${theme.palette.primary.pale}`,
     margin: '0 0 40px 0',
     [theme.breakpoints.up('md')]: {
       margin: '40px 0 60px 0',
@@ -74,6 +74,13 @@ export const useStyles = makeStyles((theme) => ({
           margin: '0 auto',
         },
       },
+    },
+  },
+  '@global': {
+    background: 'yellow',
+    '& .MuiFormLabel-root.Mui-focused': {
+      background: 'purple',
+      color: '#000 !important',
     },
   },
 }));

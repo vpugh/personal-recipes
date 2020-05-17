@@ -19,6 +19,8 @@ export const AuthProvider = ({ children }) => {
     return JSON.parse(window.localStorage.getItem('authData'));
   };
 
+  const selectedTheme = 'pink';
+
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUser(null);
@@ -87,6 +89,7 @@ export const AuthProvider = ({ children }) => {
         handleLogin,
         updateRecipes,
         setCurrentUser,
+        selectedTheme,
       }}
     >
       {children}

@@ -9,16 +9,35 @@ export const useStyles = makeStyles((theme) => ({
   subFontSize: {
     fontSize: 10,
   },
+  favoriteIconFull: {
+    fontSize: 36,
+    color: theme.palette.primary.pale,
+    // FAACAC
+    paddingRight: 10,
+    paddingLeft: 30,
+    '&:hover': {
+      opacity: '.4',
+    },
+  },
+  favoriteIconOutline: {
+    fontSize: 36,
+    color: theme.palette.primary.pale,
+    paddingRight: 10,
+    paddingLeft: 30,
+    '&:hover': {
+      opacity: '.4',
+    },
+  },
   horizontalCard: {
     color: theme.palette.grey.one,
     fontSize: 18,
     borderRadius: 6,
-    boxShadow: '2px 4px 8px #FFCCCC',
-    background: '#fefefe',
+    boxShadow: `2px 4px 8px ${theme.palette.primary.main}`,
+    background: theme.palette.background.white,
     padding: 20,
     transition: '300ms ease-in-out',
     '&:hover': {
-      boxShadow: '4px 6px 10px #FFADAD',
+      boxShadow: `4px 6px 10px ${theme.palette.primary.secondary}`,
     },
     '&:last-child': {
       marginRight: 0,

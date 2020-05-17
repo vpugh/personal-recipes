@@ -24,7 +24,7 @@ const Header = () => {
     <header className={classes.headerBackground}>
       <Container className={classes.container}>
         <div className={`logo serif ${classes.logoLink}`}>
-          <Link style={{ color: '#dd4048', textDecoration: 'none' }} to='/'>
+          <Link className={classes.logo} to='/'>
             Personal Recipes
           </Link>
         </div>
@@ -41,7 +41,6 @@ const Header = () => {
                     display: !user.avatar ? 'flex' : null,
                     alignItems: !user.avatar ? 'center' : null,
                     fontWeight: !user.avatar ? 'bold' : null,
-                    color: !user.avatar ? '#6b0606' : null,
                   }}
                   className={classes.userHeaderAvatar}
                 >

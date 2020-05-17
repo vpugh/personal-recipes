@@ -1,4 +1,11 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  coloredTitles: {
+    color: theme.palette.primary.tertiary,
+  },
+}));
 
 const onChange = (e, set) => {
   const { value } = e.target;
@@ -14,9 +21,10 @@ const TextInput = ({
   type = 'text',
 }) => {
   const id = labelTitle ? labelTitle.toLowerCase() : null;
+  const classes = useStyles();
   return (
     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 20 }}>
-      <label htmlFor={id} style={{ color: '#F65B5B' }}>
+      <label htmlFor={id} className={classes.coloredTitles}>
         {labelTitle}
         {required && '*'}
       </label>

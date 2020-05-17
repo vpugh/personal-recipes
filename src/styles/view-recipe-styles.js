@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
     background: '#FEFEFE',
-    boxShadow: '4px 8px 44px #FFCCCC',
+    boxShadow: `4px 8px 44px ${theme.palette.primary.pale}`,
     padding: '40px 50px',
     color: '#575757',
     margin: '0 auto 72px auto',

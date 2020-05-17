@@ -44,6 +44,10 @@ export const useStyles = makeStyles((theme) => ({
     background: 'transparent',
     transition: '300ms ease-in-out',
   },
+  logo: {
+    color: theme.palette.primary.tertiary,
+    textDecoration: 'none',
+  },
   iconSize: {
     width: 24,
     height: 24,
@@ -55,7 +59,8 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
-    background: '#ffcccf',
+    background: theme.palette.primary.pale,
+    color: theme.palette.primary.tertiary,
   },
   userName: { margin: 0, padding: 0 },
   userNameLink: {

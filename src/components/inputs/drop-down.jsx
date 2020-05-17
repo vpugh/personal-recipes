@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import { Tooltip, IconButton } from '@material-ui/core';
+import { Tooltip, IconButton, makeStyles } from '@material-ui/core';
 import HelpIcon from '@material-ui/icons/Help';
+
+const useStyles = makeStyles((theme) => ({
+  coloredTitles: {
+    color: theme.palette.primary.tertiary,
+  },
+}));
 
 const DropDown = ({
   labelTitle,
@@ -13,6 +19,7 @@ const DropDown = ({
 }) => {
   const id = labelTitle.toLowerCase();
   const [handleMultiple, setHandleMultiple] = useState(multiple || false);
+  const classes = useStyles();
 
   const handleOnChange = (e, set) => {
     const { value, options } = e.target;
@@ -36,7 +43,7 @@ const DropDown = ({
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: 20 }}>
-      <label htmlFor={id} style={{ color: '#F65B5B' }}>
+      <label htmlFor={id} className={classes.coloredTitles}>
         {labelTitle}
         {required && '*'}
         {handleMultiple && Array.isArray(value) && ` - ${value.join(', ')}`}

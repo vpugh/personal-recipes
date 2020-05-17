@@ -129,7 +129,7 @@ const RecipeForm = (props) => {
 
   return (
     <CardContainer>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={classes.recipeForm}>
         {headerContent}
         <TextInput
           labelTitle='Recipe Title'

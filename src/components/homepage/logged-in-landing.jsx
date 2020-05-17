@@ -25,6 +25,7 @@ const LoggedInLanding = () => {
           <Autocomplete
             options={recipes || []}
             getOptionLabel={(option) => option.title}
+            classes={{ root: classes.root }}
             renderInput={(params) => (
               <TextField
                 {...params}

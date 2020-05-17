@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import useStyles from '../../styles/horizontal-card-styles';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import { useAuth } from '../../context/new-auth-context';
 
 const HorizontalCard = (props) => {
-  const classes = useStyles();
+  const { selectedTheme } = useAuth();
+  const classes = useStyles({ theme: selectedTheme });
   const { recipe } = props;
   const {
     id,
@@ -62,29 +64,9 @@ const HorizontalCard = (props) => {
           )}
         </div>
         {favorite ? (
-          <StarRoundedIcon
-            style={{
-              fontSize: 36,
-              color: '#FAACAC',
-              paddingRight: 10,
-              paddingLeft: 30,
-              '&:hover': {
-                opacity: '.4',
-              },
-            }}
-          />
+          <StarRoundedIcon className={classes.favoriteIconFull} />
         ) : (
-          <StarBorderRoundedIcon
-            style={{
-              fontSize: 36,
-              color: '#FAACAC',
-              paddingRight: 10,
-              paddingLeft: 30,
-              '&:hover': {
-                opacity: '.4',
-              },
-            }}
-          />
+          <StarBorderRoundedIcon className={classes.favoriteIconOutline} />
         )}
       </div>
     </Link>

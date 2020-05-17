@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import RecipeForm from './recipe-form';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  pageHeader: {
+    marginBottom: '2rem',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'baseline',
+    },
+  },
+}));
 
 const AddRecipe = () => {
   const [showTemporaryRecipe, setShowTemporaryRecipe] = useState(false);
   const [temporaryRecipe, setTemporaryRecipe] = useState('');
+  const classes = useStyles();
 
   const showTempRecipes = () => {
     setShowTemporaryRecipe(!showTemporaryRecipe);
@@ -16,13 +29,7 @@ const AddRecipe = () => {
 
   const header = (
     <>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'baseline',
-        }}
-      >
+      <div className={classes.pageHeader}>
         <h1 className='cardTitle'>Add Recipe</h1>
         <div
           role='button'
