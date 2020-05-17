@@ -14,14 +14,41 @@ import PrivateRoute from './private-route';
 import GenericCategoryPage from './generic-category-page';
 import GenericRecipePage from './generic-recipe-page';
 import { useAuth } from '../context/new-auth-context';
+import { fetchSettings } from '../util/api';
+
+const getSettings = async (set, id) => {
+  const setting = await fetchSettings(id);
+  if (setting) {
+    set(setting.setting.themes[0].selected);
+    window.localStorage.setItem(
+      'selectedThemeData',
+      setting.setting.themes[0].selected
+    );
+  } else {
+    set('default');
+  }
+};
 
 const Main = (props) => {
   const classes = useStyles();
-  const { selectedTheme } = useAuth();
+  const { user } = useAuth();
 
   useEffect(() => {
-    document.body.style.background = props.bgColor(selectedTheme);
-  }, [props, props.bgColor, selectedTheme]);
+    document.body.style.background = props.bgColor();
+    const userCheck = user ? true : false;
+    const storedTheme = window.localStorage.getItem('selectedThemeData');
+    if (storedTheme) {
+      props.setSelectedTheme(storedTheme);
+    }
+    if (
+      !storedTheme &&
+      user &&
+      userCheck &&
+      props.selectedTheme === 'default'
+    ) {
+      getSettings(props.setSelectedTheme, user.id);
+    }
+  }, [props, props.bgColor, user]);
 
   return (
     <div className={classes.padding}>

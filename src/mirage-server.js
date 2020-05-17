@@ -132,7 +132,7 @@ export const makeServer = () => {
         },
         themes() {
           return [
-            { selected: 'pink' },
+            { selected: 'blue' },
             { options: ['pink', 'green', 'purple', 'blue'] },
           ];
         },

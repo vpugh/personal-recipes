@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/header';
 import './App.css';
 import Main from './components/main';
@@ -10,18 +10,9 @@ import pinkTheme from './theme/pink-theme';
 import blueTheme from './theme/blue-theme';
 import purpleTheme from './theme/purple-theme';
 import greenTheme from './theme/green-theme';
+import { useEffect } from 'react';
 
 makeServer();
-
-const selectedTheme = 'pink';
-
-const themeColor = (color) => {
-  if (color) {
-    return returnTheme(selectedTheme).palette.background.main;
-  } else {
-    return '#white';
-  }
-};
 
 const returnTheme = (selected) => {
   switch (selected) {
@@ -39,12 +30,23 @@ const returnTheme = (selected) => {
 };
 
 function App() {
+  const [selectedTheme, setSelectedTheme] = useState('default');
+
+  const themeColor = () => {
+    return returnTheme(selectedTheme).palette.background.main;
+  };
+
+  useEffect(() => {}, []);
   return (
     <AuthProvider>
       <ThemeProvider theme={returnTheme(selectedTheme)}>
         <div className='App'>
           <Header />
-          <Main bgColor={themeColor} />
+          <Main
+            bgColor={themeColor}
+            setSelectedTheme={setSelectedTheme}
+            selectedTheme={selectedTheme}
+          />
         </div>
       </ThemeProvider>
     </AuthProvider>
