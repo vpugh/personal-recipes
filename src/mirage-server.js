@@ -186,6 +186,12 @@ export const makeServer = () => {
         return schema.settings.findBy({ userId });
       });
 
+      this.patch('/v1/settings/:id', (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        const id = request.params.id;
+        return schema.db.settings.update(id, attrs);
+      });
+
       // User endpoints
       this.get('/v1/users');
 

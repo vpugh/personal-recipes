@@ -62,3 +62,7 @@ export const updateRecipe = (id, data) => {
 export const saveRecipe = (data) => {
   return fetchPost('recipe', JSON.stringify(data));
 };
+
+export const updateSettings = (id, data) => {
+  return fetchPatch(`settings/${id}`, JSON.stringify(data));
+};

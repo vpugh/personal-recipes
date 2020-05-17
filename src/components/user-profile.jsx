@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CardContainer from './shared/card-container';
 import { upperCaseFirst } from '../util/helper-functions';
-import { fetchSettings } from '../util/api';
+import { fetchSettings, updateSettings } from '../util/api';
 import { useAuth } from '../context/new-auth-context';
+import ThemeDropDown from './inputs/theme-drop-down';
 
 const getSettings = async (set, id) => {
   const setting = await fetchSettings(id);
@@ -16,6 +17,20 @@ const getSettings = async (set, id) => {
 const UserProfile = () => {
   const { isAuthenticated, user } = useAuth();
   const [settings, setSettings] = useState();
+
+  const handleSettingUpdates = (updateTheme = false) => {
+    const data = {
+      addedCourses: [],
+      addedCuisines: [],
+      addedMains: [],
+      themes: [...settings.themes],
+    };
+    if (updateTheme) {
+      data.themes[0].selected = updateTheme;
+    }
+    const id = settings.id;
+    updateSettings(id, data);
+  };
 
   useEffect(() => {
     if (user && user.id) {
@@ -32,7 +47,6 @@ const UserProfile = () => {
           <div>
             {settings &&
               Object.entries(settings).map((setting) => {
-                console.log(setting);
                 const settingName = setting[0];
                 const settingValues = setting[1];
                 return settingName !== 'id' ? (
@@ -42,28 +56,18 @@ const UserProfile = () => {
                     </h3>
                     {settingValues.length > 0 ? (
                       <ul style={{ margin: '.5rem 0 0 0', padding: 0 }}>
-                        {settingName === 'themes'
-                          ? settingValues.map((themeData) => {
-                              return (
-                                <React.Fragment key={themeData.selected}>
-                                  {themeData.selected && (
-                                    <p>Selected Theme: {themeData.selected}</p>
-                                  )}
-                                  {themeData.options && (
-                                    <ul>
-                                      {themeData.options.map((option) => (
-                                        <li>{option}</li>
-                                      ))}
-                                    </ul>
-                                  )}
-                                </React.Fragment>
-                              );
-                            })
-                          : settingValues.map((set) => (
-                              <li style={{ marginLeft: '1rem' }} key={set}>
-                                {set}
-                              </li>
-                            ))}
+                        {settingName === 'themes' ? (
+                          <ThemeDropDown
+                            data={settingValues}
+                            handleSettingUpdates={handleSettingUpdates}
+                          />
+                        ) : (
+                          settingValues.map((set) => (
+                            <li style={{ marginLeft: '1rem' }} key={set}>
+                              {set}
+                            </li>
+                          ))
+                        )}
                       </ul>
                     ) : (
                       <p style={{ marginTop: '.5rem' }}>No extra {setting}</p>
