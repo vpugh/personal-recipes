@@ -243,6 +243,16 @@ export const makeServer = () => {
         name: 'Daniel Salazar',
         email: 'test@mytest.com',
         password: hashPassword(process.env.REACT_APP_PASS1),
+        userId: 1,
+        settings: {
+          addedCourses: [],
+          addedCuisines: [],
+          addedMains: [],
+          themes: [
+            { selected: 'blue' },
+            { options: ['pink', 'green', 'purple', 'blue'] },
+          ],
+        },
       });
       server.schema.users.create({
         username: 'HullenLvl5',
@@ -250,6 +260,16 @@ export const makeServer = () => {
         email: 'rac@quad.com',
         avatar: 'John_gallery_001.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        userId: 2,
+        settings: {
+          addedCourses: [],
+          addedCuisines: [],
+          addedMains: [],
+          themes: [
+            { selected: 'pink' },
+            { options: ['pink', 'green', 'purple', 'blue'] },
+          ],
+        },
       });
       server.schema.users.create({
         username: 'Dutch',
@@ -257,6 +277,16 @@ export const makeServer = () => {
         email: 'yala@racquad.com',
         avatar: 'Dutch_gallery_004.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        userId: 3,
+        settings: {
+          addedCourses: [],
+          addedCuisines: [],
+          addedMains: [],
+          themes: [
+            { selected: 'purple' },
+            { options: ['pink', 'green', 'purple', 'blue'] },
+          ],
+        },
       });
       server.createList('recipe', 11);
       server.createList('setting', 3);
