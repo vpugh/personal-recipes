@@ -10,7 +10,6 @@ import pinkTheme from './theme/pink-theme';
 import blueTheme from './theme/blue-theme';
 import purpleTheme from './theme/purple-theme';
 import greenTheme from './theme/green-theme';
-import { useEffect } from 'react';
 
 makeServer();
 
@@ -36,7 +35,6 @@ function App() {
     return returnTheme(selectedTheme).palette.background.main;
   };
 
-  useEffect(() => {}, []);
   return (
     <AuthProvider>
       <ThemeProvider theme={returnTheme(selectedTheme)}>
