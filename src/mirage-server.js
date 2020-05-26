@@ -36,6 +36,10 @@ export const makeServer = () => {
         embed: true,
         root: false,
       }),
+      user: ApplicationSerializer.extend({
+        embed: true,
+        include: ['recipe', 'setting'],
+      }),
     },
     models: {
       recipe: Model.extend({
@@ -43,6 +47,7 @@ export const makeServer = () => {
       }),
       user: Model.extend({
         recipe: hasMany(),
+        setting: hasMany(),
       }),
       setting: Model.extend({
         user: belongsTo(),
@@ -62,31 +67,31 @@ export const makeServer = () => {
         cuisine() {
           return RecipeDetailsSelection(this.id, 'cuisine');
         },
-        mainDish() {
+        main_dish() {
           return RecipeDetailsSelection(this.id, 'mainDish');
         },
-        prepTime() {
+        prep_time() {
           return RecipeDetailsSelection(this.id, 'prepTime');
         },
-        cookTime() {
+        cook_time() {
           return RecipeDetailsSelection(this.id, 'cookTime');
         },
-        totalTime() {
+        total_time() {
           return RecipeDetailsSelection(this.id, 'totalTime');
         },
         serves() {
           return RecipeDetailsSelection(this.id, 'serves');
         },
-        serveType() {
+        serve_type() {
           return RecipeDetailsSelection(this.id, 'serveType');
         },
         description() {
           return RecipeDetailsSelection(this.id, 'description');
         },
-        recipeOrigin() {
+        recipe_origin() {
           return RecipeDetailsSelection(this.id, 'recipeOrigin');
         },
-        equipmentNeeded() {
+        equipment_needed() {
           return RecipeDetailsSelection(this.id, 'equipmentNeeded');
         },
         ingredients() {
@@ -101,10 +106,10 @@ export const makeServer = () => {
         tags() {
           return RecipeDetailsSelection(this.id, 'tags');
         },
-        updateAt() {
+        update_at() {
           return RecipeDetailsSelection(this.id, 'updatedAt');
         },
-        createdAt() {
+        created_at() {
           return RecipeDetailsSelection(this.id, 'createdAt');
         },
         favorite() {
@@ -127,6 +132,8 @@ export const makeServer = () => {
             { cuisines: [] },
             { mains: [] },
             { specialties: ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'] },
+            { homepageLimit: 7 },
+            { showFractions: true },
           ];
         },
       }),
@@ -230,6 +237,7 @@ export const makeServer = () => {
         name: 'Daniel Salazar',
         email: 'test@mytest.com',
         password: hashPassword(process.env.REACT_APP_PASS1),
+        id: 1,
       });
       server.schema.users.create({
         username: 'HullenLvl5',
@@ -237,6 +245,7 @@ export const makeServer = () => {
         email: 'rac@quad.com',
         avatar: 'John_gallery_001.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        id: 2,
       });
       server.schema.users.create({
         username: 'Dutch',
@@ -244,6 +253,7 @@ export const makeServer = () => {
         email: 'yala@racquad.com',
         avatar: 'Dutch_gallery_004.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        id: 3,
       });
       server.createList('recipe', 11);
       server.createList('setting', 3);

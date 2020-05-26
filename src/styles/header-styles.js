@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: '23px 30px',
     [theme.breakpoints.up('md')]: {
       padding: '23px 60px',
+      marginBottom: 54,
     },
   },
   container: {
@@ -29,6 +30,7 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: 28,
     transition: '300ms ease-in-out',
     '&:hover': { cursor: 'pointer', opacity: '0.5' },
+    textDecoration: 'none',
   },
   searchButton: {
     marginRight: 30,

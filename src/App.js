@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './components/header';
+import Header from './areas/header/header';
 import './App.css';
-import Main from './components/main';
+import Main from './Main';
 import { makeServer } from './mirage-server';
-import { AuthProvider } from './context/new-auth-context';
+import { AuthProvider } from './context/auth-context';
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme';
 

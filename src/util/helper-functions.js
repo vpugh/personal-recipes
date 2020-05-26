@@ -52,6 +52,16 @@ export const upperCaseFirst = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+export const capitalize = (str) => {
+  str = str.split(' ');
+
+  for (let i = 0, x = str.length; i < x; i++) {
+    str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+  }
+
+  return str.join(' ');
+};
+
 export const removeSeparate = (arr) => {
   return arr.filter((x) => Object.keys(x).toString() !== 'separate');
 };
@@ -86,7 +96,7 @@ export const limitSortType = (arr, limit, recipeType) => {
       courseOptions.push(selectedOptions);
     }
   }
-  return [...new Set(courseOptions.flat())];
+  return [...new Set(courseOptions.flat())].slice(0, limit - 1);
   // return sortedArray.slice(0, limit - 1);
 };
 
@@ -107,7 +117,7 @@ export const removeUrlDashes = (text) => {
     const n = text.split('-');
     const first = n[0];
     const second = n[1];
-    return `${first}${[upperCaseFirst(second)]}`;
+    return `${first} ${[upperCaseFirst(second)]}`;
   } else {
     return text;
   }
@@ -115,4 +125,25 @@ export const removeUrlDashes = (text) => {
 
 export const getNameListConversion = (name, type) => {
   return NameList[removeUrlDashes(name)][type];
+};
+
+export const prepareUrl = (word) => {
+  const regex = /\b\s\b/g;
+  const slashRegex = /\b\/\b/g;
+
+  if (word.match(slashRegex)) {
+    word = word.replace(slashRegex, '-');
+  }
+  if (word.match(regex)) {
+    word = word.replace(regex, '-');
+  }
+  return word.toLowerCase();
+};
+
+export const replacePunctuation = (word) => {
+  const dashRegex = /\b-\b/g;
+  if (word.match(dashRegex)) {
+    word = word.replace(dashRegex, ' ');
+  }
+  return capitalize(word);
 };
