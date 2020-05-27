@@ -150,22 +150,6 @@ export const makeServer = () => {
         showFractions() {
           return true;
         },
-        options() {
-          return [
-            { courses: [] },
-            { cuisines: [] },
-            { mains: [] },
-            { specialties: ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'] },
-            { homepageLimit: 7 },
-            { showFractions: true },
-            {
-              themes: [
-                { selected: 'blue' },
-                { options: ['pink', 'blue', 'green', 'purple'] },
-              ],
-            },
-          ];
-        },
       }),
     },
     routes() {
@@ -285,7 +269,7 @@ export const makeServer = () => {
         password: hashPassword(process.env.REACT_APP_PASS2),
         id: 3,
       });
-      server.createList('recipe', 11);
+      server.createList('recipe', 12);
       server.createList('setting', 3);
     },
   });

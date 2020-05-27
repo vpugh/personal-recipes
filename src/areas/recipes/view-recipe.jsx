@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import DisplayCategories from './display-categories';
 import { makeStyles } from '@material-ui/core/styles';
 import GenerateList from './generate-list';
+import Tags from '../../components/tags';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -119,17 +120,6 @@ const ViewRecipe = (props) => {
   const recipeId = props.match.params.id;
   const classes = useStyles();
 
-  const tag = (content) => {
-    console.log('Tag', content);
-    if (content.length > 0) {
-      return (
-        <span className={classes.tag}>
-          {Array.isArray(content) ? content.join(', ') : content}
-        </span>
-      );
-    }
-  };
-
   if (user) {
     const recipes = user && user.recipe;
     const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
@@ -188,7 +178,9 @@ const ViewRecipe = (props) => {
               />
               <GenerateList arr={instructions} header='Instructions' />
               <GenerateList arr={notes} header='Notes' />
-              <div>{tag(tags)}</div>
+              <div style={{ marginTop: 10 }}>
+                <Tags content={tags} />
+              </div>
             </div>
           </div>
         </div>

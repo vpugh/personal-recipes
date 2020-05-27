@@ -12,13 +12,7 @@ const LoggedIn = () => {
   const { user } = useAuth();
   const classes = useStyles();
 
-  const getLimit =
-    user &&
-    user.setting[0].options.filter(
-      (x) => Object.keys(x)[0] === 'homepageLimit'
-    );
-
-  const limit = user && Object.values(getLimit[0]);
+  const limit = user && user.setting[0].homepageLimit;
 
   return (
     <div className={classes.container}>

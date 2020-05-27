@@ -16,13 +16,14 @@ const useStyles = makeStyles({
 const Tags = ({ content }) => {
   const classes = useStyles();
 
-  if (content) {
+  if (content.length > 0) {
     return (
       <span className={classes.tagContainer}>
         {Array.isArray(content) ? content.join(', ') : content}
       </span>
     );
   }
+  return null;
 };
 
 export default Tags;

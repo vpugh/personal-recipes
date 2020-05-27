@@ -8,6 +8,7 @@ import ViewRecipe from './areas/recipes/view-recipe';
 import AllRecipes from './areas/generic-pages/all-recipes';
 import { useAuth } from './context/auth-context';
 import { useEffect } from 'react';
+import UserProfile from './areas/profile/user-profile';
 
 const Main = (props) => {
   const { user } = useAuth();
@@ -45,6 +46,7 @@ const Main = (props) => {
           <Route exact path='/recipes/all-recipes' component={AllRecipes} />
           <Route exact path='/recipes/:category' component={CategoryPage} />
           <Route exact path='/recipe/:id' component={ViewRecipe} />
+          <Route exact path='/user/profile' component={UserProfile} />
         </Switch>
       </Container>
     </div>
