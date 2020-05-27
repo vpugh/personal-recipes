@@ -6,8 +6,32 @@ import CategoryTypePage from './areas/generic-pages/category-type-page';
 import CategoryPage from './areas/generic-pages/category-page';
 import ViewRecipe from './areas/recipes/view-recipe';
 import AllRecipes from './areas/generic-pages/all-recipes';
+import { useAuth } from './context/auth-context';
+import { useEffect } from 'react';
 
-const Main = () => {
+const Main = (props) => {
+  const { user } = useAuth();
+  useEffect(() => {
+    document.documentElement.style.background = props.bgColor();
+    const userCheck = user ? true : false;
+    const storedTheme = window.localStorage.getItem('selectedThemeData');
+    if (storedTheme) {
+      props.setSelectedTheme(storedTheme);
+    }
+    if (
+      !storedTheme &&
+      user &&
+      userCheck &&
+      props.selectedTheme === 'default'
+    ) {
+      props.setSelectedTheme(user.setting[0].themes[0].selected);
+      window.localStorage.setItem(
+        'selectedThemeData',
+        user.setting[0].themes[0].selected
+      );
+    }
+  }, [props, user]);
+
   return (
     <div>
       <Container>

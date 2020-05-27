@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   pageContainer: (props) => ({
     maxWidth: 850,
     background: theme.palette.background.white,
-    boxShadow: '4px 6px 12px #FFCCCC',
+    boxShadow: `4px 6px 12px ${theme.palette.primary.pale}`,
     padding: 30,
     borderRadius: 6,
     [theme.breakpoints.up('md')]: {
@@ -18,7 +18,9 @@ export const useStyles = makeStyles((theme) => ({
     },
     '& .pageTitle': {
       marginTop: 0,
-      marginBottom: '3rem',
+      [theme.breakpoints.up('md')]: {
+        marginBottom: '3rem',
+      },
     },
   }),
 }));

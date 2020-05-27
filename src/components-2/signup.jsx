@@ -4,23 +4,26 @@ import TextInput from './inputs/text-inputs';
 import { Link } from 'react-router-dom';
 import { signupUser } from '../util/api';
 import { useAuth } from '../context/auth-context';
+import { makeStyles } from '@material-ui/core/styles';
 
-const buttonStyle = {
-  background: '#FF8585',
-  boxShadow: ' 4px 8px 44px #FFCCCC',
-  width: '100%',
-  fontSize: 16,
-  fontWeight: 'bold',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#fff',
-  paddingTop: 16,
-  paddingBottom: 16,
-  border: 'none',
-  textDecoration: 'none',
-  marginTop: 40,
-};
+const useStyles = makeStyles((theme) => ({
+  buttonStyle: {
+    background: theme.palette.primary.secondary,
+    boxShadow: `4px 8px 44px ${theme.palette.primary.pale}`,
+    width: '100%',
+    fontSize: 16,
+    fontWeight: 'bold',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+    paddingTop: 16,
+    paddingBottom: 16,
+    border: 'none',
+    textDecoration: 'none',
+    marginTop: 40,
+  },
+}));
 
 const Signup = (props) => {
   const { setCurrentUser } = useAuth();
@@ -28,6 +31,7 @@ const Signup = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userSaved, setUserSaved] = useState(false);
+  const classes = useStyles();
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -73,7 +77,7 @@ const Signup = (props) => {
           value={password}
           setFunction={setPassword}
         />
-        <button type='submit' style={buttonStyle}>
+        <button type='submit' className={classes.buttonStyle}>
           Signup
         </button>
         <p style={{ paddingTop: 10 }}>

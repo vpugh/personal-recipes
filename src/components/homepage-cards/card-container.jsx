@@ -54,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey.one,
     fontSize: 18,
     borderRadius: 6,
-    boxShadow: '2px 4px 8px #FFCCCC',
-    background: '#fefefe',
+    boxShadow: `2px 4px 8px ${theme.palette.primary.pale}`,
+    background: theme.palette.background.white,
     padding: 20,
     transition: '300ms ease-in-out',
     '&:hover': {
-      boxShadow: '4px 6px 10px #FFADAD',
+      boxShadow: `4px 6px 10px ${theme.palette.primary.main}`,
     },
     '&:last-child': {
       marginRight: 0,

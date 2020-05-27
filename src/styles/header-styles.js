@@ -29,6 +29,7 @@ export const useStyles = makeStyles((theme) => ({
   logoLink: {
     fontSize: 28,
     transition: '300ms ease-in-out',
+    color: theme.palette.primary.tertiary,
     '&:hover': { cursor: 'pointer', opacity: '0.5' },
     textDecoration: 'none',
   },
@@ -57,7 +58,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
-    background: '#ffcccf',
+    background: theme.palette.primary.tertiary,
   },
   userName: { margin: 0, padding: 0 },
   userNameLink: {

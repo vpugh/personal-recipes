@@ -8,8 +8,8 @@ import GenerateList from './generate-list';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
-    background: '#FEFEFE',
-    boxShadow: '4px 8px 44px #FFCCCC',
+    background: theme.palette.background.white,
+    boxShadow: `4px 8px 44px ${theme.palette.primary.pale}`,
     padding: '40px 50px',
     color: '#575757',
     margin: '0 auto 72px auto',
@@ -87,9 +87,14 @@ export const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
+  },
+  descriptionBox: {
+    background: '#efefef',
+    padding: 20,
+    borderRadius: 3,
   },
 }));
 
@@ -161,15 +166,7 @@ const ViewRecipe = (props) => {
             </Link>
           </div>
           <div>
-            <p
-              style={{
-                background: '#efefef',
-                padding: 20,
-                borderRadius: 3,
-              }}
-            >
-              {description}
-            </p>
+            <p className={classes.descriptionBox}>{description}</p>
             <DisplayCategories header='Course' data={course} />
             <DisplayCategories header='Cuisine' data={cuisine} />
             <DisplayCategories header='Main Dish' data={main_dish} />

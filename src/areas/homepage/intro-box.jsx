@@ -4,9 +4,23 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useStyles from '../../styles/landing-styles';
 import { useAuth } from '../../context/auth-context';
+import { makeStyles } from '@material-ui/core/styles';
+
+const autocompleteStyle = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: '#000',
+      fontWeight: 'bold',
+    },
+    '& .MuiFormControl-fullWidth': {
+      background: theme.palette.background.main,
+    },
+  },
+}));
 
 const IntroBox = () => {
   const classes = useStyles();
+  const autoClass = autocompleteStyle();
   const { user } = useAuth();
   const recipes = user && user.recipe;
 
@@ -17,6 +31,7 @@ const IntroBox = () => {
         <Autocomplete
           options={recipes || []}
           getOptionLabel={(option) => option.title}
+          classes={{ root: autoClass.root }}
           renderInput={(params) => (
             <TextField
               {...params}

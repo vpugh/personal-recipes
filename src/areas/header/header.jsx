@@ -13,11 +13,7 @@ const Header = () => {
   return (
     <header className={classes.headerBackground}>
       <Container className={classes.container}>
-        <Link
-          className={`logo serif ${classes.logoLink}`}
-          style={{ color: '#dd4048' }}
-          to='/'
-        >
+        <Link className={`logo serif ${classes.logoLink}`} to='/'>
           Personal Recipes
         </Link>
         <div className='profile'>

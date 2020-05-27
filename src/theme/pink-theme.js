@@ -12,8 +12,9 @@ export default responsiveFontSizes(
     },
     palette: {
       background: {
-        main: '#FFEDED',
         white: '#fefefe',
+        main: '#FFEDED',
+        default: '#FFCCCC', // Cotton Candy P0
       },
       primary: {
         main: '#FFADAD', // Flamingo P1
@@ -37,11 +38,6 @@ export default responsiveFontSizes(
      * @see https://material-ui.com/customization/globals/#css
      */
     overrides: {
-      // MuiPaper: {
-      //   root: {
-      //     padding: spacing * 2,
-      //   },
-      // },
       PrivateRadioButtonIcon: {
         layer: {
           left: 0,

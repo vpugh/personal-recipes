@@ -12,14 +12,15 @@ export default responsiveFontSizes(
     },
     palette: {
       background: {
-        main: '#FFEDED',
         white: '#fefefe',
+        main: '#d5ffee', // I
+        default: '#b8f7dc', // 0
       },
       primary: {
-        main: '#FFADAD', // Flamingo P1
-        secondary: '#FF8585', // Grapefruit P2
-        tertiary: '#FF5A5F', // Ruby Pink P3 dd4048 P4??
-        pale: '#FFCCCC', // Cotton Candy P0
+        main: '#a3f5d2', // 1
+        secondary: '#8CF0C6', // 2
+        tertiary: '#0ad07d', // 3
+        pale: '#b8f7dc', // 4
       },
       grey: {
         one: '#575757',
@@ -37,11 +38,6 @@ export default responsiveFontSizes(
      * @see https://material-ui.com/customization/globals/#css
      */
     overrides: {
-      // MuiPaper: {
-      //   root: {
-      //     padding: spacing * 2,
-      //   },
-      // },
       PrivateRadioButtonIcon: {
         layer: {
           left: 0,

@@ -126,6 +126,30 @@ export const makeServer = () => {
         userId() {
           return this.id + 1;
         },
+        courses() {
+          return [];
+        },
+        cuisines() {
+          return [];
+        },
+        mains() {
+          return [];
+        },
+        specialties() {
+          return ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'];
+        },
+        themes() {
+          return [
+            { selected: 'blue' },
+            { options: ['pink', 'blue', 'green', 'purple'] },
+          ];
+        },
+        homepageLimit() {
+          return 7;
+        },
+        showFractions() {
+          return true;
+        },
         options() {
           return [
             { courses: [] },
@@ -134,6 +158,12 @@ export const makeServer = () => {
             { specialties: ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'] },
             { homepageLimit: 7 },
             { showFractions: true },
+            {
+              themes: [
+                { selected: 'blue' },
+                { options: ['pink', 'blue', 'green', 'purple'] },
+              ],
+            },
           ];
         },
       }),

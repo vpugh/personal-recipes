@@ -3,10 +3,25 @@ import useStyles from '../../styles/horizontal-card-styles';
 import { displayTotalTime } from '../../util/helper-functions';
 import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import { makeStyles } from '@material-ui/core/styles';
+
+const starStyles = makeStyles((theme) => ({
+  star: {
+    fontSize: 36,
+    color: theme.palette.primary.main,
+    paddingRight: 10,
+    paddingLeft: 30,
+    transition: '300ms ease-in-out',
+    '&:hover': {
+      opacity: '.4',
+    },
+  },
+}));
 
 const CardRecipe = (props) => {
   const { recipe } = props;
   const classes = useStyles(props);
+  const starClass = starStyles();
   if (!recipe) {
     return <h2>Card Category</h2>;
   }
@@ -53,29 +68,9 @@ const CardRecipe = (props) => {
         )}
       </div>
       {favorite ? (
-        <StarRoundedIcon
-          style={{
-            fontSize: 36,
-            color: '#FAACAC',
-            paddingRight: 10,
-            paddingLeft: 30,
-            '&:hover': {
-              opacity: '.4',
-            },
-          }}
-        />
+        <StarRoundedIcon className={starClass.star} />
       ) : (
-        <StarBorderRoundedIcon
-          style={{
-            fontSize: 36,
-            color: '#FAACAC',
-            paddingRight: 10,
-            paddingLeft: 30,
-            '&:hover': {
-              opacity: '.4',
-            },
-          }}
-        />
+        <StarBorderRoundedIcon className={starClass.star} />
       )}
     </div>
   );
