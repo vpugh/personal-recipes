@@ -25,7 +25,7 @@ const LoggedIn = () => {
       <IntroBox />
       <CardContainer
         title='Recently Added'
-        link='all'
+        link='all-recipes'
         linkText='Recipes'
         arr={
           user && user.recipe

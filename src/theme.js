@@ -1,13 +1,3 @@
-// export default {
-//   color: {
-//     primary: '#FF5A5F',
-//     secondary: '#00A699'
-//   },
-//   background: {
-//     primary: '#FFEDED'
-//   }
-// };
-
 import CreateMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import responsiveFontSizes from '@material-ui/core/styles/responsiveFontSizes';
 

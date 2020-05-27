@@ -4,8 +4,9 @@ export const useStyles = makeStyles((theme) => ({
   pageContainer: (props) => ({
     maxWidth: 850,
     background: theme.palette.background.white,
-    boxShadow: '4px 8px 44px #FFCCCC',
+    boxShadow: '4px 6px 12px #FFCCCC',
     padding: 30,
+    borderRadius: 6,
     [theme.breakpoints.up('md')]: {
       padding: props.padding || '40px 50px',
     },
