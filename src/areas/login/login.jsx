@@ -4,17 +4,7 @@ import { useAuth } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
 import TextInput from '../../components/inputs/text-input';
 import Button from '../../components/buttons/button';
-
-const errorAlert = {
-  color: '#ff4e4e',
-  fontSize: '1.2rem',
-  marginBottom: 0,
-  background: '#fef2f3',
-  padding: '8px 16px',
-  borderRadius: 4,
-  border: '1px solid #ff4e4e',
-  fontWeight: 'bold',
-};
+import { ErrorAlert } from '../../components/alerts/error-alert';
 
 const Login = (props) => {
   const { user, loading, handleLogin } = useAuth();
@@ -71,7 +61,7 @@ const Login = (props) => {
           </p>
         </form>
       )}
-      {loginResponse && <p style={errorAlert}>{loginResponse}</p>}
+      {loginResponse && <ErrorAlert>{loginResponse}</ErrorAlert>}
     </PageContainer>
   );
 };

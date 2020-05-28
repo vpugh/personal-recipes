@@ -7,17 +7,8 @@ import {
 } from '../../util/helper-functions';
 import useStyles from '../../styles/landing-styles';
 import IntroBox from './intro-box';
-import { Link } from 'react-router-dom';
 import PageContainer from '../../components/page-container';
-
-const buttonLink = {
-  padding: '8px 16px',
-  background: '#ddd',
-  marginTop: 8,
-  color: 'inherit',
-  textDecoration: 'none',
-  display: 'inline-block',
-};
+import { LinkButton } from '../../components/buttons/link-button';
 
 const LoggedIn = () => {
   const { user } = useAuth();
@@ -94,9 +85,9 @@ const LoggedIn = () => {
             Welcome! It's looking a bit empty in here.
           </h2>
           <p>Now would be a good time to add some recipes. :)</p>
-          <Link to='/add-recipe' style={buttonLink}>
+          <LinkButton color to='/add-recipe'>
             Add Recipe
-          </Link>
+          </LinkButton>
         </PageContainer>
       )}
     </div>
