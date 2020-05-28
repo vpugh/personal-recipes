@@ -36,7 +36,9 @@ const UserProfile = () => {
 
   if (user) {
     const { username, email, name, avatar } = user;
-    const settings = Object.entries(user.setting[0]);
+    const settings =
+      (user && user.setting.length > 0 && Object.entries(user.setting[0])) ||
+      [];
     const sortedSettings = settings.filter((x) => {
       return displayOptions.includes(capitalize(x[0])) === true;
     });

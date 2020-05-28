@@ -22,6 +22,7 @@ export const useAuthenthentice = () => {
   };
 
   const setCurrentUser = (data) => {
+    window.localStorage.setItem('authData', JSON.stringify(data.email));
     setUser(data);
     setIsAuthenticated(data.email);
   };
