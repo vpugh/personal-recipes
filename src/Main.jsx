@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import UserProfile from './areas/profile/user-profile';
 import Login from './areas/login/login';
 import Signup from './areas/signup/signup';
+import { AddRecipe } from './areas/recipes/add-recipe';
 
 const Main = (props) => {
   const { user } = useAuth();
@@ -45,6 +46,7 @@ const Main = (props) => {
             path='/recipes/:category/:type'
             component={CategoryTypePage}
           />
+          <Route path='/add-recipe' component={AddRecipe} />
           <Route exact path='/recipes/all-recipes' component={AllRecipes} />
           <Route exact path='/recipes/:category' component={CategoryPage} />
           <Route exact path='/recipe/:id' component={ViewRecipe} />
