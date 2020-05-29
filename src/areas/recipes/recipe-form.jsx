@@ -226,7 +226,6 @@ export const RecipeForm = (props) => {
       userId: user.id,
       updated_at: new Date().toISOString(),
     };
-    recipeData.created_at = new Date().toISOString();
 
     if (currentRecipe) {
       updateRecipe(currentRecipe.id, recipeData).then((result) => {
@@ -239,6 +238,7 @@ export const RecipeForm = (props) => {
         }
       });
     } else {
+      recipeData.created_at = new Date().toISOString();
       saveRecipe(recipeData, user.id).then((result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
