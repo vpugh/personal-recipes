@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     handleLogin,
     errors,
     updateRecipes,
+    updateUser,
   } = useAuthenthentice();
 
   return (
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         handleLogin,
         updateRecipes,
         setCurrentUser,
+        updateUser,
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageContainer from '../../components/page-container';
 import { makeStyles } from '@material-ui/core/styles';
 import { RecipeForm } from './recipe-form';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AddRecipe = () => {
+export const AddRecipe = (props) => {
   const classes = useStyles();
   const [showScratchPaper, setShowScratchPaper] = useState(false);
   // const header = () => {
@@ -50,7 +51,7 @@ export const AddRecipe = () => {
               role='button'
               onClick={() => setShowScratchPaper(!showScratchPaper)}
             >
-              X
+              <CloseIcon />
             </div>
           </div>
           <div>
@@ -68,7 +69,7 @@ export const AddRecipe = () => {
           Show Scratch Paper
         </div>
       </div>
-      <RecipeForm />
+      <RecipeForm history={props.history} />
     </PageContainer>
   );
 };

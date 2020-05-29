@@ -11,7 +11,7 @@ import RecipeDetails from '../src/mirage-data/recipe-details.json';
 import Options from '../src/mirage-data/options.json';
 import bcrypt from 'bcryptjs';
 
-const { courses, cuisines, mains } = Options;
+const { courses, cuisines, mains, tags } = Options;
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
@@ -176,9 +176,13 @@ export const makeServer = () => {
         return schema.recipes.findBy({ id: recipeId });
       });
 
-      this.post('/v1/recipe', (schema, request) => {
+      this.post('/v1/recipe/:id', (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
-        return schema.recipes.create(attrs);
+        let userId = request.params.id;
+        return {
+          data: schema.users.findBy({ id: userId }),
+          addedRecipe: schema.recipes.create(attrs),
+        };
       });
 
       this.patch('/v1/recipe/:id', (schema, request) => {
@@ -194,6 +198,8 @@ export const makeServer = () => {
       this.get('/v1/cuisines', () => cuisines);
 
       this.get('/v1/mains', () => mains);
+
+      this.get('/v1/tags', () => tags);
 
       this.post('/v1/settings', (schema, request) => {
         const userId = request.requestBody.id;

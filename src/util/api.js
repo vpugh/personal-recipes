@@ -40,6 +40,10 @@ export const getMainDishes = () => {
   return fetchGet('mains').then((res) => res.json());
 };
 
+export const getTags = () => {
+  return fetchGet('tags').then((res) => res.json());
+};
+
 export const getUserRecipes = (id) => {
   return fetchGet(`recipes/${id}`).then((res) => res.json());
 };
@@ -59,6 +63,6 @@ export const updateRecipe = (id, data) => {
   return fetchPatch(`recipe/${id}`, JSON.stringify(data));
 };
 
-export const saveRecipe = (data) => {
-  return fetchPost('recipe', JSON.stringify(data));
+export const saveRecipe = (data, id) => {
+  return fetchPost(`recipe/${id}`, JSON.stringify(data));
 };

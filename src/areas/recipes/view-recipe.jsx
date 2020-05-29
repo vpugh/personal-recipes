@@ -121,6 +121,7 @@ const ViewRecipe = (props) => {
   const classes = useStyles();
 
   if (user) {
+    console.log('View Recipe', user, user.recipe);
     const recipes = user && user.recipe;
     const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
 

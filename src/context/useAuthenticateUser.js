@@ -27,6 +27,12 @@ export const useAuthenthentice = () => {
     setIsAuthenticated(data.email);
   };
 
+  const updateUser = (data) => {
+    setLoading(true);
+    setUser(data);
+    setLoading(false);
+  };
+
   const updateRecipes = (data) => {
     console.log('Update Recipe', data);
     // setRecipes(data);
@@ -71,5 +77,6 @@ export const useAuthenthentice = () => {
     handleLogin,
     errors,
     updateRecipes,
+    updateUser,
   };
 };
