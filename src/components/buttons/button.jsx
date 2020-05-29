@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-const Button = (props) => {
+const SubmitButton = (props) => {
   const classes = useStyles(props);
   const { children } = props;
   return (
@@ -39,4 +39,4 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default SubmitButton;

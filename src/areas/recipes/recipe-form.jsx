@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SubmitButton from '../../components/buttons/button';
 import {
   getCourses,
   getCuisines,
@@ -192,18 +193,14 @@ export const RecipeForm = (props) => {
       userId: user.id,
       updated_at: new Date().toISOString(),
     };
-    console.log('Submit', JSON.stringify(recipeData));
     recipeData.created_at = new Date().toISOString();
 
     saveRecipe(recipeData, user.id).then((result) => {
       updateUser(result && result.data && result.data.user);
-      console.log('Save Recipe', result.data, result.addedRecipe);
       if (!loading) {
         result.ok && setRecipeSaved(true);
         setTimeout(
-          props.history.push(
-            `/recipe/${result && result.addedRecipe && result.addedRecipe.id}`
-          ),
+          props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
           10000
         );
       }
@@ -445,7 +442,9 @@ export const RecipeForm = (props) => {
           Add Notes
         </Button>
       </div>
-      <Button type='submit'>Save Recipe</Button>
+      <SubmitButton fullSize color>
+        Save Recipe
+      </SubmitButton>
     </form>
   );
 };

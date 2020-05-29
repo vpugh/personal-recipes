@@ -3,7 +3,7 @@ import PageContainer from '../../components/page-container';
 import { useAuth } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
 import TextInput from '../../components/inputs/text-input';
-import Button from '../../components/buttons/button';
+import SubmitButton from '../../components/buttons/button';
 import { ErrorAlert } from '../../components/alerts/error-alert';
 
 const Login = (props) => {
@@ -47,9 +47,9 @@ const Login = (props) => {
             setFunc={setPassword}
             type='password'
           />
-          <Button fullSize color>
+          <SubmitButton fullSize color>
             Login to your account
-          </Button>
+          </SubmitButton>
           <p style={{ paddingTop: 10 }}>
             Don't have an account?{' '}
             <Link

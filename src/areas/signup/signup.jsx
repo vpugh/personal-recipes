@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PageContainer from '../../components/page-container';
 import { Link } from 'react-router-dom';
 import TextInput from '../../components/inputs/text-input';
-import Button from '../../components/buttons/button';
+import SubmitButton from '../../components/buttons/button';
 import { useAuth } from '../../context/auth-context';
 import { signupUser } from '../../util/api';
 
@@ -63,9 +63,9 @@ const Signup = (props) => {
               type='password'
               noAutocomplete
             />
-            <Button fullSize color>
+            <SubmitButton fullSize color>
               Create your account
-            </Button>
+            </SubmitButton>
             <p>
               Already have an account?{' '}
               <Link

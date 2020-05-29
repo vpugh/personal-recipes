@@ -178,11 +178,7 @@ export const makeServer = () => {
 
       this.post('/v1/recipe/:id', (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
-        let userId = request.params.id;
-        return {
-          data: schema.users.findBy({ id: userId }),
-          addedRecipe: schema.recipes.create(attrs),
-        };
+        return schema.recipes.create(attrs);
       });
 
       this.patch('/v1/recipe/:id', (schema, request) => {
