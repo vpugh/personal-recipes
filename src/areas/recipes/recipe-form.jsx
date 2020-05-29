@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import SubmitButton from '../../components/buttons/button';
 import {
   getCourses,
@@ -12,7 +7,6 @@ import {
   getMainDishes,
   getTags,
   updateRecipe,
-  getUserRecipes,
   saveRecipe,
 } from '../../util/api';
 import { Button, InputAdornment, IconButton } from '@material-ui/core';
@@ -108,8 +102,17 @@ const addEmptyArray = (arr, setArr) => {
   setArr(arr.concat(''));
 };
 
+const loadRecipeData = (recipeItem, initialData) => {
+  if (recipeItem) {
+    return recipeItem;
+  } else {
+    return initialData;
+  }
+};
+
 export const RecipeForm = (props) => {
   const classes = useStyles();
+  const { currentRecipe } = props;
   const { user, updateUser, loading } = useAuth();
   // Setup for dropdowns
   const [optCourse, setOptCourse] = useState([]);
@@ -118,29 +121,59 @@ export const RecipeForm = (props) => {
   const [optTags, setOptTags] = useState([]);
 
   // actual state
-  const [title, setTitle] = useState('');
-  const [course, setCourse] = useState([]);
-  const [cuisine, setCuisine] = useState([]);
-  const [main, setMain] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [prepTime, setPrepTime] = useState('');
-  const [cookTime, setCookTime] = useState('');
-  const [totalTime, setTotalTime] = useState('');
-  const [serves, setServes] = useState('');
-  const [serveType, setServeType] = useState('');
-  const [recipeOrigin, setRecipeOrigin] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.title, '')
+  );
+  const [course, setCourse] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.course, [])
+  );
+  const [cuisine, setCuisine] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.cuisine, [])
+  );
+  const [main, setMain] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.main_dish, [])
+  );
+  const [tags, setTags] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.tags, [])
+  );
+  const [prepTime, setPrepTime] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.prep_time, '')
+  );
+  const [cookTime, setCookTime] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.cook_time, '')
+  );
+  const [totalTime, setTotalTime] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.total_time, '')
+  );
+  const [serves, setServes] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.serves, '')
+  );
+  const [serveType, setServeType] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.serve_type, '')
+  );
+  const [recipeOrigin, setRecipeOrigin] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.recipe_origin, '')
+  );
+  const [description, setDescription] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.description, '')
+  );
 
   // Add to tags
   const [addedTag, setAddedTag] = useState('');
 
   // Input Arrays
-  const [equipmentNeededArr, setEquipmentNeededArr] = useState([]);
-  const [ingredientsArr, setIngredientsArr] = useState([]);
-  const [instructionsArr, setInstructionsArr] = useState([]);
-  const [notesArr, setNotesArr] = useState([]);
-
-  const [recipeSaved, setRecipeSaved] = useState(false);
+  const [equipmentNeededArr, setEquipmentNeededArr] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.equipment_needed, [])
+  );
+  const [ingredientsArr, setIngredientsArr] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.ingredients, [])
+  );
+  const [instructionsArr, setInstructionsArr] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.instructions, [])
+  );
+  const [notesArr, setNotesArr] = useState(
+    loadRecipeData(currentRecipe && currentRecipe.notes, [])
+  );
 
   useEffect(() => {
     fetchCourse(setOptCourse);
@@ -195,16 +228,27 @@ export const RecipeForm = (props) => {
     };
     recipeData.created_at = new Date().toISOString();
 
-    saveRecipe(recipeData, user.id).then((result) => {
-      updateUser(result && result.data && result.data.user);
-      if (!loading) {
-        result.ok && setRecipeSaved(true);
-        setTimeout(
-          props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
-          10000
-        );
-      }
-    });
+    if (currentRecipe) {
+      updateRecipe(currentRecipe.id, recipeData).then((result) => {
+        updateUser(result && result.data && result.data.user);
+        if (!loading) {
+          setTimeout(
+            props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
+            10000
+          );
+        }
+      });
+    } else {
+      saveRecipe(recipeData, user.id).then((result) => {
+        updateUser(result && result.data && result.data.user);
+        if (!loading) {
+          setTimeout(
+            props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
+            10000
+          );
+        }
+      });
+    }
   };
 
   return (
