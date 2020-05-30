@@ -79,11 +79,11 @@ const HeaderProfile = (props) => {
       {showSettings && (
         <ul className={classes.settingMenu}>
           <Link
-            to='/user/profile'
+            to='/user/settings'
             style={{ color: 'inherit' }}
             onClick={toggleSettings}
           >
-            Profile
+            Settings
           </Link>
           <button
             type='button'

@@ -135,13 +135,17 @@ export const makeServer = () => {
         mains() {
           return [];
         },
-        specialties() {
-          return ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'];
-        },
         themes() {
           return [
             { selected: 'blue' },
-            { options: ['pink', 'blue', 'green', 'purple'] },
+            {
+              options: [
+                { type: 'pink', color: '#FFADAD' },
+                { type: 'blue', color: '#a7edfd' },
+                { type: 'green', color: '#a3f5d2' },
+                { type: 'purple', color: '#e0c0ef' },
+              ],
+            },
           ];
         },
         homepageLimit() {

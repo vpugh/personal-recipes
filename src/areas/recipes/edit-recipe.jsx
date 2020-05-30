@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const EditRecipe = (props) => {
+const EditRecipe = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
   const recipeId = props.match.params.id;
@@ -50,3 +50,5 @@ export const EditRecipe = (props) => {
     </PageContainer>
   );
 };
+
+export default EditRecipe;

@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { useAuth } from './context/auth-context';
 import Container from './grid/container';
 import Homepage from './areas/homepage/homepage';
 import CategoryTypePage from './areas/generic-pages/category-type-page';
 import CategoryPage from './areas/generic-pages/category-page';
 import ViewRecipe from './areas/recipes/view-recipe';
 import AllRecipes from './areas/generic-pages/all-recipes';
-import { useAuth } from './context/auth-context';
-import { useEffect } from 'react';
-import UserProfile from './areas/profile/user-profile';
+import Settings from './areas/settings/settings';
 import Login from './areas/login/login';
 import Signup from './areas/signup/signup';
-import { AddRecipe } from './areas/recipes/add-recipe';
-import { EditRecipe } from './areas/recipes/edit-recipe';
-import { PrivateRoute } from './components/private-route';
+import AddRecipe from './areas/recipes/add-recipe';
+import EditRecipe from './areas/recipes/edit-recipe';
+import PrivateRoute from './components/private-route';
 
 const Main = (props) => {
   const { user } = useAuth();
@@ -63,7 +62,7 @@ const Main = (props) => {
           />
           <PrivateRoute exact path='/recipe/edit/:id' component={EditRecipe} />
           <PrivateRoute exact path='/recipe/:id' component={ViewRecipe} />
-          <PrivateRoute exact path='/user/profile' component={UserProfile} />
+          <PrivateRoute exact path='/user/settings' component={Settings} />
         </Switch>
       </Container>
     </div>

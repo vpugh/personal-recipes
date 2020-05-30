@@ -28,7 +28,7 @@ const Signup = (props) => {
       })
       .then((res) => {
         setCurrentUser(res.user);
-        setTimeout(history.push('/user/profile'), 0);
+        setTimeout(history.push('/user/settings'), 0);
       });
   };
 

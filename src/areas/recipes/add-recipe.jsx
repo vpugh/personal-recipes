@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AddRecipe = (props) => {
+const AddRecipe = (props) => {
   const classes = useStyles();
   const [showScratchPaper, setShowScratchPaper] = useState(false);
   // const header = () => {
@@ -73,3 +73,5 @@ export const AddRecipe = (props) => {
     </PageContainer>
   );
 };
+
+export default AddRecipe;
