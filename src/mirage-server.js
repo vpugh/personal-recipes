@@ -127,10 +127,22 @@ export const makeServer = () => {
           return this.id + 1;
         },
         courses() {
-          return [];
+          return ['Brunch', 'Salad'];
         },
         cuisines() {
-          return [];
+          return [
+            'Malaysian',
+            'French',
+            'Lebanese',
+            'Vietnamese',
+            'Caribbean',
+            'Thai',
+            'Austrian',
+            'Hungarian',
+            'Korean',
+            'Cajun',
+            'Turkish',
+          ];
         },
         mains() {
           return [];

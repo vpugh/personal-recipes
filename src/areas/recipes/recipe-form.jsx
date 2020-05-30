@@ -78,19 +78,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const fetchCourse = async (set) => {
+const fetchCourse = async (set, user) => {
   const courses = await getCourses();
-  set(courses);
+  const userRemoved = (user && user.setting[0].courses) || [];
+  const filteredCourses = courses.filter(
+    (x) => userRemoved.includes(x) === false
+  );
+  set(filteredCourses);
 };
 
-const fetchCuisine = async (set) => {
+const fetchCuisine = async (set, user) => {
   const cuisines = await getCuisines();
-  set(cuisines);
+  const userRemoved = (user && user.setting[0].cuisines) || [];
+  const filteredCuisines = cuisines.filter(
+    (x) => userRemoved.includes(x) === false
+  );
+  set(filteredCuisines);
 };
 
-const fetchMains = async (set) => {
+const fetchMains = async (set, user) => {
   const mains = await getMainDishes();
-  set(mains);
+  const userRemoved = (user && user.setting[0].mains) || [];
+  const filteredMains = mains.filter((x) => userRemoved.includes(x) === false);
+  set(filteredMains);
 };
 
 const fetchTags = async (set) => {
@@ -176,11 +186,11 @@ export const RecipeForm = (props) => {
   );
 
   useEffect(() => {
-    fetchCourse(setOptCourse);
-    fetchCuisine(setCuisines);
-    fetchMains(setOptMains);
+    fetchCourse(setOptCourse, user);
+    fetchCuisine(setCuisines, user);
+    fetchMains(setOptMains, user);
     fetchTags(setOptTags);
-  }, []);
+  }, [user]);
 
   const handleNestedChange = (event, index, array, set) => {
     const { value } = event.target;

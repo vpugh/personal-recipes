@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../../context/auth-context';
 import PageContainer from '../../components/page-container';
 import { capitalize } from '../../util/helper-functions';
@@ -48,18 +48,21 @@ const Settings = () => {
 
   const displayOptions = ['Themes', 'Mains', 'Cuisines', 'Courses'];
 
-  const getArr = (name) => {
-    switch (name) {
-      case 'courses':
-        return courses;
-      case 'cuisines':
-        return cuisines;
-      case 'mains':
-        return mains;
-      default:
-        break;
-    }
-  };
+  const getArr = useCallback(
+    (name) => {
+      switch (name) {
+        case 'courses':
+          return courses;
+        case 'cuisines':
+          return cuisines;
+        case 'mains':
+          return mains;
+        default:
+          break;
+      }
+    },
+    [courses, cuisines, mains]
+  );
 
   if (user) {
     const { username, email, name, avatar } = user;

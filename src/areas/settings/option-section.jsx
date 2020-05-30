@@ -14,28 +14,62 @@ const useStyles = makeStyles((theme) => ({
   listBullet: {
     marginLeft: '1.2rem',
   },
+  formControl: {
+    marginBottom: theme.spacing(1),
+    minWidth: 120,
+    width: '31%',
+    '&:not(:last-child)': {
+      marginRight: '3.5%',
+    },
+    '& .MuiFormLabel-root.Mui-focused': {
+      color: 'inherit',
+    },
+  },
 }));
+
+const returnName = (name) => {
+  switch (name) {
+    case 'mains':
+      return 'Main Dish';
+
+    case 'cuisines':
+      return 'Cuisine';
+
+    case 'courses':
+      return 'Courses';
+
+    default:
+      break;
+  }
+};
 
 const OptionSection = (props) => {
   const classes = useStyles();
-  const [removedItems, setRemovedItems] = useState();
-
   const { name, value, arr } = props;
+  const [removedItems, setRemovedItems] = useState(value || []);
+
+  const handleOnChange = (e) => {
+    const { value } = e.target;
+    setRemovedItems(value);
+  };
+
   return (
     <div>
-      <h3 className={classes.settingHeader}>{capitalize(name)}</h3>
-      {/* {value.length > 0 ? (
-        <ul className={classes.list}>
-          {value.map((v) => (
-            <li key={v} className={classes.listBullet}>
-              {v}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No Selections</p>
-      )} */}
-      <FormSelect arr={arr || []} value={value} name={`${name} arr`} />
+      <FormSelect
+        className={classes.formControl}
+        arr={arr}
+        label={returnName(name)}
+        onChange={(e) => handleOnChange(e, setRemovedItems)}
+        value={removedItems}
+        name={`${name} arr`}
+      />
+      <p style={{ display: 'inline-block', marginLeft: 16 }}>
+        {removedItems.length > 0
+          ? `${removedItems.length} options removed from ${returnName(
+              name
+            )} list`
+          : `No options removed from ${returnName(name)} list`}
+      </p>
     </div>
   );
 };

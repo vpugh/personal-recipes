@@ -16,6 +16,7 @@ export const FormSelect = (props) => {
     multiple = true,
     arr,
   } = props;
+
   return (
     <FormControl className={className}>
       <InputLabel>{label}</InputLabel>
