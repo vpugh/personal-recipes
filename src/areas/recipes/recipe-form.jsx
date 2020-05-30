@@ -443,6 +443,7 @@ export const RecipeForm = (props) => {
               name='instruction'
               placeholder='A step to make the recipe'
               value={instruction}
+              multiline
               nestedOnChange={(e) =>
                 handleNestedChange(
                   e,
@@ -473,6 +474,7 @@ export const RecipeForm = (props) => {
               name='instruction'
               placeholder='Something to write down about the recipe'
               value={note}
+              multiline
               nestedOnChange={(e) =>
                 handleNestedChange(e, index, notesArr, setNotesArr)
               }

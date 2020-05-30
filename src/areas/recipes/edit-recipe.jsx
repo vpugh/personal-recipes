@@ -3,6 +3,7 @@ import PageContainer from '../../components/page-container';
 import { makeStyles } from '@material-ui/core';
 import { RecipeForm } from './recipe-form';
 import { useAuth } from '../../context/auth-context';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -35,9 +36,9 @@ export const EditRecipe = (props) => {
       <PageContainer>
         <div className={classes.headerContainer}>
           <h1 className='pageTitle'>Edit Recipe</h1>
-          <div role='button' style={{ textDecoration: 'underline' }}>
+          <Link to={`/recipe/${recipeId}`} style={{ color: 'inherit' }}>
             Return to Recipe
-          </div>
+          </Link>
         </div>
         <RecipeForm currentRecipe={currentRecipe} history={props.history} />
       </PageContainer>

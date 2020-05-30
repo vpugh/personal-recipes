@@ -15,6 +15,7 @@ export const NestedTextInput = (props) => {
     nestedOnChange,
     removeNestedInput,
     placeholder,
+    multiline = false,
   } = props;
   return (
     <FormControl className={className || null}>
@@ -24,6 +25,7 @@ export const NestedTextInput = (props) => {
         value={value}
         onChange={nestedOnChange}
         required
+        multiline={multiline || null}
         endAdornment={
           <InputAdornment position='end'>
             <IconButton

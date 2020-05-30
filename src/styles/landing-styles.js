@@ -58,7 +58,7 @@ export const useStyles = makeStyles((theme) => ({
     boxShadow: `4px 8px 16px ${theme.palette.primary.pale}`,
     margin: '0 0 40px 0',
     [theme.breakpoints.up('md')]: {
-      margin: '40px 0 60px 0',
+      margin: '0 0 60px 0',
     },
     '& > .text-container': {
       padding: 20,
