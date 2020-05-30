@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
 import { useAuth } from '../context/auth-context';
+import { Route, Redirect } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+export const PrivateRoute = ({ component: Component, ...rest }) => {
   const { loading, isAuthenticated } = useAuth();
 
   if (loading) {
@@ -29,5 +29,3 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-
-export default PrivateRoute;

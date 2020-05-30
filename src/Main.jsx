@@ -13,6 +13,7 @@ import Login from './areas/login/login';
 import Signup from './areas/signup/signup';
 import { AddRecipe } from './areas/recipes/add-recipe';
 import { EditRecipe } from './areas/recipes/edit-recipe';
+import { PrivateRoute } from './components/private-route';
 
 const Main = (props) => {
   const { user } = useAuth();
@@ -42,19 +43,27 @@ const Main = (props) => {
       <Container>
         <Switch>
           <Route exact path='/' component={Homepage} />
-          <Route
+          <PrivateRoute path='/add-recipe' component={AddRecipe} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={Signup} />
+          <PrivateRoute
+            exact
+            path='/recipes/all-recipes'
+            component={AllRecipes}
+          />
+          <PrivateRoute
             exact
             path='/recipes/:category/:type'
             component={CategoryTypePage}
           />
-          <Route path='/add-recipe' component={AddRecipe} />
-          <Route exact path='/recipes/all-recipes' component={AllRecipes} />
-          <Route exact path='/recipes/:category' component={CategoryPage} />
-          <Route exact path='/recipe/edit/:id' component={EditRecipe} />
-          <Route exact path='/recipe/:id' component={ViewRecipe} />
-          <Route exact path='/user/profile' component={UserProfile} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/signup' component={Signup} />
+          <PrivateRoute
+            exact
+            path='/recipes/:category'
+            component={CategoryPage}
+          />
+          <PrivateRoute exact path='/recipe/edit/:id' component={EditRecipe} />
+          <PrivateRoute exact path='/recipe/:id' component={ViewRecipe} />
+          <PrivateRoute exact path='/user/profile' component={UserProfile} />
         </Switch>
       </Container>
     </div>
