@@ -13,13 +13,13 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SingleColumnList = ({ list }) => {
+const SingleColumnList = ({ list, showFractions }) => {
   const classes = useStyles();
   return (
     <ul className={classes.listContainer}>
       {list.map((item) => (
         <li key={item} className={classes.listItem}>
-          {replaceFractions(item)}
+          {replaceFractions(item, showFractions)}
         </li>
       ))}
     </ul>

@@ -20,7 +20,7 @@ const Main = (props) => {
     document.documentElement.style.background = props.bgColor();
     const userCheck = user ? true : false;
     const storedTheme = window.localStorage.getItem('selectedThemeData');
-    if (storedTheme) {
+    if (storedTheme || storedTheme === null) {
       props.setSelectedTheme(storedTheme);
     }
     if (

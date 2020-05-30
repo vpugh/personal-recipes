@@ -8,6 +8,7 @@ import {
   hasMany,
 } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
+import SettingDetails from '../src/mirage-data/setting-details.json';
 import Options from '../src/mirage-data/options.json';
 import bcrypt from 'bcryptjs';
 
@@ -15,6 +16,10 @@ const { courses, cuisines, mains, tags } = Options;
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
+};
+
+const SettingSelection = (num, selector) => {
+  return SettingDetails[num][selector];
 };
 
 const hashPassword = (textPassword) => {
@@ -120,51 +125,26 @@ export const makeServer = () => {
         },
       }),
       setting: Factory.extend({
-        id(i) {
-          return i;
+        userId(i) {
+          return i + 1;
         },
-        userId() {
-          return this.id + 1;
+        courses(i) {
+          return SettingSelection(i, 'courses');
         },
-        courses() {
-          return ['Brunch', 'Salad'];
+        cuisines(i) {
+          return SettingSelection(i, 'cuisines');
         },
-        cuisines() {
-          return [
-            'Malaysian',
-            'French',
-            'Lebanese',
-            'Vietnamese',
-            'Caribbean',
-            'Thai',
-            'Austrian',
-            'Hungarian',
-            'Korean',
-            'Cajun',
-            'Turkish',
-          ];
+        mains(i) {
+          return SettingSelection(i, 'mains');
         },
-        mains() {
-          return [];
+        themes(i) {
+          return SettingSelection(i, 'themes');
         },
-        themes() {
-          return [
-            { selected: 'blue' },
-            {
-              options: [
-                { type: 'pink', color: '#FFADAD' },
-                { type: 'blue', color: '#a7edfd' },
-                { type: 'green', color: '#a3f5d2' },
-                { type: 'purple', color: '#e0c0ef' },
-              ],
-            },
-          ];
+        homepageLimit(i) {
+          return SettingSelection(i, 'homepageLimit');
         },
-        homepageLimit() {
-          return 7;
-        },
-        showFractions() {
-          return true;
+        showFractions(i) {
+          return SettingSelection(i, 'showFractions');
         },
       }),
     },

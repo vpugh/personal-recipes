@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { capitalize } from '../../util/helper-functions';
 import { FormSelect } from '../../components/inputs/form/form-select';
 
 const useStyles = makeStyles((theme) => ({

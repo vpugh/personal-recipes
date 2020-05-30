@@ -8,6 +8,7 @@ const checkAuthentication = () => {
 const getHandleLogout = (authenticated, user) => {
   authenticated(false);
   user(null);
+  window.localStorage.removeItem('selectedThemeData');
   window.localStorage.setItem('authData', null);
 };
 
@@ -23,6 +24,10 @@ export const useAuthenthentice = () => {
 
   const setCurrentUser = (data) => {
     window.localStorage.setItem('authData', JSON.stringify(data.email));
+    window.localStorage.setItem(
+      'selectedThemeData',
+      JSON.stringify(data.settings[0].themes.selected)
+    );
     setUser(data);
     setIsAuthenticated(data.email);
   };
@@ -46,6 +51,10 @@ export const useAuthenthentice = () => {
     } else {
       setUser(auth.user);
       window.localStorage.setItem('authData', JSON.stringify(auth.user.email));
+      window.localStorage.setItem(
+        'selectedThemeData',
+        auth.user.setting[0].themes[0].selected
+      );
       setIsAuthenticated(auth.user.email);
       return auth;
     }

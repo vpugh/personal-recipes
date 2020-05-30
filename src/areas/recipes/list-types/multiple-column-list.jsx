@@ -33,7 +33,7 @@ const separateList = (oldList) => {
   return newList;
 };
 
-const MultipleColumnList = ({ list }) => {
+const MultipleColumnList = ({ list, showFractions }) => {
   const classes = useStyles();
 
   if (!list) {
@@ -47,7 +47,7 @@ const MultipleColumnList = ({ list }) => {
           <ul className={classes.TwoColumnContainer} key={index}>
             {lists.map((item) => (
               <li className={classes.listItem} key={item}>
-                {replaceFractions(item)}
+                {replaceFractions(item, showFractions)}
               </li>
             ))}
           </ul>

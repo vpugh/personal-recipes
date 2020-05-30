@@ -170,14 +170,27 @@ const ViewRecipe = (props) => {
               </p>
             )}
             <div className={classes.listContainer}>
-              <GenerateList arr={equipment_needed} header='Equipment Needed' />
               <GenerateList
+                showFractions={user.setting[0].showFractions}
+                arr={equipment_needed}
+                header='Equipment Needed'
+              />
+              <GenerateList
+                showFractions={user.setting[0].showFractions}
                 arr={ingredients}
                 header='Ingredients'
                 columns={2}
               />
-              <GenerateList arr={instructions} header='Instructions' />
-              <GenerateList arr={notes} header='Notes' />
+              <GenerateList
+                showFractions={user.setting[0].showFractions}
+                arr={instructions}
+                header='Instructions'
+              />
+              <GenerateList
+                showFractions={user.setting[0].showFractions}
+                arr={notes}
+                header='Notes'
+              />
               <div style={{ marginTop: 10 }}>
                 <Tags content={tags} />
               </div>
