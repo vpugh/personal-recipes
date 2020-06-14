@@ -23,24 +23,33 @@ export const useAuthenthentice = () => {
   };
 
   const setCurrentUser = (data) => {
-    window.localStorage.setItem('authData', JSON.stringify(data.email));
-    window.localStorage.setItem(
-      'selectedThemeData',
-      JSON.stringify(data.settings[0].themes.selected)
-    );
-    setUser(data);
-    setIsAuthenticated(data.email);
+    if (data.returnedUser) {
+      console.log('Set Current User', data.returnedUser);
+      window.localStorage.setItem(
+        'authData',
+        JSON.stringify(data.returnedUser.email)
+      );
+      window.localStorage.setItem(
+        'selectedThemeData',
+        JSON.stringify(data.returnedUser.settings[0].themes[0].selected)
+      );
+      setUser(data.returnedUser);
+      setIsAuthenticated(data.returnedUser.email);
+    } else {
+      window.localStorage.setItem('authData', JSON.stringify(data.email));
+      window.localStorage.setItem(
+        'selectedThemeData',
+        JSON.stringify(data.settings[0].themes[0].selected)
+      );
+      setUser(data);
+      setIsAuthenticated(data.email);
+    }
   };
 
   const updateUser = (data) => {
     setLoading(true);
     setUser(data);
     setLoading(false);
-  };
-
-  const updateRecipes = (data) => {
-    console.log('Update Recipe', data);
-    // setRecipes(data);
   };
 
   const handleLogin = async (userData) => {
@@ -53,10 +62,10 @@ export const useAuthenthentice = () => {
       window.localStorage.setItem('authData', JSON.stringify(auth.user.email));
       window.localStorage.setItem(
         'selectedThemeData',
-        auth.user.setting[0].themes[0].selected
+        auth.user.settings[0].themes[0].selected
       );
       setIsAuthenticated(auth.user.email);
-      return auth;
+      return auth.user;
     }
   };
 
@@ -68,7 +77,7 @@ export const useAuthenthentice = () => {
 
       if (isAuthenticated) {
         const user = await authenticateUser(isAuthenticated);
-        setUser(user.user);
+        setUser(user);
       }
       setLoading(false);
     }
@@ -85,7 +94,6 @@ export const useAuthenthentice = () => {
     setCurrentUser,
     handleLogin,
     errors,
-    updateRecipes,
     updateUser,
   };
 };

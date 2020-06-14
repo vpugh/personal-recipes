@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useAuth } from '../../context/auth-context';
 import CardContainer from '../../components/homepage-cards/card-container';
 import {
@@ -14,12 +14,15 @@ const LoggedIn = () => {
   const { user } = useAuth();
   const classes = useStyles();
 
-  const limit =
-    (user && user.setting.length > 0 && user.setting[0].homepageLimit) || 7;
+  const limit = useMemo(() => {
+    return (
+      (user && user.settings.length > 0 && user.settings[0].homepageLimit) || 7
+    );
+  }, [user]);
 
   return (
     <div className={classes.container}>
-      {user && user.recipe.length > 0 ? (
+      {user && user.recipes.length > 0 ? (
         <>
           <IntroBox />
           <CardContainer
@@ -27,9 +30,9 @@ const LoggedIn = () => {
             link='all-recipes'
             linkText='Recipes'
             arr={
-              user && user.recipe
+              user && user.recipes
                 ? limitSortReverseArray(
-                    user && user.recipe,
+                    user && user.recipes,
                     limit,
                     'created_at',
                     'reverse'
@@ -43,8 +46,8 @@ const LoggedIn = () => {
             link='course'
             linkText='Courses'
             arr={
-              user && user.recipe
-                ? limitSortType(user && user.recipe, limit, 'course')
+              user && user.recipes
+                ? limitSortType(user && user.recipes, limit, 'course')
                 : null
             }
           />
@@ -53,8 +56,8 @@ const LoggedIn = () => {
             link='cuisine'
             linkText='Cuisines'
             arr={
-              user && user.recipe
-                ? limitSortType(user && user.recipe, limit, 'cuisine')
+              user && user.recipes
+                ? limitSortType(user && user.recipes, limit, 'cuisine')
                 : null
             }
           />
@@ -63,8 +66,8 @@ const LoggedIn = () => {
             link='main-dish'
             linkText='Main Dish'
             arr={
-              user && user.recipe
-                ? limitSortType(user && user.recipe, limit, 'main_dish')
+              user && user.recipes
+                ? limitSortType(user && user.recipes, limit, 'main_dish')
                 : null
             }
           />
@@ -73,8 +76,8 @@ const LoggedIn = () => {
             link='tags'
             linkText='Tags'
             arr={
-              user && user.recipe
-                ? limitSortType(user && user.recipe, limit, 'tags')
+              user && user.recipes
+                ? limitSortType(user && user.recipes, limit, 'tags')
                 : null
             }
           />

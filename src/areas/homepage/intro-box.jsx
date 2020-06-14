@@ -21,8 +21,9 @@ const autocompleteStyle = makeStyles((theme) => ({
 const IntroBox = () => {
   const classes = useStyles();
   const autoClass = autocompleteStyle();
-  const { user } = useAuth();
-  const recipes = user && user.recipe;
+  const {
+    user: { recipes },
+  } = useAuth();
 
   return (
     <div className={classes.introBox} style={{ background: '#fff' }}>

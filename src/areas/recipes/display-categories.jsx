@@ -42,7 +42,7 @@ export const useStyles = makeStyles((theme) => ({
 
 const DisplayCategories = ({ header, data }) => {
   const classes = useStyles();
-  if (!data) {
+  if (!data || data.length === 0) {
     return null;
   }
   return (

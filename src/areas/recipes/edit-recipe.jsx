@@ -29,8 +29,10 @@ const EditRecipe = (props) => {
   const { user } = useAuth();
   const recipeId = props.match.params.id;
   if (user) {
-    const recipes = user && user.recipe;
-    const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
+    const recipes = user && user.recipes;
+    const currentRecipe = recipes.filter(
+      (x) => (x = x.id.toString() === recipeId)
+    )[0];
 
     return (
       <PageContainer>

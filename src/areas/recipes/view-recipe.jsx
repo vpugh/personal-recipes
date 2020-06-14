@@ -120,9 +120,11 @@ const ViewRecipe = (props) => {
   const recipeId = props.match.params.id;
   const classes = useStyles();
 
-  if (user) {
-    const recipes = user && user.recipe;
-    const currentRecipe = recipes.filter((x) => (x = x.id === recipeId))[0];
+  if (user && user.recipes) {
+    const recipes = user && user.recipes;
+    const currentRecipe = recipes.filter(
+      (x) => x.id.toString() === recipeId
+    )[0];
 
     const {
       title,
@@ -156,7 +158,9 @@ const ViewRecipe = (props) => {
             </Link>
           </div>
           <div>
-            <p className={classes.descriptionBox}>{description}</p>
+            {description && (
+              <p className={classes.descriptionBox}>{description}</p>
+            )}
             <DisplayCategories header='Course' data={course} />
             <DisplayCategories header='Cuisine' data={cuisine} />
             <DisplayCategories header='Main Dish' data={main_dish} />
@@ -171,23 +175,23 @@ const ViewRecipe = (props) => {
             )}
             <div className={classes.listContainer}>
               <GenerateList
-                showFractions={user.setting[0].showFractions}
+                showFractions={user.settings[0].showFractions}
                 arr={equipment_needed}
                 header='Equipment Needed'
               />
               <GenerateList
-                showFractions={user.setting[0].showFractions}
+                showFractions={user.settings[0].showFractions}
                 arr={ingredients}
                 header='Ingredients'
                 columns={2}
               />
               <GenerateList
-                showFractions={user.setting[0].showFractions}
+                showFractions={user.settings[0].showFractions}
                 arr={instructions}
                 header='Instructions'
               />
               <GenerateList
-                showFractions={user.setting[0].showFractions}
+                showFractions={user.settings[0].showFractions}
                 arr={notes}
                 header='Notes'
               />

@@ -242,6 +242,7 @@ export const makeServer = () => {
         }
         return user;
       });
+      this.passthrough('https://personal-recipes.herokuapp.com/v1/graphql');
     },
     seeds(server) {
       server.schema.users.create({

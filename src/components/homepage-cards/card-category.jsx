@@ -28,9 +28,8 @@ const findAmount = (category, title, recipes) => {
 
 const CardCategory = ({ category, title }) => {
   const {
-    user: { recipe },
+    user: { recipes },
   } = useAuth();
-  const recipes = recipe;
 
   if (!category) {
     return <h2>Card Type</h2>;

@@ -11,7 +11,7 @@ const CategoryTypePage = (props) => {
   const { type, category } = props.match.params;
   const { user } = useAuth();
 
-  const recipes = user && user.recipe;
+  const recipes = user && user.recipes;
 
   const categoryList = (arr, option, name) => {
     if (user) {

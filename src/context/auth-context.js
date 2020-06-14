@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from 'react';
+import React, { useContext, createContext, useMemo } from 'react';
 import { useAuthenthentice } from './useAuthenticateUser';
 
 export const AuthContext = createContext();
@@ -13,25 +13,30 @@ export const AuthProvider = ({ children }) => {
     setCurrentUser,
     handleLogin,
     errors,
-    updateRecipes,
     updateUser,
   } = useAuthenthentice();
 
-  return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        user,
-        loading,
-        errors,
-        handleLogout,
-        handleLogin,
-        updateRecipes,
-        setCurrentUser,
-        updateUser,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = useMemo(() => {
+    return {
+      isAuthenticated,
+      user,
+      loading,
+      errors,
+      handleLogout,
+      handleLogin,
+      setCurrentUser,
+      updateUser,
+    };
+  }, [
+    errors,
+    handleLogin,
+    handleLogout,
+    isAuthenticated,
+    loading,
+    setCurrentUser,
+    updateUser,
+    user,
+  ]);
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 const fetchCourse = async (set, user) => {
   const courses = await getCourses();
-  const userRemoved = (user && user.setting[0].courses) || [];
+  const userRemoved = (user && user.settings[0].courses) || [];
   const filteredCourses = courses.filter(
     (x) => userRemoved.includes(x) === false
   );
@@ -89,7 +89,7 @@ const fetchCourse = async (set, user) => {
 
 const fetchCuisine = async (set, user) => {
   const cuisines = await getCuisines();
-  const userRemoved = (user && user.setting[0].cuisines) || [];
+  const userRemoved = (user && user.settings[0].cuisines) || [];
   const filteredCuisines = cuisines.filter(
     (x) => userRemoved.includes(x) === false
   );
@@ -98,7 +98,7 @@ const fetchCuisine = async (set, user) => {
 
 const fetchMains = async (set, user) => {
   const mains = await getMainDishes();
-  const userRemoved = (user && user.setting[0].mains) || [];
+  const userRemoved = (user && user.settings[0].mains) || [];
   const filteredMains = mains.filter((x) => userRemoved.includes(x) === false);
   set(filteredMains);
 };
@@ -221,7 +221,7 @@ export const RecipeForm = (props) => {
       cook_time: cookTime ? Number(cookTime) : null,
       prep_time: prepTime ? Number(prepTime) : null,
       total_time: totalTime ? Number(totalTime) : null,
-      serves,
+      serves: serves || null,
       serve_type: serveType || null,
       course,
       cuisine,
@@ -233,29 +233,21 @@ export const RecipeForm = (props) => {
       instructions: instructionsArr,
       notes: notesArr,
       tags,
-      userId: user.id,
-      updated_at: new Date().toISOString(),
+      user_id: Number(user.id),
     };
 
     if (currentRecipe) {
       updateRecipe(currentRecipe.id, recipeData).then((result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
-          setTimeout(
-            props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
-            10000
-          );
+          setTimeout(props.history.push(`/recipe/${result.id}`), 10000);
         }
       });
     } else {
-      recipeData.created_at = new Date().toISOString();
-      saveRecipe(recipeData, user.id).then((result) => {
+      saveRecipe(recipeData).then(async (result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
-          setTimeout(
-            props.history.push(`/recipe/${JSON.parse(result._bodyInit).id}`),
-            10000
-          );
+          setTimeout(props.history.push(`/recipe/${result.id}`), 10000);
         }
       });
     }

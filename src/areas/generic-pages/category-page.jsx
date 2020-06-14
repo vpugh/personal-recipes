@@ -35,7 +35,7 @@ const CategoryPage = (props) => {
     }
   };
 
-  const categories = user && createCategoryList(user.recipe, category);
+  const categories = user && createCategoryList(user.recipes, category);
 
   return (
     <CardContainer>
@@ -46,7 +46,7 @@ const CategoryPage = (props) => {
             <div style={{ borderBottom: '1px solid #ddd', marginBottom: 20 }}>
               <h3 style={{ marginBottom: '.75rem' }}>{cat}</h3>
             </div>
-            {contentList(user.recipe, cat, category).map((content) => (
+            {contentList(user.recipes, cat, category).map((content) => (
               <div key={content.id}>
                 <p style={{ marginTop: '.5rem', marginBottom: 0 }}>
                   {content.title}
