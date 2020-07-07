@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useAuth } from '../../context/auth-context';
 
 const useStyles = makeStyles((theme) => ({
-  userHeaderAvatar: (props) => ({
+  userHeaderpicture: (props) => ({
     height: 35,
     width: 35,
     borderRadius: '50%',
     marginRight: 10,
     backgroundSize: 'cover',
     background: theme.palette.primary.pale,
-    backgroundImage: props.user.avatar && `url(/avatar/${props.user.avatar})`,
-    justifyContent: !props.user.avatar && 'center',
-    display: !props.user.avatar && 'flex',
-    alignItems: !props.user.avatar && 'center',
-    fontWeight: !props.user.avatar && 'bold',
-    color: !props.user.avatar && theme.palette.primary.tertiary,
+    backgroundImage: props.user.picture && `url(${props.user.picture})`,
+    justifyContent: !props.user.picture && 'center',
+    display: !props.user.picture && 'flex',
+    alignItems: !props.user.picture && 'center',
+    fontWeight: !props.user.picture && 'bold',
+    color: !props.user.picture && theme.palette.primary.tertiary,
   }),
-  userName: { margin: 0, padding: 0 },
-  userNameLink: {
+  name: { margin: 0, padding: 0 },
+  nameLink: {
     fontWeight: 'bold',
     '&:hover': { cursor: 'pointer', textDecoration: 'underline' },
   },
@@ -49,16 +50,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HeaderProfile = (props) => {
-  const { user, handleLogout } = useAuth();
-  const { avatar, username } = user;
+  const { handleLogout } = useAuth();
+  const { user, logout } = useAuth0();
+  const { picture, name } = user;
   const classes = useStyles(props);
-  const history = useHistory();
   const [showSettings, setToggleSettings] = useState(false);
 
   const logOut = () => {
     toggleSettings();
     handleLogout();
-    history.push('/login');
+    logout();
   };
 
   const toggleSettings = () => {
@@ -67,13 +68,13 @@ const HeaderProfile = (props) => {
 
   return (
     <>
-      <span className={classes.userHeaderAvatar}>
-        {!avatar && username.slice(0, 1)}
+      <span className={classes.userHeaderpicture}>
+        {!picture && name.slice(0, 1)}
       </span>
-      <p className={classes.userName}>
+      <p className={classes.name}>
         Welcome,{' '}
-        <span className={classes.userNameLink} onClick={toggleSettings}>
-          {username}
+        <span className={classes.nameLink} onClick={toggleSettings}>
+          {name}
         </span>
       </p>
       {showSettings && (

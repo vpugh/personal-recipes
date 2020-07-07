@@ -1,24 +1,17 @@
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import {
   GET_USER_BY_EMAIL,
   ADD_RECIPE,
   ADD_USER,
-  ADD_DEFAULT_SETTINGS,
   GET_USER_BY_EMAIL_AUTHENTICATE,
   EDIT_RECIPES,
   UPDATE_LOGIN_DATE,
   GET_USER_BY_USERNAME,
+  ADD_DEFAULT_SETTINGS,
+  GET_CUISINE_LIST,
+  GET_COURSE_LIST,
+  GET_MAIN_LIST,
+  GET_TAGS_LIST,
 } from '../queries';
-
-const hashPassword = (textPassword) => {
-  const salt = bcrypt.genSaltSync(10);
-  return bcrypt.hashSync(textPassword, salt);
-};
-
-const isCorrectPassword = (hash, plainText) => {
-  return bcrypt.compare(plainText, hash);
-};
 
 const apiPath = '/api/v1/';
 
@@ -30,17 +23,15 @@ const fetchPost = (url, body) => {
   });
 };
 
-const fetchGet = (url) => {
-  return fetch(`${apiPath}${url}`);
-};
-
 const graphqlUrl = 'https://personal-recipes.herokuapp.com/v1/graphql';
 
 const graphqlRequest = async (query, variables = {}) => {
+  const jwtToken = localStorage.getItem('token');
   const response = await fetch(graphqlUrl, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
+      Authorization: `Bearer ${jwtToken}`,
     },
     body: JSON.stringify({
       query,
@@ -59,7 +50,7 @@ const graphqlRequest = async (query, variables = {}) => {
 
 // Get Data
 
-export const getAuthentication = async ({ email, password }) => {
+export const getAuthentication = async (email) => {
   const userQuery = GET_USER_BY_EMAIL_AUTHENTICATE;
   const mutation = UPDATE_LOGIN_DATE;
 
@@ -68,16 +59,9 @@ export const getAuthentication = async ({ email, password }) => {
     return { error: 'Incorrect email or password' };
   }
 
-  const haveMatch = await isCorrectPassword(user && user[0].password, password);
-
-  if (!haveMatch) {
-    return { error: 'Incorrect email or password' };
-  }
-
   const {
-    password: remove,
-    avatar,
-    id,
+    key,
+    user_id,
     recipes,
     settings,
     joinDate,
@@ -86,17 +70,14 @@ export const getAuthentication = async ({ email, password }) => {
     ...rest
   } = user[0];
 
-  const token = jwt.sign({ data: rest }, process.env.REACT_APP_SECRET_CODE);
-
   await graphqlRequest(mutation, {
-    userId: id,
+    key,
     set: { lastLoggedIn: new Date().toISOString() },
   });
 
   return {
     user: {
-      avatar,
-      id,
+      key,
       recipes,
       settings,
       joinDate,
@@ -104,7 +85,6 @@ export const getAuthentication = async ({ email, password }) => {
       name,
       ...rest,
     },
-    token,
   };
 };
 
@@ -112,30 +92,38 @@ export const fetchSettings = (id) => {
   return fetchPost('settings', { id }).then((res) => res.json());
 };
 
-export const getCourses = () => {
-  return fetchGet('courses').then((res) => res.json());
+export const getCourses = async () => {
+  const courseQuery = GET_COURSE_LIST;
+  const { options } = await graphqlRequest(courseQuery);
+  return options[0].courses;
 };
 
-export const getCuisines = () => {
-  return fetchGet('cuisines').then((res) => res.json());
+export const getCuisines = async () => {
+  const cuisineQuery = GET_CUISINE_LIST;
+  const { options } = await graphqlRequest(cuisineQuery);
+  return options[0].cuisines;
 };
 
-export const getMainDishes = () => {
-  return fetchGet('mains').then((res) => res.json());
+export const getMainDishes = async () => {
+  const mainQuery = GET_MAIN_LIST;
+  const { options } = await graphqlRequest(mainQuery);
+  return options[0].mains;
 };
 
-export const getTags = () => {
-  return fetchGet('tags').then((res) => res.json());
+export const getTags = async () => {
+  const tagsQuery = GET_TAGS_LIST;
+  const { options } = await graphqlRequest(tagsQuery);
+  return options[0].tags;
 };
 
 export const authenticateUser = async (authData) => {
   const query = GET_USER_BY_EMAIL;
   const { user } = await graphqlRequest(query, { email: authData });
-  const mutation = UPDATE_LOGIN_DATE;
-  await graphqlRequest(mutation, {
-    userId: user[0].id,
-    set: { lastLoggedIn: new Date().toISOString() },
-  });
+  // const mutation = UPDATE_LOGIN_DATE;
+  // await graphqlRequest(mutation, {
+  //   userId: user[0].id,
+  //   set: { lastLoggedIn: new Date().toISOString() },
+  // });
   return user[0];
 };
 
@@ -175,8 +163,6 @@ export const signupUser = async (data) => {
     return { error: 'Username already exists' };
   }
   const addUserMutation = ADD_USER;
-  const hash = await hashPassword(data.password);
-  data.password = hash;
   const { insert_user } = await graphqlRequest(addUserMutation, { data });
   const newUserId = insert_user.returning[0].id;
   const addSettingsDefault = ADD_DEFAULT_SETTINGS;
@@ -191,7 +177,5 @@ export const signupUser = async (data) => {
     },
     { recipes: [] }
   );
-  const { id, joinDate, lastLoggedIn, ...rest } = insert_user.returning[0];
-  const token = jwt.sign({ data: rest }, process.env.REACT_APP_SECRET_CODE);
-  return { returnedUser: returnedUser, token };
+  return { returnedUser: returnedUser };
 };

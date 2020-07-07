@@ -233,7 +233,7 @@ export const RecipeForm = (props) => {
       instructions: instructionsArr,
       notes: notesArr,
       tags,
-      user_id: Number(user.id),
+      user_id: Number(user.key),
     };
 
     if (currentRecipe) {
@@ -244,6 +244,7 @@ export const RecipeForm = (props) => {
         }
       });
     } else {
+      recipeData.auth_id = user.user_id;
       saveRecipe(recipeData).then(async (result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {

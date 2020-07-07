@@ -24,7 +24,6 @@ export const useAuthenthentice = () => {
 
   const setCurrentUser = (data) => {
     if (data.returnedUser) {
-      console.log('Set Current User', data.returnedUser);
       window.localStorage.setItem(
         'authData',
         JSON.stringify(data.returnedUser.email)
@@ -54,7 +53,7 @@ export const useAuthenthentice = () => {
 
   const handleLogin = async (userData) => {
     const auth = await getAuthentication(userData);
-    if (auth.error) {
+    if (!auth) {
       setErrors(auth.error);
       return auth;
     } else {
@@ -64,7 +63,6 @@ export const useAuthenthentice = () => {
         'selectedThemeData',
         auth.user.settings[0].themes[0].selected
       );
-      setIsAuthenticated(auth.user.email);
       return auth.user;
     }
   };

@@ -1,19 +1,42 @@
 // Queries
 
+export const GET_COURSE_LIST = `query getCourseList {
+  options {
+    courses
+  }
+}`;
+
+export const GET_CUISINE_LIST = `query getCuisineList {
+  options {
+    cuisines
+  }
+}`;
+
+export const GET_MAIN_LIST = `query getMainList {
+  options {
+    mains
+  }
+}`;
+
+export const GET_TAGS_LIST = `query getTagsList {
+  options {
+    tags
+  }
+}`;
+
 export const GET_USER_BY_USERNAME = `query GetUserByUsername($username: String!) {
   user(where: { username: { _eq: $username}}) {
     username
+    key
   }
 }`;
 
 export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
   user(where: {email: {_eq: $email}}) {
-    avatar
     name
     email
-    lastLoggedIn
-    joinDate
-    id
+    key
+    user_id
     recipes {
       title
       cook_time
@@ -49,13 +72,9 @@ export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
 
 export const GET_USER_BY_EMAIL_AUTHENTICATE = `query GetUserByEmail($email: String!) {
   user(where: {email: {_eq: $email}}) {
-    avatar
     name
     email
-    lastLoggedIn
-    joinDate
-    password
-    id
+    user_id
     recipes {
       title
       cook_time
@@ -204,8 +223,8 @@ export const UPDATE_LOGIN_DATE_RETURN = `mutation UpdateLoginDate($set: user_set
   }
 }`;
 
-export const UPDATE_LOGIN_DATE = `mutation UpdateLoginDate($set: user_set_input, $userId: Int!) {
-  update_user(where: {id: {_eq: $userId}}, _set: $set) {
+export const UPDATE_LOGIN_DATE = `mutation updateLoginDate($key: Int, $set: user_set_input) {
+  update_user(where: {key: {_eq: $key}}, _set: $set){
     affected_rows
   }
 }`;
