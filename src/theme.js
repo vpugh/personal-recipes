@@ -1,13 +1,3 @@
-// export default {
-//   color: {
-//     primary: '#FF5A5F',
-//     secondary: '#00A699'
-//   },
-//   background: {
-//     primary: '#FFEDED'
-//   }
-// };
-
 import CreateMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import responsiveFontSizes from '@material-ui/core/styles/responsiveFontSizes';
 
@@ -22,13 +12,14 @@ export default responsiveFontSizes(
     },
     palette: {
       background: {
-        default: '#FFCCCC',
+        main: '#FFEDED',
         white: '#fefefe',
       },
       primary: {
-        main: '#FFADAD',
-        secondary: '#FF8585',
-        tertiary: '#FF5A5F',
+        main: '#FFADAD', // Flamingo P1
+        secondary: '#FF8585', // Grapefruit P2
+        tertiary: '#FF5A5F', // Ruby Pink P3 dd4048 P4??
+        pale: '#FFCCCC', // Cotton Candy P0
       },
       grey: {
         one: '#575757',

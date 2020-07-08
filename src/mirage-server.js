@@ -8,13 +8,18 @@ import {
   hasMany,
 } from 'miragejs';
 import RecipeDetails from '../src/mirage-data/recipe-details.json';
+import SettingDetails from '../src/mirage-data/setting-details.json';
 import Options from '../src/mirage-data/options.json';
 import bcrypt from 'bcryptjs';
 
-const { courses, cuisines, mains } = Options;
+const { courses, cuisines, mains, tags } = Options;
 
 const RecipeDetailsSelection = (num, selector) => {
   return RecipeDetails[num][selector];
+};
+
+const SettingSelection = (num, selector) => {
+  return SettingDetails[num][selector];
 };
 
 const hashPassword = (textPassword) => {
@@ -36,6 +41,10 @@ export const makeServer = () => {
         embed: true,
         root: false,
       }),
+      user: ApplicationSerializer.extend({
+        embed: true,
+        include: ['recipe', 'setting'],
+      }),
     },
     models: {
       recipe: Model.extend({
@@ -43,6 +52,7 @@ export const makeServer = () => {
       }),
       user: Model.extend({
         recipe: hasMany(),
+        setting: hasMany(),
       }),
       setting: Model.extend({
         user: belongsTo(),
@@ -62,31 +72,31 @@ export const makeServer = () => {
         cuisine() {
           return RecipeDetailsSelection(this.id, 'cuisine');
         },
-        mainDish() {
+        main_dish() {
           return RecipeDetailsSelection(this.id, 'mainDish');
         },
-        prepTime() {
+        prep_time() {
           return RecipeDetailsSelection(this.id, 'prepTime');
         },
-        cookTime() {
+        cook_time() {
           return RecipeDetailsSelection(this.id, 'cookTime');
         },
-        totalTime() {
+        total_time() {
           return RecipeDetailsSelection(this.id, 'totalTime');
         },
         serves() {
           return RecipeDetailsSelection(this.id, 'serves');
         },
-        serveType() {
+        serve_type() {
           return RecipeDetailsSelection(this.id, 'serveType');
         },
         description() {
           return RecipeDetailsSelection(this.id, 'description');
         },
-        recipeOrigin() {
+        recipe_origin() {
           return RecipeDetailsSelection(this.id, 'recipeOrigin');
         },
-        equipmentNeeded() {
+        equipment_needed() {
           return RecipeDetailsSelection(this.id, 'equipmentNeeded');
         },
         ingredients() {
@@ -101,10 +111,10 @@ export const makeServer = () => {
         tags() {
           return RecipeDetailsSelection(this.id, 'tags');
         },
-        updateAt() {
+        update_at() {
           return RecipeDetailsSelection(this.id, 'updatedAt');
         },
-        createdAt() {
+        created_at() {
           return RecipeDetailsSelection(this.id, 'createdAt');
         },
         favorite() {
@@ -115,19 +125,26 @@ export const makeServer = () => {
         },
       }),
       setting: Factory.extend({
-        id(i) {
-          return i;
+        userId(i) {
+          return i + 1;
         },
-        userId() {
-          return this.id + 1;
+        courses(i) {
+          return SettingSelection(i, 'courses');
         },
-        options() {
-          return [
-            { courses: [] },
-            { cuisines: [] },
-            { mains: [] },
-            { specialties: ['Low Carb', 'Gluten-Free', 'Keto', 'Atkins'] },
-          ];
+        cuisines(i) {
+          return SettingSelection(i, 'cuisines');
+        },
+        mains(i) {
+          return SettingSelection(i, 'mains');
+        },
+        themes(i) {
+          return SettingSelection(i, 'themes');
+        },
+        homepageLimit(i) {
+          return SettingSelection(i, 'homepageLimit');
+        },
+        showFractions(i) {
+          return SettingSelection(i, 'showFractions');
         },
       }),
     },
@@ -155,7 +172,7 @@ export const makeServer = () => {
         return schema.recipes.findBy({ id: recipeId });
       });
 
-      this.post('/v1/recipe', (schema, request) => {
+      this.post('/v1/recipe/:id', (schema, request) => {
         let attrs = JSON.parse(request.requestBody);
         return schema.recipes.create(attrs);
       });
@@ -173,6 +190,8 @@ export const makeServer = () => {
       this.get('/v1/cuisines', () => cuisines);
 
       this.get('/v1/mains', () => mains);
+
+      this.get('/v1/tags', () => tags);
 
       this.post('/v1/settings', (schema, request) => {
         const userId = request.requestBody.id;
@@ -223,6 +242,7 @@ export const makeServer = () => {
         }
         return user;
       });
+      this.passthrough('https://personal-recipes.herokuapp.com/v1/graphql');
     },
     seeds(server) {
       server.schema.users.create({
@@ -230,6 +250,7 @@ export const makeServer = () => {
         name: 'Daniel Salazar',
         email: 'test@mytest.com',
         password: hashPassword(process.env.REACT_APP_PASS1),
+        id: 1,
       });
       server.schema.users.create({
         username: 'HullenLvl5',
@@ -237,6 +258,7 @@ export const makeServer = () => {
         email: 'rac@quad.com',
         avatar: 'John_gallery_001.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        id: 2,
       });
       server.schema.users.create({
         username: 'Dutch',
@@ -244,8 +266,9 @@ export const makeServer = () => {
         email: 'yala@racquad.com',
         avatar: 'Dutch_gallery_004.jpg',
         password: hashPassword(process.env.REACT_APP_PASS2),
+        id: 3,
       });
-      server.createList('recipe', 11);
+      server.createList('recipe', 12);
       server.createList('setting', 3);
     },
   });

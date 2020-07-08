@@ -1,12 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
-  floatLeft: {
+  shimmerDisplay: {
     display: 'flex',
     flexDirection: 'column',
     marginRight: 20,
     paddingTop: 2,
-    paddingBottom: 15,
     '&:after': {
       display: 'table',
       content: ' ',

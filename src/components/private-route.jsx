@@ -1,6 +1,7 @@
 import React from 'react';
+import { useAuth } from '../context/auth-context';
 import { Route, Redirect } from 'react-router-dom';
-import { useAuth } from '../context/new-auth-context';
+import PageContainer from './page-container';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { loading, isAuthenticated } = useAuth();
@@ -10,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       <Route
         {...rest}
         render={() => {
-          return <p>Loading...</p>;
+          return <PageContainer>Loading...</PageContainer>;
         }}
       />
     );

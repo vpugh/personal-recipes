@@ -17,12 +17,13 @@
   "cuisines": [
     "American",
     "Indian",
-    "Tex-Mex",
+    "Texmex",
     "Italian",
     "Chinese",
     "Japanese",
     "Thai",
     "Greek",
+    "Middle Eastern",
     "German",
     "Austrian",
     "Hungarian",
@@ -48,12 +49,26 @@
     "Turkey",
     "Sausage",
     "Lamb",
-    "Shrimp/Prawns",
-    "Pasta/Noodles",
+    "Shrimp",
+    "Pasta",
+    "Noodles",
     "Salmon",
     "Fish",
     "Seafood",
     "Vegetables",
     "Other"
+  ],
+  "tags": [
+    "Low Carb",
+    "Gluten Free",
+    "Keto",
+    "Low Salt",
+    "Paleo",
+    "Special Occasion",
+    "Holiday",
+    "Christmas",
+    "Thanksgiving",
+    "Summer",
+    "Winter"
   ]
 }

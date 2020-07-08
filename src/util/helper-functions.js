@@ -1,46 +1,48 @@
 import NameList from '../data/name-list.json';
 
-export const replaceFractions = (text) => {
+export const replaceFractions = (text, convert) => {
   let newText = text;
-  if (newText.includes('1/2')) {
-    const half = newText.replace(/1\/2/g, `\u00BD`);
-    newText = half;
-  }
-  if (newText.includes('1 /2')) {
-    const half = newText.replace(/1\s\/2/g, `\u00BD`);
-    newText = half;
-  }
-  if (newText.includes('1/4')) {
-    const quarter = newText.replace(/1\/4/g, '\u00BC');
-    newText = quarter;
-  }
-  if (newText.includes('1 /4')) {
-    const quarter = newText.replace(/1\s\/4/g, '\u00BC');
-    newText = quarter;
-  }
-  if (newText.includes('1/3')) {
-    const third = newText.replace(/1\/3/g, `\u2153`);
-    newText = third;
-  }
-  if (newText.includes('1 /3')) {
-    const third = newText.replace(/1\s\/3/g, `\u2153`);
-    newText = third;
-  }
-  if (newText.includes('3/4')) {
-    const threeFourths = newText.replace(/3\/4/g, `\u00BE`);
-    newText = threeFourths;
-  }
-  if (newText.includes('3 /4')) {
-    const threeFourths = newText.replace(/3\s\/4/g, `\u00BE`);
-    newText = threeFourths;
-  }
-  if (newText.includes('1/8')) {
-    const oneEigth = newText.replace(/1\/8/g, `\u215B`);
-    newText = oneEigth;
-  }
-  if (newText.includes('1 /8')) {
-    const oneEigth = newText.replace(/1\s\/8/g, `\u215B`);
-    newText = oneEigth;
+  if (convert) {
+    if (newText.includes('1/2')) {
+      const half = newText.replace(/1\/2/g, `\u00BD`);
+      newText = half;
+    }
+    if (newText.includes('1 /2')) {
+      const half = newText.replace(/1\s\/2/g, `\u00BD`);
+      newText = half;
+    }
+    if (newText.includes('1/4')) {
+      const quarter = newText.replace(/1\/4/g, '\u00BC');
+      newText = quarter;
+    }
+    if (newText.includes('1 /4')) {
+      const quarter = newText.replace(/1\s\/4/g, '\u00BC');
+      newText = quarter;
+    }
+    if (newText.includes('1/3')) {
+      const third = newText.replace(/1\/3/g, `\u2153`);
+      newText = third;
+    }
+    if (newText.includes('1 /3')) {
+      const third = newText.replace(/1\s\/3/g, `\u2153`);
+      newText = third;
+    }
+    if (newText.includes('3/4')) {
+      const threeFourths = newText.replace(/3\/4/g, `\u00BE`);
+      newText = threeFourths;
+    }
+    if (newText.includes('3 /4')) {
+      const threeFourths = newText.replace(/3\s\/4/g, `\u00BE`);
+      newText = threeFourths;
+    }
+    if (newText.includes('1/8')) {
+      const oneEigth = newText.replace(/1\/8/g, `\u215B`);
+      newText = oneEigth;
+    }
+    if (newText.includes('1 /8')) {
+      const oneEigth = newText.replace(/1\s\/8/g, `\u215B`);
+      newText = oneEigth;
+    }
   }
   return newText;
 };
@@ -50,6 +52,16 @@ export const upperCaseFirst = (string) => {
     return string[0].charAt(0).toUpperCase() + string[0].slice(1);
   }
   return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
+export const capitalize = (str) => {
+  str = str.split(' ');
+
+  for (let i = 0, x = str.length; i < x; i++) {
+    str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+  }
+
+  return str.join(' ');
 };
 
 export const removeSeparate = (arr) => {
@@ -86,7 +98,7 @@ export const limitSortType = (arr, limit, recipeType) => {
       courseOptions.push(selectedOptions);
     }
   }
-  return [...new Set(courseOptions.flat())];
+  return [...new Set(courseOptions.flat())].slice(0, limit - 1);
   // return sortedArray.slice(0, limit - 1);
 };
 
@@ -107,7 +119,7 @@ export const removeUrlDashes = (text) => {
     const n = text.split('-');
     const first = n[0];
     const second = n[1];
-    return `${first}${[upperCaseFirst(second)]}`;
+    return `${first} ${[upperCaseFirst(second)]}`;
   } else {
     return text;
   }
@@ -115,4 +127,25 @@ export const removeUrlDashes = (text) => {
 
 export const getNameListConversion = (name, type) => {
   return NameList[removeUrlDashes(name)][type];
+};
+
+export const prepareUrl = (word) => {
+  const regex = /\b\s\b/g;
+  const slashRegex = /\b\/\b/g;
+
+  if (word.match(slashRegex)) {
+    word = word.replace(slashRegex, '-');
+  }
+  if (word.match(regex)) {
+    word = word.replace(regex, '-');
+  }
+  return word.toLowerCase();
+};
+
+export const replacePunctuation = (word) => {
+  const dashRegex = /\b-\b/g;
+  if (word.match(dashRegex)) {
+    word = word.replace(dashRegex, ' ');
+  }
+  return capitalize(word);
 };

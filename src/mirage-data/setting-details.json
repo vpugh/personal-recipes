@@ -1,0 +1,85 @@
+[
+  {
+    "courses": ["Brunch", "Salad"],
+    "cuisines": [
+      "Malaysian",
+      "French",
+      "Lebanese",
+      "Vietnamese",
+      "Caribbean",
+      "Thai",
+      "Austrian",
+      "Hungarian",
+      "Korean",
+      "Cajun",
+      "Turkish"
+    ],
+    "themes": [
+      { "selected": "blue" },
+      {
+        "options": [
+          { "type": "pink", "color": "#FFADAD" },
+          { "type": "blue", "color": "#a7edfd" },
+          { "type": "green", "color": "#a3f5d2" },
+          { "type": "purple", "color": "#e0c0ef" }
+        ]
+      }
+    ],
+    "homepageLimit": 9,
+    "mains": ["Turkey", "Noodles"],
+    "showFractions": false
+  },
+  {
+    "courses": ["Brunch", "Salad", "Marinade"],
+    "cuisines": [
+      "French",
+      "Lebanese",
+      "Vietnamese",
+      "Thai",
+      "Austrian",
+      "Hungarian",
+      "Korean",
+      "Turkish"
+    ],
+    "themes": [
+      { "selected": "green" },
+      {
+        "options": [
+          { "type": "pink", "color": "#FFADAD" },
+          { "type": "blue", "color": "#a7edfd" },
+          { "type": "green", "color": "#a3f5d2" },
+          { "type": "purple", "color": "#e0c0ef" }
+        ]
+      }
+    ],
+    "homepageLimit": 5,
+    "mains": ["Fish", "Shrimp", "Seafood", "Salmon"],
+    "showFractions": true
+  },
+  {
+    "courses": ["Brunch", "Salad"],
+    "cuisines": [
+      "Malaysian",
+      "French",
+      "Caribbean",
+      "Austrian",
+      "Hungarian",
+      "Cajun",
+      "Turkish"
+    ],
+    "themes": [
+      { "selected": "purple" },
+      {
+        "options": [
+          { "type": "pink", "color": "#FFADAD" },
+          { "type": "blue", "color": "#a7edfd" },
+          { "type": "green", "color": "#a3f5d2" },
+          { "type": "purple", "color": "#e0c0ef" }
+        ]
+      }
+    ],
+    "homepageLimit": 7,
+    "mains": ["Pasta", "Vegetables", "Ground Beef"],
+    "showFractions": false
+  }
+]
