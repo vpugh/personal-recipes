@@ -40,7 +40,7 @@ function App() {
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
       clientId={process.env.REACT_APP_AUTH0_CLIENTID}
-      redirectUri={process.env.REACT_APP_AUTH0_REDIRECT}
+      redirectUri={window.location.origin}
       scope='openid profile email'
     >
       <AuthProvider>
