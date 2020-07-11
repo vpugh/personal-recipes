@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { authenticateUser } from '../util/api';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -70,18 +70,6 @@ export const useAuthenthentice = () => {
       return user;
     }
   };
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     if (isAuthenticated) {
-  //       const user = await authenticateUser(auth0User.email);
-  //       setUser(mergeUser(user));
-  //     }
-  //   }
-  //   if (!user) {
-  //     fetchData();
-  //   }
-  // }, [auth0User, isAuthenticated, user, mergeUser]);
 
   return {
     user,
