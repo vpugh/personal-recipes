@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     loading,
     handleLogout,
-    setCurrentUser,
     handleLogin,
     errors,
     updateUser,
@@ -24,7 +23,6 @@ export const AuthProvider = ({ children }) => {
       errors,
       handleLogout,
       handleLogin,
-      setCurrentUser,
       updateUser,
     };
   }, [
@@ -33,7 +31,6 @@ export const AuthProvider = ({ children }) => {
     handleLogout,
     isAuthenticated,
     loading,
-    setCurrentUser,
     updateUser,
     user,
   ]);

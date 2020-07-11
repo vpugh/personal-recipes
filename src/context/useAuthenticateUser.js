@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { getAuthentication, authenticateUser } from '../util/api';
+import { useState, useEffect, useCallback } from 'react';
+import { authenticateUser } from '../util/api';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const getHandleLogout = (user) => {
@@ -17,6 +17,14 @@ export const useAuthenthentice = () => {
     loginWithRedirect,
   } = useAuth0();
   const [errors, setErrors] = useState([]);
+
+  const mergeUser = useCallback(
+    (user) => {
+      const { updated_at, picture } = auth0User;
+      return { ...user, updated_at, picture };
+    },
+    [auth0User]
+  );
 
   const handleLogout = () => {
     getHandleLogout(setUser);
@@ -47,34 +55,33 @@ export const useAuthenthentice = () => {
     setUser(data);
   };
 
-  const handleLogin = async (userData) => {
-    const auth = await getAuthentication(userData);
+  const handleLogin = async (email) => {
+    const auth = await authenticateUser(email);
     if (!auth) {
       setErrors(auth.error);
       return auth;
     } else {
-      setUser(auth.user);
-      window.localStorage.setItem('authData', JSON.stringify(auth.user.email));
+      setUser(mergeUser(auth));
+      window.localStorage.setItem('authData', JSON.stringify(auth.email));
       window.localStorage.setItem(
         'selectedThemeData',
-        auth.user.settings[0].themes[0].selected
+        auth.settings[0].themes[0].selected
       );
-      return auth.user;
+      return user;
     }
   };
 
-  useEffect(() => {
-    async function fetchData() {
-      if (isAuthenticated) {
-        const user = await authenticateUser(auth0User.email);
-        const { email, name, nickname, updated_at, picture } = auth0User;
-        setUser({ ...user, email, name, nickname, updated_at, picture });
-      }
-    }
-    if (!user) {
-      fetchData();
-    }
-  }, [auth0User, isAuthenticated, user]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     if (isAuthenticated) {
+  //       const user = await authenticateUser(auth0User.email);
+  //       setUser(mergeUser(user));
+  //     }
+  //   }
+  //   if (!user) {
+  //     fetchData();
+  //   }
+  // }, [auth0User, isAuthenticated, user, mergeUser]);
 
   return {
     user,
