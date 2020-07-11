@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getAuthentication, authenticateUser } from '../util/api';
+import { useAuth0 } from '@auth0/auth0-react';
 
-const checkAuthentication = () => {
-  return JSON.parse(window.localStorage.getItem('authData'));
-};
-
-const getHandleLogout = (authenticated, user) => {
-  authenticated(false);
+const getHandleLogout = (user) => {
   user(null);
   window.localStorage.removeItem('selectedThemeData');
   window.localStorage.setItem('authData', null);
@@ -14,12 +10,16 @@ const getHandleLogout = (authenticated, user) => {
 
 export const useAuthenthentice = () => {
   const [user, setUser] = useState();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const {
+    user: auth0User,
+    isAuthenticated,
+    isLoading,
+    loginWithRedirect,
+  } = useAuth0();
   const [errors, setErrors] = useState([]);
 
   const handleLogout = () => {
-    getHandleLogout(setIsAuthenticated, setUser);
+    getHandleLogout(setUser);
   };
 
   const setCurrentUser = (data) => {
@@ -33,7 +33,6 @@ export const useAuthenthentice = () => {
         JSON.stringify(data.returnedUser.settings[0].themes[0].selected)
       );
       setUser(data.returnedUser);
-      setIsAuthenticated(data.returnedUser.email);
     } else {
       window.localStorage.setItem('authData', JSON.stringify(data.email));
       window.localStorage.setItem(
@@ -41,14 +40,11 @@ export const useAuthenthentice = () => {
         JSON.stringify(data.settings[0].themes[0].selected)
       );
       setUser(data);
-      setIsAuthenticated(data.email);
     }
   };
 
   const updateUser = (data) => {
-    setLoading(true);
     setUser(data);
-    setLoading(false);
   };
 
   const handleLogin = async (userData) => {
@@ -69,29 +65,26 @@ export const useAuthenthentice = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const isAuthenticated = await checkAuthentication();
-
-      setIsAuthenticated(isAuthenticated);
-
       if (isAuthenticated) {
-        const user = await authenticateUser(isAuthenticated);
-        setUser(user);
+        const user = await authenticateUser(auth0User.email);
+        const { email, name, nickname, updated_at, picture } = auth0User;
+        setUser({ ...user, email, name, nickname, updated_at, picture });
       }
-      setLoading(false);
     }
     if (!user) {
       fetchData();
     }
-  }, [user]);
+  }, [auth0User, isAuthenticated, user]);
 
   return {
     user,
     isAuthenticated,
-    loading,
+    isLoading,
     handleLogout,
     setCurrentUser,
     handleLogin,
     errors,
     updateUser,
+    loginWithRedirect,
   };
 };

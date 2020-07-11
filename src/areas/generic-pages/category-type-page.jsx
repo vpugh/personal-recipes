@@ -21,7 +21,10 @@ const CategoryTypePage = (props) => {
         } else if (name === 'tags') {
           return x.tags.includes(replacePunctuation(option)) === true;
         } else {
-          return x[name].includes(upperCaseFirst(option)) === true;
+          return (
+            x[name].includes(upperCaseFirst(option)) ||
+            x[name].includes(replacePunctuation(option))
+          );
         }
       });
     }

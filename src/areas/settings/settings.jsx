@@ -34,7 +34,7 @@ const fetchMains = async (set) => {
 };
 
 const Settings = () => {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const classes = useStyles();
   const [courses, setCourses] = useState([]);
   const [cuisines, setCuisines] = useState([]);
@@ -64,8 +64,8 @@ const Settings = () => {
     [courses, cuisines, mains]
   );
 
-  if (user) {
-    const { username, email, name, avatar } = user;
+  if (user && !isLoading) {
+    const { username, email, name, picture } = user;
     const settings =
       (user && user.settings.length > 0 && Object.entries(user.settings[0])) ||
       [];
@@ -82,7 +82,7 @@ const Settings = () => {
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div
                   style={{
-                    background: avatar ? `url(/avatar/${avatar})` : '#ddd',
+                    background: picture ? `url(${picture})` : '#ddd',
                     height: 145,
                     backgroundSize: 'cover',
                     marginBottom: 16,

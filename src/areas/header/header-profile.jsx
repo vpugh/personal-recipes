@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
 import { useAuth } from '../../context/auth-context';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const useStyles = makeStyles((theme) => ({
   userHeaderpicture: (props) => ({
@@ -50,9 +50,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HeaderProfile = (props) => {
-  const { handleLogout } = useAuth();
-  const { user, logout } = useAuth0();
-  const { picture, name } = user;
+  const {
+    handleLogout,
+    user: { username },
+  } = useAuth();
+  const { logout } = useAuth0();
   const classes = useStyles(props);
   const [showSettings, setToggleSettings] = useState(false);
 
@@ -68,13 +70,11 @@ const HeaderProfile = (props) => {
 
   return (
     <>
-      <span className={classes.userHeaderpicture}>
-        {!picture && name.slice(0, 1)}
-      </span>
+      <span className={classes.userHeaderpicture} />
       <p className={classes.name}>
         Welcome,{' '}
         <span className={classes.nameLink} onClick={toggleSettings}>
-          {name}
+          {username}
         </span>
       </p>
       {showSettings && (

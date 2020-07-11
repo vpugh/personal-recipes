@@ -11,6 +11,7 @@ import {
   GET_COURSE_LIST,
   GET_MAIN_LIST,
   GET_TAGS_LIST,
+  ADD_NEW_SETTINGS,
 } from '../queries';
 
 const apiPath = '/api/v1/';
@@ -118,12 +119,31 @@ export const getTags = async () => {
 
 export const authenticateUser = async (authData) => {
   const query = GET_USER_BY_EMAIL;
+  const inseryQuery = ADD_NEW_SETTINGS;
+  const mutation = UPDATE_LOGIN_DATE;
   const { user } = await graphqlRequest(query, { email: authData });
-  // const mutation = UPDATE_LOGIN_DATE;
-  // await graphqlRequest(mutation, {
-  //   userId: user[0].id,
-  //   set: { lastLoggedIn: new Date().toISOString() },
-  // });
+  if (user[0].settings && user[0].settings.length === 0) {
+    const { insert_settings } = await graphqlRequest(inseryQuery, {
+      key: user[0].key,
+      authId: user[0].user_id,
+    });
+    const {
+      courses,
+      cuisines,
+      mains,
+      homepageLimit,
+      id,
+      showFractions,
+      themes,
+    } = insert_settings.returning[0];
+    user[0].settings = [
+      { courses, cuisines, mains, homepageLimit, id, showFractions, themes },
+    ];
+  }
+  await graphqlRequest(mutation, {
+    key: user[0].key,
+    set: { lastLoggedIn: new Date().toISOString() },
+  });
   return user[0];
 };
 

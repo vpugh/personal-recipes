@@ -228,3 +228,17 @@ export const UPDATE_LOGIN_DATE = `mutation updateLoginDate($key: Int, $set: user
     affected_rows
   }
 }`;
+
+export const ADD_NEW_SETTINGS = `mutation AddNewSetting($key: Int, $authId:String) {
+  insert_settings(objects: [{themes: [{selected:"pink"},{options:[{type:"pink",color:"#FFADAD"},{type:"blue",color:"#a7edfd"},{type:"green",color:"#a3f5d2"},{type:"purple",color:"#e0c0ef"}]}],auth_id: $authId, user_id: $key }]) {
+    returning {
+      themes
+      showFractions
+      mains
+      id
+      homepageLimit
+      cuisines
+      courses
+    }
+ }
+}`;

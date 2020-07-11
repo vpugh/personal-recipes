@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const HeaderLoggedOut = (props) => {
+const HeaderLoggedOut = () => {
   const { loginWithRedirect } = useAuth0();
   return (
     <>
@@ -11,11 +11,7 @@ const HeaderLoggedOut = (props) => {
         onClick={() => loginWithRedirect()}
         to=''
       >
-        Login
-      </Link>
-      <br />
-      <Link style={{ color: 'inherit' }} to='/signup'>
-        Signup
+        Login/Signup
       </Link>
     </>
   );
