@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '22px',
     color: theme.palette.primary.tertiary,
     marginTop: 0,
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 10,
+      marginRight: 10,
+      marginTop: 10,
+    },
   },
   contentContainer: {
     display: 'flex',
@@ -61,11 +66,15 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       boxShadow: `4px 6px 10px ${theme.palette.primary.main}`,
     },
-    '&:last-child': {
-      marginRight: 0,
+    [theme.breakpoints.up('md')]: {
+      '&:last-child': {
+        marginRight: 0,
+      },
     },
     [theme.breakpoints.down('sm')]: {
       marginBottom: 10,
+      marginLeft: 10,
+      marginRight: 10,
     },
     fontWeight: 'normal',
     textDecoration: 'none',
