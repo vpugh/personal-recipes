@@ -56,6 +56,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   introBox: {
     boxShadow: `4px 8px 16px ${theme.palette.primary.pale}`,
+    borderRadius: '6px 6px 0 0',
     margin: '0 0 40px 0',
     [theme.breakpoints.up('md')]: {
       margin: '0 0 60px 0',

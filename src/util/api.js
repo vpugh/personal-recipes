@@ -117,29 +117,18 @@ export const getTags = async () => {
   return options[0].tags;
 };
 
-export const authenticateUser = async (authData) => {
-  const query = GET_USER_BY_EMAIL;
+export const newUserCreateSettings = async (key, user_id) => {
   const inseryQuery = ADD_NEW_SETTINGS;
+  await graphqlRequest(inseryQuery, {
+    key,
+    authId: user_id,
+  });
+};
+
+export const authenticateUser = async (email) => {
+  const query = GET_USER_BY_EMAIL;
   const mutation = UPDATE_LOGIN_DATE;
-  const { user } = await graphqlRequest(query, { email: authData });
-  if (user[0].settings && user[0].settings.length === 0) {
-    const { insert_settings } = await graphqlRequest(inseryQuery, {
-      key: user[0].key,
-      authId: user[0].user_id,
-    });
-    const {
-      courses,
-      cuisines,
-      mains,
-      homepageLimit,
-      id,
-      showFractions,
-      themes,
-    } = insert_settings.returning[0];
-    user[0].settings = [
-      { courses, cuisines, mains, homepageLimit, id, showFractions, themes },
-    ];
-  }
+  const { user } = await graphqlRequest(query, { email });
   await graphqlRequest(mutation, {
     key: user[0].key,
     set: { lastLoggedIn: new Date().toISOString() },

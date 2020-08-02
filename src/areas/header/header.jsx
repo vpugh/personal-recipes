@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Container from '../../grid/container';
 import { Link } from 'react-router-dom';
 import { useStyles } from '../../styles/header-styles';
@@ -6,7 +6,6 @@ import { useAuth } from '../../context/auth-context';
 import { useAuth0 } from '@auth0/auth0-react';
 import HeaderProfile from './header-profile';
 import HeaderLoggedOut from './header-logged-out';
-import { useEffect } from 'react';
 
 const Header = () => {
   const classes = useStyles();
@@ -21,22 +20,15 @@ const Header = () => {
   useEffect(() => {
     const getToken = async () => {
       const claims = await getIdTokenClaims();
-      if (claims) {
+      const setToken = localStorage.getItem('token');
+      if (claims && claims.__raw !== setToken) {
         localStorage.setItem('token', claims.__raw);
         handleLogin(user.email);
       }
     };
 
-    if (user && !hasuraUser) {
-      getToken();
-    }
-  }, [
-    getIdTokenClaims,
-    user,
-    handleLogin,
-    hasuraUser,
-    getAccessTokenWithPopup,
-  ]);
+    getToken();
+  }, [getIdTokenClaims, user, handleLogin, getAccessTokenWithPopup]);
 
   return (
     <header className={classes.headerBackground}>

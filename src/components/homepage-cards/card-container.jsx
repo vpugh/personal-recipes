@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import CardCategory from './card-category';
 import CardRecipe from './card-recipe';
-import Shimmer from './shimmer';
 import { prepareUrl } from '../../util/helper-functions';
+import CardBase from '../card/card-base';
 
 const useStyles = makeStyles((theme) => ({
   subTitle: {
@@ -24,15 +24,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     width: '100%',
   },
-  cardContainer: {
-    display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-    },
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
-    },
-  },
   grid: (props) => ({
     display: 'grid',
     [theme.breakpoints.up('sm')]: {
@@ -46,44 +37,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 50,
     },
     marginBottom: 20,
-  },
-  displayFlexCenter: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 0,
-  },
-  subFontSize: {
-    fontSize: 10,
-  },
-  horizontalCard: {
-    color: theme.palette.grey.one,
-    fontSize: 18,
-    borderRadius: 6,
-    boxShadow: `2px 4px 8px ${theme.palette.primary.pale}`,
-    background: theme.palette.background.white,
-    padding: 20,
-    transition: '300ms ease-in-out',
-    '&:hover': {
-      boxShadow: `4px 6px 10px ${theme.palette.primary.main}`,
-    },
-    [theme.breakpoints.up('md')]: {
-      '&:last-child': {
-        marginRight: 0,
-      },
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: 10,
-      marginLeft: 10,
-      marginRight: 10,
-    },
-    fontWeight: 'normal',
-    textDecoration: 'none',
-  },
-  icons: {
-    width: 20,
-    height: 20,
-    marginRight: 6,
-    marginLeft: 6,
   },
 }));
 
@@ -112,7 +65,7 @@ const CardContainer = (props) => {
       <div className={classes.grid}>
         {arr &&
           arr.map((item) => (
-            <Link
+            <CardBase
               key={type ? item.id : item}
               to={
                 type
@@ -120,20 +73,13 @@ const CardContainer = (props) => {
                   : `/recipes/${link.toLowerCase()}/${prepareUrl(item)}`
               }
               query={item.id}
-              className={classes.horizontalCard}
             >
               {type ? (
                 <CardRecipe recipe={item} />
               ) : (
                 <CardCategory category={item} title={title} />
               )}
-            </Link>
-          ))}
-        {!arr &&
-          Array(...Array(type ? 4 : 3)).map((r, index) => (
-            <div className={classes.horizontalCard} key={`${r}${index}`}>
-              <Shimmer type={type} key={`${r} ${index}`} />
-            </div>
+            </CardBase>
           ))}
       </div>
     </div>
