@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './areas/header/header';
 import './App.css';
 import Main from './Main';
-// import { makeServer } from './mirage-server';
 import { AuthProvider } from './context/auth-context';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -11,9 +10,6 @@ import pinkTheme from './theme/pink-theme';
 import blueTheme from './theme/blue-theme';
 import purpleTheme from './theme/purple-theme';
 import greenTheme from './theme/green-theme';
-import { useState } from 'react';
-
-// makeServer();
 
 const returnTheme = (selected) => {
   switch (selected) {

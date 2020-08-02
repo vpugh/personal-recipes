@@ -45,7 +45,9 @@ export const useAuthenthentice = () => {
       window.localStorage.setItem('authData', JSON.stringify(data.email));
       window.localStorage.setItem(
         'selectedThemeData',
-        JSON.stringify(data.settings[0].themes[0].selected)
+        JSON.stringify(
+          (data.settings[0] && data.settings[0].themes[0].selected) || 'pink'
+        )
       );
       setUser(data);
     }
@@ -65,7 +67,7 @@ export const useAuthenthentice = () => {
       window.localStorage.setItem('authData', JSON.stringify(auth.email));
       window.localStorage.setItem(
         'selectedThemeData',
-        auth.settings[0].themes[0].selected
+        (auth.settings[0] && auth.settings[0].themes[0].selected) || 'pink'
       );
       return user;
     }
