@@ -14,10 +14,12 @@ import Signup from './areas/signup/signup';
 import AddRecipe from './areas/recipes/add-recipe';
 import EditRecipe from './areas/recipes/edit-recipe';
 import PrivateRoute from './components/private-route';
+import { useTheme } from '@material-ui/core';
 
 const Main = (props) => {
   const { user } = useAuth();
   const { isLoading } = useAuth0();
+  const theme = useTheme();
   useEffect(() => {
     document.documentElement.style.background = props.bgColor();
     const userCheck = user ? true : false;
@@ -51,7 +53,10 @@ const Main = (props) => {
               flexDirection: 'column',
               margin: '0 auto',
               width: '70%',
-              background: '#fff',
+              borderRadius: 6,
+              boxShadow: `2px 4px 8px ${theme.palette.primary.pale}`,
+              background: theme.palette.background.white,
+              padding: 20,
             }}
           >
             Loading...
