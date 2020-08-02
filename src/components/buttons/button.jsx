@@ -4,9 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   button: (props) => ({
     background: props.color ? theme.palette.primary.secondary : '#ddd',
-    boxShadow: props.color
-      ? `4px 8px 44px ${theme.palette.primary.pale}`
-      : null,
     width: props.fullSize ? '100%' : null,
     fontSize: 16,
     fontWeight: 'bold',

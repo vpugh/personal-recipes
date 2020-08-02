@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     width: '70%',
     borderRadius: 6,
-    boxShadow: `2px 4px 8px ${theme.palette.primary.pale}`,
+    boxShadow: `0 2px 4px 0 ${theme.palette.primary.pale}`,
     background: theme.palette.background.white,
     padding: 20,
     alignItems: 'center',

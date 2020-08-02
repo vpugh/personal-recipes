@@ -51,11 +51,11 @@ export const useStyles = makeStyles((theme) => ({
 
     transition: '300ms ease-in-out',
     '&:hover': {
-      boxShadow: `4px 6px 10px ${theme.palette.primary.main}`,
+      background: theme.palette.primary.tertiary,
     },
   },
   introBox: {
-    boxShadow: `4px 8px 16px ${theme.palette.primary.pale}`,
+    boxShadow: `0 2px 4px 0 ${theme.palette.primary.pale}`,
     borderRadius: '6px 6px 0 0',
     margin: '0 0 40px 0',
     [theme.breakpoints.up('md')]: {

@@ -10,7 +10,7 @@ import Tags from '../../components/tags';
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
     background: theme.palette.background.white,
-    boxShadow: `4px 8px 44px ${theme.palette.primary.pale}`,
+    boxShadow: `0 4px 12px 0 ${theme.palette.primary.pale}`,
     padding: '40px 50px',
     color: '#575757',
     margin: '0 auto 72px auto',

@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   pageContainer: (props) => ({
     maxWidth: 850,
     background: theme.palette.background.white,
-    boxShadow: `2px 4px 8px ${theme.palette.primary.pale}`,
+    boxShadow: `0 2px 4px 0 ${theme.palette.primary.pale}`,
     padding: 30,
     borderRadius: 6,
     [theme.breakpoints.up('md')]: {

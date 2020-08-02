@@ -46,7 +46,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   saveButton: {
     background: theme.palette.primary.secondary,
-    boxShadow: `4px 8px 44px ${theme.palette.primary.pale}`,
+    boxShadow: `0 4px 12px 0 ${theme.palette.primary.pale}`,
     width: '100%',
     fontSize: 16,
     fontWeight: 'bold',
