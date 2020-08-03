@@ -242,3 +242,19 @@ export const ADD_NEW_SETTINGS = `mutation AddNewSetting($key: Int, $authId:Strin
     }
  }
 }`;
+
+export const UPDATE_USER_NAME = `mutation updateUserName($userId: String, $set: user_set_input) {
+  update_user(where: { user_id: {_eq: $userId }}, _set: $set){
+    returning {
+      name
+    }
+  }
+}`;
+
+export const UPDATE_USER_THEMES = `mutation updateUserSettings($userId: Int, $set: settings_set_input) {
+  update_settings(where: { user_id: { _eq: $userId }}, _set: $set) {
+    returning {
+      themes
+    }
+  }
+}`;

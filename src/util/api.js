@@ -12,6 +12,8 @@ import {
   GET_MAIN_LIST,
   GET_TAGS_LIST,
   ADD_NEW_SETTINGS,
+  UPDATE_USER_NAME,
+  UPDATE_USER_THEMES,
 } from '../queries';
 
 const apiPath = '/api/v1/';
@@ -146,6 +148,26 @@ export const updateRecipe = async (id, data) => {
     set: data,
   });
   return update_recipes.returning[0];
+};
+
+export const updateUserName = async (userId, data) => {
+  const mutation = UPDATE_USER_NAME;
+
+  const { update_user } = await graphqlRequest(mutation, {
+    userId,
+    set: data,
+  });
+  return update_user.returning[0];
+};
+
+export const updateUserTheme = async (key, data) => {
+  const mutation = UPDATE_USER_THEMES;
+
+  const { update_settings } = await graphqlRequest(mutation, {
+    userId: key,
+    set: data,
+  });
+  return update_settings;
 };
 
 export const saveRecipe = async (data) => {

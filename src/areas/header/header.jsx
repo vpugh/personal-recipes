@@ -20,15 +20,22 @@ const Header = () => {
   useEffect(() => {
     const getToken = async () => {
       const claims = await getIdTokenClaims();
-      const setToken = localStorage.getItem('token');
-      if (claims && claims.__raw !== setToken) {
+      if (claims) {
         localStorage.setItem('token', claims.__raw);
         handleLogin(user.email);
       }
     };
 
-    getToken();
-  }, [getIdTokenClaims, user, handleLogin, getAccessTokenWithPopup]);
+    if (user && !hasuraUser) {
+      getToken();
+    }
+  }, [
+    getIdTokenClaims,
+    user,
+    handleLogin,
+    getAccessTokenWithPopup,
+    hasuraUser,
+  ]);
 
   return (
     <header className={classes.headerBackground}>
