@@ -2,9 +2,10 @@ import React from 'react';
 import CardContainer from '../../components/page-container';
 import { replacePunctuation } from '../../util/helper-functions';
 import { useAuth } from '../../context/auth-context';
+import { useParams } from 'react-router-dom';
 
-const CategoryPage = (props) => {
-  const { category } = props.match.params;
+const CategoryPage = () => {
+  const { category } = useParams();
   const { user } = useAuth();
 
   const createCategoryList = (arr, category) => {

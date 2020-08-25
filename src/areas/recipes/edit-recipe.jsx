@@ -3,7 +3,7 @@ import PageContainer from '../../components/page-container';
 import { makeStyles } from '@material-ui/core';
 import { RecipeForm } from './recipe-form';
 import { useAuth } from '../../context/auth-context';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   headerContainer: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const EditRecipe = (props) => {
   const classes = useStyles();
   const { user } = useAuth();
-  const recipeId = props.match.params.id;
+  const { id: recipeId } = useParams();
   if (user) {
     const recipes = user && user.recipes;
     const currentRecipe = recipes.filter(

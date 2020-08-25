@@ -50,18 +50,29 @@ const CardRecipe = (props) => {
         >
           {title}
         </h3>
-        {(total_time || cook_time || prep_time) && (
+        {(total_time || cook_time || prep_time || serves) && (
           <div className={classes.displayFlexCenter} style={{ marginTop: 24 }}>
-            <img
-              src='/icons/Clock@2x.png'
-              alt='Settings Icon'
-              className={classes.icons}
-            />
-            <p style={{ margin: 0 }}>
-              {!total_time && `${displayTotalTime(cook_time, prep_time)}`}
-              {total_time && `${total_time} ${total_time < 60 ? 'mins' : ''}`}
-            </p>
-            <p style={{ margin: '0 0 0 24px' }}>
+            {(total_time || cook_time || prep_time) && (
+              <>
+                <img
+                  src='/icons/Clock@2x.png'
+                  alt='Settings Icon'
+                  className={classes.icons}
+                />
+                <p style={{ margin: 0 }}>
+                  {!total_time && `${displayTotalTime(cook_time, prep_time)}`}
+                  {total_time &&
+                    `${total_time} ${total_time < 60 ? 'mins' : ''}`}
+                </p>
+              </>
+            )}
+            <p
+              style={{
+                margin: `${
+                  !total_time && !cook_time && !prep_time ? '0' : '0 0 0 24px'
+                }`,
+              }}
+            >
               {serves} {serve_type || 'portions'}
             </p>
           </div>

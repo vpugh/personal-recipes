@@ -43,15 +43,13 @@ const Header = () => {
         <Link className={`logo serif ${classes.logoLink}`} to='/'>
           Personal Recipes
         </Link>
-        <div className='profile'>
-          <div className={classes.profileDDContainer}>
-            {!isLoading && hasuraUser ? (
-              <HeaderProfile user={user} />
-            ) : (
-              <HeaderLoggedOut />
-            )}
+        {!isLoading && (
+          <div className='profile'>
+            <div className={classes.profileDDContainer}>
+              {hasuraUser ? <HeaderProfile user={user} /> : <HeaderLoggedOut />}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </header>
   );

@@ -20,7 +20,7 @@ export default responsiveFontSizes(
         main: '#a3f5d2', // 1
         secondary: '#8CF0C6', // 2
         tertiary: '#0ad07d', // 3
-        pale: '#b8f7dc', // 4
+        pale: '#8cf0c6', // 4
       },
       grey: {
         one: '#575757',

@@ -6,9 +6,10 @@ import {
 import CardContainer from '../../components/page-container';
 import { useAuth } from '../../context/auth-context';
 import GenericList from './generic-list';
+import { useParams } from 'react-router-dom';
 
-const CategoryTypePage = (props) => {
-  const { type, category } = props.match.params;
+const CategoryTypePage = () => {
+  const { type, category } = useParams();
   const { user } = useAuth();
 
   const recipes = user && user.recipes;

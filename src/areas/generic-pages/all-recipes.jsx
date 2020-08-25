@@ -31,8 +31,13 @@ const useStyles = makeStyles({
     marginLeft: 6,
   },
   recipeSpacer: {
+    // border: '1px solid #eae9e9',
+    padding: 20,
+    borderRadius: 4,
+    background: '#fbfbfb',
+    boxShadow: '0px 1px 3px rgba(0, 0 ,0, 0.2)',
     '&:not(:last-child)': {
-      paddingBottom: 30,
+      marginBottom: 30,
     },
   },
 });
@@ -45,7 +50,7 @@ const AllRecipes = () => {
     <PageContainer>
       <h1 className='pageTitle'>All Recipes</h1>
       {user &&
-        user.recipe.map((recipe, index) => {
+        user.recipes.map((recipe, index) => {
           const {
             title,
             id,
@@ -75,18 +80,20 @@ const AllRecipes = () => {
                 <Tags content={course} />
                 <Tags content={cuisine} />
                 <Tags content={main_dish} />
-                <span
-                  className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
-                >
-                  <img
-                    src='/icons/Clock@2x.png'
-                    alt='Settings Icon'
-                    className={classes.icons}
-                  />
-                  {!total_time && `${displayTotalTime(cook_time, prep_time)}`}
-                  {total_time &&
-                    `${total_time} ${total_time < 60 ? 'mins' : ''}`}
-                </span>
+                {(total_time || cook_time || prep_time) && (
+                  <span
+                    className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
+                  >
+                    <img
+                      src='/icons/Clock@2x.png'
+                      alt='Settings Icon'
+                      className={classes.icons}
+                    />
+                    {!total_time && `${displayTotalTime(cook_time, prep_time)}`}
+                    {total_time &&
+                      `${total_time} ${total_time < 60 ? 'mins' : ''}`}
+                  </span>
+                )}
                 <span
                   style={{ marginLeft: 12 }}
                   className={`${classes.displayFlexCenter} ${classes.subFontSize}`}
