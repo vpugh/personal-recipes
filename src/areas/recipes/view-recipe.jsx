@@ -151,7 +151,6 @@ const ViewRecipe = () => {
 
   if (user && user.recipes) {
     const recipes = user && user.recipes;
-    console.log({ recipes });
     const currentRecipe = recipes.filter(
       (x) => x.id.toString() === recipeId
     )[0];

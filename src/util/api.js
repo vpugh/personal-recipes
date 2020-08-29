@@ -14,6 +14,7 @@ import {
   ADD_NEW_SETTINGS,
   UPDATE_USER_NAME,
   UPDATE_USER_THEMES,
+  UPDATE_USER_SHOW_FRACTIONS,
 } from '../queries';
 
 const apiPath = '/api/v1/';
@@ -160,14 +161,14 @@ export const updateUserName = async (userId, data) => {
   return update_user.returning[0];
 };
 
-export const updateUserTheme = async (key, data) => {
+export const updateUserTheme = async (key, userId, data) => {
   const mutation = UPDATE_USER_THEMES;
-
-  const { update_settings } = await graphqlRequest(mutation, {
-    userId: key,
+  const { update_settings, update_user } = await graphqlRequest(mutation, {
+    key,
+    userId,
     set: data,
   });
-  return update_settings;
+  return { update_settings, update_user };
 };
 
 export const saveRecipe = async (data) => {
@@ -209,4 +210,17 @@ export const signupUser = async (data) => {
     { recipes: [] }
   );
   return { returnedUser: returnedUser };
+};
+
+export const updateShowFractions = async (key, userId, showFractions) => {
+  const updateShowFractionsMutation = UPDATE_USER_SHOW_FRACTIONS;
+  const { update_settings } = await graphqlRequest(
+    updateShowFractionsMutation,
+    {
+      key,
+      userId,
+      showFractions,
+    }
+  );
+  return update_settings;
 };

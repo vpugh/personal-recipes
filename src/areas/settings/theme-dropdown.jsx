@@ -1,18 +1,15 @@
-import React from 'react';
-import { useState } from 'react';
-import { updateUserTheme } from '../../util/api';
+import React, { useState } from 'react';
 
 const ThemeDropDown = (props) => {
-  const { data, userKey } = props;
+  const { data, updateTheme } = props;
   const [selectedValue, setSelectedValue] = useState(data[0].selected);
 
-  const selectTheme = async (theme) => {
+  const selectValue = (theme) => {
     setSelectedValue(theme);
     const newTheme = `{ "themes": [ { "selected": ${JSON.stringify(
       theme
     )} }, { "options": [ { "type": "pink", "color": "#FFADAD" }, { "type": "blue", "color": "#a7edfd" }, { "type": "green", "color": "#a3f5d2" }, { "type": "purple", "color": "#e0c0ef" } ] } ]}`;
-    await updateUserTheme(userKey, JSON.parse(newTheme));
-    window.localStorage.setItem('selectedThemeData', theme);
+    updateTheme(newTheme, theme);
   };
 
   return (
@@ -35,7 +32,7 @@ const ThemeDropDown = (props) => {
                     : `4px solid ${theme.color}`,
               }}
               onClick={() => {
-                selectTheme(theme.type);
+                selectValue(theme.type);
               }}
             />
           );

@@ -259,10 +259,57 @@ export const UPDATE_USER_NAME = `mutation updateUserName($userId: String, $set: 
   }
 }`;
 
-export const UPDATE_USER_THEMES = `mutation updateUserSettings($userId: Int, $set: settings_set_input) {
-  update_settings(where: { user_id: { _eq: $userId }}, _set: $set) {
+export const UPDATE_USER_THEMES = `mutation updateUserSettings($key: Int, $userId: String, $set: settings_set_input) {
+  update_settings(where: { user_id: { _eq: $key }}, _set: $set) {
     returning {
-      themes
+        themes
+      }
+    }
+    update_user(where: { user_id: { _eq: $userId}}, _set: {lastLoggedIn: "now()"}) {
+      returning {
+        name
+      email
+      user_id
+      recipes {
+        title
+        cook_time
+        course
+        cuisine
+        description
+        equipment_needed
+        id
+        ingredients
+        instructions
+        main_dish
+        notes
+        prep_time
+        recipe_origin
+        created_at
+        serve_type
+        total_time
+        tags
+        serves
+        favorite
+        have_made
+      }
+      username
+      settings {
+        id
+        courses
+        cuisines
+        mains
+        themes
+        homepageLimit
+        showFractions
+      }
+    }
+  }
+}`;
+
+export const UPDATE_USER_SHOW_FRACTIONS = `mutation UpdateShowFraction($key: Int, $userId: String, $showFractions: Boolean) {
+  update_settings(where: { user_id: { _eq: $key }}, _set: { showFractions:  $showFractions} ) {
+    returning {
+      showFractions
     }
   }
 }`;
