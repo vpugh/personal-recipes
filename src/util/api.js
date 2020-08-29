@@ -201,6 +201,7 @@ export const signupUser = async (data) => {
   const { insert_settings } = await graphqlRequest(addSettingsDefault, {
     newUserId,
   });
+
   const returnedUser = Object.assign(
     {},
     insert_user.returning[0],
