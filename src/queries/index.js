@@ -56,6 +56,8 @@ export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
       total_time
       tags
       serves
+      favorite
+      have_made
     }
     username
     settings {
@@ -94,6 +96,8 @@ export const GET_USER_BY_EMAIL_AUTHENTICATE = `query GetUserByEmail($email: Stri
       total_time
       tags
       serves
+      favorite
+      have_made
     }
     username
     settings {
@@ -176,6 +180,8 @@ export const EDIT_RECIPES = `mutation EditRecipes($set: recipes_set_input, $reci
       cuisine
       course
       cook_time
+      favorite
+      have_made
     }
   }
 }`;
@@ -208,6 +214,8 @@ export const UPDATE_LOGIN_DATE_RETURN = `mutation UpdateLoginDate($set: user_set
         tags
         created_at
         serves
+        favorite
+        have_made
       }
       username
       settings {

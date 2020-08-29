@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   pageContainer: (props) => ({
-    maxWidth: 850,
+    maxWidth: 1024,
     background: theme.palette.background.white,
     boxShadow: `0 2px 4px 0 ${theme.palette.primary.pale}`,
     padding: 30,
