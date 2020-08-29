@@ -128,6 +128,12 @@ export const newUserCreateSettings = async (key, user_id) => {
   });
 };
 
+export const retrieveUserData = async (email) => {
+  const query = GET_USER_BY_EMAIL;
+  const { user } = await graphqlRequest(query, { email });
+  return user[0];
+};
+
 export const authenticateUser = async (email) => {
   const query = GET_USER_BY_EMAIL;
   const mutation = UPDATE_LOGIN_DATE;
@@ -161,14 +167,13 @@ export const updateUserName = async (userId, data) => {
   return update_user.returning[0];
 };
 
-export const updateUserTheme = async (key, userId, data) => {
+export const updateUserTheme = async (key, data) => {
   const mutation = UPDATE_USER_THEMES;
-  const { update_settings, update_user } = await graphqlRequest(mutation, {
+  const { update_settings } = await graphqlRequest(mutation, {
     key,
-    userId,
     set: data,
   });
-  return { update_settings, update_user };
+  return update_settings;
 };
 
 export const saveRecipe = async (data) => {

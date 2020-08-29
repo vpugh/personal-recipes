@@ -5,6 +5,7 @@ import {
   getCuisines,
   getMainDishes,
   updateShowFractions,
+  retrieveUserData,
 } from '../../util/api';
 import { updateUserTheme } from '../../util/api';
 import { useAuth } from '../../context/auth-context';
@@ -38,12 +39,9 @@ const useUserSettings = (user) => {
   const updateTheme = async (newTheme, selectedTheme) => {
     setThemes(JSON.parse(newTheme).themes);
 
-    const returnData = await updateUserTheme(
-      user.key,
-      user.user_id,
-      JSON.parse(newTheme)
-    );
-    updateUser(returnData.update_user.returning[0]);
+    await updateUserTheme(user.key, JSON.parse(newTheme));
+    const userData = await retrieveUserData(user.email);
+    updateUser(userData);
     window.localStorage.setItem('selectedThemeData', selectedTheme);
   };
 
