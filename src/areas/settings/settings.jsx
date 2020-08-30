@@ -204,7 +204,7 @@ const Settings = () => {
                       color='primary'
                     />
                   }
-                  label='Off'
+                  label={showFraction ? 'On' : 'Off'}
                 />
               </div>
             </div>
