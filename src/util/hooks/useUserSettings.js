@@ -48,6 +48,8 @@ const useUserSettings = (user) => {
   const updateFraction = async (showFractions) => {
     setShowFraction(showFractions);
     await updateShowFractions(user.key, user.user_id, showFractions);
+    const userData = await retrieveUserData(user.email);
+    updateUser(userData);
   };
 
   useEffect(() => {
