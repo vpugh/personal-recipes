@@ -15,6 +15,7 @@ import AddRecipe from './areas/recipes/add-recipe';
 import EditRecipe from './areas/recipes/edit-recipe';
 import PrivateRoute from './components/private-route';
 import LoadingCard from './areas/loading-card/loading-card';
+import FavoriteRecipes from './areas/generic-pages/favorite-recipes';
 
 const Main = (props) => {
   const { user } = useAuth();
@@ -55,6 +56,11 @@ const Main = (props) => {
               exact
               path='/recipes/all-recipes'
               component={AllRecipes}
+            />
+            <PrivateRoute
+              exact
+              path='/recipes/favorite-recipes'
+              component={FavoriteRecipes}
             />
             <PrivateRoute
               exact

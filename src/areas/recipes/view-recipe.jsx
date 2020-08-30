@@ -9,8 +9,7 @@ import Tags from '../../components/tags';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
-import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import FavoriteMade from '../../components/favorite-made';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -180,18 +179,7 @@ const ViewRecipe = () => {
         <div>
           <div className={classes.headerContainer}>
             <h1 style={{ marginTop: 0 }}>{title}</h1>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {favorite ? (
-                <StarRoundedIcon
-                  style={{ display: 'inline-block', marginRight: 4 }}
-                />
-              ) : (
-                <StarBorderRoundedIcon
-                  style={{ display: 'inline-block', marginRight: 4 }}
-                />
-              )}
-              {have_made ? 'Have Made' : 'Have Not Made Yet!'}
-            </div>
+            <FavoriteMade favorite={favorite} haveMade={have_made} />
             <div className={classes.recipeButtons}>
               <Button
                 component={Link}

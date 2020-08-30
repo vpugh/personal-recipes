@@ -21,6 +21,8 @@ const LoggedIn = () => {
     );
   }, [user]);
 
+  const favs = user && user.recipes.filter((x) => x.favorite === true);
+
   return (
     <div className={classes.container}>
       {user && user.recipes.length > 0 ? (
@@ -40,6 +42,13 @@ const LoggedIn = () => {
                   )
                 : null
             }
+            type='category'
+          />
+          <CardContainer
+            title='Favorite Recipes'
+            link='favorite-recipes'
+            linkText='Favorites'
+            arr={limitSortReverseArray(favs, limit, 'created_at', 'reverse')}
             type='category'
           />
           <CardContainer

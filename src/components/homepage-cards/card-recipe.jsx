@@ -1,9 +1,8 @@
 import React from 'react';
 import useStyles from '../../styles/horizontal-card-styles';
 import { displayTotalTime } from '../../util/helper-functions';
-import StarBorderRoundedIcon from '@material-ui/icons/StarBorderRounded';
-import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import { makeStyles } from '@material-ui/core/styles';
+import FavoriteMade from '../favorite-made';
 
 const starStyles = makeStyles((theme) => ({
   star: {
@@ -33,6 +32,7 @@ const CardRecipe = (props) => {
     serves,
     serve_type,
     favorite,
+    have_made,
   } = recipe;
   return (
     <div
@@ -78,11 +78,11 @@ const CardRecipe = (props) => {
           </div>
         )}
       </div>
-      {favorite ? (
-        <StarRoundedIcon className={starClass.star} />
-      ) : (
-        <StarBorderRoundedIcon className={starClass.star} />
-      )}
+      <FavoriteMade
+        classStyle={starClass.star}
+        favorite={favorite}
+        haveMade={have_made}
+      />
     </div>
   );
 };
