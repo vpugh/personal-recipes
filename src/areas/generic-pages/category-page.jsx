@@ -3,7 +3,6 @@ import CardContainer from '../../components/page-container';
 import { replacePunctuation } from '../../util/helper-functions';
 import { useAuth } from '../../context/auth-context';
 import { useParams, Link } from 'react-router-dom';
-import GenericList from './generic-list';
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -59,7 +58,6 @@ const CategoryPage = () => {
                 </p>
               </Link>
             ))}
-            {/* <GenericList list={contentList(user.recipes, cat, category)} /> */}
           </React.Fragment>
         ))}
     </CardContainer>

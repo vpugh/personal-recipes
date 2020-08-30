@@ -11,9 +11,6 @@ const starStyles = makeStyles((theme) => ({
     paddingRight: 10,
     paddingLeft: 30,
     transition: '300ms ease-in-out',
-    '&:hover': {
-      opacity: '.4',
-    },
   },
 }));
 
@@ -41,6 +38,7 @@ const CardRecipe = (props) => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        height: '100%',
       }}
     >
       <div>
@@ -82,6 +80,7 @@ const CardRecipe = (props) => {
         classStyle={starClass.star}
         favorite={favorite}
         haveMade={have_made}
+        icon
       />
     </div>
   );

@@ -105,7 +105,7 @@ const AllRecipes = () => {
                   )}
                 </div>
               </div>
-              <FavoriteMade favorite={favorite} haveMade={have_made} />
+              <FavoriteMade favorite={favorite} haveMade={have_made} icon />
             </div>
           );
         })}

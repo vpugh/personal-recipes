@@ -179,7 +179,7 @@ const ViewRecipe = () => {
         <div>
           <div className={classes.headerContainer}>
             <h1 style={{ marginTop: 0 }}>{title}</h1>
-            <FavoriteMade favorite={favorite} haveMade={have_made} />
+            <FavoriteMade favorite={favorite} haveMade={have_made} text />
             <div className={classes.recipeButtons}>
               <Button
                 component={Link}
