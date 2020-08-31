@@ -86,13 +86,9 @@ const HeaderProfile = (props) => {
           >
             Settings
           </Link>
-          <button
-            type='button'
-            className={classes.settingsLink}
-            onClick={logOut}
-          >
+          <div role='button' className={classes.settingsLink} onClick={logOut}>
             Log Out
-          </button>
+          </div>
         </ul>
       )}
     </>

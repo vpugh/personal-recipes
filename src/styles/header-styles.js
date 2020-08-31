@@ -13,10 +13,12 @@ export const useStyles = makeStyles((theme) => ({
     fontSize: 18,
     alignItems: 'center',
     [theme.breakpoints.up('md')]: {
-      justifyContent: 'space-between',
       maxWidth: '80%',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+    },
+    [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
       '& .profile': {
         marginTop: 20,

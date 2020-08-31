@@ -9,43 +9,45 @@ const loadRecipeData = (recipeItem, initialData) => {
 };
 
 const useRecipeState = (currentRecipe) => {
-  const [title, setTitle] = useState(loadRecipeData(currentRecipe.title, ''));
+  const [title, setTitle] = useState(loadRecipeData(currentRecipe?.title, ''));
   const [course, setCourse] = useState(
-    loadRecipeData(currentRecipe.course, [])
+    loadRecipeData(currentRecipe?.course, [])
   );
   const [cuisine, setCuisine] = useState(
-    loadRecipeData(currentRecipe.cuisine, [])
+    loadRecipeData(currentRecipe?.cuisine, [])
   );
-  const [main, setMain] = useState(loadRecipeData(currentRecipe.main_dish, []));
-  const [tags, setTags] = useState(loadRecipeData(currentRecipe.tags, []));
+  const [main, setMain] = useState(
+    loadRecipeData(currentRecipe?.main_dish, [])
+  );
+  const [tags, setTags] = useState(loadRecipeData(currentRecipe?.tags, []));
   const [prepTime, setPrepTime] = useState(
-    loadRecipeData(currentRecipe.prep_time, '')
+    loadRecipeData(currentRecipe?.prep_time, '')
   );
   const [cookTime, setCookTime] = useState(
-    loadRecipeData(currentRecipe.cook_time, '')
+    loadRecipeData(currentRecipe?.cook_time, '')
   );
   const [totalTime, setTotalTime] = useState(
-    loadRecipeData(currentRecipe.total_time, '')
+    loadRecipeData(currentRecipe?.total_time, '')
   );
   const [serves, setServes] = useState(
-    loadRecipeData(currentRecipe.serves, '')
+    loadRecipeData(currentRecipe?.serves, '')
   );
   const [serveType, setServeType] = useState(
-    loadRecipeData(currentRecipe.serve_type, '')
+    loadRecipeData(currentRecipe?.serve_type, '')
   );
   const [recipeOrigin, setRecipeOrigin] = useState(
-    loadRecipeData(currentRecipe.recipe_origin, '')
+    loadRecipeData(currentRecipe?.recipe_origin, '')
   );
   const [description, setDescription] = useState(
-    loadRecipeData(currentRecipe.description, '')
+    loadRecipeData(currentRecipe?.description, '')
   );
 
   const [favorite, setFavorite] = useState(
-    loadRecipeData(currentRecipe.favorite, false)
+    loadRecipeData(currentRecipe?.favorite, false)
   );
 
   const [haveMade, setHaveMade] = useState(
-    loadRecipeData(currentRecipe.have_made, false)
+    loadRecipeData(currentRecipe?.have_made, false)
   );
 
   // Add to tags
@@ -53,16 +55,16 @@ const useRecipeState = (currentRecipe) => {
 
   // Input Arrays
   const [equipmentNeededArr, setEquipmentNeededArr] = useState(
-    loadRecipeData(currentRecipe.equipment_needed, [])
+    loadRecipeData(currentRecipe?.equipment_needed, [])
   );
   const [ingredientsArr, setIngredientsArr] = useState(
-    loadRecipeData(currentRecipe.ingredients, [])
+    loadRecipeData(currentRecipe?.ingredients, [])
   );
   const [instructionsArr, setInstructionsArr] = useState(
-    loadRecipeData(currentRecipe.instructions, [])
+    loadRecipeData(currentRecipe?.instructions, [])
   );
   const [notesArr, setNotesArr] = useState(
-    loadRecipeData(currentRecipe.notes, [])
+    loadRecipeData(currentRecipe?.notes, [])
   );
 
   return {

@@ -125,6 +125,28 @@ export const useStyles = makeStyles((theme) => ({
       alignItems: 'start',
     },
   },
+  recipeActions: {
+    display: 'flex',
+    alignItems: 'baseline',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      '& > :nth-child(1)': {
+        marginBottom: 20,
+      },
+    },
+    [theme.breakpoints.between('sm', 1023)]: {
+      justifyContent: 'space-between',
+      width: '100%',
+      margin: '10px 0',
+      flexDirection: 'row',
+    },
+    [theme.breakpoints.up('lg')]: {
+      flexDirection: 'row',
+      '& > :nth-child(1)': {
+        paddingRight: 10,
+      },
+    },
+  },
 }));
 
 const makeLink = (link) => {
@@ -179,16 +201,18 @@ const ViewRecipe = () => {
         <div>
           <div className={classes.headerContainer}>
             <h1 style={{ marginTop: 0 }}>{title}</h1>
-            <FavoriteMade favorite={favorite} haveMade={have_made} text />
-            <div className={classes.recipeButtons}>
-              <Button
-                component={Link}
-                to={`/recipe/edit/${recipeId}`}
-                startIcon={<EditIcon />}
-              >
-                Edit
-              </Button>
-              <Button startIcon={<DeleteIcon />}>Delete</Button>
+            <div className={classes.recipeActions}>
+              <FavoriteMade favorite={favorite} haveMade={have_made} text />
+              <div className={classes.recipeButtons}>
+                <Button
+                  component={Link}
+                  to={`/recipe/edit/${recipeId}`}
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
+                <Button startIcon={<DeleteIcon />}>Delete</Button>
+              </div>
             </div>
           </div>
           <div>

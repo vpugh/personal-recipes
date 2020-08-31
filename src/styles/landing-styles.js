@@ -2,6 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   container: {
+    [theme.breakpoints.up('sm')]: {
+      margin: '20px 16px',
+    },
     [theme.breakpoints.up('md')]: {
       display: 'flex',
       justifyContent: 'center',
