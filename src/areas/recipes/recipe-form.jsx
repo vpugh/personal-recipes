@@ -134,6 +134,8 @@ export const RecipeForm = (props) => {
     setFavorite,
     haveMade,
     setHaveMade,
+    recipeVideo,
+    setRecipeVideo,
   } = useRecipeState(currentRecipe);
 
   const handleNestedChange = (event, index, array, set) => {
@@ -176,6 +178,7 @@ export const RecipeForm = (props) => {
       ingredients: ingredientsArr,
       instructions: instructionsArr,
       notes: notesArr,
+      recipe_video: recipeVideo,
       tags,
       have_made: haveMade,
       favorite,
@@ -251,6 +254,14 @@ export const RecipeForm = (props) => {
         value={recipeOrigin}
         onChange={(e) => handleChange(e, setRecipeOrigin)}
         placeholder='Where you got it from, even if it’s from yourself'
+      />
+      <FormTextInput
+        className={classes.singleRow}
+        label='Recipe Video'
+        name='recipeVideo'
+        value={recipeVideo}
+        onChange={(e) => handleChange(e, setRecipeVideo)}
+        placeholder='Something to watch while making it'
       />
       <div className={classes.ccm}>
         <FormSelect

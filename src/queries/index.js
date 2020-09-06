@@ -52,6 +52,7 @@ export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       total_time
       tags
@@ -91,6 +92,7 @@ export const GET_USER_BY_EMAIL_AUTHENTICATE = `query GetUserByEmail($email: Stri
       notes
       prep_time
       recipe_origin
+      recipe_video
       created_at
       serve_type
       total_time
@@ -126,6 +128,7 @@ export const ADD_RECIPE = `mutation AddRecipe($data: [recipes_insert_input!]!) {
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       serves
       tags
@@ -173,6 +176,7 @@ export const EDIT_RECIPES = `mutation EditRecipes($set: recipes_set_input, $reci
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       serves
       tags
@@ -209,6 +213,7 @@ export const UPDATE_LOGIN_DATE_RETURN = `mutation UpdateLoginDate($set: user_set
         notes
         prep_time
         recipe_origin
+        recipe_video
         serve_type
         total_time
         tags

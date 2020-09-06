@@ -38,6 +38,9 @@ const useRecipeState = (currentRecipe) => {
   const [recipeOrigin, setRecipeOrigin] = useState(
     loadRecipeData(currentRecipe?.recipe_origin, '')
   );
+  const [recipeVideo, setRecipeVideo] = useState(
+    loadRecipeData(currentRecipe?.recipe_video, '')
+  );
   const [description, setDescription] = useState(
     loadRecipeData(currentRecipe?.description, '')
   );
@@ -106,6 +109,8 @@ const useRecipeState = (currentRecipe) => {
     setFavorite,
     haveMade,
     setHaveMade,
+    recipeVideo,
+    setRecipeVideo,
   };
 };
 

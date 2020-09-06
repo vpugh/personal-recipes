@@ -194,6 +194,7 @@ const ViewRecipe = () => {
       serves,
       favorite,
       have_made,
+      recipe_video,
     } = currentRecipe;
 
     return (
@@ -234,9 +235,22 @@ const ViewRecipe = () => {
             {description && (
               <p className={classes.descriptionBox}>{description}</p>
             )}
-            {recipe_origin && (
+            {(recipe_origin || recipe_video) && (
               <p className={classes.recipeOrigin}>
-                Recipe found at: {makeLink(recipe_origin)}
+                {recipe_origin && (
+                  <>Recipe found at: {makeLink(recipe_origin)}</>
+                )}
+                {recipe_video && (
+                  <>
+                    {recipe_origin && (
+                      <>
+                        <br />
+                        <br />
+                      </>
+                    )}
+                    Video found at: {makeLink(recipe_video)}
+                  </>
+                )}
               </p>
             )}
             <div className={classes.listContainer}>
