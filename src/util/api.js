@@ -128,12 +128,15 @@ export const getUserTags = async (key) => {
   return settings[0].tags;
 };
 
-export const newUserCreateSettings = async (key, user_id) => {
+export const newUserCreateSettings = async (key, user_id, email) => {
   const inseryQuery = ADD_NEW_SETTINGS;
   await graphqlRequest(inseryQuery, {
     key,
     authId: user_id,
   });
+  const getUserQuery = GET_USER_BY_EMAIL;
+  const { user } = await graphqlRequest(getUserQuery, { email });
+  return user;
 };
 
 export const retrieveUserData = async (email) => {

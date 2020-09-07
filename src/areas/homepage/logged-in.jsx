@@ -97,9 +97,9 @@ const LoggedIn = () => {
           <h2 style={{ marginTop: 0 }}>
             Welcome! It's looking a bit empty in here.
           </h2>
-          <p>Now would be a good time to add some recipes. :)</p>
+          <p>Now would be a good time to add some recipes.</p>
           <LinkButton color to='/add-recipe'>
-            Add Recipe
+            Add Recipe :)
           </LinkButton>
         </PageContainer>
       )}
