@@ -15,6 +15,8 @@ import {
   UPDATE_USER_NAME,
   UPDATE_USER_THEMES,
   UPDATE_USER_SHOW_FRACTIONS,
+  GET_USER_TAGLIST,
+  UPDATE_USER_TAGLIST,
 } from '../queries';
 
 const apiPath = '/api/v1/';
@@ -120,6 +122,12 @@ export const getTags = async () => {
   return options[0].tags;
 };
 
+export const getUserTags = async (key) => {
+  const tagsQuery = GET_USER_TAGLIST;
+  const { settings } = await graphqlRequest(tagsQuery, { key });
+  return settings[0].tags;
+};
+
 export const newUserCreateSettings = async (key, user_id) => {
   const inseryQuery = ADD_NEW_SETTINGS;
   await graphqlRequest(inseryQuery, {
@@ -146,6 +154,15 @@ export const authenticateUser = async (email) => {
 };
 
 // Send/Save Data
+
+export const updateUserTaglist = async (id, data) => {
+  const mutation = UPDATE_USER_TAGLIST;
+  const { update_settings } = await graphqlRequest(mutation, {
+    key: id,
+    set: data,
+  });
+  return update_settings.returning[0];
+};
 
 export const updateRecipe = async (id, data) => {
   const mutation = EDIT_RECIPES;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SubmitButton from '../../components/buttons/button';
-import { updateRecipe, saveRecipe } from '../../util/api';
+import { updateRecipe, saveRecipe, updateUserTaglist } from '../../util/api';
 import {
   Button,
   InputAdornment,
@@ -158,6 +158,7 @@ export const RecipeForm = (props) => {
     const addToList = tagsList.concat(capitalize(tag));
     setTagsList(addToList);
     setAddedTag('');
+    updateUserTaglist(user.key, { tags: addToList });
   };
 
   const handleOnSubmit = (e) => {

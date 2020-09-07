@@ -3,7 +3,7 @@ import {
   getCourses,
   getCuisines,
   getMainDishes,
-  getTags,
+  getUserTags,
 } from '../../util/api';
 
 const filterList = (list, removedContent) => {
@@ -11,7 +11,12 @@ const filterList = (list, removedContent) => {
 };
 
 const fetchList = async (set, user, getList, listType, filter = true) => {
-  const list = await getList();
+  let list;
+  if (listType === 'tags') {
+    list = await getList(user.key);
+  } else {
+    list = await getList();
+  }
   if (!list.error && filter) {
     const userRemoved = (user && user.settings[0][listType]) || [];
     set(filterList(list, userRemoved));
@@ -30,7 +35,7 @@ const useRecipeLists = (user) => {
     fetchList(setCourseList, user, getCourses, 'courses');
     fetchList(setCuisineList, user, getCuisines, 'cuisines');
     fetchList(setMainsList, user, getMainDishes, 'mains');
-    fetchList(setTagsList, null, getTags, null, false);
+    fetchList(setTagsList, user, getUserTags, 'tags', false);
   }, [user]);
   return {
     courseList,
