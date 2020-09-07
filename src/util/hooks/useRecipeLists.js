@@ -32,10 +32,12 @@ const useRecipeLists = (user) => {
   const [tagsList, setTagsList] = useState([]);
 
   useEffect(() => {
-    fetchList(setCourseList, user, getCourses, 'courses');
-    fetchList(setCuisineList, user, getCuisines, 'cuisines');
-    fetchList(setMainsList, user, getMainDishes, 'mains');
-    fetchList(setTagsList, user, getUserTags, 'tags', false);
+    if (user) {
+      fetchList(setCourseList, user, getCourses, 'courses');
+      fetchList(setCuisineList, user, getCuisines, 'cuisines');
+      fetchList(setMainsList, user, getMainDishes, 'mains');
+      fetchList(setTagsList, user, getUserTags, 'tags', false);
+    }
   }, [user]);
   return {
     courseList,

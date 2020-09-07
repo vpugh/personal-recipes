@@ -212,7 +212,12 @@ const ViewRecipe = () => {
                 >
                   Edit
                 </Button>
-                <Button startIcon={<DeleteIcon />}>Delete</Button>
+                <Button
+                  onClick={() => alert('Deletion is not hooked up yet')}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           </div>
