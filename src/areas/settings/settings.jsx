@@ -1,22 +1,23 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/auth-context';
 import PageContainer from '../../components/page-container';
-import { capitalize } from '../../util/helper-functions';
 import ThemeDropDown from './theme-dropdown';
 import { makeStyles } from '@material-ui/core/styles';
 import OptionSection from './option-section';
-import {
-  getCourses,
-  getCuisines,
-  getMainDishes,
-  updateUserName,
-} from '../../util/api';
+import { updateUserName } from '../../util/api';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { FormTextInput } from '../../components/inputs/form/form-text-input';
-import { InputAdornment } from '@material-ui/core';
+import {
+  InputAdornment,
+  Switch,
+  FormControlLabel,
+  useTheme,
+} from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
+import useUserSettings from '../../util/hooks/useUserSettings';
+import UserAvatar from '../../components/avatar';
 
 const useStyles = makeStyles((theme) => ({
   settingsContainer: {
@@ -29,56 +30,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const fetchCourse = async (set) => {
-  const courses = await getCourses();
-  set(courses);
-};
-
-const fetchCuisine = async (set) => {
-  const cuisines = await getCuisines();
-  set(cuisines);
-};
-
-const fetchMains = async (set) => {
-  const mains = await getMainDishes();
-  set(mains);
-};
-
 const Settings = () => {
   const { user, isLoading } = useAuth();
   const classes = useStyles();
   const [settingsUser, setSettingsUser] = useState();
-  const [courses, setCourses] = useState([]);
-  const [cuisines, setCuisines] = useState([]);
-  const [mains, setMains] = useState([]);
   const [editName, setEditName] = useState(false);
+  const theme = useTheme();
+  const {
+    allCourses,
+    allCuisines,
+    allMains,
+    showFraction,
+    themes,
+    userCourses,
+    userCuisines,
+    userMains,
+    updateTheme,
+    updateFraction,
+  } = useUserSettings(user);
 
   useEffect(() => {
-    fetchCourse(setCourses);
-    fetchCuisine(setCuisines);
-    fetchMains(setMains);
     if (user) {
       setSettingsUser(user);
     }
   }, [user]);
-
-  const displayOptions = ['Themes', 'Mains', 'Cuisines', 'Courses'];
-
-  const getArr = useCallback(
-    (name) => {
-      switch (name) {
-        case 'courses':
-          return courses;
-        case 'cuisines':
-          return cuisines;
-        case 'mains':
-          return mains;
-        default:
-          break;
-      }
-    },
-    [courses, cuisines, mains]
-  );
 
   const handleChange = (event, set) => {
     const { value, name } = event.target;
@@ -101,15 +76,7 @@ const Settings = () => {
   };
 
   if (settingsUser && !isLoading) {
-    const { username, email, name, picture } = settingsUser;
-    const settings =
-      (settingsUser &&
-        settingsUser.settings.length > 0 &&
-        Object.entries(settingsUser.settings[0])) ||
-      [];
-    const sortedSettings = settings.filter((x) => {
-      return displayOptions.includes(capitalize(x[0])) === true;
-    });
+    const { username, email, name } = settingsUser;
 
     return (
       <PageContainer>
@@ -120,7 +87,8 @@ const Settings = () => {
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div
                   style={{
-                    background: picture ? `url(${picture})` : '#ddd',
+                    backgroundColor: theme.palette.primary.pale,
+                    backgroundImage: `url("${UserAvatar(email)}")`,
                     height: 145,
                     backgroundSize: 'cover',
                     marginBottom: 16,
@@ -200,29 +168,48 @@ const Settings = () => {
               </div>
             </div>
             <div>
-              {sortedSettings.map((setting) => {
-                const name = setting[0];
-                const value = setting[1];
-                if (name === 'themes') {
-                  return (
-                    <div key={name}>
-                      <h3 className={classes.settingHeader}>
-                        {capitalize(name)}
-                      </h3>
-                      <ThemeDropDown data={value} userKey={settingsUser.key} />
-                    </div>
-                  );
-                } else {
-                  return (
-                    <OptionSection
-                      arr={getArr(name)}
-                      name={name}
-                      value={value}
-                      key={name}
+              <OptionSection
+                arr={allMains}
+                name='Main Dishes'
+                value={userMains}
+                key='maindish'
+              />
+              <OptionSection
+                arr={allCuisines}
+                name='Cuisines'
+                value={userCuisines}
+                key='cuisines'
+              />
+              <OptionSection
+                arr={allCourses}
+                name='Courses'
+                value={userCourses}
+                key='courses'
+              />
+              {themes && (
+                <div>
+                  <h3 className={classes.settingHeader}>Themes</h3>
+                  <ThemeDropDown
+                    data={themes}
+                    userKey={settingsUser.key}
+                    updateTheme={updateTheme}
+                  />
+                </div>
+              )}
+              <div>
+                <h3 className={classes.settingHeader}>Show Fractions</h3>
+                <FormControlLabel
+                  labelPlacement='start'
+                  control={
+                    <Switch
+                      checked={showFraction}
+                      onChange={() => updateFraction(!showFraction)}
+                      color='primary'
                     />
-                  );
-                }
-              })}
+                  }
+                  label={showFraction ? 'On' : 'Off'}
+                />
+              </div>
             </div>
           </div>
         </>

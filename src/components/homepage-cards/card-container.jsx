@@ -12,17 +12,23 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '22px',
     color: theme.palette.primary.tertiary,
     marginTop: 0,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.between('sm', 'md')]: {
       marginLeft: 10,
       marginRight: 10,
       marginTop: 10,
     },
   },
   contentContainer: {
+    width: '90%',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      margin: '0 auto',
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: '100%',
+    },
   },
   grid: (props) => ({
     display: 'grid',

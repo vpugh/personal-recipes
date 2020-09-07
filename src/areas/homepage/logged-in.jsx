@@ -21,6 +21,8 @@ const LoggedIn = () => {
     );
   }, [user]);
 
+  const favs = user && user.recipes.filter((x) => x.favorite === true);
+
   return (
     <div className={classes.container}>
       {user && user.recipes.length > 0 ? (
@@ -40,6 +42,13 @@ const LoggedIn = () => {
                   )
                 : null
             }
+            type='category'
+          />
+          <CardContainer
+            title='Favorite Recipes'
+            link='favorite-recipes'
+            linkText='Favorites'
+            arr={limitSortReverseArray(favs, limit, 'created_at', 'reverse')}
             type='category'
           />
           <CardContainer
@@ -88,9 +97,9 @@ const LoggedIn = () => {
           <h2 style={{ marginTop: 0 }}>
             Welcome! It's looking a bit empty in here.
           </h2>
-          <p>Now would be a good time to add some recipes. :)</p>
+          <p>Now would be a good time to add some recipes.</p>
           <LinkButton color to='/add-recipe'>
-            Add Recipe
+            Add Recipe :)
           </LinkButton>
         </PageContainer>
       )}

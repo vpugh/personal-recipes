@@ -24,6 +24,12 @@ export const GET_TAGS_LIST = `query getTagsList {
   }
 }`;
 
+export const GET_USER_TAGLIST = `query getUserTaglist($key: Int) {
+  settings(where: { user_id: { _eq: $key}}) {
+    tags
+  }
+}`;
+
 export const GET_USER_BY_USERNAME = `query GetUserByUsername($username: String!) {
   user(where: { username: { _eq: $username}}) {
     username
@@ -52,10 +58,13 @@ export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       total_time
       tags
       serves
+      favorite
+      have_made
     }
     username
     settings {
@@ -89,11 +98,14 @@ export const GET_USER_BY_EMAIL_AUTHENTICATE = `query GetUserByEmail($email: Stri
       notes
       prep_time
       recipe_origin
+      recipe_video
       created_at
       serve_type
       total_time
       tags
       serves
+      favorite
+      have_made
     }
     username
     settings {
@@ -122,6 +134,7 @@ export const ADD_RECIPE = `mutation AddRecipe($data: [recipes_insert_input!]!) {
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       serves
       tags
@@ -169,6 +182,7 @@ export const EDIT_RECIPES = `mutation EditRecipes($set: recipes_set_input, $reci
       notes
       prep_time
       recipe_origin
+      recipe_video
       serve_type
       serves
       tags
@@ -176,6 +190,8 @@ export const EDIT_RECIPES = `mutation EditRecipes($set: recipes_set_input, $reci
       cuisine
       course
       cook_time
+      favorite
+      have_made
     }
   }
 }`;
@@ -203,11 +219,14 @@ export const UPDATE_LOGIN_DATE_RETURN = `mutation UpdateLoginDate($set: user_set
         notes
         prep_time
         recipe_origin
+        recipe_video
         serve_type
         total_time
         tags
         created_at
         serves
+        favorite
+        have_made
       }
       username
       settings {
@@ -230,7 +249,7 @@ export const UPDATE_LOGIN_DATE = `mutation updateLoginDate($key: Int, $set: user
 }`;
 
 export const ADD_NEW_SETTINGS = `mutation AddNewSetting($key: Int, $authId:String) {
-  insert_settings(objects: [{themes: [{selected:"pink"},{options:[{type:"pink",color:"#FFADAD"},{type:"blue",color:"#a7edfd"},{type:"green",color:"#a3f5d2"},{type:"purple",color:"#e0c0ef"}]}],auth_id: $authId, user_id: $key }]) {
+  insert_settings(objects: [{themes: [{selected:"pink"},{options:[{type:"pink",color:"#FFADAD"},{type:"blue",color:"#a7edfd"},{type:"green",color:"#a3f5d2"},{type:"purple",color:"#e0c0ef"}]}, {tags: ["Low Carb","Gluten Free","Keto","Low Salt","Paleo"]}],auth_id: $authId, user_id: $key }]) {
     returning {
       themes
       showFractions
@@ -251,10 +270,27 @@ export const UPDATE_USER_NAME = `mutation updateUserName($userId: String, $set: 
   }
 }`;
 
-export const UPDATE_USER_THEMES = `mutation updateUserSettings($userId: Int, $set: settings_set_input) {
-  update_settings(where: { user_id: { _eq: $userId }}, _set: $set) {
+export const UPDATE_USER_THEMES = `mutation updateUserSettings($key: Int, $set: settings_set_input) {
+  update_settings(where: { user_id: { _eq: $key }}, _set: $set) {
     returning {
       themes
     }
+  }
+}`;
+
+export const UPDATE_USER_SHOW_FRACTIONS = `mutation UpdateShowFraction($key: Int, $userId: String, $showFractions: Boolean) {
+  update_settings(where: { user_id: { _eq: $key }}, _set: { showFractions:  $showFractions} ) {
+    returning {
+      showFractions
+    }
+  }
+}`;
+
+export const UPDATE_USER_TAGLIST = `mutation updateUserTaglist($key: Int, $set: settings_set_input) {
+  update_settings(where: {user_id: {_eq: $key}}, _set: $set) {
+    returning {
+      tags
+    }
+    affected_rows
   }
 }`;

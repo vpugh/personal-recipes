@@ -2,7 +2,7 @@ import React from 'react';
 import CardContainer from '../../components/page-container';
 import { replacePunctuation } from '../../util/helper-functions';
 import { useAuth } from '../../context/auth-context';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -48,11 +48,15 @@ const CategoryPage = () => {
               <h3 style={{ marginBottom: '.75rem' }}>{cat}</h3>
             </div>
             {contentList(user.recipes, cat, category).map((content) => (
-              <div key={content.id}>
+              <Link
+                style={{ color: 'inherit' }}
+                to={`/recipe/${content.id}`}
+                key={content.id}
+              >
                 <p style={{ marginTop: '.5rem', marginBottom: 0 }}>
                   {content.title}
                 </p>
-              </div>
+              </Link>
             ))}
           </React.Fragment>
         ))}

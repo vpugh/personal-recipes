@@ -14,6 +14,9 @@ import {
   ADD_NEW_SETTINGS,
   UPDATE_USER_NAME,
   UPDATE_USER_THEMES,
+  UPDATE_USER_SHOW_FRACTIONS,
+  GET_USER_TAGLIST,
+  UPDATE_USER_TAGLIST,
 } from '../queries';
 
 const apiPath = '/api/v1/';
@@ -119,12 +122,27 @@ export const getTags = async () => {
   return options[0].tags;
 };
 
-export const newUserCreateSettings = async (key, user_id) => {
+export const getUserTags = async (key) => {
+  const tagsQuery = GET_USER_TAGLIST;
+  const { settings } = await graphqlRequest(tagsQuery, { key });
+  return settings[0].tags;
+};
+
+export const newUserCreateSettings = async (key, user_id, email) => {
   const inseryQuery = ADD_NEW_SETTINGS;
   await graphqlRequest(inseryQuery, {
     key,
     authId: user_id,
   });
+  const getUserQuery = GET_USER_BY_EMAIL;
+  const { user } = await graphqlRequest(getUserQuery, { email });
+  return user;
+};
+
+export const retrieveUserData = async (email) => {
+  const query = GET_USER_BY_EMAIL;
+  const { user } = await graphqlRequest(query, { email });
+  return user[0];
 };
 
 export const authenticateUser = async (email) => {
@@ -139,6 +157,15 @@ export const authenticateUser = async (email) => {
 };
 
 // Send/Save Data
+
+export const updateUserTaglist = async (id, data) => {
+  const mutation = UPDATE_USER_TAGLIST;
+  const { update_settings } = await graphqlRequest(mutation, {
+    key: id,
+    set: data,
+  });
+  return update_settings.returning[0];
+};
 
 export const updateRecipe = async (id, data) => {
   const mutation = EDIT_RECIPES;
@@ -162,9 +189,8 @@ export const updateUserName = async (userId, data) => {
 
 export const updateUserTheme = async (key, data) => {
   const mutation = UPDATE_USER_THEMES;
-
   const { update_settings } = await graphqlRequest(mutation, {
-    userId: key,
+    key,
     set: data,
   });
   return update_settings;
@@ -200,6 +226,7 @@ export const signupUser = async (data) => {
   const { insert_settings } = await graphqlRequest(addSettingsDefault, {
     newUserId,
   });
+
   const returnedUser = Object.assign(
     {},
     insert_user.returning[0],
@@ -209,4 +236,17 @@ export const signupUser = async (data) => {
     { recipes: [] }
   );
   return { returnedUser: returnedUser };
+};
+
+export const updateShowFractions = async (key, userId, showFractions) => {
+  const updateShowFractionsMutation = UPDATE_USER_SHOW_FRACTIONS;
+  const { update_settings } = await graphqlRequest(
+    updateShowFractionsMutation,
+    {
+      key,
+      userId,
+      showFractions,
+    }
+  );
+  return update_settings;
 };

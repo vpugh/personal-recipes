@@ -6,10 +6,13 @@ export const useStyles = makeStyles((theme) => ({
   listContainer: {
     margin: 0,
     padding: 0,
+    listStyle: 'none',
   },
   listItem: {
-    marginLeft: '1rem',
-    paddingBottom: '.75rem',
+    // marginLeft: '1rem',
+    padding: '.75rem',
+    borderTop: '1px solid #ddd',
+    lineHeight: 1.4,
   },
 }));
 

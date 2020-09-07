@@ -1,11 +1,15 @@
 import React from 'react';
 import { useAuth } from '../../context/auth-context';
 import PageContainer from '../../components/page-container';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import DisplayCategories from './display-categories';
 import { makeStyles } from '@material-ui/core/styles';
 import GenerateList from './generate-list';
 import Tags from '../../components/tags';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import FavoriteMade from '../../components/favorite-made';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -93,9 +97,55 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   descriptionBox: {
-    background: '#efefef',
     padding: 20,
-    borderRadius: 3,
+    background: '#fbfbfb',
+    boxShadow: '0px 1px 3px rgba(0, 0 ,0, 0.2)',
+    borderRadius: 4,
+  },
+  timeContainer: {
+    padding: 20,
+    background: '#fbfbfb',
+    boxShadow: '0px 1px 3px rgba(0, 0 ,0, 0.2)',
+    borderRadius: 4,
+  },
+  recipeBodyFlex: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'start',
+    },
+  },
+  recipeButtons: {
+    display: 'flex',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: 20,
+    },
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'column',
+      alignItems: 'start',
+    },
+  },
+  recipeActions: {
+    display: 'flex',
+    alignItems: 'baseline',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      '& > :nth-child(1)': {
+        marginBottom: 20,
+      },
+    },
+    [theme.breakpoints.between('sm', 1023)]: {
+      justifyContent: 'space-between',
+      width: '100%',
+      margin: '10px 0',
+      flexDirection: 'row',
+    },
+    [theme.breakpoints.up('lg')]: {
+      flexDirection: 'row',
+      '& > :nth-child(1)': {
+        paddingRight: 10,
+      },
+    },
   },
 }));
 
@@ -115,10 +165,10 @@ const makeLink = (link) => {
   return link;
 };
 
-const ViewRecipe = (props) => {
+const ViewRecipe = () => {
   const { user } = useAuth();
-  const recipeId = props.match.params.id;
   const classes = useStyles();
+  const { id: recipeId } = useParams();
 
   if (user && user.recipes) {
     const recipes = user && user.recipes;
@@ -142,6 +192,9 @@ const ViewRecipe = (props) => {
       notes,
       tags,
       serves,
+      favorite,
+      have_made,
+      recipe_video,
     } = currentRecipe;
 
     return (
@@ -149,53 +202,95 @@ const ViewRecipe = (props) => {
         <div>
           <div className={classes.headerContainer}>
             <h1 style={{ marginTop: 0 }}>{title}</h1>
-            <Link
-              style={{ color: 'inherit' }}
-              to={`/recipe/edit/${recipeId}`}
-              query={recipeId}
-            >
-              Edit
-            </Link>
+            <div className={classes.recipeActions}>
+              <FavoriteMade favorite={favorite} haveMade={have_made} text />
+              <div className={classes.recipeButtons}>
+                <Button
+                  component={Link}
+                  to={`/recipe/edit/${recipeId}`}
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => alert('Deletion is not hooked up yet')}
+                  startIcon={<DeleteIcon />}
+                >
+                  Delete
+                </Button>
+              </div>
+            </div>
           </div>
           <div>
-            {description && (
-              <p className={classes.descriptionBox}>{description}</p>
-            )}
             <DisplayCategories header='Course' data={course} />
             <DisplayCategories header='Cuisine' data={cuisine} />
             <DisplayCategories header='Main Dish' data={main_dish} />
-            <DisplayCategories header='Prep Time' data={prep_time} />
-            <DisplayCategories header='Cook Time' data={cook_time} />
-            <DisplayCategories header='Total Time' data={total_time} />
-            <DisplayCategories header='Serves' data={serves} />
-            {recipe_origin && (
+            <div
+              style={{
+                borderTop: '1px solid #ddd',
+                padding: '20px 0 10px 0',
+                marginTop: 20,
+              }}
+            >
+              <DisplayCategories header='Prep Time' data={prep_time} />
+              <DisplayCategories header='Cook Time' data={cook_time} />
+              <DisplayCategories header='Total Time' data={total_time} />
+              <DisplayCategories header='Serves' data={serves} />
+            </div>
+            {description && (
+              <p className={classes.descriptionBox}>{description}</p>
+            )}
+            {(recipe_origin || recipe_video) && (
               <p className={classes.recipeOrigin}>
-                Recipe found at: {makeLink(recipe_origin)}
+                {recipe_origin && (
+                  <>Recipe found at: {makeLink(recipe_origin)}</>
+                )}
+                {recipe_video && (
+                  <>
+                    {recipe_origin && (
+                      <>
+                        <br />
+                        <br />
+                      </>
+                    )}
+                    Video found at: {makeLink(recipe_video)}
+                  </>
+                )}
               </p>
             )}
             <div className={classes.listContainer}>
-              <GenerateList
-                showFractions={user.settings[0].showFractions}
-                arr={equipment_needed}
-                header='Equipment Needed'
-              />
-              <GenerateList
-                showFractions={user.settings[0].showFractions}
-                arr={ingredients}
-                header='Ingredients'
-                columns={2}
-              />
-              <GenerateList
-                showFractions={user.settings[0].showFractions}
-                arr={instructions}
-                header='Instructions'
-              />
+              <div className={classes.recipeBodyFlex}>
+                <GenerateList
+                  showFractions={user.settings[0].showFractions}
+                  arr={ingredients}
+                  header='Ingredients'
+                  style={{
+                    paddingRight: 40,
+                    flex: '0 0 calc(33.3333% - 4rem)',
+                  }}
+                />
+                <div style={{ flexDirection: 'column' }}>
+                  <GenerateList
+                    showFractions={user.settings[0].showFractions}
+                    arr={equipment_needed}
+                    header='Equipment Needed'
+                  />
+                  <GenerateList
+                    showFractions={user.settings[0].showFractions}
+                    arr={instructions}
+                    header='Instructions'
+                    style={{
+                      flex: '0 0 calc(66.6667% - 6rem)',
+                    }}
+                  />
+                </div>
+              </div>
               <GenerateList
                 showFractions={user.settings[0].showFractions}
                 arr={notes}
                 header='Notes'
               />
-              <div style={{ marginTop: 10 }}>
+              <div style={{ marginTop: 20 }}>
                 <Tags content={tags} />
               </div>
             </div>

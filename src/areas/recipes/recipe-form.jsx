@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import SubmitButton from '../../components/buttons/button';
+import { updateRecipe, saveRecipe, updateUserTaglist } from '../../util/api';
 import {
-  getCourses,
-  getCuisines,
-  getMainDishes,
-  getTags,
-  updateRecipe,
-  saveRecipe,
-} from '../../util/api';
-import { Button, InputAdornment, IconButton } from '@material-ui/core';
+  Button,
+  InputAdornment,
+  IconButton,
+  FormControlLabel,
+  Switch,
+} from '@material-ui/core';
 import { NestedTextInput } from '../../components/inputs/nested-input';
 import AddIcon from '@material-ui/icons/Add';
 import { capitalize } from '../../util/helper-functions';
 import { FormTextInput } from '../../components/inputs/form/form-text-input';
 import { FormSelect } from '../../components/inputs/form/form-select';
 import { useAuth } from '../../context/auth-context';
+import useRecipeLists from '../../util/hooks/useRecipeLists';
+import useRecipeState from '../../util/hooks/useRecipeState';
 
 const useStyles = makeStyles((theme) => ({
   formThreeCol: {
@@ -78,119 +79,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const fetchCourse = async (set, user) => {
-  const courses = await getCourses();
-  const userRemoved = (user && user.settings[0].courses) || [];
-  const filteredCourses = courses.filter(
-    (x) => userRemoved.includes(x) === false
-  );
-  set(filteredCourses);
-};
-
-const fetchCuisine = async (set, user) => {
-  const cuisines = await getCuisines();
-  const userRemoved = (user && user.settings[0].cuisines) || [];
-  const filteredCuisines = cuisines.filter(
-    (x) => userRemoved.includes(x) === false
-  );
-  set(filteredCuisines);
-};
-
-const fetchMains = async (set, user) => {
-  const mains = await getMainDishes();
-  const userRemoved = (user && user.settings[0].mains) || [];
-  const filteredMains = mains.filter((x) => userRemoved.includes(x) === false);
-  set(filteredMains);
-};
-
-const fetchTags = async (set) => {
-  const tags = await getTags();
-  set(tags);
-};
-
 const addEmptyArray = (arr, setArr) => {
   setArr(arr.concat(''));
-};
-
-const loadRecipeData = (recipeItem, initialData) => {
-  if (recipeItem) {
-    return recipeItem;
-  } else {
-    return initialData;
-  }
 };
 
 export const RecipeForm = (props) => {
   const classes = useStyles();
   const { currentRecipe } = props;
   const { user, updateUser, loading } = useAuth();
-  // Setup for dropdowns
-  const [optCourse, setOptCourse] = useState([]);
-  const [cuisines, setCuisines] = useState([]);
-  const [optMains, setOptMains] = useState([]);
-  const [optTags, setOptTags] = useState([]);
+  const {
+    courseList,
+    cuisineList,
+    mainsList,
+    tagsList,
+    setTagsList,
+  } = useRecipeLists(user);
 
-  // actual state
-  const [title, setTitle] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.title, '')
-  );
-  const [course, setCourse] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.course, [])
-  );
-  const [cuisine, setCuisine] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.cuisine, [])
-  );
-  const [main, setMain] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.main_dish, [])
-  );
-  const [tags, setTags] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.tags, [])
-  );
-  const [prepTime, setPrepTime] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.prep_time, '')
-  );
-  const [cookTime, setCookTime] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.cook_time, '')
-  );
-  const [totalTime, setTotalTime] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.total_time, '')
-  );
-  const [serves, setServes] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.serves, '')
-  );
-  const [serveType, setServeType] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.serve_type, '')
-  );
-  const [recipeOrigin, setRecipeOrigin] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.recipe_origin, '')
-  );
-  const [description, setDescription] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.description, '')
-  );
-
-  // Add to tags
-  const [addedTag, setAddedTag] = useState('');
-
-  // Input Arrays
-  const [equipmentNeededArr, setEquipmentNeededArr] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.equipment_needed, [])
-  );
-  const [ingredientsArr, setIngredientsArr] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.ingredients, [])
-  );
-  const [instructionsArr, setInstructionsArr] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.instructions, [])
-  );
-  const [notesArr, setNotesArr] = useState(
-    loadRecipeData(currentRecipe && currentRecipe.notes, [])
-  );
-
-  useEffect(() => {
-    fetchCourse(setOptCourse, user);
-    fetchCuisine(setCuisines, user);
-    fetchMains(setOptMains, user);
-    fetchTags(setOptTags);
-  }, [user]);
+  const {
+    title,
+    setTitle,
+    course,
+    setCourse,
+    cuisine,
+    setCuisine,
+    main,
+    setMain,
+    tags,
+    setTags,
+    prepTime,
+    setPrepTime,
+    cookTime,
+    setCookTime,
+    totalTime,
+    setTotalTime,
+    serves,
+    setServes,
+    serveType,
+    setServeType,
+    recipeOrigin,
+    setRecipeOrigin,
+    description,
+    setDescription,
+    addedTag,
+    setAddedTag,
+    equipmentNeededArr,
+    setEquipmentNeededArr,
+    ingredientsArr,
+    setIngredientsArr,
+    instructionsArr,
+    setInstructionsArr,
+    notesArr,
+    setNotesArr,
+    favorite,
+    setFavorite,
+    haveMade,
+    setHaveMade,
+    recipeVideo,
+    setRecipeVideo,
+  } = useRecipeState(currentRecipe);
 
   const handleNestedChange = (event, index, array, set) => {
     const { value } = event.target;
@@ -209,9 +155,10 @@ export const RecipeForm = (props) => {
   };
 
   const addTag = (tag) => {
-    const addToList = optTags.concat(capitalize(tag));
-    setOptTags(addToList);
+    const addToList = tagsList.concat(capitalize(tag));
+    setTagsList(addToList);
     setAddedTag('');
+    updateUserTaglist(user.key, { tags: addToList });
   };
 
   const handleOnSubmit = (e) => {
@@ -232,7 +179,10 @@ export const RecipeForm = (props) => {
       ingredients: ingredientsArr,
       instructions: instructionsArr,
       notes: notesArr,
+      recipe_video: recipeVideo,
       tags,
+      have_made: haveMade,
+      favorite,
       user_id: Number(user.key),
     };
 
@@ -265,6 +215,30 @@ export const RecipeForm = (props) => {
         placeholder='Title of recipe or whatever you want to remember it as'
         required
       />
+      <div>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={favorite}
+              onChange={() => setFavorite(!favorite)}
+              name='Favorite'
+              color='primary'
+            />
+          }
+          label='Favorite'
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={haveMade}
+              onChange={() => setHaveMade(!haveMade)}
+              name='HaveMade'
+              color='primary'
+            />
+          }
+          label='Have Made'
+        />
+      </div>
       <FormTextInput
         className={classes.singleRow}
         label='Description'
@@ -282,6 +256,14 @@ export const RecipeForm = (props) => {
         onChange={(e) => handleChange(e, setRecipeOrigin)}
         placeholder='Where you got it from, even if it’s from yourself'
       />
+      <FormTextInput
+        className={classes.singleRow}
+        label='Recipe Video'
+        name='recipeVideo'
+        value={recipeVideo}
+        onChange={(e) => handleChange(e, setRecipeVideo)}
+        placeholder='Something to watch while making it'
+      />
       <div className={classes.ccm}>
         <FormSelect
           className={classes.formControl}
@@ -289,7 +271,7 @@ export const RecipeForm = (props) => {
           name='course'
           value={course}
           onChange={(e) => handleChange(e, setCourse)}
-          arr={optCourse}
+          arr={courseList}
         />
         <FormSelect
           className={classes.formControl}
@@ -297,7 +279,7 @@ export const RecipeForm = (props) => {
           name='cuisine'
           value={cuisine}
           onChange={(e) => handleChange(e, setCuisine)}
-          arr={cuisines}
+          arr={cuisineList}
         />
         <FormSelect
           className={classes.formControl}
@@ -305,7 +287,7 @@ export const RecipeForm = (props) => {
           name='main'
           value={main}
           onChange={(e) => handleChange(e, setMain)}
-          arr={optMains}
+          arr={mainsList}
         />
       </div>
       <div className={classes.formThreeCol}>
@@ -354,7 +336,7 @@ export const RecipeForm = (props) => {
           name='tags'
           value={tags}
           onChange={(e) => handleChange(e, setTags)}
-          arr={optTags}
+          arr={tagsList}
         />
         <FormTextInput
           className={classes.singleRow}

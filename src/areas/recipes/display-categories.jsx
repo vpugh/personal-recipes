@@ -19,7 +19,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   header: {
     [theme.breakpoints.up('md')]: {
-      fontWeight: 'bold',
       fontSize: '1rem',
       margin: 0,
       padding: 0,
@@ -47,8 +46,8 @@ const DisplayCategories = ({ header, data }) => {
   }
   return (
     <div className={classes.container}>
-      <p className={classes.header}>{header}:</p>
-      <p className={classes.data}>
+      <p className={classes.header}>
+        <strong>{header}:</strong>{' '}
         {Array.isArray(data) ? data.join(', ') : data}
       </p>
     </div>

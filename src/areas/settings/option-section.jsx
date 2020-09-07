@@ -57,7 +57,7 @@ const OptionSection = (props) => {
       <FormSelect
         className={classes.formControl}
         arr={arr}
-        label={returnName(name)}
+        label={name}
         onChange={(e) => handleOnChange(e, setRemovedItems)}
         value={removedItems}
         name={`${name} arr`}
@@ -67,7 +67,7 @@ const OptionSection = (props) => {
           ? `${removedItems.length} options removed from ${returnName(
               name
             )} list`
-          : `No options removed from ${returnName(name)} list`}
+          : `No options removed from ${name} list`}
       </p>
     </div>
   );
