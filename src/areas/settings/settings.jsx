@@ -8,10 +8,16 @@ import { updateUserName } from '../../util/api';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { FormTextInput } from '../../components/inputs/form/form-text-input';
-import { InputAdornment, Switch, FormControlLabel } from '@material-ui/core';
+import {
+  InputAdornment,
+  Switch,
+  FormControlLabel,
+  useTheme,
+} from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import useUserSettings from '../../util/hooks/useUserSettings';
+import UserAvatar from '../../components/avatar';
 
 const useStyles = makeStyles((theme) => ({
   settingsContainer: {
@@ -29,7 +35,7 @@ const Settings = () => {
   const classes = useStyles();
   const [settingsUser, setSettingsUser] = useState();
   const [editName, setEditName] = useState(false);
-  const [picture, setPicture] = useState();
+  const theme = useTheme();
   const {
     allCourses,
     allCuisines,
@@ -46,9 +52,6 @@ const Settings = () => {
   useEffect(() => {
     if (user) {
       setSettingsUser(user);
-      if (user.picture) {
-        setPicture(user.picture);
-      }
     }
   }, [user]);
 
@@ -84,8 +87,8 @@ const Settings = () => {
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <div
                   style={{
-                    backgroundImage: picture && `url(${picture})`,
-                    backgroundColor: !picture && '#ddd',
+                    backgroundColor: theme.palette.primary.pale,
+                    backgroundImage: `url("${UserAvatar(email)}")`,
                     height: 145,
                     backgroundSize: 'cover',
                     marginBottom: 16,

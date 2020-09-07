@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/auth-context';
 import { useAuth0 } from '@auth0/auth0-react';
+import UserAvatar from '../../components/avatar';
 
 const useStyles = makeStyles((theme) => ({
   userHeaderpicture: (props) => ({
@@ -12,12 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10,
     backgroundSize: 'cover',
     background: theme.palette.primary.pale,
-    backgroundImage: props.user.picture && `url(${props.user.picture})`,
-    justifyContent: !props.user.picture && 'center',
-    display: !props.user.picture && 'flex',
-    alignItems: !props.user.picture && 'center',
-    fontWeight: !props.user.picture && 'bold',
-    color: !props.user.picture && theme.palette.primary.tertiary,
+    backgroundImage: `url("${UserAvatar(props.user.email)}")`,
   }),
   name: { margin: 0, padding: 0 },
   nameLink: {
