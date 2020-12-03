@@ -4,12 +4,13 @@ import { displayTotalTime } from '../../util/helper-functions';
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteMade from '../favorite-made';
 
-const starStyles = makeStyles((theme) => ({
+const starStyles = makeStyles(() => ({
   star: {
     fontSize: 36,
-    color: theme.palette.primary.main,
     paddingRight: 10,
     paddingLeft: 30,
+    display: 'inline-block',
+    marginRight: 4,
     transition: '300ms ease-in-out',
   },
 }));
@@ -80,6 +81,7 @@ const CardRecipe = (props) => {
         classStyle={starClass.star}
         favorite={favorite}
         haveMade={have_made}
+        favHasColor={true}
         icon
       />
     </div>

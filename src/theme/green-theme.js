@@ -13,14 +13,14 @@ export default responsiveFontSizes(
     palette: {
       background: {
         white: '#fefefe',
-        main: '#d5ffee', // I
+        main: '#e4fbf1', // I
         default: '#b8f7dc', // 0
       },
       primary: {
         main: '#a3f5d2', // 1
         secondary: '#8CF0C6', // 2
         tertiary: '#0ad07d', // 3
-        pale: '#8cf0c6', // 4
+        pale: '#bfffe4', // 4
       },
       grey: {
         one: '#575757',

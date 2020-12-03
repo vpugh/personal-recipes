@@ -4,17 +4,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   impactSentence: {
-    fontSize: 50,
     fontWeight: 'bold',
     textAlign: 'center',
-    padding: '0 40px',
+    fontSize: 34,
+    padding: '0 30px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 50,
+      padding: '0 60px',
+    },
   },
   paraHolder: {
-    maxWidth: '70%',
-    margin: '40px auto',
+    maxWidth: '90%',
     textAlign: 'center',
+    margin: '40px auto',
     '& > p': {
       lineHeight: 1.4,
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '72%',
     },
   },
 }));
@@ -28,16 +35,14 @@ const LoggedOut = () => {
       </div>
       <div className={classes.paraHolder}>
         <p>
-          Honestly, a system I'm making for my mom to save her recipes. If it
-          becomes something cool for others to use, then that's great!
+          This is a system I'm making for my mom to save her recipes. If it
+          becomes something for others to use, that's great! Kind of a test if I
+          could build something like this, I blame the quarantine/COVID 19.
         </p>
         <p>
-          Kind of a test if I could build something like this, blame the
-          quarantine.
-        </p>
-        <p>
-          If I get this to work, maybe I can work on porting it to an app, using
-          React Native. Baby steps though, get this working first.
+          If I get this to work, maybe I can work on porting it to a mobile app,
+          using React Native. Baby steps though, get this working first. Walk
+          before you run.
         </p>
       </div>
     </CardContainer>

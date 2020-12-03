@@ -25,7 +25,10 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   recipeTitle: {
-    margin: 0,
+    marginTop: 0,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '70%',
+    },
   },
   recipeOrigin: {
     borderTop: '1px solid #efefef',
@@ -201,7 +204,7 @@ const ViewRecipe = () => {
       <PageContainer>
         <div>
           <div className={classes.headerContainer}>
-            <h1 style={{ marginTop: 0 }}>{title}</h1>
+            <h1 className={classes.recipeTitle}>{title}</h1>
             <div className={classes.recipeActions}>
               <FavoriteMade favorite={favorite} haveMade={have_made} text />
               <div className={classes.recipeButtons}>

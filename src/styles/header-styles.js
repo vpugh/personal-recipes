@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
     '&:hover': { cursor: 'pointer', opacity: '0.5' },
   },
   logoLink: {
-    fontSize: 28,
+    fontSize: 30,
     transition: '300ms ease-in-out',
     color: theme.palette.primary.tertiary,
     '&:hover': { cursor: 'pointer', opacity: '0.5' },
