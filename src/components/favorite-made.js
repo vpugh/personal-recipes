@@ -27,7 +27,11 @@ const FavoriteMade = ({
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <StarRoundedIcon
         className={classStyle}
-        style={favHasColor ? variableColor(favorite, theme) : null}
+        style={
+          favHasColor
+            ? variableColor(favorite, theme)
+            : { color: favorite ? 'inherit' : '#e2e2e2' }
+        }
       />
       {haveMade && icon && <LocalDiningIcon />}
       {text && displayMadeText(haveMade)}
