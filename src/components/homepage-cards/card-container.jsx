@@ -75,7 +75,7 @@ const CardContainer = (props) => {
               key={type ? item.id : item}
               to={
                 type
-                  ? `/recipe/${item.id}`
+                  ? `/recipe/${item.id}/${item.slug}`
                   : `/recipes/${link.toLowerCase()}/${prepareUrl(item)}`
               }
               query={item.id}

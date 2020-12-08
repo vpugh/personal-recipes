@@ -50,7 +50,7 @@ const CategoryPage = () => {
             {contentList(user.recipes, cat, category).map((content) => (
               <Link
                 style={{ color: 'inherit' }}
-                to={`/recipe/${content.id}`}
+                to={`/recipe/${content.id}/${content.slug}`}
                 key={content.id}
               >
                 <p style={{ marginTop: '.5rem', marginBottom: 0 }}>

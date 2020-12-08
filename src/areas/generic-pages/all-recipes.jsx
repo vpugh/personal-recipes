@@ -72,6 +72,7 @@ const AllRecipes = () => {
               prep_time,
               favorite,
               have_made,
+              slug,
               // serves,
               // serve_type,
             } = recipe;
@@ -83,7 +84,7 @@ const AllRecipes = () => {
               >
                 <div>
                   <h3 className={classes.h3Title}>
-                    <Link to={`/recipe/${id}`} query={id}>
+                    <Link to={`/recipe/${id}/${slug}`} query={id}>
                       {title}
                     </Link>
                   </h3>

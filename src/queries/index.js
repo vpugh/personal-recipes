@@ -65,6 +65,7 @@ export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
       serves
       favorite
       have_made
+      slug
     }
     username
     settings {
@@ -106,6 +107,7 @@ export const GET_USER_BY_EMAIL_AUTHENTICATE = `query GetUserByEmail($email: Stri
       serves
       favorite
       have_made
+      slug
     }
     username
     settings {
@@ -142,6 +144,7 @@ export const ADD_RECIPE = `mutation AddRecipe($data: [recipes_insert_input!]!) {
       cuisine
       course
       cook_time
+      slug
     }
   }
 }`;
@@ -192,6 +195,7 @@ export const EDIT_RECIPES = `mutation EditRecipes($set: recipes_set_input, $reci
       cook_time
       favorite
       have_made
+      slug
     }
   }
 }`;
@@ -227,6 +231,7 @@ export const UPDATE_LOGIN_DATE_RETURN = `mutation UpdateLoginDate($set: user_set
         serves
         favorite
         have_made
+        slug
       }
       username
       settings {

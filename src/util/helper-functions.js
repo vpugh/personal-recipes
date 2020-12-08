@@ -149,3 +149,7 @@ export const replacePunctuation = (word) => {
   }
   return capitalize(word);
 };
+
+export const createSlug = (title) => {
+  return title.replace(/\W/g, '-').toLowerCase();
+};

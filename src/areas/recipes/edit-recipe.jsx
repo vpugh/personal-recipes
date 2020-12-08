@@ -38,7 +38,10 @@ const EditRecipe = (props) => {
       <PageContainer>
         <div className={classes.headerContainer}>
           <h1 className='pageTitle'>Edit Recipe</h1>
-          <Link to={`/recipe/${recipeId}`} style={{ color: 'inherit' }}>
+          <Link
+            to={`/recipe/${recipeId}/${currentRecipe.slug}`}
+            style={{ color: 'inherit' }}
+          >
             Return to Recipe
           </Link>
         </div>

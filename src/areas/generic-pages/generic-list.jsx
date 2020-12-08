@@ -61,11 +61,12 @@ const GenericList = ({ list }) => {
       total_time,
       prep_time,
       cook_time,
+      slug,
     } = recipe;
     return (
       <div key={id} className={classes.listContent}>
         <h2>
-          <Link to={`/recipe/${id}`}>{title}</Link>
+          <Link to={`/recipe/${id}/${slug}`}>{title}</Link>
         </h2>
         <div className={classes.tagContainer}>
           <Tags content={course} />

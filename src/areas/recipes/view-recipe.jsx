@@ -168,6 +168,19 @@ const makeLink = (link) => {
   return link;
 };
 
+const exportToText = (data) => {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(
+    new Blob([JSON.stringify(data, null, 2)], {
+      type: 'text/plain',
+    })
+  );
+  a.setAttribute('download', `${data.title}.txt`);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
 const ViewRecipe = () => {
   const { user } = useAuth();
   const classes = useStyles();
@@ -198,6 +211,7 @@ const ViewRecipe = () => {
       favorite,
       have_made,
       recipe_video,
+      slug,
     } = currentRecipe;
 
     return (
@@ -210,7 +224,7 @@ const ViewRecipe = () => {
               <div className={classes.recipeButtons}>
                 <Button
                   component={Link}
-                  to={`/recipe/edit/${recipeId}`}
+                  to={`/recipe/edit/${recipeId}/${slug}`}
                   startIcon={<EditIcon />}
                 >
                   Edit
@@ -220,6 +234,9 @@ const ViewRecipe = () => {
                   startIcon={<DeleteIcon />}
                 >
                   Delete
+                </Button>
+                <Button onClick={() => exportToText(currentRecipe)}>
+                  Download Text
                 </Button>
               </div>
             </div>

@@ -48,7 +48,7 @@ const IntroBox = () => {
         {value && (
           <div style={{ textAlign: 'center' }}>
             <Link
-              to={`/recipe/${value.id}`}
+              to={`/recipe/${value.id}/${value.slug}`}
               style={{
                 background: theme.palette.primary.main,
                 padding: '10px 30px',
