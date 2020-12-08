@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { NestedTextInput } from '../../components/inputs/nested-input';
 import AddIcon from '@material-ui/icons/Add';
-import { capitalize } from '../../util/helper-functions';
+import { capitalize, createSlug } from '../../util/helper-functions';
 import { FormTextInput } from '../../components/inputs/form/form-text-input';
 import { FormSelect } from '../../components/inputs/form/form-select';
 import { useAuth } from '../../context/auth-context';
@@ -187,14 +187,21 @@ export const RecipeForm = (props) => {
     };
 
     if (currentRecipe) {
+      if (!currentRecipe.slug) {
+        recipeData.slug = createSlug(title);
+      }
       updateRecipe(currentRecipe.id, recipeData).then((result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
-          setTimeout(props.history.push(`/recipe/${result.id}`), 10000);
+          setTimeout(
+            props.history.push(`/recipe/${result.id}/${result.slug}`),
+            10000
+          );
         }
       });
     } else {
       recipeData.auth_id = user.user_id;
+      recipeData.slug = createSlug(title);
       saveRecipe(recipeData).then(async (result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
