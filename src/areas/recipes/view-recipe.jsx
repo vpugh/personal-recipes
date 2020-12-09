@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import FavoriteMade from '../../components/favorite-made';
+import { jsPDF } from 'jspdf';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -168,17 +169,68 @@ const makeLink = (link) => {
   return link;
 };
 
+const createPDF = (data) => {
+  // HTML Method - issue with width not working correctly though...
+  // const doc = new jsPDF('p', 'pt', 'a4');
+
+  // const htmlData = `
+  //   <body>
+  //     <h1 style="font-size: 14px; white-space: nowrap;">${data.title}</h1>
+  //     <p style="font-size: 12px; white-space: nowrap;">${data.description}</p>
+  //     <p style="font-size: 12px; white-space: nowrap;">${data.ingredients}</p>
+  //     <p style="font-size: 12px; white-space: nowrap;">${data.instructions}</p>
+  //   </body>
+  // `;
+  // doc.html(htmlData, {
+  //   callback: function (doc) {
+  //     doc.save(`${data.title} test.pdf`);
+  //   },
+  //   filename: `${data.title} test`,
+  //   x: 20,
+  //   y: 10,
+  // });
+
+  const doc = new jsPDF();
+
+  let lineHeight = 10;
+  const textFormat = (txt) => {
+    if (Array.isArray(txt) && txt.length > 1) {
+      lineHeight = lineHeight + txt.length * 3.5;
+    } else if (txt.length > 60) {
+      lineHeight = lineHeight + Math.floor(txt.length / 60) * 5;
+    } else {
+      lineHeight = lineHeight + 10;
+    }
+    return doc.text(20, lineHeight, txt, { maxWidth: 160 });
+  };
+
+  textFormat(data.title);
+  console.log('Title Y', lineHeight);
+  textFormat(data.description);
+  console.log('Description Y', lineHeight);
+  textFormat(data.ingredients);
+  console.log('Ingredients Y', lineHeight);
+  textFormat(data.instructions);
+  console.log('Instructions Y', lineHeight);
+  textFormat(data.notes || '');
+  console.log('Notes Y', lineHeight);
+  textFormat(data.recipeOrigin || '');
+  console.log('RecipeOrigin Y', lineHeight);
+  doc.save(`${data.title}.pdf`);
+};
+
 const exportToText = (data) => {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(
-    new Blob([JSON.stringify(data, null, 2)], {
-      type: 'text/plain',
-    })
-  );
-  a.setAttribute('download', `${data.title}.txt`);
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  // const a = document.createElement('a');
+  // a.href = URL.createObjectURL(
+  //   new Blob([JSON.stringify(data, null, 2)], {
+  //     type: 'text/plain',
+  //   })
+  // );
+  // a.setAttribute('download', `${data.title}.txt`);
+  // document.body.appendChild(a);
+  // a.click();
+  // document.body.removeChild(a);
+  createPDF(data);
 };
 
 const ViewRecipe = () => {
