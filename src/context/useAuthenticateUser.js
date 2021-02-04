@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { authenticateUser } from '../util/api';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -15,22 +15,18 @@ export const useAuthenthentice = () => {
     isAuthenticated,
     isLoading,
     loginWithRedirect,
+    logout,
+    getIdTokenClaims,
+    getAccessTokenWithPopup,
   } = useAuth0();
   const [errors, setErrors] = useState([]);
-
-  const mergeUser = useCallback(
-    (user) => {
-      const { updated_at, picture } = auth0User;
-      return { ...user, updated_at, picture };
-    },
-    [auth0User]
-  );
 
   const handleLogout = () => {
     getHandleLogout(setUser);
   };
 
   const setCurrentUser = (data) => {
+    console.log('Set CurrentUser');
     if (data.returnedUser) {
       window.localStorage.setItem(
         'authData',
@@ -57,14 +53,15 @@ export const useAuthenthentice = () => {
     setUser(data);
   };
 
-  const handleLogin = async (email) => {
-    const auth = await authenticateUser(email);
+  const handleLogin = async () => {
+    const auth = await authenticateUser(auth0User.sub);
     if (!auth) {
       setErrors(auth.error);
       return auth;
     } else {
-      setUser(mergeUser(auth));
-      window.localStorage.setItem('authData', JSON.stringify(auth.email));
+      const { updated_at, picture, sub } = auth0User;
+      setUser({ ...auth, updated_at, picture });
+      window.localStorage.setItem('authData', sub);
       window.localStorage.setItem(
         'selectedThemeData',
         (auth.settings[0] && auth.settings[0].themes[0].selected) || 'pink'
@@ -83,5 +80,9 @@ export const useAuthenthentice = () => {
     errors,
     updateUser,
     loginWithRedirect,
+    logout,
+    getIdTokenClaims,
+    getAccessTokenWithPopup,
+    auth0User,
   };
 };

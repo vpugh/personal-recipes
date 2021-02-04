@@ -1,0 +1,61 @@
+import { jsPDF } from 'jspdf';
+
+const data = {
+  title: 'Peanut Butter Cheesecake Bites (With Chocolate Sauce)',
+  description:
+    "These easy and quick Keto Peanut Butter Cheesecake Bites are the perfect low carb dessert! Topped with melted chocolate and chopped peanuts, you'll love these crustless mini cheesecakes!",
+  ingredients: [
+    '1 8 oz. packages Philadelphia Cream Cheese, softened room temperature',
+    '0.25 cup Monkfruit Classic',
+    "0.25 cup natural peanut butter (I use Smucker's Natural PB)",
+    '0.25 tsp vanilla',
+    '1 eggs',
+    '0.5 tbsp butter',
+    "0.25 cup Lily's Chocolate Chips",
+  ],
+  instructions: [
+    'Preheat oven to 350°F.',
+    'Soften cream cheese, then beat with a mixer until smooth. (Make sure cream cheese is completely softened; otherwise, the cream cheese mixture will be lumpy.)',
+    'Add the egg, Lakanto MonkFruit Classic, peanut butter, and vanilla to the cream cheese mixture. Mix on high until thoroughly combined. *Swerve granulated could also be substituted at the same measurement.',
+    'I recommend lining muffin tins with parchment paper muffin liners. You can find them here. Line 6 muffin tins with parchment paper muffin liners and distribute batter equally.',
+    'Bake for 18- 20 minutes. Do not overbake!',
+    'Allow to cool for 20 minutes. ',
+    "In a small greased glass bowl, add Lily's Chocolate Chips and butter and microwave for 30 seconds. Stir, then microwave again for 15 seconds. Stir again, and it should be very smooth. ",
+    'Spoon melted chocolate on top of each cheesecake.',
+    'Place in the fridge to set up.',
+    'Enjoy! ',
+  ],
+  notes: [
+    'This is a half recipe',
+    'Cooked until 17 minutes and it was perfectly creamy',
+    'Maybe makes more than 6, the 6 were a little too full ',
+  ],
+};
+
+const doc = new jsPDF();
+
+let lineHeight = 10;
+const textFormat = (txt) => {
+  // console.log('Height', lineHeight);
+  if (Array.isArray(txt) && txt.length > 1) {
+    lineHeight = lineHeight + txt.length * 3;
+  } else if (txt.length > 60) {
+    lineHeight = lineHeight + Math.floor(txt.length / 60) * 5;
+  } else {
+    lineHeight = lineHeight + 10;
+  }
+  return doc.text(20, lineHeight, txt, { maxWidth: 160 });
+};
+
+textFormat(data.title);
+console.log(lineHeight);
+textFormat(data.description);
+console.log(lineHeight);
+textFormat(data.ingredients);
+console.log(lineHeight);
+textFormat(data.instructions);
+console.log(lineHeight);
+textFormat(data.notes || '');
+console.log(lineHeight);
+textFormat(data.recipeOrigin || '');
+console.log(lineHeight);

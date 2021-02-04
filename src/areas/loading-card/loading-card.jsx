@@ -18,13 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoadingCard = () => {
+const LoadingCard = ({ content }) => {
   const classes = useStyles();
   return (
     <div className={classes.loadingBody}>
       <CircularProgress />
       <Typography variant='body1' style={{ paddingTop: 10 }}>
-        Loading Account
+        Loading {content}
       </Typography>
     </div>
   );

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { useAuth } from './context/auth-context';
-import { useAuth0 } from '@auth0/auth0-react';
 import Container from './grid/container';
 import Homepage from './areas/homepage/homepage';
 import CategoryTypePage from './areas/generic-pages/category-type-page';
@@ -14,13 +13,12 @@ import Signup from './areas/signup/signup';
 import AddRecipe from './areas/recipes/add-recipe';
 import EditRecipe from './areas/recipes/edit-recipe';
 import PrivateRoute from './components/private-route';
-import LoadingCard from './areas/loading-card/loading-card';
 import FavoriteRecipes from './areas/generic-pages/favorite-recipes';
+import LoadingCard from './areas/loading-card/loading-card';
 import ScrollToTop from './util/hooks/scrollToTop';
 
 const Main = (props) => {
-  const { user } = useAuth();
-  const { isLoading } = useAuth0();
+  const { user, isLoading } = useAuth();
   useEffect(() => {
     document.documentElement.style.background = props.bgColor();
     const userCheck = user ? true : false;
@@ -46,7 +44,7 @@ const Main = (props) => {
     <div>
       <Container>
         {isLoading ? (
-          <LoadingCard />
+          <LoadingCard content='Account' />
         ) : (
           <>
             <ScrollToTop />

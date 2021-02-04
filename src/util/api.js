@@ -1,5 +1,6 @@
 import {
   GET_USER_BY_EMAIL,
+  GET_USER_BY_DATA,
   ADD_RECIPE,
   ADD_USER,
   GET_USER_BY_EMAIL_AUTHENTICATE,
@@ -145,10 +146,10 @@ export const retrieveUserData = async (email) => {
   return user[0];
 };
 
-export const authenticateUser = async (email) => {
-  const query = GET_USER_BY_EMAIL;
+export const authenticateUser = async (sub) => {
+  const query = GET_USER_BY_DATA;
   const mutation = UPDATE_LOGIN_DATE;
-  const { user } = await graphqlRequest(query, { email });
+  const { user } = await graphqlRequest(query, { user_id: sub });
   await graphqlRequest(mutation, {
     key: user[0].key,
     set: { lastLoggedIn: new Date().toISOString() },
