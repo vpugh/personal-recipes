@@ -45,11 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HeaderProfile = (props) => {
-  const {
-    handleLogout,
-    user: { username },
-    logout,
-  } = useAuth();
+  const { handleLogout, user, logout } = useAuth();
   const classes = useStyles(props);
   const [showSettings, setToggleSettings] = useState(false);
 
@@ -69,7 +65,7 @@ const HeaderProfile = (props) => {
       <p className={classes.name}>
         Welcome,{' '}
         <span className={classes.nameLink} onClick={toggleSettings}>
-          {username}
+          {user?.username || ''}
         </span>
       </p>
       {showSettings && (

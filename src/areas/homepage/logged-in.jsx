@@ -9,6 +9,7 @@ import useStyles from '../../styles/landing-styles';
 import IntroBox from './intro-box';
 import PageContainer from '../../components/page-container';
 import { LinkButton } from '../../components/buttons/link-button';
+import LoadingCard from '../loading-card/loading-card';
 
 const LoggedIn = () => {
   const { user } = useAuth();
@@ -22,9 +23,13 @@ const LoggedIn = () => {
 
   const favs = user && user.recipes.filter((x) => x.favorite === true);
 
+  if (!user?.recipes) {
+    return <LoadingCard content='Recipes' />;
+  }
+
   return (
     <div className={classes.container}>
-      {user && user.recipes.length > 0 ? (
+      {user?.recipes ? (
         <>
           <IntroBox />
           <CardContainer

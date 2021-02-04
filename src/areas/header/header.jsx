@@ -3,39 +3,31 @@ import Container from '../../grid/container';
 import { Link } from 'react-router-dom';
 import { useStyles } from '../../styles/header-styles';
 import { useAuth } from '../../context/auth-context';
-import { useAuth0 } from '@auth0/auth0-react';
 import HeaderProfile from './header-profile';
 import HeaderLoggedOut from './header-logged-out';
 
 const Header = () => {
   const classes = useStyles();
-  const { user: hasuraUser, handleLogin } = useAuth();
   const {
     user,
-    isLoading,
+    handleLogin,
     getIdTokenClaims,
     getAccessTokenWithPopup,
-  } = useAuth0();
+  } = useAuth();
 
   useEffect(() => {
     const getToken = async () => {
       const claims = await getIdTokenClaims();
       if (claims) {
         localStorage.setItem('token', claims.__raw);
-        handleLogin(user.email);
+        handleLogin();
       }
     };
 
-    if (user && !hasuraUser) {
+    if (!user) {
       getToken();
     }
-  }, [
-    getIdTokenClaims,
-    user,
-    handleLogin,
-    getAccessTokenWithPopup,
-    hasuraUser,
-  ]);
+  }, [getIdTokenClaims, user, handleLogin, getAccessTokenWithPopup]);
 
   return (
     <header className={classes.headerBackground}>
@@ -43,13 +35,11 @@ const Header = () => {
         <Link className={`logo serif ${classes.logoLink}`} to='/'>
           Personal Recipes
         </Link>
-        {!isLoading && (
-          <div className='profile'>
-            <div className={classes.profileDDContainer}>
-              {hasuraUser ? <HeaderProfile user={user} /> : <HeaderLoggedOut />}
-            </div>
+        <div className='profile'>
+          <div className={classes.profileDDContainer}>
+            {user ? <HeaderProfile user={user} /> : <HeaderLoggedOut />}
           </div>
-        )}
+        </div>
       </Container>
     </header>
   );

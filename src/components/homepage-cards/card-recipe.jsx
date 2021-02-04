@@ -31,7 +31,6 @@ const CardRecipe = (props) => {
     serve_type,
     favorite,
     have_made,
-    slug,
   } = recipe;
   return (
     <div

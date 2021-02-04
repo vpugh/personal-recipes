@@ -15,6 +15,9 @@ export const AuthProvider = ({ children }) => {
     updateUser,
     logout,
     loginWithRedirect,
+    getIdTokenClaims,
+    getAccessTokenWithPopup,
+    auth0User,
   } = useAuthenthentice();
 
   const value = useMemo(() => {
@@ -28,6 +31,9 @@ export const AuthProvider = ({ children }) => {
       updateUser,
       logout,
       loginWithRedirect,
+      getIdTokenClaims,
+      getAccessTokenWithPopup,
+      auth0User,
     };
   }, [
     errors,
@@ -39,6 +45,9 @@ export const AuthProvider = ({ children }) => {
     user,
     logout,
     loginWithRedirect,
+    getIdTokenClaims,
+    getAccessTokenWithPopup,
+    auth0User,
   ]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

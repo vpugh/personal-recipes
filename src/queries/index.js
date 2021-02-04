@@ -37,6 +37,49 @@ export const GET_USER_BY_USERNAME = `query GetUserByUsername($username: String!)
   }
 }`;
 
+export const GET_USER_BY_DATA = `query GetUserByEmail($user_id: String!) {
+  user(where: {user_id: {_eq: $user_id}}) {
+    name
+    email
+    key
+    user_id
+    recipes {
+      title
+      cook_time
+      course
+      cuisine
+      description
+      created_at
+      equipment_needed
+      id
+      ingredients
+      instructions
+      main_dish
+      notes
+      prep_time
+      recipe_origin
+      recipe_video
+      serve_type
+      total_time
+      tags
+      serves
+      favorite
+      have_made
+      slug
+    }
+    username
+    settings {
+      id
+      courses
+      cuisines
+      mains
+      themes
+      homepageLimit
+      showFractions
+    }
+  }
+}`;
+
 export const GET_USER_BY_EMAIL = `query GetUserByEmail($email: String!) {
   user(where: {email: {_eq: $email}}) {
     name

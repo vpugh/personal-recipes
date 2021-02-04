@@ -13,8 +13,8 @@ import Signup from './areas/signup/signup';
 import AddRecipe from './areas/recipes/add-recipe';
 import EditRecipe from './areas/recipes/edit-recipe';
 import PrivateRoute from './components/private-route';
-import LoadingCard from './areas/loading-card/loading-card';
 import FavoriteRecipes from './areas/generic-pages/favorite-recipes';
+import LoadingCard from './areas/loading-card/loading-card';
 import ScrollToTop from './util/hooks/scrollToTop';
 
 const Main = (props) => {
@@ -44,7 +44,7 @@ const Main = (props) => {
     <div>
       <Container>
         {isLoading ? (
-          <LoadingCard />
+          <LoadingCard content='Account' />
         ) : (
           <>
             <ScrollToTop />
