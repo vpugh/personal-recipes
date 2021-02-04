@@ -4,7 +4,6 @@ import './App.css';
 import Main from './Main';
 import { AuthProvider } from './context/auth-context';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { Auth0Provider } from '@auth0/auth0-react';
 import defaultTheme from './theme';
 import pinkTheme from './theme/pink-theme';
 import blueTheme from './theme/blue-theme';
@@ -33,25 +32,18 @@ function App() {
     return returnTheme(selectedTheme).palette.background.main;
   };
   return (
-    <Auth0Provider
-      domain={process.env.REACT_APP_AUTH0_DOMAIN}
-      clientId={process.env.REACT_APP_AUTH0_CLIENTID}
-      redirectUri={window.location.origin}
-      scope='openid profile email'
-    >
-      <AuthProvider>
-        <ThemeProvider theme={returnTheme(selectedTheme)}>
-          <div className='App'>
-            <Header />
-            <Main
-              bgColor={themeColor}
-              setSelectedTheme={setSelectedTheme}
-              selectedTheme={selectedTheme}
-            />
-          </div>
-        </ThemeProvider>
-      </AuthProvider>
-    </Auth0Provider>
+    <AuthProvider>
+      <ThemeProvider theme={returnTheme(selectedTheme)}>
+        <div className='App'>
+          <Header />
+          <Main
+            bgColor={themeColor}
+            setSelectedTheme={setSelectedTheme}
+            selectedTheme={selectedTheme}
+          />
+        </div>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

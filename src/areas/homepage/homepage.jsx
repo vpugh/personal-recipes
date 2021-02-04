@@ -10,13 +10,13 @@ const createNewSettings = async (key, userId, email, updateUser) => {
 };
 
 const Homepage = () => {
-  const { isAuthenticated, user, updateUser } = useAuth();
+  const { isAuthenticated, user, updateUser, isLoading } = useAuth();
 
   if (user && user.settings && user.settings.length === 0) {
     createNewSettings(user.key, user.user_id, user.email, updateUser);
   }
 
-  return isAuthenticated ? <LoggedIn /> : <LoggedOut />;
+  return isAuthenticated && !isLoading ? <LoggedIn /> : <LoggedOut />;
 };
 
 export default Homepage;
