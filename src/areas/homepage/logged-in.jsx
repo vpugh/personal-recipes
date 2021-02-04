@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useAuth } from '../../context/auth-context';
-// import { useAuth0 } from '@auth0/auth0-react';
 import CardContainer from '../../components/homepage-cards/card-container';
 import {
   limitSortReverseArray,

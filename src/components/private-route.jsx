@@ -1,11 +1,10 @@
 import React from 'react';
-// import { useAuth } from '../context/auth-context';
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth } from '../context/auth-context';
 import { Route, Redirect } from 'react-router-dom';
 import PageContainer from './page-container';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { isLoading, isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth();
 
   if (isLoading) {
     return (

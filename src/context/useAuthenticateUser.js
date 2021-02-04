@@ -15,7 +15,9 @@ export const useAuthenthentice = () => {
     isAuthenticated,
     isLoading,
     loginWithRedirect,
+    logout,
   } = useAuth0();
+  console.log(user, auth0User);
   const [errors, setErrors] = useState([]);
 
   const mergeUser = useCallback(
@@ -31,6 +33,7 @@ export const useAuthenthentice = () => {
   };
 
   const setCurrentUser = (data) => {
+    console.log('Set CurrentUser');
     if (data.returnedUser) {
       window.localStorage.setItem(
         'authData',
@@ -59,6 +62,7 @@ export const useAuthenthentice = () => {
 
   const handleLogin = async (email) => {
     const auth = await authenticateUser(email);
+    console.log('Handle Login', auth);
     if (!auth) {
       setErrors(auth.error);
       return auth;
@@ -83,5 +87,6 @@ export const useAuthenthentice = () => {
     errors,
     updateUser,
     loginWithRedirect,
+    logout,
   };
 };
