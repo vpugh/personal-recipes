@@ -205,7 +205,10 @@ export const RecipeForm = (props) => {
       saveRecipe(recipeData).then(async (result) => {
         updateUser(result && result.data && result.data.user);
         if (!loading) {
-          setTimeout(props.history.push(`/recipe/${result.id}`), 10000);
+          setTimeout(
+            props.history.push(`/recipe/${result.id}/${result.slug}`),
+            10000
+          );
         }
       });
     }
