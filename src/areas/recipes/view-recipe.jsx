@@ -11,7 +11,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import FavoriteMade from '../../components/favorite-made';
 import { jsPDF } from 'jspdf';
-import PageBuffer from '../../components/page-buffer';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 
 export const useStyles = makeStyles((theme) => ({

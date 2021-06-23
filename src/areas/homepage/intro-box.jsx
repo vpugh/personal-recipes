@@ -5,7 +5,6 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import useStyles from '../../styles/landing-styles';
 import { useAuth } from '../../context/auth-context';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
 
 const autocompleteStyle = makeStyles((theme) => ({
   root: {
