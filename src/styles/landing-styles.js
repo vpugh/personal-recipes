@@ -38,43 +38,31 @@ export const useStyles = makeStyles((theme) => ({
   subFontSize: {
     fontSize: 10,
   },
-  addNewButton: {
-    background: theme.palette.primary.secondary,
-    width: '100%',
-    fontSize: 16,
-    fontWeight: 'bold',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    paddingTop: 16,
-    paddingBottom: 16,
-    border: 'none',
-    textDecoration: 'none',
-
-    transition: '300ms ease-in-out',
-    '&:hover': {
-      background: theme.palette.primary.tertiary,
-    },
-  },
   introBox: {
+    background: theme.palette.primary.secondary,
     boxShadow: `0 2px 4px 0 ${theme.palette.primary.pale}`,
     borderRadius: '6px 6px 0 0',
     margin: '0 0 40px 0',
+    padding: '114px 0',
     [theme.breakpoints.up('md')]: {
       margin: '0 0 60px 0',
     },
     '& > .text-container': {
       padding: 20,
+      width: '50%',
+      margin: '0 auto',
       '& > p': {
-        textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 26,
-        color: '#575757',
+        marginTop: 0,
+        color: theme.palette.primary.dark,
+        letterSpacing: '-0.6px',
+        [theme.breakpoints.up('md')]: {
+          fontSize: 36,
+        },
       },
       '& > div': {
         [theme.breakpoints.up('md')]: {
-          width: '60%',
           margin: '0 auto',
         },
       },

@@ -11,6 +11,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import FavoriteMade from '../../components/favorite-made';
 import { jsPDF } from 'jspdf';
+import PageBuffer from '../../components/page-buffer';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
 
 export const useStyles = makeStyles((theme) => ({
   recipeContainer: {
@@ -27,8 +29,12 @@ export const useStyles = makeStyles((theme) => ({
   },
   recipeTitle: {
     marginTop: 0,
+    fontFamily: "'Sumana', serif",
+    lineHeight: '1em',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '70%',
+      // maxWidth: '70%',
+      fontSize: 42,
+      // marginBottom: '1.55em',
     },
   },
   recipeOrigin: {
@@ -101,10 +107,11 @@ export const useStyles = makeStyles((theme) => ({
     },
   },
   descriptionBox: {
-    padding: 20,
+    padding: 30,
     background: '#fbfbfb',
     boxShadow: '0px 1px 3px rgba(0, 0 ,0, 0.2)',
     borderRadius: 4,
+    lineHeight: '1.4',
   },
   timeContainer: {
     padding: 20,
@@ -125,8 +132,15 @@ export const useStyles = makeStyles((theme) => ({
       marginBottom: 20,
     },
     [theme.breakpoints.up('md')]: {
-      flexDirection: 'column',
+      flexDirection: 'row',
       alignItems: 'start',
+      fontSize: 18,
+      '& > a:not(:last-child)': {
+        marginRight: 8,
+      },
+      '& > button:not(:last-child)': {
+        marginRight: 8,
+      },
     },
   },
   recipeActions: {
@@ -270,9 +284,22 @@ const ViewRecipe = () => {
       <PageContainer>
         <div>
           <div className={classes.headerContainer}>
-            <h1 className={classes.recipeTitle}>{title}</h1>
+            <div>
+              <p
+                style={{
+                  fontSize: 15,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                }}
+              >
+                {Array.isArray(course) ? course.join(', ') : course}
+              </p>
+              <h1 className={classes.recipeTitle}>{title}</h1>
+              <div style={{ margin: '20px 0' }}>
+                <FavoriteMade favorite={favorite} haveMade={have_made} text />
+              </div>
+            </div>
             <div className={classes.recipeActions}>
-              <FavoriteMade favorite={favorite} haveMade={have_made} text />
               <div className={classes.recipeButtons}>
                 <Button
                   component={Link}
@@ -287,16 +314,16 @@ const ViewRecipe = () => {
                 >
                   Delete
                 </Button>
-                <Button onClick={() => exportToText(currentRecipe)}>
-                  Download Text
+                <Button
+                  onClick={() => exportToText(currentRecipe)}
+                  startIcon={<ArrowDownward />}
+                >
+                  Download
                 </Button>
               </div>
             </div>
           </div>
           <div>
-            <DisplayCategories header='Course' data={course} />
-            <DisplayCategories header='Cuisine' data={cuisine} />
-            <DisplayCategories header='Main Dish' data={main_dish} />
             <div
               style={{
                 borderTop: '1px solid #ddd',
@@ -304,6 +331,8 @@ const ViewRecipe = () => {
                 marginTop: 20,
               }}
             >
+              <DisplayCategories header='Cuisine' data={cuisine} />
+              <DisplayCategories header='Main Dish' data={main_dish} />
               <DisplayCategories header='Prep Time' data={prep_time} />
               <DisplayCategories header='Cook Time' data={cook_time} />
               <DisplayCategories header='Total Time' data={total_time} />

@@ -42,6 +42,14 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     marginTop: 8,
   },
+  headerLink: {
+    color: 'inherit',
+    marginRight: 16,
+    transition: '300ms ease-in-out',
+    '&:hover': {
+      color: theme.palette.primary.dark,
+    },
+  },
 }));
 
 const HeaderProfile = (props) => {
@@ -61,6 +69,9 @@ const HeaderProfile = (props) => {
 
   return (
     <>
+      <Link to='/add-recipe' className={classes.headerLink}>
+        Add New Recipe
+      </Link>
       <span className={classes.userHeaderpicture} />
       <p className={classes.name}>
         Welcome,{' '}

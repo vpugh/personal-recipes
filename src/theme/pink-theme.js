@@ -21,6 +21,7 @@ export default responsiveFontSizes(
         secondary: '#FF8585', // Grapefruit P2
         tertiary: '#FF5A5F', // Ruby Pink P3 dd4048 P4??
         pale: '#FFCCCC', // Cotton Candy P0
+        dark: '#ad0000',
       },
       grey: {
         one: '#575757',

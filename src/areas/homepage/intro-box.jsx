@@ -5,6 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import useStyles from '../../styles/landing-styles';
 import { useAuth } from '../../context/auth-context';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AddIcon from '@material-ui/icons/Add';
 
 const autocompleteStyle = makeStyles((theme) => ({
   root: {
@@ -13,7 +14,10 @@ const autocompleteStyle = makeStyles((theme) => ({
       fontWeight: 'bold',
     },
     '& .MuiFormControl-fullWidth': {
-      background: theme.palette.background.main,
+      background: '#fff',
+    },
+    '& .MuiFilledInput-root': {
+      background: '#fff',
     },
   },
 }));
@@ -28,9 +32,9 @@ const IntroBox = () => {
   } = useAuth();
 
   return (
-    <div className={classes.introBox} style={{ background: '#fff' }}>
+    <div className={classes.introBox}>
       <div className='text-container'>
-        <p>What are you looking to cook today?</p>
+        <p className='serif'>What are you looking to cook today?</p>
         <Autocomplete
           options={recipes || []}
           getOptionLabel={(option) => option.title}
@@ -65,9 +69,6 @@ const IntroBox = () => {
           </div>
         )}
       </div>
-      <Link to='/add-recipe' className={classes.addNewButton}>
-        Add New Recipe
-      </Link>
     </div>
   );
 };

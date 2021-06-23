@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles((theme) => ({
   headerBackground: {
     padding: '23px 30px',
+    background: '#fff',
     [theme.breakpoints.up('md')]: {
       padding: '23px 60px',
-      marginBottom: 54,
     },
   },
   container: {
@@ -17,6 +17,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up('sm')]: {
       justifyContent: 'space-between',
+      alignItems: 'flex-start',
     },
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',

@@ -21,6 +21,7 @@ export default responsiveFontSizes(
         secondary: '#8CF0C6', // 2
         tertiary: '#0ad07d', // 3
         pale: '#bfffe4', // 4
+        dark: '#128756',
       },
       grey: {
         one: '#575757',

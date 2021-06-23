@@ -16,6 +16,7 @@ import PrivateRoute from './components/private-route';
 import FavoriteRecipes from './areas/generic-pages/favorite-recipes';
 import LoadingCard from './areas/loading-card/loading-card';
 import ScrollToTop from './util/hooks/scrollToTop';
+import PageBuffer from './components/page-buffer';
 
 const Main = (props) => {
   const { user, isLoading } = useAuth();
@@ -44,7 +45,9 @@ const Main = (props) => {
     <div>
       <Container>
         {isLoading ? (
-          <LoadingCard content='Account' />
+          <PageBuffer>
+            <LoadingCard content='Account' />
+          </PageBuffer>
         ) : (
           <>
             <ScrollToTop />
